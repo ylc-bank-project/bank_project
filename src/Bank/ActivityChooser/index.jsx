@@ -2,6 +2,8 @@ import React from 'react'
 import { ModalOverlay, ResponsiveContent } from '../Modal'
 import styled from 'styled-components'
 
+import { color1 } from '../Global'
+
 const ActivityChooser = ({ visible, closeModal }) => {
 
   const ActivityHeader = () => (
@@ -25,7 +27,7 @@ const ActivityChooser = ({ visible, closeModal }) => {
     `
 
     const ActButton = styled.button`
-      
+      background: ${color1};
     `
 
     return (
@@ -33,7 +35,17 @@ const ActivityChooser = ({ visible, closeModal }) => {
         <ActSectionHeader>Accessing Your Account</ActSectionHeader>
         <ActWrapper>
           <ActTitle>Signing In</ActTitle>
-          <button>Start</button>
+          <ActButton>Start</ActButton>
+        </ActWrapper>
+        <ActSectionHeader>Accounts</ActSectionHeader>
+        <ActWrapper>
+          <ActTitle>Online Account Overview</ActTitle>
+          <ActButton>Start</ActButton>
+        </ActWrapper>
+        <ActSectionHeader>Making Payments</ActSectionHeader>
+        <ActWrapper>
+          <ActTitle>Pay a new company for the first time</ActTitle>
+          <ActButton>Start</ActButton>
         </ActWrapper>
       </>
     )

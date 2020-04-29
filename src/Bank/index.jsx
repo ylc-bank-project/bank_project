@@ -3,16 +3,16 @@ import ActivityChooser from './ActivityChooser'
 
 function App() {
 
-  const [activitiesVisible, setActivitiesVisible] = useState(false);
+  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
 
-  const handleShowActivities = () => {
+  // const handleShowActivities = () => {
 
-  }
+  // }
 
   return (
     <div>
-      <button onClick={() => setActivitiesVisible(true)}>Show Activities</button>
-      <ActivityChooser closeModal={() => setActivitiesVisible(false)} visible={activitiesVisible} />
+      <button onClick={() => setActivitiesListVisible(true)}>Show Activities</button>
+      <ActivityChooser closeModal={() => setActivitiesListVisible(false)} visible={activitiesListVisible} />
     </div>
   );
 }
