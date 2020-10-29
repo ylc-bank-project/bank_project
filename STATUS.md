@@ -1,0 +1,2 @@
+- Building out `activity intro`
+- Stepper component for various activities

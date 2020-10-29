@@ -9,7 +9,7 @@ const ActivityChooser = ({ visible, closeModal }) => {
   const ActivityHeader = () => (
     <div>
       <div>Choose an exercise</div>
-      <div>Welcome to the YLC Online Banking Simulator. Banking is challenging and here are some nice introductory words.</div>
+      <div>Welcome to the YLC Online Banking Simulator. Banking is challenging and here are some nice introductory words. Another test of things.</div>
     </div>
   )
 
