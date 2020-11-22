@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import { mq_tablet } from '../Global'
+import styled, { css } from "styled-components";
+import { mq_tablet } from "../Global";
 
 export const StyledModalOverlay = styled.div`
   position: absolute;
@@ -7,18 +7,18 @@ export const StyledModalOverlay = styled.div`
   height: 100vh;
   width: 100vw;
   z-index: -1;
-`
+`;
 export const ModalWrapper = styled.div`
-height: 100vh;
+  height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 10;
-  display: ${props => props.visible ? "flex" : "none"};
+  z-index: ${(p) => (p.zIndex ? p.zIndex : 100)};
+  display: ${(props) => (props.visible ? "flex" : "none")};
   justify-content: center;
   align-items: center;
-`
+`;
 
 const fullScreen = css`
   width: 100vw;
@@ -27,7 +27,7 @@ const fullScreen = css`
   background: white;
   display: flex;
   flex-direction: column;
-`
+`;
 
 const floating = css`
   width: calc(100% - 10rem);
@@ -41,11 +41,15 @@ const floating = css`
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const ContentContainer = styled.div`
   ${fullScreen}
   @media (min-width: ${mq_tablet}) {
     ${floating}
   }
-`
+`;
+
+export const ModalContent = styled.div`
+  padding: 20px;
+`;
