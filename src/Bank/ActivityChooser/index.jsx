@@ -35,7 +35,12 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
     `;
 
     const ActButton = ({ activity, children }) => (
-      <ActButtonStyled onClick={() => setCurrentActivity(activity)}>
+      <ActButtonStyled
+        onClick={() => {
+          setCurrentActivity(activity);
+          closeModal();
+        }}
+      >
         {children}
       </ActButtonStyled>
     );
