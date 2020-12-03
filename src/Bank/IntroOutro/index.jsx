@@ -1,7 +1,7 @@
 import React from "react";
 import { ModalOverlay, ResponsiveContent, ModalContent } from "../Modal";
 
-const ActivityIntro = ({ visible, closeModal }) => {
+const ActivityIntro = ({ visible, closeModal, text }) => {
   return (
     <ModalOverlay
       visible={visible}
@@ -11,10 +11,7 @@ const ActivityIntro = ({ visible, closeModal }) => {
       render={() => (
         <ResponsiveContent>
           <ModalContent>
-            <div>
-              Text here to introduce the project and tell the user that we don't
-              actually save any data.
-            </div>
+            <div>{text}</div>
             <button onClick={() => closeModal()}>Close</button>
           </ModalContent>
         </ResponsiveContent>

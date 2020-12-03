@@ -1,5 +1,11 @@
+import { activitiesEnums } from "../enums";
+
+import SignIn from "./SignIn";
 import AccountOverview from "./AccountOverview";
 import MakingPayments from "./MakingPayments";
-import SignIn from "./SignIn";
 
-export { AccountOverview, MakingPayments, SignIn };
+export default {
+  [activitiesEnums.SIGNIN]: SignIn,
+  [activitiesEnums.ACCOUNTOVERVIEW]: AccountOverview,
+  [activitiesEnums.MAKINGPAYMENTS]: MakingPayments,
+};

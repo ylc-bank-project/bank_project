@@ -1,12 +1,20 @@
+https://github.com/justinrhodes1/react-power-tooltip
+
 Example
 - http://obsimulator.halifax.co.uk/digital-playpen/entry/cwa/h/content/56e80838cd93d881ebb4/#/exerciseList
+
+Pages
+- Intro and the activity list are one page.
+- Information modal
+- Tooltip for activity steps
+- Ending activity modal
+
 
 Outcome
 - 3 Activities
   1. Accessing your account - Signing In
   2. Accounts - Online Account Overview
   3. Making Payments - Pay a new company for the first time
-- 
 
 All notes:
 
@@ -17,12 +25,15 @@ We’d like to set it up like the tool in this link with only 3 activities (exer
 2.	Accounts- online account overview
 3.	Making Payments- Pay a new company for the first time
 
+
+
 When the user first opens the link, we’d like it to look similar to this tool but YLC logo should be visible and I’d like us to use the same colour scheme as our website. Still thinking about a catchy headline- Choose an activity is too dry. For the description under the headline: “This online banking tool allows you to try out a variety of common online banking tasks. Note: This is an Online Banking simulator and does not manage actual accounts or make real world transactions.” (Not sure if the note should go there or as a disclaimer somewhere else on the page.?)
 Then list the categories and activities is the same format below with start buttons. 
 
 The intention of this tool is to use it as a teaching tool so it will be intended for someone who is teaching a person how to use a bank account online. 
 
 Activity #1: Signing In
+
 
 When you click start from the first screen, a box comes up saying what you’ll do in this exercise. We like how this is set up. We’d like to keep this box the same info minus “and memorable information”. However, for copyright purposes, the wording would have to be changed a little. Then click “start activity button”
 
@@ -145,7 +156,7 @@ click add or edit payee- this will take the user to step 3
 
 step 3 of 5:
 enter company name: Taco Electric
-now enter account number: #make something up
+now enter account/bill number: #make something up
 *Aaron can we have a picture of an elecric bill with arrow to the “account# " here for an example of where to find your account #?
 
 Continue button
@@ -170,7 +181,7 @@ Choose an account that you would like to pay the bill with. For this activity, c
 Enter the amount you would like pay. For this activity, enter $68.00 Continue button
 Enter the date you would like to pay the bill. For this activity, enter ‘Today’ Continue button
 
-The next screen will show a review of what has been enter: “Review what you have entered. If everything is correct, press the ‘Confirm Payment’ button.” Once the user clicks the confirm payment, then next box says… 
+The next screen will show a review of what has been enter: “Review what you have entered. If everythincorrect, press the ‘Confirm Payment’ button.” Once the user clicks the confirm payment, then next box says… 
 
 You now know how to add a new payee and pay a bill online. Want to learn more?
 

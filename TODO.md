@@ -1,0 +1,2 @@
+- set up intro to activity
+- set up stepper for an activity

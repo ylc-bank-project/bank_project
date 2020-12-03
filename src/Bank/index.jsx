@@ -1,50 +1,41 @@
 import React, { useState } from "react";
 import ActivityChooser from "./ActivityChooser";
-import ActivityIntro from "./ActivityIntro";
-import { activitiesEnums } from "./enums";
-import { MakingPayments, SignIn, AccountOverview } from "./Activities";
+import IntroOutro from "./IntroOutro";
+// import { activitiesEnums } from "./enums";
+import introOutroCopy from "./introOutroCopy";
+import AllActivities from "./Activities";
 
 function App() {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
-  const [activityIntroVisible, setActivityIntroVisible] = useState(true);
+  const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  const [isIntro, setIsIntro] = useState(true);
   const [currentActivity, setCurrentActivity] = useState(undefined);
 
   const Activity = ({ currentActivity }) => {
-    let Act = undefined;
-    console.log(currentActivity);
-
-    switch (currentActivity) {
-      case activitiesEnums.SIGNIN:
-        Act = SignIn;
-        break;
-      case activitiesEnums.MAKINGPAYMENTS:
-        Act = MakingPayments;
-        break;
-      case activitiesEnums.ACCOUNTOVERVIEW:
-        Act = AccountOverview;
-        break;
-      default:
-        break;
-    }
-    return <Act />;
+    let Act = AllActivities.currentActivity;
+    return Act ? <Act /> : undefined;
   };
 
   return (
     <div>
-      {currentActivity && currentActivity}
       {currentActivity && Activity({ currentActivity })}
       <button onClick={() => setActivitiesListVisible(true)}>
         Show All Activities
       </button>
-      <button onClick={() => setActivityIntroVisible(true)}>Show Intro</button>
+      <button onClick={() => setIntroOutroVisible(true)}>Show Intro</button>
       <ActivityChooser
-        closeModal={() => setActivitiesListVisible(false)}
+        closeModal={() => {
+          setActivitiesListVisible(false);
+          setIntroOutroVisible(true);
+          setIsIntro(true);
+        }}
         visible={activitiesListVisible}
         setCurrentActivity={setCurrentActivity}
       />
-      <ActivityIntro
-        closeModal={() => setActivityIntroVisible(false)}
-        visible={activityIntroVisible}
+      <IntroOutro
+        closeModal={() => setIntroOutroVisible(false)}
+        visible={introOutroVisible}
+        text={introOutroCopy?.[currentActivity]?.[isIntro ? "intro" : "outro"]}
       />
     </div>
   );
