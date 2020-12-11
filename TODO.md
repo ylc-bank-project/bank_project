@@ -1,2 +1,5 @@
 - set up intro to activity
-- set up stepper for an activity
+- Find a useful tooltip component
+- Set up a process for going through steps
+- build a basic stepper example
+  - each step should move the 

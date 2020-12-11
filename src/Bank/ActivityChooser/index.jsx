@@ -6,6 +6,22 @@ import { activitiesEnums } from "../enums";
 
 import { color1 } from "../Global";
 
+const ActSectionHeader = styled.h2`
+  font-size: 20px;
+`;
+
+const ActWrapper = styled.div`
+  background: grey;
+`;
+
+const ActTitle = styled.div`
+  font-size: 18px;
+`;
+
+const ActButtonStyled = styled.button`
+  background: ${color1};
+`;
+
 const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
   const ActivityHeader = () => (
     <div>
@@ -18,22 +34,6 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
   );
 
   const ActivityList = () => {
-    const ActSectionHeader = styled.h2`
-      font-size: 20px;
-    `;
-
-    const ActWrapper = styled.div`
-      background: grey;
-    `;
-
-    const ActTitle = styled.div`
-      font-size: 18px;
-    `;
-
-    const ActButtonStyled = styled.button`
-      background: ${color1};
-    `;
-
     const ActButton = ({ activity, children }) => (
       <ActButtonStyled
         onClick={() => {
@@ -72,6 +72,7 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
     <ModalOverlay
       visible={visible}
       closeModal={closeModal}
+      notOverlayCloseable={true}
       render={() => (
         <ResponsiveContent>
           <ActivityHeader />

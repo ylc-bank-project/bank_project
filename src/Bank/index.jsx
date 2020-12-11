@@ -6,23 +6,27 @@ import introOutroCopy from "./introOutroCopy";
 import AllActivities from "./Activities";
 
 function App() {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
+  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
   const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
-  const [currentActivity, setCurrentActivity] = useState(undefined);
+  const [currentActivity, setCurrentActivity] = useState("SignIn");
 
   const Activity = ({ currentActivity }) => {
-    let Act = AllActivities.currentActivity;
+    let Act = AllActivities[currentActivity];
     return Act ? <Act /> : undefined;
   };
 
   return (
     <div>
       {currentActivity && Activity({ currentActivity })}
-      <button onClick={() => setActivitiesListVisible(true)}>
+      <button
+        onClick={() => {
+          setActivitiesListVisible(true);
+          setCurrentActivity(undefined);
+        }}
+      >
         Show All Activities
       </button>
-      <button onClick={() => setIntroOutroVisible(true)}>Show Intro</button>
       <ActivityChooser
         closeModal={() => {
           setActivitiesListVisible(false);
