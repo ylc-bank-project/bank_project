@@ -1,47 +1,53 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import ActivityChooser from "./ActivityChooser";
-import IntroOutro from "./IntroOutro";
-// import { activitiesEnums } from "./enums";
-import introOutroCopy from "./introOutroCopy";
 import AllActivities from "./Activities";
+import { PageContainer } from "./Shared/Layout";
+
+const AllActivitiesButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
 
 function App() {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
-  const [introOutroVisible, setIntroOutroVisible] = useState(false);
-  const [isIntro, setIsIntro] = useState(true);
-  const [currentActivity, setCurrentActivity] = useState("SignIn");
+  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
+  const [currentActivity, setCurrentActivity] = useState(undefined);
+
+  const returnToAllActivities = () => {
+    setCurrentActivity(undefined);
+    setActivitiesListVisible(true);
+  };
 
   const Activity = ({ currentActivity }) => {
     let Act = AllActivities[currentActivity];
-    return Act ? <Act /> : undefined;
+    return Act ? (
+      <Act
+        returnToAllActivities={returnToAllActivities}
+        currentActivity={currentActivity}
+      />
+    ) : undefined;
   };
 
   return (
-    <div>
+    <PageContainer>
       {currentActivity && Activity({ currentActivity })}
-      <button
+      <AllActivitiesButton
         onClick={() => {
           setActivitiesListVisible(true);
           setCurrentActivity(undefined);
         }}
       >
         Show All Activities
-      </button>
+      </AllActivitiesButton>
       <ActivityChooser
         closeModal={() => {
           setActivitiesListVisible(false);
-          setIntroOutroVisible(true);
-          setIsIntro(true);
         }}
         visible={activitiesListVisible}
         setCurrentActivity={setCurrentActivity}
       />
-      <IntroOutro
-        closeModal={() => setIntroOutroVisible(false)}
-        visible={introOutroVisible}
-        text={introOutroCopy?.[currentActivity]?.[isIntro ? "intro" : "outro"]}
-      />
-    </div>
+    </PageContainer>
   );
 }
 

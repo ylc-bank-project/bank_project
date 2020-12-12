@@ -1,66 +1,47 @@
 import React, { useState } from "react";
-// import ReactTooltip from "react-tooltip";
-// import Tooltip from "react-power-tooltip";
-import { useTooltip } from "react-laag";
+import { BasicTooltip } from "../../Shared/Tooltip";
+import { MarginedContainer } from "../../Shared/Layout";
+import IntroOutro from "../../IntroOutro";
+import introOutroCopy from "../../introOutroCopy";
 
-function Tooltip({ children, text }) {
-  const [element, triggerProps] = useTooltip(
-    ({ isOpen, layerProps }) =>
-      isOpen && (
-        <div
-          ref={layerProps.ref}
-          style={{
-            ...layerProps.style,
-            backgroundColor: "black",
-            color: "white",
-            padding: "2px 8px",
-            fontSize: 12,
-            borderRadius: 4,
-          }}
-        >
-          {text}
-        </div>
-      ),
-    {
-      delayEnter: 100,
-      delayLeave: 100,
-      /* more options go here */
-    }
-  );
-
+const SignIn = ({ currentActivity, returnToAllActivities }) => {
+  const [step, setStep] = useState(1);
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  const [isIntro, setIsIntro] = useState(true);
   return (
-    <>
-      {element}
-      <span {...triggerProps}>{children}</span>
-    </>
-  );
-}
-
-const SignIn = () => {
-  return (
-    <>
+    <MarginedContainer>
       <div>Sign in activity</div>
-      <Tooltip text={"Lots of text here bla bla bla"}>
-        Here's the tooltip
-      </Tooltip>
-    </>
+      <div>
+        <p>Sign-In box</p>
+        <label>
+          Card Number:
+          <input type="text" />
+        </label>
+        <label>
+          Password:
+          <input type="password" />
+        </label>
+      </div>
+      <button
+        onClick={() => {
+          setIsIntro(false);
+          setIntroOutroVisible(true);
+        }}
+      >
+        Show Outro
+      </button>
+      <BasicTooltip toolTipCopy={"Here goes the Tooltip copy"} isOpen={true}>
+        Here's the BasicTooltip
+      </BasicTooltip>
+      <IntroOutro
+        closeModal={() => setIntroOutroVisible(false)}
+        endExercise={() => returnToAllActivities()}
+        currentActivity={currentActivity}
+        visible={introOutroVisible}
+        isIntro={isIntro}
+      />
+    </MarginedContainer>
   );
 };
 
 export default SignIn;
-
-// const [step, setStep] = useState(1);
-// const [toolTipVisible, setToolTipVisible] = useState(false);
-/* <div data-tip="hello world">This is how to sign in.</div>
-      <ReactTooltip effect="solid" event="click" />
-      <div
-        style={{ position: "relative" }}
-        onMouseOver={() => setToolTipVisible(true)}
-        onMouseLeave={() => setToolTipVisible(false)}
-      >
-        This should be a tool tip.
-        <Tooltip show={toolTipVisible}>
-          <span>Option 1</span>
-          <span>Option 2</span>
-        </Tooltip>
-      </div> */

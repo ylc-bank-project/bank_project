@@ -1,7 +1,17 @@
 import React from "react";
 import { ModalOverlay, ResponsiveContent, ModalContent } from "../Modal";
+import introOutroCopy from "../introOutroCopy";
 
-const ActivityIntro = ({ visible, closeModal, text }) => {
+const IntroOutro = ({
+  visible,
+  closeModal,
+  currentActivity,
+  isIntro,
+  endExercise,
+}) => {
+  const text =
+    introOutroCopy?.[currentActivity]?.[isIntro ? "intro" : "outro"] ||
+    "copy not available";
   return (
     <ModalOverlay
       visible={visible}
@@ -12,7 +22,11 @@ const ActivityIntro = ({ visible, closeModal, text }) => {
         <ResponsiveContent>
           <ModalContent>
             <div>{text}</div>
-            <button onClick={() => closeModal()}>Close</button>
+            {isIntro ? (
+              <button onClick={() => closeModal()}>Close</button>
+            ) : (
+              <button onClick={() => endExercise()}>End Exercise</button>
+            )}
           </ModalContent>
         </ResponsiveContent>
       )}
@@ -20,4 +34,4 @@ const ActivityIntro = ({ visible, closeModal, text }) => {
   );
 };
 
-export default ActivityIntro;
+export default IntroOutro;
