@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { PageContainer } from "./Shared/Layout";
+import SignIn from "./Activities/SignIn";
 
 const AllActivitiesButton = styled.button`
   position: absolute;
@@ -11,8 +12,8 @@ const AllActivitiesButton = styled.button`
 `;
 
 function App() {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
-  const [currentActivity, setCurrentActivity] = useState(undefined);
+  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
+  const [currentActivity, setCurrentActivity] = useState("SignIn");
 
   const returnToAllActivities = () => {
     setCurrentActivity(undefined);
