@@ -1,4 +1,4 @@
-https://github.com/justinrhodes1/react-power-tooltip
+https://github.com/justinrhodes1/react-**power**-tooltip
 
 Example
 - http://obsimulator.halifax.co.uk/digital-playpen/entry/cwa/h/content/56e80838cd93d881ebb4/#/exerciseList
@@ -62,6 +62,8 @@ When you click start for this activity, a box comes up saying what you’ll do i
 Start Activity button
 Step 1 of 6: click on ‘Chequing Account’
 Box comes up pointing to the word ‘balance’ in the account saying- Balance shows the amount of money in your account, including any funds on hold. Continue button
+
+Go to Account information
 
 Box comes up pointing to the word ‘Funds on Hold’ in the account saying- Funds on Hold are deposits made to your account that are not yet available to withdraw. Continue button
 
