@@ -48,6 +48,34 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
 
+  const AccountInfoContent = ({ tipCopy, showTip, bodyCopy }) => {
+    const Content = () => {
+      return (
+        <div>
+          <div>{tipCopy}</div>
+          <BasicTipButton
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          >
+            Continue
+          </BasicTipButton>
+        </div>
+      );
+    };
+    return (
+      <div>
+        <BasicTooltip
+          content={<Content />}
+          showTip={AllSteps[step] === showTip}
+          staticOnly={true}
+        >
+          {bodyCopy}
+        </BasicTooltip>
+      </div>
+    );
+  };
+
   const AllAccounts = () => {
     return (
       <div>
@@ -100,14 +128,25 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
       return (
         <div>
           <Balance />
-          <div>well-read books point of sale</div>
-          <div>Banking Internet Bill</div>
-          <div>Internet Banking Internet Deposit</div>
-          <div>Electronic Funds Transfer</div>
-          <div>transaction</div>
-          <div>transaction</div>
-          <div>transaction</div>
-          <div>transaction</div>
+
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                Transactions represent the money being spent (debited) and the
+                money being added (credit) to your account.
+              </div>
+            }
+            bodyCopy={<span>Transactions Info</span>}
+            showTip={transactions}
+          />
+          <span>well-read books point of sale</span>
+          <span>Banking Internet Bill</span>
+          <span>Internet Banking Internet Deposit</span>
+          <span>Electronic Funds Transfer</span>
+          <span>transaction</span>
+          <span>transaction</span>
+          <span>transaction</span>
+          <span>transaction</span>
         </div>
       );
     };
@@ -115,12 +154,67 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
     const AccountInformation = () => {
       return (
         <div>
-          <div>funds on hold</div>
-          <div>Overdraft Limit</div>
-          <div>Available funds</div>
-          <div>Institution #</div>
-          <div>Transit #</div>
-          <div>Account #</div>
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                Funds on Hold are deposits made to your account that are not yet
+                available to withdraw.
+              </div>
+            }
+            bodyCopy={<span>Funds on hold</span>}
+            showTip={hold}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                Overdraft Limit is the maximum amount of money you can withdraw
+                from your account after your balance reaches zero.
+              </div>
+            }
+            bodyCopy={<span>Overdraft Limit</span>}
+            showTip={overdraft}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                Available Funds is your balance minus any funds on hold plus any
+                overdraft limit (if applicable), representing money available
+                for immediate use in your account.
+              </div>
+            }
+            bodyCopy={<span>Available funds</span>}
+            showTip={available}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                An institution number is a 3- digit code that identifies which
+                bank provider the account is associated with.
+              </div>
+            }
+            bodyCopy={<span>Institution #</span>}
+            showTip={institution}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                A transit number is a 5- digit code that identifies where in
+                Canada your bank is located.
+              </div>
+            }
+            bodyCopy={<span>Transit #</span>}
+            showTip={transit}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                An account number is a 7- digit number that identifies the owner
+                of the account.
+              </div>
+            }
+            bodyCopy={<span>Account #</span>}
+            showTip={accountNumber}
+          />
         </div>
       );
     };
@@ -128,7 +222,21 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
     return (
       <div>
         <div>
-          <button>Transactions</button>
+          <BasicTooltip
+            content={"Click here to go to Account Information"}
+            showTip={AllSteps[step] === transactions}
+            staticOnly={true}
+          >
+            <button
+              disabled={AllSteps[step] !== transactions}
+              onClick={() => {
+                setCheckingService(checkingTransactions);
+                setStep(step + 1);
+              }}
+            >
+              Transactions
+            </button>
+          </BasicTooltip>
           <BasicTooltip
             content={"Click here to go to Account Information"}
             showTip={AllSteps[step] === accountInfo}
@@ -136,7 +244,10 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
           >
             <button
               disabled={AllSteps[step] !== accountInfo}
-              onClick={() => setCheckingService(checkingInformation)}
+              onClick={() => {
+                setCheckingService(checkingInformation);
+                setStep(step + 1);
+              }}
             >
               AccountInformation
             </button>
