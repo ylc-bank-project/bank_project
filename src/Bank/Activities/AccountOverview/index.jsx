@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BasicTooltip, BasicTipButton } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
@@ -19,7 +19,10 @@ const taco = "taco";
 const internetDeposit = "internetDeposit";
 const preAuth = "preAuth";
 const totalDebits = "totalDebits";
+const credits = "credits";
+const creditsDebits = "creditsDebits";
 
+// All steps array for sequence
 const AllSteps = [
   check,
   balance,
@@ -36,6 +39,8 @@ const AllSteps = [
   internetDeposit,
   preAuth,
   totalDebits,
+  credits,
+  creditsDebits,
 ];
 
 const checkingTransactions = "checkingTransactions";
@@ -48,18 +53,33 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
 
-  const AccountInfoContent = ({ tipCopy, showTip, bodyCopy }) => {
+  useEffect(() => {
+    if (step === AllSteps.length) {
+      setStep(step + 1);
+      setIsIntro(false);
+      setIntroOutroVisible(true);
+    }
+  }, [step]);
+
+  const AccountInfoContent = ({
+    tipCopy,
+    showTip,
+    bodyCopy,
+    showButton = true,
+  }) => {
     const Content = () => {
       return (
         <div>
           <div>{tipCopy}</div>
-          <BasicTipButton
-            onClick={() => {
-              setStep(step + 1);
-            }}
-          >
-            Continue
-          </BasicTipButton>
+          {showButton && (
+            <BasicTipButton
+              onClick={() => {
+                setStep(step + 1);
+              }}
+            >
+              Continue
+            </BasicTipButton>
+          )}
         </div>
       );
     };
@@ -139,14 +159,89 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
             bodyCopy={<span>Transactions Info</span>}
             showTip={transactions}
           />
-          <span>well-read books point of sale</span>
-          <span>Banking Internet Bill</span>
-          <span>Internet Banking Internet Deposit</span>
-          <span>Electronic Funds Transfer</span>
-          <span>transaction</span>
-          <span>transaction</span>
-          <span>transaction</span>
-          <span>transaction</span>
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                On January 21st, $12.50 was spent at Well Read Books. Point of
+                Sale- Interac Retail purchase means you made a purchase with
+                your debit card. The numbers you see represents the transaction
+                number which is a special label that identifies the purchase.
+                Every purchase will have a different transaction number.
+              </div>
+            }
+            bodyCopy={<span>well-read books point of sale</span>}
+            showTip={wellRead}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                On January 16th, $109.45 was debited from your account to pay a
+                Taco Electric bill.The numbers you see represents the
+                transaction number which is a special label that identifies the
+                purchase. Every purchase will have a different transaction
+                number.
+              </div>
+            }
+            bodyCopy={<span>Taco Bill</span>}
+            showTip={taco}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                On January 5th, $300 was deposited (credited) in the account.
+                The numbers you see represents the transaction number which is a
+                special label that identifies the purchase. Every purchase will
+                have a different transaction number.
+              </div>
+            }
+            bodyCopy={<span>Internet Banking Internet Deposit</span>}
+            showTip={internetDeposit}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                On January 16th, $96.00 was debited from your account to TD
+                Insurance National. It was a preauthorized debit which means
+                instead of sending a payment, a company withdraws funds from
+                your bank account. It’s a convenient way to pay bills and make
+                other payments automatically and has to be approved by the owner
+                of the bank account first.
+              </div>
+            }
+            bodyCopy={<span>Electronic Funds Transfer</span>}
+            showTip={preAuth}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                <div>The total under Debits is $2606.19</div>
+              </div>
+            }
+            bodyCopy={<span>Debits Total</span>}
+            showTip={totalDebits}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                <div>the total under Credits is $2763.80</div>
+              </div>
+            }
+            bodyCopy={<span>Credits Total</span>}
+            showTip={credits}
+          />
+          <AccountInfoContent
+            tipCopy={
+              <div>
+                <div>
+                  $2763.80 (credits) - $2606.19 (debits)= $157.61 was not spent
+                  this month. It can be put into a savings account or spent at a
+                  later date.
+                </div>
+              </div>
+            }
+            bodyCopy={<span>Credits and Debits</span>}
+            showTip={creditsDebits}
+          />
         </div>
       );
     };
