@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import { BasicTooltip, BasicTipButton } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
-import introOutroCopy from "../../introOutroCopy";
-
-const SignInContent = () => {
-  return <div></div>;
-};
 
 const SignIn = ({ currentActivity, returnToAllActivities }) => {
   const [step, setStep] = useState(1);
   const [readyToSign, setReadyToSign] = useState(false);
-  const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
   const [password, setPassword] = useState(undefined);
   const [saveToggled, setSaveToggled] = useState(false);

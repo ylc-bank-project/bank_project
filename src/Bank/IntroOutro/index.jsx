@@ -8,8 +8,10 @@ const IntroOutro = ({
   currentActivity,
   isIntro,
   endExercise,
+  copy,
 }) => {
   const text =
+    copy ||
     introOutroCopy?.[currentActivity]?.[isIntro ? "intro" : "outro"] ||
     "copy not available";
   return (

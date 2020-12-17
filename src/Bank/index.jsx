@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
+import { activitiesEnums } from "./enums";
 import { PageContainer } from "./Shared/Layout";
 import SignIn from "./Activities/SignIn";
+import { act } from "react-dom/test-utils";
 
 const AllActivitiesButton = styled.button`
   position: absolute;
@@ -12,8 +14,8 @@ const AllActivitiesButton = styled.button`
 `;
 
 function App() {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
-  const [currentActivity, setCurrentActivity] = useState("SignIn");
+  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
+  const [currentActivity, setCurrentActivity] = useState(undefined);
 
   const returnToAllActivities = () => {
     setCurrentActivity(undefined);
@@ -30,9 +32,13 @@ function App() {
     ) : undefined;
   };
 
+  console.log(Object.values(activitiesEnums));
+
   return (
     <PageContainer>
-      {currentActivity && Activity({ currentActivity })}
+      {currentActivity &&
+        Object.values(activitiesEnums).some((act) => act === currentActivity) &&
+        Activity({ currentActivity })}
       <AllActivitiesButton
         onClick={() => {
           setActivitiesListVisible(true);
