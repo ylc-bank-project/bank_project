@@ -59,3 +59,41 @@ export const BasicTooltip = ({
 export const BasicTipButton = (props) => {
   return <button {...props}>{props.children}</button>;
 };
+
+export const InfoTip = ({
+  tipContent,
+  showTip,
+  tipTarget,
+  showButton = true,
+  setStep,
+  step,
+  allSteps,
+}) => {
+  const Content = () => {
+    return (
+      <div>
+        <div>{tipContent}</div>
+        {showButton && (
+          <BasicTipButton
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          >
+            Continue
+          </BasicTipButton>
+        )}
+      </div>
+    );
+  };
+  return (
+    <div>
+      <BasicTooltip
+        content={<Content />}
+        showTip={allSteps[step] === showTip}
+        staticOnly={true}
+      >
+        {tipTarget}
+      </BasicTooltip>
+    </div>
+  );
+};

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BasicTooltip, BasicTipButton } from "../../Shared/Tip";
+import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
 
@@ -23,7 +23,7 @@ const credits = "credits";
 const creditsDebits = "creditsDebits";
 
 // All steps array for sequence
-const AllSteps = [
+const allSteps = [
   check,
   balance,
   accountInfo,
@@ -54,54 +54,19 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
   const [isIntro, setIsIntro] = useState(true);
 
   useEffect(() => {
-    if (step === AllSteps.length) {
+    if (step === allSteps.length) {
       setStep(step + 1);
       setIsIntro(false);
       setIntroOutroVisible(true);
     }
   }, [step]);
 
-  const AccountInfoContent = ({
-    tipCopy,
-    showTip,
-    bodyCopy,
-    showButton = true,
-  }) => {
-    const Content = () => {
-      return (
-        <div>
-          <div>{tipCopy}</div>
-          {showButton && (
-            <BasicTipButton
-              onClick={() => {
-                setStep(step + 1);
-              }}
-            >
-              Continue
-            </BasicTipButton>
-          )}
-        </div>
-      );
-    };
-    return (
-      <div>
-        <BasicTooltip
-          content={<Content />}
-          showTip={AllSteps[step] === showTip}
-          staticOnly={true}
-        >
-          {bodyCopy}
-        </BasicTooltip>
-      </div>
-    );
-  };
-
   const AllAccounts = () => {
     return (
       <div>
         <BasicTooltip
           content={"click on ‘Chequing Account’"}
-          showTip={AllSteps[step] === check}
+          showTip={allSteps[step] === check}
           staticOnly={true}
         >
           <button
@@ -134,7 +99,7 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
       <div>
         <BasicTooltip
           content={<BalanceContent />}
-          showTip={AllSteps[step] === balance}
+          showTip={allSteps[step] === balance}
           staticOnly={true}
         >
           <span>balance</span>
@@ -149,18 +114,19 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
         <div>
           <Balance />
 
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 Transactions represent the money being spent (debited) and the
                 money being added (credit) to your account.
               </div>
             }
-            bodyCopy={<span>Transactions Info</span>}
+            tipTarget={<span>Transactions Info</span>}
             showTip={transactions}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 On January 21st, $12.50 was spent at Well Read Books. Point of
                 Sale- Interac Retail purchase means you made a purchase with
@@ -169,11 +135,12 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
                 Every purchase will have a different transaction number.
               </div>
             }
-            bodyCopy={<span>well-read books point of sale</span>}
+            tipTarget={<span>well-read books point of sale</span>}
             showTip={wellRead}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 On January 16th, $109.45 was debited from your account to pay a
                 Taco Electric bill.The numbers you see represents the
@@ -182,11 +149,12 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
                 number.
               </div>
             }
-            bodyCopy={<span>Taco Bill</span>}
+            tipTarget={<span>Taco Bill</span>}
             showTip={taco}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 On January 5th, $300 was deposited (credited) in the account.
                 The numbers you see represents the transaction number which is a
@@ -194,11 +162,12 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
                 have a different transaction number.
               </div>
             }
-            bodyCopy={<span>Internet Banking Internet Deposit</span>}
+            tipTarget={<span>Internet Banking Internet Deposit</span>}
             showTip={internetDeposit}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 On January 16th, $96.00 was debited from your account to TD
                 Insurance National. It was a preauthorized debit which means
@@ -208,29 +177,32 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
                 of the bank account first.
               </div>
             }
-            bodyCopy={<span>Electronic Funds Transfer</span>}
+            tipTarget={<span>Electronic Funds Transfer</span>}
             showTip={preAuth}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 <div>The total under Debits is $2606.19</div>
               </div>
             }
-            bodyCopy={<span>Debits Total</span>}
+            tipTarget={<span>Debits Total</span>}
             showTip={totalDebits}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 <div>the total under Credits is $2763.80</div>
               </div>
             }
-            bodyCopy={<span>Credits Total</span>}
+            tipTarget={<span>Credits Total</span>}
             showTip={credits}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 <div>
                   $2763.80 (credits) - $2606.19 (debits)= $157.61 was not spent
@@ -239,8 +211,9 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
                 </div>
               </div>
             }
-            bodyCopy={<span>Credits and Debits</span>}
+            tipTarget={<span>Credits and Debits</span>}
             showTip={creditsDebits}
+            {...{ step, setStep, allSteps }}
           />
         </div>
       );
@@ -249,66 +222,72 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
     const AccountInformation = () => {
       return (
         <div>
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 Funds on Hold are deposits made to your account that are not yet
                 available to withdraw.
               </div>
             }
-            bodyCopy={<span>Funds on hold</span>}
+            tipTarget={<span>Funds on hold</span>}
             showTip={hold}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 Overdraft Limit is the maximum amount of money you can withdraw
                 from your account after your balance reaches zero.
               </div>
             }
-            bodyCopy={<span>Overdraft Limit</span>}
+            tipTarget={<span>Overdraft Limit</span>}
             showTip={overdraft}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 Available Funds is your balance minus any funds on hold plus any
                 overdraft limit (if applicable), representing money available
                 for immediate use in your account.
               </div>
             }
-            bodyCopy={<span>Available funds</span>}
+            tipTarget={<span>Available funds</span>}
             showTip={available}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 An institution number is a 3- digit code that identifies which
                 bank provider the account is associated with.
               </div>
             }
-            bodyCopy={<span>Institution #</span>}
+            tipTarget={<span>Institution #</span>}
             showTip={institution}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 A transit number is a 5- digit code that identifies where in
                 Canada your bank is located.
               </div>
             }
-            bodyCopy={<span>Transit #</span>}
+            tipTarget={<span>Transit #</span>}
             showTip={transit}
+            {...{ step, setStep, allSteps }}
           />
-          <AccountInfoContent
-            tipCopy={
+          <InfoTip
+            tipContent={
               <div>
                 An account number is a 7- digit number that identifies the owner
                 of the account.
               </div>
             }
-            bodyCopy={<span>Account #</span>}
+            tipTarget={<span>Account #</span>}
             showTip={accountNumber}
+            {...{ step, setStep, allSteps }}
           />
         </div>
       );
@@ -319,11 +298,11 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
         <div>
           <BasicTooltip
             content={"Click here to go to Account Information"}
-            showTip={AllSteps[step] === transactions}
+            showTip={allSteps[step] === transactions}
             staticOnly={true}
           >
             <button
-              disabled={AllSteps[step] !== transactions}
+              disabled={allSteps[step] !== transactions}
               onClick={() => {
                 setCheckingService(checkingTransactions);
                 setStep(step + 1);
@@ -334,11 +313,11 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
           </BasicTooltip>
           <BasicTooltip
             content={"Click here to go to Account Information"}
-            showTip={AllSteps[step] === accountInfo}
+            showTip={allSteps[step] === accountInfo}
             staticOnly={true}
           >
             <button
-              disabled={AllSteps[step] !== accountInfo}
+              disabled={allSteps[step] !== accountInfo}
               onClick={() => {
                 setCheckingService(checkingInformation);
                 setStep(step + 1);
@@ -361,7 +340,6 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
 
   return (
     <div>
-      <div>Current Step = {step}</div>
       {isChecking ? <Checking /> : <AllAccounts />}
 
       <IntroOutro
