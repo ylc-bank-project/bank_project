@@ -54,7 +54,6 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
-  const [tacoAdded, setTacoAdded] = useState(false);
 
   useEffect(() => {
     if (step === allSteps.length) {
@@ -118,13 +117,35 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   };
 
   const BillPayments = () => {
+    const payeesStage = "payeesStage";
+    const addVerifyPayeeStage = "addVerifyPayeeStage";
+    const payVerifyBillStage = "payVerifyBillStage";
+    const [tacoAdded, setTacoAdded] = useState(false);
+
+    const [paymentStage, setPaymentStage] = useState(payeesStage);
     const ListOfPayees = () => {
       return (
         <div>
           <div>
-            <button>Add Payee</button>
+            <button
+              onClick={() => {
+                setPaymentStage(addVerifyPayeeStage);
+              }}
+            >
+              Add Payee
+            </button>
           </div>
-          {tacoAdded && <div>Taco Elec</div>}
+          {tacoAdded && (
+            <div>
+              <button
+                onClick={() => {
+                  setPaymentStage(payVerifyBillStage);
+                }}
+              >
+                Taco Elec
+              </button>
+            </div>
+          )}
           <div>Other Payee</div>
           <div>Other Payee</div>
           <div>Other Payee</div>
@@ -139,7 +160,17 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
       return (
         <div>
           {isVerify ? (
-            <div>Review the new payee</div>
+            <div>
+              <div>Review the new payee</div>
+              <button
+                onClick={() => {
+                  setPaymentStage(payeesStage);
+                  setTacoAdded(true);
+                }}
+              >
+                Add Payee
+              </button>
+            </div>
           ) : (
             <div>
               <div>
@@ -168,7 +199,17 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
       return (
         <div>
           {isVerify ? (
-            <div>Is Verify </div>
+            <div>
+              <div>Verify here </div>
+              <button
+                onClick={() => {
+                  //Final Step
+                  setStep(step + 1);
+                }}
+              >
+                Confirm Payment
+              </button>
+            </div>
           ) : (
             <div>
               <div>
@@ -199,13 +240,19 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
       );
     };
 
-    return (
-      <div>
-        <ListOfPayees />
-        <AddVerifyPayee />
-        <PayVerifyBill />
-      </div>
-    );
+    const CurrentComponent = () => {
+      switch (paymentStage) {
+        case payeesStage:
+          return <ListOfPayees />;
+        case addVerifyPayeeStage:
+          return <AddVerifyPayee />;
+        case payVerifyBillStage:
+          return <PayVerifyBill />;
+        default:
+          break;
+      }
+    };
+    return <div>{CurrentComponent()}</div>;
   };
 
   return (
