@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NumberFormat from "react-number-format";
 import { BasicTooltip, BasicTipButton } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
@@ -8,6 +9,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
   const [readyToSign, setReadyToSign] = useState(false);
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
+  const [cardNumber, setCardNumber] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [saveToggled, setSaveToggled] = useState(false);
 
@@ -40,7 +42,12 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
       set up a username, you can enter it in this field instead of the card
       number to log in to Online Banking. For this activity, enter card # 1234
       5678 9098 7654 in the username box. Then select ‘continue’
-      <BasicTipButton onClick={() => setStep(3)}>Continue</BasicTipButton>
+      <BasicTipButton
+        disabled={cardNumber !== "1234 5678 9098 7654"}
+        onClick={() => setStep(3)}
+      >
+        Continue
+      </BasicTipButton>
     </div>
   );
 
@@ -98,7 +105,10 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
                 showTip={step === 2}
                 staticOnly={true}
               >
-                <input type="text" />
+                <NumberFormat
+                  onChange={(e) => setCardNumber(e.target.value)}
+                  format="#### #### #### ####"
+                />
               </BasicTooltip>
             </label>
           </div>

@@ -68,6 +68,7 @@ export const InfoTip = ({
   setStep,
   step,
   allSteps,
+  buttonDisabled,
 }) => {
   const Content = () => {
     return (
@@ -75,6 +76,7 @@ export const InfoTip = ({
         <div>{tipContent}</div>
         {showButton && (
           <BasicTipButton
+            disabled={buttonDisabled}
             onClick={() => {
               setStep(step + 1);
             }}

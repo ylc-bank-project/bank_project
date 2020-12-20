@@ -49,11 +49,27 @@ const allAccountsPage = "allAccounts";
 const billPaymentsPage = "billPaymentsPage";
 
 const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
-  const [mainPage, setMainPage] = useState(allAccountsPage);
   const [step, setStep] = useState(0);
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
+
+  // Main Page State
+  const [mainPage, setMainPage] = useState(allAccountsPage);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
+
+  // Bill Payment stages
+  const payeesStage = "payeesStage";
+  const addVerifyPayeeStage = "addVerifyPayeeStage";
+  const payVerifyBillStage = "payVerifyBillStage";
+
+  // State for bill payments
+  const TacoTitle = "Taco Electric";
+  const [tacoAdded, setTacoAdded] = useState(false);
+  const [paymentStage, setPaymentStage] = useState(payeesStage);
+  const [companyTitle, setCompanyTitle] = useState(undefined);
+  const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
+  const [isVerifyPayee, setVerifyPayee] = useState(false);
+  const [isVerifyBill, setVerifyBill] = useState(false);
 
   useEffect(() => {
     if (step === allSteps.length) {
@@ -80,11 +96,10 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
                 Bill Payments
               </button>
             }
-            showTip={clickPayments}
+            showTip={billPaymentsStep}
             showButton={false}
             {...{ step, setStep, allSteps }}
           />
-
           <div>Transfer Money</div>
         </div>
       );
@@ -116,149 +131,236 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
     );
   };
 
-  const BillPayments = () => {
-    const payeesStage = "payeesStage";
-    const addVerifyPayeeStage = "addVerifyPayeeStage";
-    const payVerifyBillStage = "payVerifyBillStage";
-    const [tacoAdded, setTacoAdded] = useState(false);
-
-    const [paymentStage, setPaymentStage] = useState(payeesStage);
-    const ListOfPayees = () => {
-      return (
-        <div>
+  const BillPayments = () =>
+    // {
+    // steps and things
+    // setStep,
+    // step,
+    // addEditPayee,
+    // allSteps,
+    // tacoAdded,
+    // // payee
+    // payVerifyBillStage,
+    // isVerifyPayee,
+    // setVerifyPayee,
+    // setTacoAdded,
+    // confirmPayee,
+    // inputedAccountNumber,
+    // TacoTitle,
+    // setInputedAccountNumber,
+    // addCompanyName,
+    // isVerifyBill,
+    // setVerifyBill,
+    // companyTitle,
+    // setCompanyTitle,
+    // // stages
+    // paymentStage,
+    // setPaymentStage,
+    // addVerifyPayeeStage,
+    // payeesStage,
+    // }
+    {
+      const ListOfPayees = () => {
+        return (
           <div>
-            <button
-              onClick={() => {
-                setPaymentStage(addVerifyPayeeStage);
-              }}
-            >
-              Add Payee
-            </button>
+            <div>
+              <InfoTip
+                tipContent={<div>Click Add or Edit Payee should work</div>}
+                tipTarget={
+                  <button
+                    onClick={() => {
+                      setPaymentStage(addVerifyPayeeStage);
+                      setStep(step + 1);
+                    }}
+                  >
+                    Add Payee
+                  </button>
+                }
+                showTip={addEditPayee}
+                showButton={false}
+                {...{ step, setStep, allSteps }}
+              />
+            </div>
+            {tacoAdded && (
+              <div>
+                <button
+                  onClick={() => {
+                    setPaymentStage(payVerifyBillStage);
+                  }}
+                >
+                  Taco Elec
+                </button>
+              </div>
+            )}
+            <div>Other Payee</div>
+            <div>Other Payee</div>
+            <div>Other Payee</div>
+            <div>Other Payee</div>
+            <div>Other Payee</div>
           </div>
-          {tacoAdded && (
-            <div>
-              <button
-                onClick={() => {
-                  setPaymentStage(payVerifyBillStage);
-                }}
-              >
-                Taco Elec
-              </button>
-            </div>
-          )}
-          <div>Other Payee</div>
-          <div>Other Payee</div>
-          <div>Other Payee</div>
-          <div>Other Payee</div>
-          <div>Other Payee</div>
-        </div>
-      );
-    };
+        );
+      };
 
-    const AddVerifyPayee = () => {
-      const [isVerify, setVerify] = useState(false);
-      return (
-        <div>
-          {isVerify ? (
-            <div>
-              <div>Review the new payee</div>
-              <button
-                onClick={() => {
-                  setPaymentStage(payeesStage);
-                  setTacoAdded(true);
-                }}
-              >
-                Add Payee
-              </button>
-            </div>
-          ) : (
-            <div>
+      const AddVerifyPayee = () => {
+        return (
+          <div>
+            {isVerifyPayee ? (
+              <div>
+                <div>Review the new payee</div>
+                <button
+                  onClick={() => {
+                    setTacoAdded(true);
+                    setPaymentStage(confirmPayee);
+                  }}
+                >
+                  Add Payee
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div>
+                  <div>
+                    <InfoTip
+                      tipContent={<div>enter company name: Taco Electric</div>}
+                      buttonDisabled={inputedAccountNumber !== TacoTitle}
+                      tipTarget={
+                        <label>
+                          Company Name:
+                          <input
+                            onChange={(e) => setCompanyTitle(e.target.value)}
+                            value={companyTitle}
+                            type="text"
+                          />
+                        </label>
+                      }
+                      showTip={addCompanyName}
+                      showButton={true}
+                      {...{ step, setStep, allSteps }}
+                    />
+                  </div>
+                  <div>
+                    <label>
+                      Account/Bill Number
+                      <input type="number" />
+                    </label>
+                  </div>
+                </div>
+                <button onClick={() => setVerifyPayee(true)}>Continue</button>
+              </div>
+            )}
+          </div>
+        );
+      };
+
+      const PayVerifyBill = () => {
+        return (
+          <div>
+            {isVerifyBill ? (
+              <div>
+                <div>Verify here </div>
+                <button
+                  onClick={() => {
+                    //Final Step
+                    setStep(step + 1);
+                  }}
+                >
+                  Confirm Payment
+                </button>
+              </div>
+            ) : (
               <div>
                 <div>
                   <label>
-                    Company Name:
-                    <input type="text" />
+                    Account:
+                    <select>
+                      <option value="checking">Checking</option>
+                      <option value="saving">Saving</option>
+                    </select>
                   </label>
                 </div>
                 <div>
                   <label>
-                    Account/Bill Number
+                    Amount:
                     <input type="number" />
                   </label>
                 </div>
+                <div>
+                  <label>
+                    Date:
+                    <input type="date" />
+                  </label>
+                </div>
+                <button onClick={() => setVerifyBill(true)}>Continue</button>
               </div>
-              <button onClick={() => setVerify(true)}>Continue</button>
-            </div>
-          )}
-        </div>
-      );
-    };
+            )}
+          </div>
+        );
+      };
 
-    const PayVerifyBill = () => {
-      const [isVerify, setVerify] = useState(false);
+      // const CurrentComponent = () => {
+      //   switch (paymentStage) {
+      //     case payeesStage:
+      //       return <ListOfPayees />;
+      //     case addVerifyPayeeStage:
+      //       return <AddVerifyPayee />;
+      //     case payVerifyBillStage:
+      //       return <PayVerifyBill />;
+      //     default:
+      //       break;
+      //   }
+      // };
+
+      console.log({ paymentStage });
       return (
         <div>
-          {isVerify ? (
-            <div>
-              <div>Verify here </div>
-              <button
-                onClick={() => {
-                  //Final Step
-                  setStep(step + 1);
-                }}
-              >
-                Confirm Payment
-              </button>
-            </div>
+          {paymentStage === payeesStage ? (
+            <ListOfPayees />
+          ) : paymentStage === addVerifyPayeeStage ? (
+            <AddVerifyPayee />
+          ) : paymentStage === payVerifyBillStage ? (
+            <PayVerifyBill />
           ) : (
-            <div>
-              <div>
-                <label>
-                  Account:
-                  <select>
-                    <option value="checking">Checking</option>
-                    <option value="saving">Saving</option>
-                  </select>
-                </label>
-              </div>
-              <div>
-                <label>
-                  Amount:
-                  <input type="number" />
-                </label>
-              </div>
-              <div>
-                <label>
-                  Date:
-                  <input type="date" />
-                </label>
-              </div>
-              <button onClick={() => setVerify(true)}>Continue</button>
-            </div>
+            <div>No Stage </div>
           )}
         </div>
       );
     };
-
-    const CurrentComponent = () => {
-      switch (paymentStage) {
-        case payeesStage:
-          return <ListOfPayees />;
-        case addVerifyPayeeStage:
-          return <AddVerifyPayee />;
-        case payVerifyBillStage:
-          return <PayVerifyBill />;
-        default:
-          break;
-      }
-    };
-    return <div>{CurrentComponent()}</div>;
-  };
 
   return (
     <div>
       <div>Making Payments</div>
-      {mainPage === allAccountsPage ? <AllAccounts /> : <BillPayments />}
+      {mainPage === allAccountsPage ? (
+        <AllAccounts />
+      ) : (
+        <BillPayments
+        // {...{
+        //   setStep,
+        //   step,
+        //   addEditPayee,
+        //   allSteps,
+        //   tacoAdded,
+        //   // payee
+        //   payVerifyBillStage,
+        //   isVerifyPayee,
+        //   setVerifyPayee,
+        //   setTacoAdded,
+        //   confirmPayee,
+        //   inputedAccountNumber,
+        //   TacoTitle,
+        //   setInputedAccountNumber,
+        //   addCompanyName,
+        //   isVerifyBill,
+        //   setVerifyBill,
+        //   companyTitle,
+        //   setCompanyTitle,
+        //   // stages
+        //   paymentStage,
+        //   setPaymentStage,
+        //   addVerifyPayeeStage,
+        //   payeesStage,
+        // }}
+        />
+      )}
       <IntroOutro
         closeModal={() => setIntroOutroVisible(false)}
         endExercise={() => returnToAllActivities()}
