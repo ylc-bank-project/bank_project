@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
+import moment from "moment";
 
 /**
  * Start in "All accounts" page with payments at the bottom
