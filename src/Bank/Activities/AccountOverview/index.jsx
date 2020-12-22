@@ -86,13 +86,17 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
   const Balance = () => {
     const BalanceContent = () => {
       return (
-        <BasicTipButton
-          onClick={() => {
-            setStep(step + 1);
-          }}
-        >
-          Continue
-        </BasicTipButton>
+        <div>
+          Balance shows the amount of money in your account, including any funds
+          on hold.
+          <BasicTipButton
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          >
+            Continue
+          </BasicTipButton>
+        </div>
       );
     };
     return (

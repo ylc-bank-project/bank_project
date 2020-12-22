@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
+import NumberFormat from "react-number-format";
 import IntroOutro from "../../IntroOutro";
-import moment from "moment";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 /**
  * Start in "All accounts" page with payments at the bottom
@@ -164,7 +167,8 @@ const AddVerifyPayee = ({
             <div>
               <InfoTip
                 tipContent={<div>enter company name: Taco Electric</div>}
-                buttonDisabled={companyTitle !== TacoTitle}
+                // buttonDisabled={companyTitle !== TacoTitle}
+                buttonDisabled={false}
                 tipTarget={
                   <label>
                     Company Name:
@@ -195,7 +199,6 @@ const AddVerifyPayee = ({
                     Account/Bill Number
                     <input
                       onChange={(e) => setInputedAccountNumber(e.target.value)}
-                      type="number"
                     />
                   </label>
                 }
@@ -241,6 +244,12 @@ const PayVerifyBill = ({
   billAmount,
   billDate,
 }) => {
+  let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
+  const todayDate = `${month}/${day}/${year}`;
+  const [bMonth, bDay, bYear] = billDate
+    ? billDate.toLocaleDateString("en-US").split("/")
+    : [];
+  const formattedBillDate = `${bMonth}/${bDay}/${bYear}`;
   return (
     <div>
       {isVerifyBill ? (
@@ -307,14 +316,14 @@ const PayVerifyBill = ({
               tipTarget={
                 <label>
                   Amount:
-                  <input
+                  <NumberFormat
                     onChange={(e) => setBillAmount(e.target.value)}
-                    type="number"
+                    prefix={"$"}
                   />
                 </label>
               }
               showTip={enterAmount}
-              buttonDisabled={billAmount !== "68.00"}
+              buttonDisabled={billAmount !== "$68.00"}
               showButton={true}
               {...{ step, setStep, allSteps }}
             />
@@ -330,14 +339,15 @@ const PayVerifyBill = ({
               tipTarget={
                 <label>
                   Date:
-                  <input
-                    onChange={(e) => setBillDate(e.target.value)}
-                    type="date"
+                  <DatePicker
+                    selected={billDate}
+                    onChange={(date) => setBillDate(date)}
+                    todayButton="Today"
                   />
                 </label>
               }
               showTip={enterDate}
-              buttonDisabled={billDate !== "today"}
+              buttonDisabled={todayDate !== formattedBillDate}
               showButton={true}
               {...{ step, setStep, allSteps }}
             />
@@ -448,6 +458,12 @@ const BillPayments = (props) => {
   );
 };
 
+const addDays = (date, days) => {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+};
+
 //Main Pages
 const allAccountsPage = "allAccounts";
 const billPaymentsPage = "billPaymentsPage";
@@ -476,7 +492,7 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const [isVerifyBill, setVerifyBill] = useState(false);
   const [accountType, setAccountType] = useState(undefined);
   const [billAmount, setBillAmount] = useState(undefined);
-  const [billDate, setBillDate] = useState(undefined);
+  const [billDate, setBillDate] = useState(addDays(new Date(), 5));
 
   console.log({ accountType, billAmount, billDate });
 

@@ -4,10 +4,26 @@ Example
 - http://obsimulator.halifax.co.uk/digital-playpen/entry/cwa/h/content/56e80838cd93d881ebb4/#/exerciseList
 
 Pages
-- Intro and the activity list are one page.
-- Information modal
-- Tooltip for activity steps
-- Ending activity modal
+- App Pages
+  - Intro and activities list
+  - Intro/Outro modal
+- Bank Pages
+  - Sign-in page
+    - click to sign in
+    - input info
+  - All Accounts
+    - Checking and Savings
+    - Make payments
+      - Payment options sub-section
+  - Checking Account
+    - transactions and links
+  - Checking Account Information
+    - List of stats and numbers
+  - List of Payees
+  - Add Payee
+  - Verify Payee
+  - Make a Payment
+  - Verify Payment
 
 
 Outcome
