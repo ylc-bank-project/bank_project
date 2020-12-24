@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { activitiesEnums } from "../enums";
 
-import { color1 } from "../Global";
+// import { color1 } from "../Global";
 
 const ActSectionHeader = styled.h2`
   font-size: 20px;
@@ -19,7 +19,7 @@ const ActTitle = styled.div`
 `;
 
 const ActButtonStyled = styled.button`
-  background: ${color1};
+  background: red;
 `;
 
 const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {

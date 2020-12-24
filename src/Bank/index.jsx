@@ -5,7 +5,7 @@ import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer } from "./Shared/Layout";
 import SignIn from "./Activities/SignIn";
-import { act } from "react-dom/test-utils";
+// import { act } from "react-dom/test-utils";
 
 const AllActivitiesButton = styled.button`
   position: absolute;
