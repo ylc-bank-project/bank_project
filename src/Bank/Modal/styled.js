@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { mq_tablet } from "../Global";
+import { mqMin } from "../Global";
 
 export const StyledModalOverlay = styled.div`
   position: absolute;
@@ -45,7 +45,7 @@ const floating = css`
 
 export const ContentContainer = styled.div`
   ${fullScreen}
-  @media (min-width: ${mq_tablet}) {
+  ${mqMin[2]} {
     ${floating}
   }
 `;

@@ -1,10 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { mq_wp_desktop } from "../Global";
+import { bps } from "../Global";
 
 export const PageContainer = styled.div``;
 
 export const MarginedContainer = styled.div`
-  max-width: ${mq_wp_desktop};
+  max-width: ${bps[3]}px;
   margin: 0 auto;
 `;

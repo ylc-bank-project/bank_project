@@ -1,72 +1,52 @@
 import React from "react";
 import { ModalOverlay, ResponsiveContent } from "../Modal";
 import styled from "styled-components";
+import { ActivityList } from "./ActivityListing";
+import logo from "../assets/dark_flake.png";
 
-import { activitiesEnums } from "../enums";
-
-// import { color1 } from "../Global";
-
-const ActSectionHeader = styled.h2`
-  font-size: 20px;
+const ActChooserBody = styled.div`
+  padding-top: 160px;
+  background: ${(p) => p.theme.colors.light_accent};
 `;
 
-const ActWrapper = styled.div`
-  background: grey;
+const Welcome = styled.div`
+  ${(p) => p.theme.fonts.small_header};
 `;
 
-const ActTitle = styled.div`
-  font-size: 18px;
+const Intro = styled.div`
+  ${(p) => p.theme.fonts.body_text_bold}
 `;
 
-const ActButtonStyled = styled.button`
-  background: red;
+const BlueSpan = styled.span`
+  color: ${(p) => p.theme.colors.ylc_blue};
+`;
+
+const Choose = styled.div`
+  ${(p) => p.theme.fonts.medium_header}
+`;
+
+const HeaderLogo = styled.img`
+  height: 300px;
+  position: absolute;
+  top: -150px;
+  right: calc(50% - 150px);
+  overflow: hidden;
 `;
 
 const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
   const ActivityHeader = () => (
     <div>
-      <div>Choose an exercise</div>
-      <div>
-        Welcome to the YLC Online Banking Simulator. Banking is challenging and
-        here are some nice introductory words. Another test of things.
-      </div>
+      <HeaderLogo src={logo} alt="" />
+      <Welcome>
+        Welcome to the <BlueSpan>YLC Online Banking Simulator</BlueSpan>.
+      </Welcome>
+      <Intro>
+        Banking is challenging and here are some nice introductory words.
+        Another test of things.
+      </Intro>
+      <Choose>Choose an exercise</Choose>
     </div>
   );
-
-  const ActivityList = () => {
-    const ActButton = ({ activity, children }) => (
-      <ActButtonStyled
-        onClick={() => {
-          setCurrentActivity(activity);
-          closeModal();
-        }}
-      >
-        {children}
-      </ActButtonStyled>
-    );
-
-    return (
-      <>
-        <ActSectionHeader>Accessing Your Account</ActSectionHeader>
-        <ActWrapper>
-          <ActTitle>Signing In</ActTitle>
-          <ActButton activity={activitiesEnums.SIGNIN}>Start</ActButton>
-        </ActWrapper>
-        <ActSectionHeader>Accounts</ActSectionHeader>
-        <ActWrapper>
-          <ActTitle>Online Account Overview</ActTitle>
-          <ActButton activity={activitiesEnums.ACCOUNTOVERVIEW}>
-            Start
-          </ActButton>
-        </ActWrapper>
-        <ActSectionHeader>Making Payments</ActSectionHeader>
-        <ActWrapper>
-          <ActTitle>Pay a new company for the first time</ActTitle>
-          <ActButton activity={activitiesEnums.MAKINGPAYMENTS}>Start</ActButton>
-        </ActWrapper>
-      </>
-    );
-  };
 
   return (
     <ModalOverlay
@@ -75,8 +55,10 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
       notOverlayCloseable={true}
       render={() => (
         <ResponsiveContent>
-          <ActivityHeader />
-          <ActivityList />
+          <ActChooserBody>
+            <ActivityHeader />
+            <ActivityList {...{ closeModal, setCurrentActivity }} />
+          </ActChooserBody>
         </ResponsiveContent>
       )}
     />

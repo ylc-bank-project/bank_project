@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer } from "./Shared/Layout";
 import SignIn from "./Activities/SignIn";
+import { theme } from "./Global";
 // import { act } from "react-dom/test-utils";
 
 const AllActivitiesButton = styled.button`
@@ -32,8 +33,6 @@ function App() {
     ) : undefined;
   };
 
-  console.log(Object.values(activitiesEnums));
-
   return (
     <PageContainer>
       {currentActivity &&
@@ -58,4 +57,10 @@ function App() {
   );
 }
 
-export default App;
+const AppExport = () => (
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>
+);
+
+export default AppExport;
