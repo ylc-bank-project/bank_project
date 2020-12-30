@@ -1,5 +1,5 @@
-- set up intro to activity
-- Find a useful tooltip component
-- Set up a process for going through steps
-- build a basic stepper example
-  - each step should move the 
+- style the Sign-in activity
+  - thus setting up basic styling for the rest of the banking app.
+- style the tooltip
+  - perhaps add a "hide" and "show" functionality for the tooltip if it gets in the way
+- correct the logic as you go so the user can't break the sequence of events
