@@ -52,7 +52,3 @@ export const ContentContainer = styled.div`
     ${floating}
   }
 `;
-
-export const ModalContent = styled.div`
-  padding: 20px;
-`;

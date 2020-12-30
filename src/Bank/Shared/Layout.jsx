@@ -16,4 +16,5 @@ export const ActButton = styled.button`
   min-height: 40px;
   border-radius: 5px;
   ${(p) => p.theme.fonts.body_text_bold}
+  cursor: pointer;
 `;

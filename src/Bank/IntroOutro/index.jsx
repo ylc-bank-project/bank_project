@@ -1,6 +1,33 @@
 import React from "react";
-import { ModalOverlay, ResponsiveContent, ModalContent } from "../Modal";
+import { ModalOverlay, ResponsiveContent } from "../Modal";
+import styled from "styled-components";
 import introOutroCopy from "../introOutroCopy";
+import logo from "../assets/dark_flake.png";
+import { ActButton } from "../Shared/Layout";
+
+const HeaderLogo = styled.img`
+  height: 300px;
+  position: absolute;
+  top: -150px;
+  right: calc(50% - 150px);
+  overflow: hidden;
+`;
+
+const IntroOutroContainer = styled.div`
+  padding: 30px 0 20px;
+  padding-top: 150px;
+`;
+
+const TextSection = styled.div`
+  padding: 40px 50px;
+  ${(p) => p.theme.fonts.body_text_bold}
+`;
+
+const ButtonSection = styled.div`
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+`;
 
 const IntroOutro = ({
   visible,
@@ -22,14 +49,19 @@ const IntroOutro = ({
       zIndex={110}
       render={() => (
         <ResponsiveContent>
-          <ModalContent>
-            <div>{text}</div>
-            {isIntro ? (
-              <button onClick={() => closeModal()}>Close</button>
-            ) : (
-              <button onClick={() => endExercise()}>End Exercise</button>
-            )}
-          </ModalContent>
+          <IntroOutroContainer>
+            <HeaderLogo src={logo} />
+            <TextSection>{text}</TextSection>
+            <ButtonSection>
+              {isIntro ? (
+                <ActButton onClick={() => closeModal()}>Close</ActButton>
+              ) : (
+                <ActButton onClick={() => endExercise()}>
+                  End Exercise
+                </ActButton>
+              )}
+            </ButtonSection>
+          </IntroOutroContainer>
         </ResponsiveContent>
       )}
     />

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  ContentContainer,
-  StyledModalOverlay,
-  ModalWrapper,
-  ModalContent as ModalContentStyledComponent,
-} from "./styled";
-
-export const ModalContent = ModalContentStyledComponent;
+import { ContentContainer, StyledModalOverlay, ModalWrapper } from "./styled";
 
 export const ResponsiveContent = ({ children }) => (
   <ContentContainer>{children}</ContentContainer>
