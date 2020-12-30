@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { activitiesEnums } from "../enums";
+import { ActButton as ActButtonImport } from "../Shared/Layout";
 
 const ActSectionHeader = styled.h2`
   font-size: 20px;
@@ -14,19 +15,15 @@ const ActTitle = styled.div`
   font-size: 18px;
 `;
 
-const ActButtonStyled = styled.button`
-  background: red;
-`;
-
 const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => (
-  <ActButtonStyled
+  <ActButtonImport
     onClick={() => {
       setCurrentActivity(activity);
       closeModal();
     }}
   >
     {children}
-  </ActButtonStyled>
+  </ActButtonImport>
 );
 
 const Activity = ({ closeModal, setCurrentActivity, activity, title }) => (

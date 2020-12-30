@@ -11,10 +11,14 @@ const ActChooserBody = styled.div`
 
 const Welcome = styled.div`
   ${(p) => p.theme.fonts.small_header};
+  display: flex;
+  justify-content: center;
 `;
 
 const Intro = styled.div`
   ${(p) => p.theme.fonts.body_text_bold}
+  display: flex;
+  justify-content: center;
 `;
 
 const BlueSpan = styled.span`
@@ -23,6 +27,8 @@ const BlueSpan = styled.span`
 
 const Choose = styled.div`
   ${(p) => p.theme.fonts.medium_header}
+  display: flex;
+  justify-content: center;
 `;
 
 const HeaderLogo = styled.img`

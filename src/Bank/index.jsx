@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
@@ -57,8 +57,16 @@ function App() {
   );
 }
 
+const GlobalStyle = createGlobalStyle`
+body {
+  font-family: 'Poppins', sans-serif; 
+  font-family: 'Noto Sans', sans-serif;
+}
+`;
+
 const AppExport = () => (
   <ThemeProvider theme={theme}>
+    <GlobalStyle />
     <App />
   </ThemeProvider>
 );
