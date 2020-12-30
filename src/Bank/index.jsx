@@ -62,6 +62,10 @@ body {
   font-family: 'Poppins', sans-serif; 
   font-family: 'Noto Sans', sans-serif;
 }
+
+h2 {
+  margin: 0;
+}
 `;
 
 const AppExport = () => (

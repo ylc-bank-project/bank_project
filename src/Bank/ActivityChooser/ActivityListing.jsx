@@ -4,14 +4,21 @@ import { activitiesEnums } from "../enums";
 import { ActButton as ActButtonImport } from "../Shared/Layout";
 
 const ActSectionHeader = styled.h2`
-  font-size: 20px;
+  ${(p) => p.theme.fonts.small_header}
+  padding: 20px 0 20px 90px;
 `;
 
 const ActWrapper = styled.div`
-  background: grey;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 90px;
+  padding-right: 90px;
+  height: 86px;
 `;
 
-const ActTitle = styled.div`
+const ActTitle = styled.span`
   font-size: 18px;
 `;
 

@@ -23,7 +23,7 @@ export const ModalWrapper = styled.div`
 const fullScreen = css`
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: auto;
   background: white;
   display: flex;
   flex-direction: column;
@@ -32,12 +32,15 @@ const fullScreen = css`
 const floating = css`
   width: calc(100% - 10rem);
   max-width: 64rem;
-  height: calc(100% - 10rem);
-  max-height: 71rem;
+  height: unset;
+  max-height: calc(100% - 10rem);
+  /* max-height: 71rem; */
   position: relative;
-  overflow-y: hidden;
+  overflow-y: auto;
   background: white;
   box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.5);
+  border: ${(p) => p.theme.colors.ylc_blue} solid 3px;
+  border-radius: 5px;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
