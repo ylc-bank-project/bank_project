@@ -15,8 +15,8 @@ const AllActivitiesButton = styled.button`
 `;
 
 function App() {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
-  const [currentActivity, setCurrentActivity] = useState(undefined);
+  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
+  const [currentActivity, setCurrentActivity] = useState("SignIn");
 
   const returnToAllActivities = () => {
     setCurrentActivity(undefined);
@@ -61,6 +61,7 @@ const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Poppins', sans-serif; 
   font-family: 'Noto Sans', sans-serif;
+  margin: 0;
 }
 
 h2 {

@@ -1,5 +1,7 @@
 import React from "react";
 import { useLayer, useHover, Arrow } from "react-laag";
+import { ActButton } from "../../Shared/Layout";
+import styled from "styled-components";
 
 export const BasicTooltip = ({
   children,
@@ -18,6 +20,8 @@ export const BasicTooltip = ({
     triggerOffset: triggerOffset || 20,
     containerOffset: 10,
     arrowOffset: 5,
+    preferX: "right",
+    placement: "right-center",
   });
 
   return (
@@ -37,18 +41,21 @@ export const BasicTooltip = ({
               borderWidth: 1,
               borderColor: "#000000",
               borderStyle: "solid",
-              backgroundColor: "#ff0000",
+              backgroundColor: "white",
               borderRadius: "3px",
-              padding: "10px",
+              padding: "20px",
+              maxWidth: "250px",
             }}
           >
             {content}
             <Arrow
               {...arrowProps}
-              backgroundColor="#ff0000"
+              backgroundColor="white"
               borderWidth={1}
               borderColor="#000000"
               roundness={0.5}
+              size={18}
+              angle={30}
             />
           </div>
         )}
@@ -56,8 +63,18 @@ export const BasicTooltip = ({
   );
 };
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 0;
+`;
+
 export const BasicTipButton = (props) => {
-  return <button {...props}>{props.children}</button>;
+  return (
+    <ButtonContainer>
+      <ActButton {...props}>{props.children}</ActButton>
+    </ButtonContainer>
+  );
 };
 
 export const InfoTip = ({
