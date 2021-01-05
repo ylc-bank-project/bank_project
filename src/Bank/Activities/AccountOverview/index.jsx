@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
+import { BankingBackground } from "../../Shared/BankPages";
 import IntroOutro from "../../IntroOutro";
 
 // ALL STEPS
@@ -343,17 +344,19 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
   };
 
   return (
-    <div>
-      {isChecking ? <Checking /> : <AllAccounts />}
+    <BankingBackground>
+      <MarginedContainer>
+        {isChecking ? <Checking /> : <AllAccounts />}
 
-      <IntroOutro
-        closeModal={() => setIntroOutroVisible(false)}
-        endExercise={() => returnToAllActivities()}
-        currentActivity={currentActivity}
-        visible={introOutroVisible}
-        isIntro={isIntro}
-      />
-    </div>
+        <IntroOutro
+          closeModal={() => setIntroOutroVisible(false)}
+          endExercise={() => returnToAllActivities()}
+          currentActivity={currentActivity}
+          visible={introOutroVisible}
+          isIntro={isIntro}
+        />
+      </MarginedContainer>
+    </BankingBackground>
   );
 };
 

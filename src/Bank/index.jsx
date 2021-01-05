@@ -16,7 +16,7 @@ const AllActivitiesButton = styled.button`
 
 function App() {
   const [activitiesListVisible, setActivitiesListVisible] = useState(false);
-  const [currentActivity, setCurrentActivity] = useState("SignIn");
+  const [currentActivity, setCurrentActivity] = useState("AccountOverview");
 
   const returnToAllActivities = () => {
     setCurrentActivity(undefined);

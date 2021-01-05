@@ -92,7 +92,8 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
   // const [step, setStep] = useState(2);
   const [readyToSign, setReadyToSign] = useState(false);
   // const [readyToSign, setReadyToSign] = useState(true);
-  const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
   const [cardNumber, setCardNumber] = useState(undefined);
   const [password, setPassword] = useState(undefined);
@@ -116,8 +117,6 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
       </BasicTooltip>
     </SignInContainer>
   );
-
-  console.log({ saveToggled });
 
   return (
     <BankingBackground>
