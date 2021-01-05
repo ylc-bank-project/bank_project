@@ -6,23 +6,97 @@ import { MarginedContainer, SignInButton } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
 import { BankingBackground } from "../../Shared/BankPages";
 import { FirstStep, SecondStep, ThirdStep, FourthStep } from "./TipSteps";
+import { RadioButton } from "react-radio-buttons";
 import logo from "../../assets/dark_flake_black.png";
 
+const SignInContainer = styled.div`
+  grid-column: span 12;
+  text-align: center;
+`;
+
+const StyledGreeting = styled.div`
+  grid-column: span 12;
+  text-align: center;
+  ${(p) => p.theme.fonts.big_header}
+  color: white;
+  padding: 0 0 40px;
+`;
+
+const BankingLogo = styled.div`
+  grid-column: span 12;
+  ${(p) => p.theme.fonts.extra_small_header};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 40px 0;
+`;
+
+const LogoImg = styled.img`
+  height: 40px;
+  width: 40px;
+  padding-left: 5px;
+`;
+
+const SignInBox = styled.div`
+  background: white;
+  grid-column-start: 4;
+  grid-column-end: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  border-radius: 10px;
+`;
+
+const InputContainer = styled.div`
+  padding: 15px 0;
+`;
+
+const StyledNumberFormat = styled(NumberFormat)`
+  border: none;
+  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  width: 100%;
+  ${(p) => p.theme.fonts.body_text};
+  font-weight: normal;
+  height: 40px;
+  ::placeholder {
+    color: ${(p) => p.theme.colors.ylc_blue};
+  }
+`;
+
+const StyledInput = styled.input`
+  border: none;
+  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  width: 100%;
+  ${(p) => p.theme.fonts.body_text};
+  font-weight: normal;
+  height: 40px;
+  ::placeholder {
+    color: ${(p) => p.theme.colors.ylc_blue};
+  }
+`;
+
+const PasswordLabel = styled.label`
+  ${(p) => p.theme.fonts.body_text};
+  color: ${(p) => p.theme.colors.ylc_blue};
+`;
+
+const RadioInputContainer = styled.span`
+  padding: 10px;
+`;
+
+const RadioInput = styled.input``;
+
 const SignIn = ({ currentActivity, returnToAllActivities }) => {
-  // const [step, setStep] = useState(1);
-  const [step, setStep] = useState(2);
-  // const [readyToSign, setReadyToSign] = useState(false);
-  const [readyToSign, setReadyToSign] = useState(true);
+  const [step, setStep] = useState(1);
+  // const [step, setStep] = useState(2);
+  const [readyToSign, setReadyToSign] = useState(false);
+  // const [readyToSign, setReadyToSign] = useState(true);
   const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
   const [cardNumber, setCardNumber] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [saveToggled, setSaveToggled] = useState(false);
-
-  const SignInContainer = styled.div`
-    grid-column: span 12;
-    text-align: center;
-  `;
 
   const PreSignIn = () => (
     <SignInContainer>
@@ -43,35 +117,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
     </SignInContainer>
   );
 
-  const StyledGreeting = styled.div`
-    grid-column: span 12;
-    text-align: center;
-    ${(p) => p.theme.fonts.big_header}
-    color: white;
-  `;
-
-  const BankingLogo = styled.div`
-    grid-column: span 12;
-    ${(p) => p.theme.fonts.extra_small_header};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-  `;
-
-  const LogoImg = styled.img`
-    height: 40px;
-    width: 40px;
-    padding-left: 5px;
-  `;
-
-  const SignInBox = styled.div`
-    background: white;
-    grid-column-start: 4;
-    grid-column-end: 9;
-    display: flex;
-    flex-direction: column;
-  `;
+  console.log({ saveToggled });
 
   return (
     <BankingBackground>
@@ -82,39 +128,41 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
         <StyledGreeting>Welcome</StyledGreeting>
         {readyToSign ? (
           <SignInBox>
-            <div>
-              <label>
-                Card Number:
-                <BasicTooltip
-                  content={<SecondStep {...{ cardNumber, setStep }} />}
-                  showTip={step === 2}
-                  staticOnly={true}
-                >
-                  <NumberFormat
-                    onChange={(e) => setCardNumber(e.target.value)}
-                    format="#### #### #### ####"
-                  />
-                </BasicTooltip>
-              </label>
-            </div>
-            <div>
-              <label>
-                Password:
-                <BasicTooltip
-                  content={<ThirdStep {...{ password, setStep }} />}
-                  showTip={step === 3}
-                  staticOnly={true}
-                >
-                  <input
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="password"
-                  />
-                </BasicTooltip>
-              </label>
-            </div>
-            <div>
-              <label>
-                Save password
+            <InputContainer>
+              {/* <label>
+                Card Number: */}
+              <BasicTooltip
+                content={<SecondStep {...{ cardNumber, setStep }} />}
+                showTip={step === 2}
+                staticOnly={true}
+              >
+                <StyledNumberFormat
+                  onChange={(e) => setCardNumber(e.target.value)}
+                  format="#### #### #### ####"
+                  placeholder={"Card Number"}
+                />
+              </BasicTooltip>
+              {/* </label> */}
+            </InputContainer>
+            <InputContainer>
+              {/* <label> */}
+              {/* Password: */}
+              <BasicTooltip
+                content={<ThirdStep {...{ password, setStep }} />}
+                showTip={step === 3}
+                staticOnly={true}
+              >
+                <StyledInput
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  placeholder={"Password"}
+                />
+              </BasicTooltip>
+              {/* </label> */}
+            </InputContainer>
+            <InputContainer>
+              <PasswordLabel>
+                Save password?
                 <BasicTooltip
                   content={
                     <FourthStep
@@ -124,10 +172,16 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
                   showTip={step === 4}
                   staticOnly={true}
                 >
-                  <input type="radio" onChange={() => setSaveToggled(true)} />
+                  <RadioInputContainer>
+                    <input
+                      type="checkbox"
+                      checked={saveToggled}
+                      onClick={() => setSaveToggled(saveToggled ? false : true)}
+                    />
+                  </RadioInputContainer>
                 </BasicTooltip>
-              </label>
-            </div>
+              </PasswordLabel>
+            </InputContainer>
           </SignInBox>
         ) : (
           <PreSignIn />

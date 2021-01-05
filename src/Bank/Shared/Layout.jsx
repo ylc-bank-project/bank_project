@@ -30,4 +30,5 @@ export const SignInButton = styled.button`
   height: 80px;
   border-radius: 100px;
   ${(p) => p.theme.fonts.small_header}
+  cursor: pointer;
 `;
