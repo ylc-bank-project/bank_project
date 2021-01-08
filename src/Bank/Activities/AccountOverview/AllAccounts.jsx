@@ -16,6 +16,12 @@ const AccountInfo = styled.div`
   flex-grow: 1;
 `;
 
+const BankAccounts = styled.div`
+  ${(p) => p.theme.fonts.body_text};
+  color: grey;
+  padding-bottom: 15px;
+`;
+
 const AccountTitle = styled.span`
   font-weight: bold;
   border-bottom: 3px solid lightgray;
@@ -56,7 +62,7 @@ const AccountBlock = ({ title, onClick, balance, accNumber }) => (
 const AllAccounts = ({ allSteps, step, check, setIsChecking, setStep }) => {
   return (
     <div>
-      <div>Bank Accounts</div>
+      <BankAccounts>Bank Accounts</BankAccounts>
       <BasicTooltip
         content={"Click on ‘Chequing Account’."}
         showTip={allSteps[step] === check}
@@ -77,6 +83,11 @@ const AllAccounts = ({ allSteps, step, check, setIsChecking, setStep }) => {
         title={"Savings"}
         balance={"$12,115.50"}
         accNumber={"7788"}
+      />
+      <AccountBlock
+        title={"Checking 2"}
+        balance={"$5,112.50"}
+        accNumber={"9811"}
       />
     </div>
   );
