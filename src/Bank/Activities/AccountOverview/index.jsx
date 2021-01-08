@@ -6,6 +6,7 @@ import {
   BankingContainer,
   CleanBackground,
   BankingFooter,
+  TransactionsDetails,
 } from "../../Shared/BankPages";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";
@@ -77,33 +78,36 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
         <MarginedContainer>
           <BankingContainer>
             {isChecking ? (
-              <Checking
-                {...{
-                  step,
-                  setStep,
-                  allSteps,
-                  transactions,
-                  wellRead,
-                  taco,
-                  internetDeposit,
-                  preAuth,
-                  totalDebits,
-                  credits,
-                  creditsDebits,
-                  hold,
-                  overdraft,
-                  available,
-                  institution,
-                  transit,
-                  accountNumber,
-                  setCheckingService,
-                  checkingTransactions,
-                  accountInfo,
-                  checkingInformation,
-                  checkingService,
-                  balance,
-                }}
-              />
+              <>
+                <TransactionsDetails />
+                <Checking
+                  {...{
+                    step,
+                    setStep,
+                    allSteps,
+                    transactions,
+                    wellRead,
+                    taco,
+                    internetDeposit,
+                    preAuth,
+                    totalDebits,
+                    credits,
+                    creditsDebits,
+                    hold,
+                    overdraft,
+                    available,
+                    institution,
+                    transit,
+                    accountNumber,
+                    setCheckingService,
+                    checkingTransactions,
+                    accountInfo,
+                    checkingInformation,
+                    checkingService,
+                    balance,
+                  }}
+                />
+              </>
             ) : (
               <AllAccounts
                 {...{ allSteps, step, check, setIsChecking, setStep }}

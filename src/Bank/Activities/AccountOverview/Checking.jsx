@@ -1,5 +1,6 @@
 import React from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import { TransactionsDetails } from "../../Shared/BankPages";
 
 const Balance = ({ setStep, step, allSteps, balance }) => {
   const BalanceContent = () => {

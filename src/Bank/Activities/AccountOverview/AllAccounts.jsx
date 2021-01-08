@@ -19,7 +19,7 @@ const AccountInfo = styled.div`
 const BankAccounts = styled.div`
   ${(p) => p.theme.fonts.body_text};
   color: grey;
-  padding-bottom: 15px;
+  padding: 15px 0;
 `;
 
 const AccountTitle = styled.span`

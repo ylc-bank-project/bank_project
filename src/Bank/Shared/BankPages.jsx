@@ -118,13 +118,13 @@ export const CleanBackground = styled.div`
   /* background: ${(p) => p.theme.colors.light_accent}; */
   background: rgb(242, 242, 242);
   height: 100%;
-  padding-top: 15px;
+  /* padding-top: 15px; */
 `;
 
 export const BankingContainer = styled.div`
   grid-column-start: 2;
   grid-column-end: 12;
-  padding: 10px;
+  /* padding: 10px; */
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -164,5 +164,29 @@ export const BankingFooter = ({ isActive = "home" }) => {
       <FooterLink isActive={isActive === "pay"}>Pay & Transfer</FooterLink>
       <FooterLink isActive={isActive === "more"}>More</FooterLink>
     </StyledBankingFooter>
+  );
+};
+
+const TransContainer = styled.div`
+  grid-column: span 12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: ${(p) => p.theme.colors.medium_accent}; */
+  background: white;
+`;
+
+const TransItem = styled.div``;
+
+export const TransactionsDetails = () => {
+  return (
+    <div>
+      <MarginedContainer>
+        <TransContainer>
+          <TransItem>Transactions</TransItem>
+          <TransItem>Account Details</TransItem>
+        </TransContainer>
+      </MarginedContainer>
+    </div>
   );
 };
