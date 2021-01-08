@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { MarginedContainer } from "../../Shared/Layout";
-import { BankingBackground } from "../../Shared/BankPages";
+import {
+  BankingBackground,
+  BankingHeader,
+  BankingContainer,
+} from "../../Shared/BankPages";
 import IntroOutro from "../../IntroOutro";
 
 // ALL STEPS
@@ -66,7 +70,7 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
     return (
       <div>
         <BasicTooltip
-          content={"click on ‘Chequing Account’"}
+          content={"Click on ‘Chequing Account’."}
           showTip={allSteps[step] === check}
           staticOnly={true}
         >
@@ -345,6 +349,7 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
 
   return (
     <BankingBackground>
+      <BankingHeader />
       <MarginedContainer>
         {isChecking ? <Checking /> : <AllAccounts />}
 

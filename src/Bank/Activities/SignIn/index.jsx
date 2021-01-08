@@ -4,10 +4,13 @@ import styled from "styled-components";
 import { BasicTooltip, BasicTipButton } from "../../Shared/Tip";
 import { MarginedContainer, SignInButton } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
-import { BankingBackground } from "../../Shared/BankPages";
+import {
+  BankingBackground,
+  BankingLogo,
+  BankingContainer,
+} from "../../Shared/BankPages";
 import { FirstStep, SecondStep, ThirdStep, FourthStep } from "./TipSteps";
 import { RadioButton } from "react-radio-buttons";
-import logo from "../../assets/dark_flake_black.png";
 
 const SignInContainer = styled.div`
   grid-column: span 12;
@@ -20,32 +23,6 @@ const StyledGreeting = styled.div`
   ${(p) => p.theme.fonts.big_header}
   color: white;
   padding: 0 0 40px;
-`;
-
-const BankingLogo = styled.div`
-  grid-column: span 12;
-  ${(p) => p.theme.fonts.extra_small_header};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  padding: 40px 0;
-`;
-
-const LogoImg = styled.img`
-  height: 40px;
-  width: 40px;
-  padding-left: 5px;
-`;
-
-const SignInBox = styled.div`
-  background: white;
-  grid-column-start: 4;
-  grid-column-end: 10;
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-  border-radius: 10px;
 `;
 
 const InputContainer = styled.div`
@@ -121,12 +98,10 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
   return (
     <BankingBackground>
       <MarginedContainer>
-        <BankingLogo>
-          <span>Bank of YLC</span> <LogoImg src={logo} />
-        </BankingLogo>
+        <BankingLogo />
         <StyledGreeting>Welcome</StyledGreeting>
         {readyToSign ? (
-          <SignInBox>
+          <BankingContainer>
             <InputContainer>
               {/* <label>
                 Card Number: */}
@@ -181,7 +156,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
                 </BasicTooltip>
               </PasswordLabel>
             </InputContainer>
-          </SignInBox>
+          </BankingContainer>
         ) : (
           <PreSignIn />
         )}
