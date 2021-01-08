@@ -9,6 +9,8 @@ export const BasicTooltip = ({
   showTip,
   triggerOffset,
   staticOnly,
+  preferX,
+  placement,
 }) => {
   const [isOver, hoverProps] = useHover();
 
@@ -20,8 +22,8 @@ export const BasicTooltip = ({
     triggerOffset: triggerOffset || 20,
     containerOffset: 10,
     arrowOffset: 5,
-    preferX: "right",
-    placement: "right-center",
+    preferX: preferX || "right",
+    placement: placement || "right-center",
   });
 
   return (

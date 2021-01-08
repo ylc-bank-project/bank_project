@@ -51,7 +51,7 @@ const BankLogoDiv = styled.div`
   align-items: center;
   color: white;
   padding: 40px 0;
-  padding-bottom: ${(p) => (p.left ? "0" : "40px")};
+  padding-bottom: ${(p) => (p.left ? "15px" : "40px")};
   ${(p) => console.log({ p })};
 `;
 
@@ -59,6 +59,12 @@ const LogoImg = styled.img`
   height: 40px;
   width: 40px;
   padding-left: 5px;
+`;
+
+const HeaderWrapper = styled.div`
+  grid-column-start: 3;
+  grid-column-end: 11;
+  padding: 20px 0;
 `;
 
 export const BankingLogo = ({ left, NewStyle }) => (
@@ -80,28 +86,46 @@ export const BankingTag = () => (
 const ColoredDiv = styled.div`
   height: 30px;
   background-color: ${(p) => p.theme.colors.ylc_blue};
-  opacity: 0.5;
-  margin: 20px 0 30px;
+  opacity: 0.7;
+  margin: 20px 0 0;
 `;
 
 export const BankingHeader = () => {
   return (
     <>
       <MarginedContainer>
-        <BankingLogo left={true} />
-        <BankingTag />
+        <HeaderWrapper>
+          <BankingLogo left={true} />
+          <BankingTag />
+        </HeaderWrapper>
       </MarginedContainer>
       <ColoredDiv />
     </>
   );
 };
 
-export const BankingContainer = styled.div`
+export const SignInContainer = styled.div`
   background: white;
   grid-column-start: 4;
   grid-column-end: 10;
   display: flex;
   flex-direction: column;
   padding: 50px;
+  border-radius: 10px;
+`;
+
+export const CleanBackground = styled.div`
+  /* background: ${(p) => p.theme.colors.light_accent}; */
+  background: rgb(242, 242, 242);
+  height: 100%;
+  padding-top: 15px;
+`;
+
+export const BankingContainer = styled.div`
+  grid-column-start: 2;
+  grid-column-end: 12;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
 `;

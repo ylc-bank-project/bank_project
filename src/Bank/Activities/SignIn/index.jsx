@@ -7,12 +7,12 @@ import IntroOutro from "../../IntroOutro";
 import {
   BankingBackground,
   BankingLogo,
-  BankingContainer,
+  SignInContainer,
 } from "../../Shared/BankPages";
 import { FirstStep, SecondStep, ThirdStep, FourthStep } from "./TipSteps";
 import { RadioButton } from "react-radio-buttons";
 
-const SignInContainer = styled.div`
+const StyledSignInWrapper = styled.div`
   grid-column: span 12;
   text-align: center;
 `;
@@ -77,7 +77,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
   const [saveToggled, setSaveToggled] = useState(false);
 
   const PreSignIn = () => (
-    <SignInContainer>
+    <StyledSignInWrapper>
       <BasicTooltip
         content={<FirstStep />}
         showTip={step === 1}
@@ -92,7 +92,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
           Sign-In
         </SignInButton>
       </BasicTooltip>
-    </SignInContainer>
+    </StyledSignInWrapper>
   );
 
   return (
@@ -101,7 +101,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
         <BankingLogo />
         <StyledGreeting>Welcome</StyledGreeting>
         {readyToSign ? (
-          <BankingContainer>
+          <SignInContainer>
             <InputContainer>
               {/* <label>
                 Card Number: */}
@@ -156,7 +156,7 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
                 </BasicTooltip>
               </PasswordLabel>
             </InputContainer>
-          </BankingContainer>
+          </SignInContainer>
         ) : (
           <PreSignIn />
         )}
