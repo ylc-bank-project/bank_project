@@ -5,6 +5,7 @@ import {
   BankingHeader,
   BankingContainer,
   CleanBackground,
+  BankingFooter,
 } from "../../Shared/BankPages";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";
@@ -119,6 +120,7 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
           />
         </MarginedContainer>
       </CleanBackground>
+      <BankingFooter />
     </BankingBackground>
   );
 };

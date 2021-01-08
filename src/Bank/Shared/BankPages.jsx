@@ -128,4 +128,41 @@ export const BankingContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  height: 100%;
 `;
+
+const StyledBankingFooter = styled.div`
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: white;
+  height: 75px;
+`;
+
+const FooterLink = styled.div`
+  width: 130px;
+  margin: 10px;
+  border-bottom: 4px solid
+    ${(p) => (p.isActive ? p.theme.colors.ylc_blue : "transparent")};
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+  ${(p) => p.theme.fonts.body_text};
+  font-size: 18px;
+  cursor: pointer;
+`;
+
+export const BankingFooter = ({ isActive = "home" }) => {
+  return (
+    <StyledBankingFooter>
+      <FooterLink isActive={isActive === "home"}>Home</FooterLink>
+      <FooterLink isActive={isActive === "pay"}>Pay & Transfer</FooterLink>
+      <FooterLink isActive={isActive === "more"}>More</FooterLink>
+    </StyledBankingFooter>
+  );
+};
