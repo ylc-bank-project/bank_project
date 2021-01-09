@@ -2,6 +2,7 @@ import React from "react";
 import { useLayer, useHover, Arrow } from "react-laag";
 import { ActButton } from "../../Shared/Layout";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const BasicTooltip = ({
   children,
@@ -33,33 +34,44 @@ export const BasicTooltip = ({
       </span>
       {(showTip || (!staticOnly && isOver)) &&
         renderLayer(
-          <div
-            className="tooltip"
-            {...layerProps}
-            style={{
-              ...layerProps.style,
-              // minWidth: 150,
-              // minHeight: 100,
-              borderWidth: 1,
-              borderColor: "#000000",
-              borderStyle: "solid",
-              backgroundColor: "white",
-              borderRadius: "3px",
-              padding: "20px",
-              maxWidth: "250px",
-            }}
-          >
-            {content}
-            <Arrow
-              {...arrowProps}
-              backgroundColor="white"
-              borderWidth={1}
-              borderColor="#000000"
-              roundness={0.5}
-              size={18}
-              angle={30}
-            />
-          </div>
+          <AnimatePresence>
+            {showTip && (
+              <motion.div
+                {...layerProps}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div
+                  className="tooltip"
+                  {...layerProps}
+                  style={{
+                    ...layerProps.style,
+                    // minWidth: 150,
+                    // minHeight: 100,
+                    borderWidth: 1,
+                    borderColor: "#000000",
+                    borderStyle: "solid",
+                    backgroundColor: "white",
+                    borderRadius: "3px",
+                    padding: "20px",
+                    maxWidth: "250px",
+                  }}
+                >
+                  {content}
+                  <Arrow
+                    {...arrowProps}
+                    backgroundColor="white"
+                    borderWidth={1}
+                    borderColor="#000000"
+                    roundness={0.5}
+                    size={18}
+                    angle={30}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         )}
     </>
   );
