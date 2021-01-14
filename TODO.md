@@ -1,5 +1,9 @@
-- style the Sign-in activity
-  - thus setting up basic styling for the rest of the banking app.
-- style the tooltip
-  - perhaps add a "hide" and "show" functionality for the tooltip if it gets in the way
-- correct the logic as you go so the user can't break the sequence of events
+Account overview
+- finish the transactions section
+- the account details should follow
+- position the tool tips correctly
+- fix tooltip text alignment
+- find out how to "scrol-to" the tooltip on render
+
+Making payments
+- chunk in what is already built and build what is not already built
