@@ -7,7 +7,7 @@ export const PageContainer = styled.div``;
 export const MarginedContainer = styled.div`
   max-width: ${bps[3]}px;
   margin: 0 auto;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 20px;

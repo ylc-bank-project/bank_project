@@ -1,6 +1,28 @@
 import React from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import styled from "styled-components";
 import { TransactionsDetails } from "../../Shared/BankPages";
+
+const CheckingHeader = styled.div`
+  ${(p) => p.theme.fonts.small_header};
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+const AccountNumber = styled.div`
+  color: grey;
+  ${(p) => p.theme.fonts.large_button_text};
+  text-align: center;
+  padding-top: 5px;
+`;
+
+const NotedBalance = styled.div`
+  ${(p) => p.theme.fonts.medium_header};
+  text-align: center;
+  padding: 15px;
+  font-weight: normal;
+`;
 
 const Balance = ({ setStep, step, allSteps, balance }) => {
   const BalanceContent = () => {
@@ -24,12 +46,75 @@ const Balance = ({ setStep, step, allSteps, balance }) => {
         content={<BalanceContent />}
         showTip={allSteps[step] === balance}
         staticOnly={true}
+        placement="bottom-center"
+        triggerOffset={-10}
       >
-        <span>balance</span>
+        <NotedBalance>$18,023.00</NotedBalance>
       </BasicTooltip>
     </div>
   );
 };
+
+const ItemListingWrapper = styled.div`
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 60px);
+  margin: 0 30px;
+  padding: 30px 0;
+  font-size: 20px;
+  border-bottom: solid 1px ${(p) => (p.isSummary ? "transparent" : "lightgray")};
+`;
+
+const ItemTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ItemPrincipalText = styled.span`
+  font-weight: bold;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+`;
+
+const ItemSubTextContainer = styled.span`
+  ${(p) => p.theme.fonts.large_button_text};
+  font-weight: normal;
+  text-transform: uppercase;
+`;
+
+const ItemDate = styled.span`
+  padding-right: 20px;
+`;
+
+const ItemTransaction = styled.span``;
+
+const ItemDetails = styled.span`
+  color: ${(p) => (p.isPositive ? "green" : "black")};
+`;
+
+const CheckingHeaderContainer = styled.div``;
+
+const TransactionsWrapper = styled.div`
+  background: white;
+  padding-bottom: 300px;
+`;
+
+const ItemListing = ({ principal, date, trans, details, ...rest }) => (
+  <ItemListingWrapper {...rest}>
+    <ItemTextContainer>
+      <ItemPrincipalText>{principal}</ItemPrincipalText>
+      {(date || trans) && (
+        <ItemSubTextContainer>
+          <ItemDate>{date}</ItemDate>
+          <ItemTransaction>{trans}</ItemTransaction>
+        </ItemSubTextContainer>
+      )}
+    </ItemTextContainer>
+    <ItemDetails {...rest}>{details}</ItemDetails>
+  </ItemListingWrapper>
+);
 
 const Checking = ({
   step,
@@ -56,33 +141,56 @@ const Checking = ({
   checkingService,
   balance,
 }) => {
+  const CheckingHeaderInfo = () => (
+    <CheckingHeaderContainer>
+      <CheckingHeader>Chequing</CheckingHeader>
+      <AccountNumber>5522 8899-222</AccountNumber>
+      <Balance {...{ setStep, step, allSteps, balance }} />
+
+      <TransactionsDetails
+        transactionsClick={() => {
+          setCheckingService(checkingTransactions);
+          setStep(step + 1);
+        }}
+        detailsClick={() => {
+          setCheckingService(checkingInformation);
+          setStep(step + 1);
+        }}
+        transactionsDisabled={allSteps[step] !== transactions}
+        detailsDisabled={allSteps[step] !== accountInfo}
+        transactionsActive={checkingService !== checkingTransactions}
+        detailsActive={checkingService !== checkingInformation}
+        {...{
+          allSteps,
+          step,
+          transactions,
+          accountInfo,
+        }}
+      />
+    </CheckingHeaderContainer>
+  );
   const Transactions = () => {
     return (
-      <div>
-        <Balance {...{ setStep, step, allSteps, balance }} />
-
-        <InfoTip
-          tipContent={
-            <div>
-              Transactions represent the money being spent (debited) and the
-              money being added (credit) to your account.
-            </div>
-          }
-          tipTarget={<span>Transactions Info</span>}
-          showTip={transactions}
-          {...{ step, setStep, allSteps }}
-        />
+      <TransactionsWrapper>
+        <CheckingHeaderInfo />
         <InfoTip
           tipContent={
             <div>
               On January 21st, $12.50 was spent at Well Read Books. Point of
-              Sale- Interac Retail purchase means you made a purchase with your
-              debit card. The numbers you see represents the transaction number
-              which is a special label that identifies the purchase. Every
-              purchase will have a different transaction number.
+              Sale (POS) Interac Retail purchase means you made a purchase with
+              your debit card. The numbers you see represents the transaction
+              number which is a special label that identifies the purchase.
+              Every purchase will have a different transaction number.
             </div>
           }
-          tipTarget={<span>well-read books point of sale</span>}
+          tipTarget={
+            <ItemListing
+              principal={"Well-Read Books 000009887767"}
+              date={"Jan 21, 2020"}
+              trans={"POS - Interac Retail purchase"}
+              details={"-$12.50"}
+            />
+          }
           showTip={wellRead}
           {...{ step, setStep, allSteps }}
         />
@@ -95,27 +203,42 @@ const Checking = ({
               Every purchase will have a different transaction number.
             </div>
           }
-          tipTarget={<span>Taco Bill</span>}
+          tipTarget={
+            <ItemListing
+              principal={"TACO ELECTRIC 0000376166356"}
+              date={"Jan 16, 2020"}
+              trans={"internet banking - Internet Bill Pay"}
+              details={"-$109.45"}
+            />
+          }
           showTip={taco}
           {...{ step, setStep, allSteps }}
         />
         <InfoTip
           tipContent={
             <div>
-              On January 5th, $300 was deposited (credited) in the account. The
+              On January 5th, $2000 was deposited (credited) in the account. The
               numbers you see represents the transaction number which is a
               special label that identifies the purchase. Every purchase will
               have a different transaction number.
             </div>
           }
-          tipTarget={<span>Internet Banking Internet Deposit</span>}
+          tipTarget={
+            <ItemListing
+              principal={"Deposit 0000000261883"}
+              date={"5 Jan, 2020"}
+              trans={"Internet banking - internet deposit"}
+              details={"+$2000.00"}
+              isPositive
+            />
+          }
           showTip={internetDeposit}
           {...{ step, setStep, allSteps }}
         />
         <InfoTip
           tipContent={
             <div>
-              On January 16th, $96.00 was debited from your account to TD
+              On January 1st, $96.00 was debited from your account to TD
               Insurance National. It was a preauthorized debit which means
               instead of sending a payment, a company withdraws funds from your
               bank account. It’s a convenient way to pay bills and make other
@@ -123,27 +246,64 @@ const Checking = ({
               bank account first.
             </div>
           }
-          tipTarget={<span>Electronic Funds Transfer</span>}
+          tipTarget={
+            <ItemListing
+              principal={"Debit Td insurance nat'l"}
+              date={"1 Jan, 2020"}
+              trans={"electronic funds - transfer preauthorized debit"}
+              details={"-$96.00"}
+            />
+          }
           showTip={preAuth}
           {...{ step, setStep, allSteps }}
+        />
+        <ItemListing
+          principal={"midnight sun co 000009767867"}
+          date={"28 Dec, 2019"}
+          trans={"POS - interac retail purchase"}
+          details={"-$4.95"}
+        />
+        <ItemListing
+          principal={"Toyota Canada 0000000763651"}
+          date={"26 Dec, 2020"}
+          trans={"internet banking - internet bill pay"}
+          details={"-$320.00"}
+        />
+        <ItemListing
+          principal={"E-transfer 00000736716"}
+          date={"26 Dec, 2020"}
+          trans={"internet banking - internet e-transfer"}
+          details={"-$900.00"}
         />
         <InfoTip
           tipContent={
             <div>
-              <div>The total under Debits is $2606.19</div>
+              <div>The total under Debits is $1422.90</div>
             </div>
           }
-          tipTarget={<span>Debits Total</span>}
+          tipTarget={
+            <ItemListing
+              isSummary
+              principal={"Total debits"}
+              details={"-$1422.90"}
+            />
+          }
           showTip={totalDebits}
           {...{ step, setStep, allSteps }}
         />
         <InfoTip
           tipContent={
             <div>
-              <div>the total under Credits is $2763.80</div>
+              <div>the total under Credits is $2000.00</div>
             </div>
           }
-          tipTarget={<span>Credits Total</span>}
+          tipTarget={
+            <ItemListing
+              isSummary
+              principal={"Total credits"}
+              details="+$2000.00"
+            />
+          }
           showTip={credits}
           {...{ step, setStep, allSteps }}
         />
@@ -157,17 +317,18 @@ const Checking = ({
               </div>
             </div>
           }
-          tipTarget={<span>Credits and Debits</span>}
+          tipTarget={<span />}
           showTip={creditsDebits}
           {...{ step, setStep, allSteps }}
         />
-      </div>
+      </TransactionsWrapper>
     );
   };
 
   const AccountInformation = () => {
     return (
       <div>
+        <CheckingHeaderInfo />
         <InfoTip
           tipContent={
             <div>
@@ -241,38 +402,6 @@ const Checking = ({
 
   return (
     <div>
-      <div>
-        <BasicTooltip
-          content={"Click here to go to Account Information"}
-          showTip={allSteps[step] === transactions}
-          staticOnly={true}
-        >
-          <button
-            disabled={allSteps[step] !== transactions}
-            onClick={() => {
-              setCheckingService(checkingTransactions);
-              setStep(step + 1);
-            }}
-          >
-            Transactions
-          </button>
-        </BasicTooltip>
-        <BasicTooltip
-          content={"Click here to go to Account Information"}
-          showTip={allSteps[step] === accountInfo}
-          staticOnly={true}
-        >
-          <button
-            disabled={allSteps[step] !== accountInfo}
-            onClick={() => {
-              setCheckingService(checkingInformation);
-              setStep(step + 1);
-            }}
-          >
-            AccountInformation
-          </button>
-        </BasicTooltip>
-      </div>
       {checkingService === checkingTransactions ? (
         <Transactions />
       ) : checkingService === checkingInformation ? (

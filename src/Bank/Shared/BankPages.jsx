@@ -3,6 +3,7 @@ import logo from "../assets/dark_flake.png";
 import blackLogo from "../assets/dark_flake_black.png";
 import styled, { css } from "styled-components";
 import { MarginedContainer } from "./Layout";
+import { BasicTooltip, InfoTip } from "./Tip";
 
 const Logo = styled.img`
   height: 150vh;
@@ -17,7 +18,7 @@ const Logo = styled.img`
 const BankingBackgroundContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 `;
 
@@ -167,26 +168,74 @@ export const BankingFooter = ({ isActive = "home" }) => {
   );
 };
 
-const TransContainer = styled.div`
-  grid-column: span 12;
+const TransDetailsSection = styled.div`
+  background: white;
+  display: flex;
+  justify-content: center;
+  /* width: 100%; */
+  /* grid-column: span 12; */
+`;
+
+const TransButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: ${(p) => p.theme.colors.medium_accent}; */
-  background: white;
+  flex-grow: 1;
+  padding: 10px 0;
+  color: ${(p) => (p.isActive ? "grey" : "white")};
+  background: ${(p) => (p.isActive ? "white" : p.theme.colors.bank_blue)};
+  cursor: pointer;
+  border: none;
+  ${(p) => p.theme.fonts.extra_small_header};
+  font-size: 16px;
+  border-radius: none;
+  /* border-bottom: 1px solid ${(p) => p.theme.colors.bank_blue}; */
 `;
 
-const TransItem = styled.div``;
-
-export const TransactionsDetails = () => {
+export const TransactionsDetails = ({
+  transactionsClick,
+  detailsClick,
+  transactionsDisabled,
+  detailsDisabled,
+  transactionsActive,
+  detailsActive,
+  allSteps,
+  step,
+  transactions,
+  accountInfo,
+}) => {
   return (
-    <div>
-      <MarginedContainer>
-        <TransContainer>
-          <TransItem>Transactions</TransItem>
-          <TransItem>Account Details</TransItem>
-        </TransContainer>
-      </MarginedContainer>
-    </div>
+    <TransDetailsSection>
+      <TransButton
+        onClick={() => transactionsClick()}
+        disabled={transactionsDisabled}
+        isActive={transactionsActive}
+      >
+        <BasicTooltip
+          content={
+            "Transactions represent the money being spent (debited) and the money being added (credit) to your account.Click here to go to Account Information. Click here to go back to your transactions."
+          }
+          showTip={allSteps[step] === transactions}
+          staticOnly={true}
+        >
+          Transactions
+        </BasicTooltip>
+      </TransButton>
+      <TransButton
+        onClick={() => detailsClick()}
+        disabled={detailsDisabled}
+        isActive={detailsActive}
+      >
+        <BasicTooltip
+          content={
+            "Click here to go to Account Details to view all the details of your bank account."
+          }
+          showTip={allSteps[step] === accountInfo}
+          staticOnly={true}
+        >
+          Account Details
+        </BasicTooltip>
+      </TransButton>
+    </TransDetailsSection>
   );
 };
