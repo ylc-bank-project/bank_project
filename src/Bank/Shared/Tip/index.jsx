@@ -101,6 +101,7 @@ export const InfoTip = ({
   allSteps,
   buttonDisabled,
 }) => {
+  console.log({ allSteps, step, showTip });
   const Content = () => {
     return (
       <div>
@@ -122,7 +123,7 @@ export const InfoTip = ({
     <div>
       <BasicTooltip
         content={<Content />}
-        showTip={allSteps[step] === showTip}
+        showTip={showTip ? allSteps[step] === showTip : undefined}
         staticOnly={true}
       >
         {tipTarget}

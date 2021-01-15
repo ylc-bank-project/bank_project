@@ -5,6 +5,8 @@ import NumberFormat from "react-number-format";
 import IntroOutro from "../../IntroOutro";
 import DatePicker from "react-datepicker";
 import AllAccounts from "../../Shared/AllAccounts";
+import { PaymentMethods } from "./PaymentMethods";
+
 import {
   BankingBackground,
   BankingHeader,
@@ -386,95 +388,6 @@ const PayVerifyBill = ({
   );
 };
 
-// const AllAccounts = ({
-//   setStep,
-//   setPaymentMethodsVisible,
-//   setMainPage,
-//   step,
-//   paymentMethodsVisible,
-// }) => {
-//   const PaymentMethods = () => {
-//     return (
-//       <div>
-//         <InfoTip
-//           tipContent={<div>Click on Bill Payments</div>}
-//           tipTarget={
-//             <button
-//               onClick={() => {
-//                 setStep(step + 1);
-//                 setPaymentMethodsVisible(false);
-//                 setMainPage(billPaymentsPage);
-//               }}
-//             >
-//               Bill Payments
-//             </button>
-//           }
-//           showTip={billPaymentsStep}
-//           showButton={false}
-//           {...{ step, setStep, allSteps }}
-//         />
-//         <div>Transfer Money</div>
-//       </div>
-//     );
-//   };
-//   return (
-//     <div>
-//       <div>Checking</div>
-//       <div>Other Account</div>
-//       <div>
-//         <InfoTip
-//           tipContent={<div>Click on "Make Payments"</div>}
-//           tipTarget={
-//             <button
-//               onClick={() => {
-//                 setStep(step + 1);
-//                 setPaymentMethodsVisible(true);
-//               }}
-//             >
-//               Make Payments
-//             </button>
-//           }
-//           showTip={clickPayments}
-//           showButton={false}
-//           {...{ step, setStep, allSteps }}
-//         />
-//       </div>
-//       {paymentMethodsVisible && <PaymentMethods />}
-//     </div>
-//   );
-// };
-
-const PaymentMethods = ({
-  setStep,
-  setPaymentMethodsVisible,
-  setMainPage,
-  step,
-  billPaymentsStep,
-}) => {
-  return (
-    <div>
-      <InfoTip
-        tipContent={<div>Click on Bill Payments</div>}
-        tipTarget={
-          <button
-            onClick={() => {
-              setStep(step + 1);
-              setPaymentMethodsVisible(false);
-              setMainPage(billPaymentsPage);
-            }}
-          >
-            Bill Payments
-          </button>
-        }
-        showTip={billPaymentsStep}
-        showButton={false}
-        {...{ step, setStep, allSteps }}
-      />
-      <div>Transfer Money</div>
-    </div>
-  );
-};
-
 const BillPayments = (props) => {
   const {
     paymentStage,
@@ -512,6 +425,7 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   // const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
+  const [payTabActive, setPayTabActive] = useState("home");
 
   // Main Page State
   const [mainPage, setMainPage] = useState(allAccountsPage);
@@ -544,8 +458,8 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
 
   const paymentsClick = () => {
     setStep(step + 1);
-    setPaymentMethodsVisible(false);
-    setMainPage(billPaymentsPage);
+    setPaymentMethodsVisible(true);
+    setPayTabActive("pay");
   };
 
   console.log({ paymentMethodsVisible });
@@ -616,6 +530,8 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
                   setMainPage,
                   step,
                   billPaymentsStep,
+                  billPaymentsPage,
+                  allSteps,
                 }}
               />
             )}
@@ -624,7 +540,14 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
       </CleanBackground>
 
       <BankingFooter
-        {...{ step, setStep, allSteps, paymentsClick, clickPayments }}
+        {...{
+          step,
+          setStep,
+          allSteps,
+          paymentsClick,
+          clickPayments,
+        }}
+        isActive={payTabActive}
       />
     </BankingBackground>
   );

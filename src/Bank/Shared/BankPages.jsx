@@ -174,23 +174,30 @@ const FooterLink = styled.button`
 
 export const BankingFooter = ({
   isActive = "home",
-  paymentsClick,
+  paymentsClick = () => {},
   clickPayments,
   step,
-  setStep,
-  allSteps,
+  setStep = () => {},
+  allSteps = [],
 }) => {
-  console.log({ step });
+  console.log({
+    isActive,
+    paymentsClick,
+    clickPayments,
+    step,
+    setStep,
+    allSteps,
+  });
   return (
     <StyledBankingFooter>
-      <FooterLink isActive={step === 0}>Home</FooterLink>
+      <FooterLink isActive={isActive === "home"}>Home</FooterLink>
       <InfoTip
         tipContent={<div>Click on Bill Payments</div>}
         tipTarget={
           <FooterLink
             onClick={() => paymentsClick()}
-            isActive={step !== 0}
-            disabled={step !== 0}
+            isActive={isActive === "pay"}
+            disabled={allSteps[step] !== clickPayments}
           >
             Pay & Transfer
           </FooterLink>

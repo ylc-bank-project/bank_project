@@ -70,6 +70,10 @@ body {
 h2 {
   margin: 0;
 }
+
+#layers {
+  z-index: 100;
+}
 `;
 
 const AppExport = () => (

@@ -14,7 +14,7 @@ export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: ${(p) => (p.zIndex ? p.zIndex : 100)};
+  z-index: ${(p) => (p.zIndex ? p.zIndex : 100000)};
   display: ${(props) => (props.visible ? "flex" : "none")};
   justify-content: center;
   align-items: center;
