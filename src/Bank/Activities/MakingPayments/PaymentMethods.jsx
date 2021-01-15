@@ -1,6 +1,33 @@
 import React from "react";
+import styled from "styled-components";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { ModalOverlay, ResponsiveContent } from "../../Modal";
+import payBillIcon from "../../assets/contract.png";
+import depositIcon from "../../assets/piggy-bank.png";
+import transferIcon from "../../assets/exchange.png";
+import interacIcon from "../../assets/coin.png";
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  width: 400px;
+  flex-wrap: wrap;
+`;
+
+const BankingButton = styled.button`
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  ${(p) => p.theme.fonts.extra_small_header};
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-height: 50px;
+  }
+`;
 
 export const PaymentMethods = ({
   setStep,
@@ -18,26 +45,40 @@ export const PaymentMethods = ({
       // closeModal={closeModal}
       notOverlayCloseable={true}
       render={() => (
-        <ResponsiveContent>
+        // <ResponsiveContent>
+        <ButtonsContainer>
+          <BankingButton>
+            <img src={transferIcon} alt="" />
+            Transfer
+          </BankingButton>
           <InfoTip
-            tipContent={<div>Click on Bill Payments</div>}
+            tipContent={<div>Click on 'Pay a Bill'.</div>}
             tipTarget={
-              <button
+              <BankingButton
                 onClick={() => {
                   setStep(step + 1);
                   setPaymentMethodsVisible(false);
                   setMainPage(billPaymentsPage);
                 }}
               >
-                Bill Payments
-              </button>
+                <img src={payBillIcon} alt="" />
+                Pay a bill
+              </BankingButton>
             }
             showTip={billPaymentsStep}
             showButton={false}
             {...{ step, setStep, allSteps }}
           />
-          <div>Transfer Money</div>
-        </ResponsiveContent>
+          <BankingButton>
+            <img src={interacIcon} alt="" />
+            Interac E-transfer
+          </BankingButton>
+          <BankingButton>
+            <img src={depositIcon} alt="" />
+            Deposit
+          </BankingButton>
+        </ButtonsContainer>
+        // </ResponsiveContent>
       )}
     ></ModalOverlay>
   );

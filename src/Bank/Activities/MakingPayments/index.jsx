@@ -430,6 +430,7 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   // Main Page State
   const [mainPage, setMainPage] = useState(allAccountsPage);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
+  // const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(true);
 
   // Bill Payment stages
   const payeesStage = "payeesStage";
