@@ -34,9 +34,11 @@ export const AddVerifyPayee = ({
       {isVerifyPayee ? (
         <div>
           <BillPayeeTitle>Review the new payee</BillPayeeTitle>
-          <div>{companyTitle}</div>
-          <div>{inputedAccountNumber}</div>
-          <div>
+          <BillPayeeReview>Company Name: {companyTitle}</BillPayeeReview>
+          <BillPayeeReview>
+            Account/Bill Number: {inputedAccountNumber}
+          </BillPayeeReview>
+          <ContinueButtonContainer>
             <InfoTip
               tipContent={
                 <div>
@@ -45,7 +47,7 @@ export const AddVerifyPayee = ({
                 </div>
               }
               tipTarget={
-                <button
+                <ContinueButton
                   onClick={() => {
                     setTacoAdded(true);
                     setPaymentStage(payeesStage);
@@ -53,13 +55,13 @@ export const AddVerifyPayee = ({
                   }}
                 >
                   Add Payee
-                </button>
+                </ContinueButton>
               }
               showTip={confirmPayee}
               showButton={false}
               {...{ step, setStep, allSteps }}
             />
-          </div>
+          </ContinueButtonContainer>
         </div>
       ) : (
         <div>

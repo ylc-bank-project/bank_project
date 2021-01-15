@@ -380,11 +380,13 @@ export const BillPayeeReview = styled.div`
 
 export const ContinueButton = styled.button`
   background-color: ${(p) => p.background || "white"};
-  color: ${(p) => p.color || p.theme.colors.ylc_blue};
-  width: 140px;
+  color: ${(p) =>
+    p.disabled ? "lightgrey" : p.color || p.theme.colors.ylc_blue};
+  min-width: 140px;
   height: 60px;
   border-radius: 100px;
   ${(p) => p.theme.fonts.extra_small_header}
+  font-size: 17px;
   cursor: pointer;
 `;
 

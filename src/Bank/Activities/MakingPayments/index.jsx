@@ -213,10 +213,15 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const TacoTitle = "Taco Electric";
   const [tacoAdded, setTacoAdded] = useState(false);
   // const [paymentStage, setPaymentStage] = useState(payeesStage);
-  const [paymentStage, setPaymentStage] = useState(addVerifyPayeeStage);
-  const [companyTitle, setCompanyTitle] = useState(undefined);
-  const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
-  const [isVerifyPayee, setVerifyPayee] = useState(false);
+  const [paymentStage, setPaymentStage] = useState(payVerifyBillStage);
+  // const [companyTitle, setCompanyTitle] = useState(undefined);
+  const [companyTitle, setCompanyTitle] = useState("test title");
+  // const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
+  const [inputedAccountNumber, setInputedAccountNumber] = useState(
+    83838383838383
+  );
+  // const [isVerifyPayee, setVerifyPayee] = useState(false);
+  const [isVerifyPayee, setVerifyPayee] = useState(true);
   const [isVerifyBill, setVerifyBill] = useState(false);
   const [accountType, setAccountType] = useState(undefined);
   const [billAmount, setBillAmount] = useState(undefined);

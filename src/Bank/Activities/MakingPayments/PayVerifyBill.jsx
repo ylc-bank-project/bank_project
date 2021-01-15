@@ -1,7 +1,54 @@
 import React from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import DatePicker from "react-datepicker";
+import {
+  BillPayeeTitle,
+  BillPayeeInput,
+  BillPayeeReview,
+  ContinueButton,
+  ContinueButtonContainer,
+} from "../../Shared/BankPages";
+
+const StyledNumberFormat = styled(NumberFormat)`
+  width: calc(100% - 40px - 2px - 100px);
+  border: none;
+  padding: 20px;
+  margin: 0 50px;
+  border-bottom: 1px solid lightgray;
+  ${(p) => p.theme.fonts.body_text_bold};
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  /* width: calc(100% - 40px - 2px - 100px); */
+  border: none;
+  padding: 20px;
+  margin: 0 50px;
+  ${(p) => p.theme.fonts.body_text_bold};
+`;
+
+const StyledSelect = styled.select`
+  width: calc(100% - 40px - 2px - 100px);
+  border: none;
+  padding: 20px;
+  margin: 0 50px;
+  border-bottom: 1px solid lightgray;
+  ${(p) => p.theme.fonts.body_text_bold};
+`;
+
+const DateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: calc(100% - 40px - 2px - 100px);
+  padding: 20px;
+  margin: 0 50px;
+  border-bottom: 1px solid lightgray;
+`;
+
+const LightOption = styled.option`
+  /* color: lightgray !important; */
+`;
 
 export const PayVerifyBill = ({
   isVerifyBill,
@@ -32,7 +79,7 @@ export const PayVerifyBill = ({
       {isVerifyBill ? (
         <div>
           <div>Verify here </div>
-          <div>
+          <ContinueButtonContainer>
             <InfoTip
               tipContent={
                 <div>
@@ -41,23 +88,24 @@ export const PayVerifyBill = ({
                 </div>
               }
               tipTarget={
-                <button
+                <ContinueButton
                   onClick={() => {
                     //Final Step
                     setStep(step + 1);
                   }}
                 >
                   Confirm Payment
-                </button>
+                </ContinueButton>
               }
               showTip={confirmBillPayment}
               showButton={false}
               {...{ step, setStep, allSteps }}
             />
-          </div>
+          </ContinueButtonContainer>
         </div>
       ) : (
         <div>
+          <BillPayeeTitle>Pay A Bill</BillPayeeTitle>
           <div>
             <InfoTip
               tipContent={
@@ -67,14 +115,11 @@ export const PayVerifyBill = ({
                 </div>
               }
               tipTarget={
-                <label>
-                  Account:
-                  <select onChange={(e) => setAccountType(e.target.value)}>
-                    <option value="">Checking</option>
-                    <option value="checking">Checking</option>
-                    <option value="saving">Saving</option>
-                  </select>
-                </label>
+                <StyledSelect onChange={(e) => setAccountType(e.target.value)}>
+                  <LightOption value="">Select Account</LightOption>
+                  <option value="checking">Checking</option>
+                  <option value="saving">Saving</option>
+                </StyledSelect>
               }
               showTip={chooseDebitAccount}
               buttonDisabled={accountType !== "checking"}
@@ -91,13 +136,11 @@ export const PayVerifyBill = ({
                 </div>
               }
               tipTarget={
-                <label>
-                  Amount:
-                  <NumberFormat
-                    onChange={(e) => setBillAmount(e.target.value)}
-                    prefix={"$"}
-                  />
-                </label>
+                <StyledNumberFormat
+                  onChange={(e) => setBillAmount(e.target.value)}
+                  prefix={"$"}
+                  placeholder="Amount"
+                />
               }
               showTip={enterAmount}
               buttonDisabled={billAmount !== "$68.00"}
@@ -114,14 +157,14 @@ export const PayVerifyBill = ({
                 </div>
               }
               tipTarget={
-                <label>
-                  Date:
-                  <DatePicker
+                <DateContainer>
+                  <div>Select Date</div>
+                  <StyledDatePicker
                     selected={billDate}
                     onChange={(date) => setBillDate(date)}
                     todayButton="Today"
                   />
-                </label>
+                </DateContainer>
               }
               showTip={enterDate}
               buttonDisabled={todayDate !== formattedBillDate}
@@ -129,26 +172,26 @@ export const PayVerifyBill = ({
               {...{ step, setStep, allSteps }}
             />
           </div>
-          <div>
+          <ContinueButtonContainer>
             <InfoTip
               tipContent={
                 <div>Click 'Continue' to review your bill payment.</div>
               }
               tipTarget={
-                <button
+                <ContinueButton
                   onClick={() => {
                     setVerifyBill(true);
                     setStep(step + 1);
                   }}
                 >
                   Continue
-                </button>
+                </ContinueButton>
               }
               showTip={reviewBillPayment}
               showButton={false}
               {...{ step, setStep, allSteps }}
             />
-          </div>
+          </ContinueButtonContainer>
         </div>
       )}
     </div>
