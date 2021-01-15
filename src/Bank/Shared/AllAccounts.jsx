@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import { BasicTooltip, BasicTipButton, InfoTip } from "./Tip";
 
 const StyledAccountBlock = styled.div`
   display: flex;
@@ -48,6 +48,12 @@ const TransferContainer = styled.div`
   color: ${(p) => p.theme.colors.ylc_blue};
 `;
 
+const AllAccountsContainer = styled.div`
+  /* background: white; */
+  /* height: 100%; */
+  min-height: 100vh;
+`;
+
 const AccountBlock = ({ title, onClick, balance, accNumber }) => (
   <StyledAccountBlock>
     <AccountInfo onClick={onClick}>
@@ -59,9 +65,15 @@ const AccountBlock = ({ title, onClick, balance, accNumber }) => (
   </StyledAccountBlock>
 );
 
-const AllAccounts = ({ allSteps, step, check, setIsChecking, setStep }) => {
+const AllAccounts = ({
+  allSteps,
+  step,
+  check,
+  setIsChecking = () => {},
+  setStep,
+}) => {
   return (
-    <div>
+    <AllAccountsContainer>
       <BankAccounts>Bank Accounts</BankAccounts>
       <BasicTooltip
         content={"Click on ‘Chequing Account’."}
@@ -89,7 +101,7 @@ const AllAccounts = ({ allSteps, step, check, setIsChecking, setStep }) => {
         balance={"$5,112.50"}
         accNumber={"9811"}
       />
-    </div>
+    </AllAccountsContainer>
   );
 };
 

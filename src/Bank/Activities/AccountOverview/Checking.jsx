@@ -1,7 +1,12 @@
 import React from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
-import { TransactionsDetails } from "../../Shared/BankPages";
+import {
+  TransactionsDetails,
+  ItemListing,
+  Space,
+  BoldDiv,
+} from "../../Shared/BankPages";
 
 const CheckingHeader = styled.div`
   ${(p) => p.theme.fonts.small_header};
@@ -55,66 +60,18 @@ const Balance = ({ setStep, step, allSteps, balance }) => {
   );
 };
 
-const ItemListingWrapper = styled.div`
-  background: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: calc(100% - 60px);
-  margin: 0 30px;
-  padding: 30px 0;
-  font-size: 20px;
-  border-bottom: solid 1px ${(p) => (p.isSummary ? "transparent" : "lightgray")};
-`;
-
-const ItemTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ItemPrincipalText = styled.span`
-  font-weight: bold;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-`;
-
-const ItemSubTextContainer = styled.span`
-  ${(p) => p.theme.fonts.large_button_text};
-  font-weight: normal;
-  text-transform: uppercase;
-`;
-
-const ItemDate = styled.span`
-  padding-right: 20px;
-`;
-
-const ItemTransaction = styled.span``;
-
-const ItemDetails = styled.span`
-  color: ${(p) => (p.isPositive ? "green" : "black")};
-`;
-
 const CheckingHeaderContainer = styled.div``;
 
-const TransactionsWrapper = styled.div`
+const CheckingSectionWrapper = styled.div`
   background: white;
-  padding-bottom: 300px;
+  /* padding-bottom: 300px; */
 `;
 
-const ItemListing = ({ principal, date, trans, details, ...rest }) => (
-  <ItemListingWrapper {...rest}>
-    <ItemTextContainer>
-      <ItemPrincipalText>{principal}</ItemPrincipalText>
-      {(date || trans) && (
-        <ItemSubTextContainer>
-          <ItemDate>{date}</ItemDate>
-          <ItemTransaction>{trans}</ItemTransaction>
-        </ItemSubTextContainer>
-      )}
-    </ItemTextContainer>
-    <ItemDetails {...rest}>{details}</ItemDetails>
-  </ItemListingWrapper>
-);
+const FullEmptyDiv = styled.div`
+  width: 100%;
+  /* background: red; */
+  height: 10px;
+`;
 
 const Checking = ({
   step,
@@ -171,17 +128,23 @@ const Checking = ({
   );
   const Transactions = () => {
     return (
-      <TransactionsWrapper>
+      <CheckingSectionWrapper>
         <CheckingHeaderInfo />
         <InfoTip
           tipContent={
-            <div>
-              On January 21st, $12.50 was spent at Well Read Books. Point of
-              Sale (POS) Interac Retail purchase means you made a purchase with
-              your debit card. The numbers you see represents the transaction
-              number which is a special label that identifies the purchase.
-              Every purchase will have a different transaction number.
-            </div>
+            <>
+              <div>
+                On January 21st, $12.50 was spent at Well Read Books. Point of
+                Sale (POS) Interac Retail purchase means you made a purchase
+                with your debit card.
+              </div>
+              {<br />}
+              <div>
+                The numbers you see represents the transaction number which is a
+                special label that identifies the purchase. Every purchase will
+                have a different transaction number.
+              </div>
+            </>
           }
           tipTarget={
             <ItemListing
@@ -196,12 +159,18 @@ const Checking = ({
         />
         <InfoTip
           tipContent={
-            <div>
-              On January 16th, $109.45 was debited from your account to pay a
-              Taco Electric bill.The numbers you see represents the transaction
-              number which is a special label that identifies the purchase.
-              Every purchase will have a different transaction number.
-            </div>
+            <>
+              <div>
+                On January 16th, $109.45 was debited from your account to pay a
+                Taco Electric bill.
+              </div>
+              {<br />}
+              <div>
+                The numbers you see represents the transaction number which is a
+                special label that identifies the purchase. Every purchase will
+                have a different transaction number.
+              </div>
+            </>
           }
           tipTarget={
             <ItemListing
@@ -216,12 +185,17 @@ const Checking = ({
         />
         <InfoTip
           tipContent={
-            <div>
-              On January 5th, $2000 was deposited (credited) in the account. The
-              numbers you see represents the transaction number which is a
-              special label that identifies the purchase. Every purchase will
-              have a different transaction number.
-            </div>
+            <>
+              <div>
+                On January 5th, $2000 was deposited (credited) in the account.
+              </div>
+              {<br />}
+              <div>
+                The numbers you see represents the transaction number which is a
+                special label that identifies the purchase. Every purchase will
+                have a different transaction number.
+              </div>
+            </>
           }
           tipTarget={
             <ItemListing
@@ -237,14 +211,20 @@ const Checking = ({
         />
         <InfoTip
           tipContent={
-            <div>
-              On January 1st, $96.00 was debited from your account to TD
-              Insurance National. It was a preauthorized debit which means
-              instead of sending a payment, a company withdraws funds from your
-              bank account. It’s a convenient way to pay bills and make other
-              payments automatically and has to be approved by the owner of the
-              bank account first.
-            </div>
+            <>
+              <div>
+                On January 1st, $96.00 was debited from your account to TD
+                Insurance National. It was a preauthorized debit which means
+                instead of sending a payment, a company withdraws funds from
+                your bank account.
+              </div>
+              {<br />}
+              <div>
+                It’s a convenient way to pay bills and make other payments
+                automatically and has to be approved by the owner of the bank
+                account first.
+              </div>
+            </>
           }
           tipTarget={
             <ItemListing
@@ -311,23 +291,29 @@ const Checking = ({
           tipContent={
             <div>
               <div>
-                $2763.80 (credits) - $2606.19 (debits)= $157.61 was not spent
-                this month. It can be put into a savings account or spent at a
-                later date.
+                <BoldDiv>
+                  $2763.80 (credits) - $2606.19 (debits)= $157.61
+                </BoldDiv>
+                {<br />}
+                <div>
+                  $157.61 was not spent this month. It can be put into a savings
+                  account or spent at a later date.
+                </div>
               </div>
             </div>
           }
-          tipTarget={<span />}
+          tipTarget={<FullEmptyDiv />}
           showTip={creditsDebits}
+          placement={"center"}
           {...{ step, setStep, allSteps }}
         />
-      </TransactionsWrapper>
+      </CheckingSectionWrapper>
     );
   };
 
   const AccountInformation = () => {
     return (
-      <div>
+      <CheckingSectionWrapper>
         <CheckingHeaderInfo />
         <InfoTip
           tipContent={
@@ -336,7 +322,13 @@ const Checking = ({
               available to withdraw.
             </div>
           }
-          tipTarget={<span>Funds on hold</span>}
+          tipTarget={
+            <ItemListing
+              // isSummary
+              principal={"Funds on Hold"}
+              details="$500.00"
+            />
+          }
           showTip={hold}
           {...{ step, setStep, allSteps }}
         />
@@ -347,7 +339,13 @@ const Checking = ({
               from your account after your balance reaches zero.
             </div>
           }
-          tipTarget={<span>Overdraft Limit</span>}
+          tipTarget={
+            <ItemListing
+              // isSummary
+              principal={"Overdraft Limit"}
+              details="$100.00"
+            />
+          }
           showTip={overdraft}
           {...{ step, setStep, allSteps }}
         />
@@ -359,7 +357,13 @@ const Checking = ({
               immediate use in your account.
             </div>
           }
-          tipTarget={<span>Available funds</span>}
+          tipTarget={
+            <ItemListing
+              // isSummary
+              principal={"Available Funds"}
+              details="$17,623.00"
+            />
+          }
           showTip={available}
           {...{ step, setStep, allSteps }}
         />
@@ -370,7 +374,13 @@ const Checking = ({
               bank provider the account is associated with.
             </div>
           }
-          tipTarget={<span>Institution #</span>}
+          tipTarget={
+            <ItemListing
+              // isSummary
+              principal={"Institution Number"}
+              details="554"
+            />
+          }
           showTip={institution}
           {...{ step, setStep, allSteps }}
         />
@@ -381,7 +391,13 @@ const Checking = ({
               Canada your bank is located.
             </div>
           }
-          tipTarget={<span>Transit #</span>}
+          tipTarget={
+            <ItemListing
+              // isSummary
+              principal={"Transit Number"}
+              details="555"
+            />
+          }
           showTip={transit}
           {...{ step, setStep, allSteps }}
         />
@@ -392,11 +408,17 @@ const Checking = ({
               of the account.
             </div>
           }
-          tipTarget={<span>Account #</span>}
+          tipTarget={
+            <ItemListing
+              // isSummary
+              principal={"Account Number"}
+              details="555-5555"
+            />
+          }
           showTip={accountNumber}
           {...{ step, setStep, allSteps }}
         />
-      </div>
+      </CheckingSectionWrapper>
     );
   };
 

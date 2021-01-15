@@ -15,8 +15,11 @@ const AllActivitiesButton = styled.button`
 `;
 
 function App() {
+  // const [activitiesListVisible, setActivitiesListVisible] = useState(true);
   const [activitiesListVisible, setActivitiesListVisible] = useState(false);
-  const [currentActivity, setCurrentActivity] = useState("AccountOverview");
+  // const [currentActivity, setCurrentActivity] = useState(undefined);
+  // const [currentActivity, setCurrentActivity] = useState("AccountOverview");
+  const [currentActivity, setCurrentActivity] = useState("MakingPayments");
 
   const returnToAllActivities = () => {
     setCurrentActivity(undefined);

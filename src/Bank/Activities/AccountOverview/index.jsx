@@ -10,7 +10,7 @@ import {
 } from "../../Shared/BankPages";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";
-import AllAccounts from "./AllAccounts";
+import AllAccounts from "../../Shared/AllAccounts";
 
 // ALL STEPS
 const check = "check";
@@ -60,8 +60,9 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
   const [isChecking, setIsChecking] = useState(false);
   // const [isChecking, setIsChecking] = useState(true);
   const [checkingService, setCheckingService] = useState(checkingTransactions);
-  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  // const [checkingService, setCheckingService] = useState(checkingInformation);
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
 
   useEffect(() => {

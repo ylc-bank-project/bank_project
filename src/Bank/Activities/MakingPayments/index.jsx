@@ -4,6 +4,14 @@ import { MarginedContainer } from "../../Shared/Layout";
 import NumberFormat from "react-number-format";
 import IntroOutro from "../../IntroOutro";
 import DatePicker from "react-datepicker";
+import AllAccounts from "../../Shared/AllAccounts";
+import {
+  BankingBackground,
+  BankingHeader,
+  BankingContainer,
+  CleanBackground,
+  BankingFooter,
+} from "../../Shared/BankPages";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -378,60 +386,91 @@ const PayVerifyBill = ({
   );
 };
 
-const AllAccounts = ({
+// const AllAccounts = ({
+//   setStep,
+//   setPaymentMethodsVisible,
+//   setMainPage,
+//   step,
+//   paymentMethodsVisible,
+// }) => {
+//   const PaymentMethods = () => {
+//     return (
+//       <div>
+//         <InfoTip
+//           tipContent={<div>Click on Bill Payments</div>}
+//           tipTarget={
+//             <button
+//               onClick={() => {
+//                 setStep(step + 1);
+//                 setPaymentMethodsVisible(false);
+//                 setMainPage(billPaymentsPage);
+//               }}
+//             >
+//               Bill Payments
+//             </button>
+//           }
+//           showTip={billPaymentsStep}
+//           showButton={false}
+//           {...{ step, setStep, allSteps }}
+//         />
+//         <div>Transfer Money</div>
+//       </div>
+//     );
+//   };
+//   return (
+//     <div>
+//       <div>Checking</div>
+//       <div>Other Account</div>
+//       <div>
+//         <InfoTip
+//           tipContent={<div>Click on "Make Payments"</div>}
+//           tipTarget={
+//             <button
+//               onClick={() => {
+//                 setStep(step + 1);
+//                 setPaymentMethodsVisible(true);
+//               }}
+//             >
+//               Make Payments
+//             </button>
+//           }
+//           showTip={clickPayments}
+//           showButton={false}
+//           {...{ step, setStep, allSteps }}
+//         />
+//       </div>
+//       {paymentMethodsVisible && <PaymentMethods />}
+//     </div>
+//   );
+// };
+
+const PaymentMethods = ({
   setStep,
   setPaymentMethodsVisible,
   setMainPage,
   step,
-  paymentMethodsVisible,
+  billPaymentsStep,
 }) => {
-  const PaymentMethods = () => {
-    return (
-      <div>
-        <InfoTip
-          tipContent={<div>Click on Bill Payments</div>}
-          tipTarget={
-            <button
-              onClick={() => {
-                setStep(step + 1);
-                setPaymentMethodsVisible(false);
-                setMainPage(billPaymentsPage);
-              }}
-            >
-              Bill Payments
-            </button>
-          }
-          showTip={billPaymentsStep}
-          showButton={false}
-          {...{ step, setStep, allSteps }}
-        />
-        <div>Transfer Money</div>
-      </div>
-    );
-  };
   return (
     <div>
-      <div>Checking</div>
-      <div>Other Account</div>
-      <div>
-        <InfoTip
-          tipContent={<div>Click on "Make Payments"</div>}
-          tipTarget={
-            <button
-              onClick={() => {
-                setStep(step + 1);
-                setPaymentMethodsVisible(true);
-              }}
-            >
-              Make Payments
-            </button>
-          }
-          showTip={clickPayments}
-          showButton={false}
-          {...{ step, setStep, allSteps }}
-        />
-      </div>
-      {paymentMethodsVisible && <PaymentMethods />}
+      <InfoTip
+        tipContent={<div>Click on Bill Payments</div>}
+        tipTarget={
+          <button
+            onClick={() => {
+              setStep(step + 1);
+              setPaymentMethodsVisible(false);
+              setMainPage(billPaymentsPage);
+            }}
+          >
+            Bill Payments
+          </button>
+        }
+        showTip={billPaymentsStep}
+        showButton={false}
+        {...{ step, setStep, allSteps }}
+      />
+      <div>Transfer Money</div>
     </div>
   );
 };
@@ -470,7 +509,8 @@ const billPaymentsPage = "billPaymentsPage";
 
 const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const [step, setStep] = useState(0);
-  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
 
   // Main Page State
@@ -494,8 +534,6 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const [billAmount, setBillAmount] = useState(undefined);
   const [billDate, setBillDate] = useState(addDays(new Date(), 5));
 
-  console.log({ accountType, billAmount, billDate });
-
   useEffect(() => {
     if (step === allSteps.length) {
       setStep(step + 1);
@@ -504,61 +542,91 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
     }
   }, [step]);
 
+  const paymentsClick = () => {
+    setStep(step + 1);
+    setPaymentMethodsVisible(false);
+    setMainPage(billPaymentsPage);
+  };
+
+  console.log({ paymentMethodsVisible });
+
   return (
-    <div>
-      <div>Making Payments</div>
-      {mainPage === allAccountsPage ? (
-        <AllAccounts
-          {...{
-            setStep,
-            setPaymentMethodsVisible,
-            setMainPage,
-            step,
-            paymentMethodsVisible,
-          }}
-        />
-      ) : (
-        <BillPayments
-          {...{
-            //general
-            paymentStage,
-            payeesStage,
-            addVerifyPayeeStage,
-            payVerifyBillStage,
-            //list of payees
-            setPaymentStage,
-            setStep,
-            step,
-            tacoAdded,
-            inputedAccountNumber,
-            setInputedAccountNumber,
-            //addVerify payees
-            isVerifyPayee,
-            setTacoAdded,
-            companyTitle,
-            TacoTitle,
-            setCompanyTitle,
-            setVerifyPayee,
-            //payVerifyBill
-            isVerifyBill,
-            setVerifyBill,
-            setAccountType,
-            setBillAmount,
-            setBillDate,
-            accountType,
-            billAmount,
-            billDate,
-          }}
-        />
-      )}
-      <IntroOutro
-        closeModal={() => setIntroOutroVisible(false)}
-        endExercise={() => returnToAllActivities()}
-        currentActivity={currentActivity}
-        visible={introOutroVisible}
-        isIntro={isIntro}
+    <BankingBackground>
+      <BankingHeader />
+      <CleanBackground>
+        <MarginedContainer>
+          <BankingContainer>
+            {mainPage === allAccountsPage ? (
+              <AllAccounts
+                {...{
+                  setStep,
+                  allSteps,
+                  // setPaymentMethodsVisible,
+                  setMainPage,
+                  step,
+                  // paymentMethodsVisible,
+                }}
+              />
+            ) : (
+              <BillPayments
+                {...{
+                  //general
+                  paymentStage,
+                  payeesStage,
+                  addVerifyPayeeStage,
+                  payVerifyBillStage,
+                  //list of payees
+                  setPaymentStage,
+                  setStep,
+                  step,
+                  tacoAdded,
+                  inputedAccountNumber,
+                  setInputedAccountNumber,
+                  //addVerify payees
+                  isVerifyPayee,
+                  setTacoAdded,
+                  companyTitle,
+                  TacoTitle,
+                  setCompanyTitle,
+                  setVerifyPayee,
+                  //payVerifyBill
+                  isVerifyBill,
+                  setVerifyBill,
+                  setAccountType,
+                  setBillAmount,
+                  setBillDate,
+                  accountType,
+                  billAmount,
+                  billDate,
+                }}
+              />
+            )}
+            <IntroOutro
+              closeModal={() => setIntroOutroVisible(false)}
+              endExercise={() => returnToAllActivities()}
+              currentActivity={currentActivity}
+              visible={introOutroVisible}
+              isIntro={isIntro}
+            />
+            {paymentMethodsVisible && (
+              <PaymentMethods
+                {...{
+                  setStep,
+                  setPaymentMethodsVisible,
+                  setMainPage,
+                  step,
+                  billPaymentsStep,
+                }}
+              />
+            )}
+          </BankingContainer>
+        </MarginedContainer>
+      </CleanBackground>
+
+      <BankingFooter
+        {...{ step, setStep, allSteps, paymentsClick, clickPayments }}
       />
-    </div>
+    </BankingBackground>
   );
 };
 

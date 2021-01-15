@@ -5,6 +5,17 @@ import styled, { css } from "styled-components";
 import { MarginedContainer } from "./Layout";
 import { BasicTooltip, InfoTip } from "./Tip";
 
+export const Space = styled.span`
+  width: 10px;
+  display: inline-block;
+`;
+
+export const BoldDiv = styled.div`
+  font-weight: bold;
+  text-align: center;
+  padding: 5px 0;
+`;
+
 const Logo = styled.img`
   height: 150vh;
   position: absolute;
@@ -16,7 +27,7 @@ const Logo = styled.img`
 `;
 
 const BankingBackgroundContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   overflow-x: hidden;
   position: relative;
@@ -31,7 +42,7 @@ const BankingColor = styled.div`
   background: ${(p) => p.theme.colors.bank_blue};
   /* opacity: 0.8; */
   z-index: -1;
-  overflow: hidden;
+  overflow-x: hidden;
 `;
 
 export const BankingBackground = ({ children }) => {
@@ -120,6 +131,7 @@ export const CleanBackground = styled.div`
   background: rgb(242, 242, 242);
   height: 100%;
   /* padding-top: 15px; */
+  padding-bottom: 200px;
 `;
 
 export const BankingContainer = styled.div`
@@ -143,9 +155,11 @@ const StyledBankingFooter = styled.div`
   height: 75px;
 `;
 
-const FooterLink = styled.div`
-  width: 130px;
+const FooterLink = styled.button`
+  width: 140px;
   margin: 10px;
+  border: none;
+  background: none;
   border-bottom: 4px solid
     ${(p) => (p.isActive ? p.theme.colors.ylc_blue : "transparent")};
   height: 50px;
@@ -158,11 +172,34 @@ const FooterLink = styled.div`
   cursor: pointer;
 `;
 
-export const BankingFooter = ({ isActive = "home" }) => {
+export const BankingFooter = ({
+  isActive = "home",
+  paymentsClick,
+  clickPayments,
+  step,
+  setStep,
+  allSteps,
+}) => {
+  console.log({ step });
   return (
     <StyledBankingFooter>
-      <FooterLink isActive={isActive === "home"}>Home</FooterLink>
-      <FooterLink isActive={isActive === "pay"}>Pay & Transfer</FooterLink>
+      <FooterLink isActive={step === 0}>Home</FooterLink>
+      <InfoTip
+        tipContent={<div>Click on Bill Payments</div>}
+        tipTarget={
+          <FooterLink
+            onClick={() => paymentsClick()}
+            isActive={step !== 0}
+            disabled={step !== 0}
+          >
+            Pay & Transfer
+          </FooterLink>
+        }
+        showTip={clickPayments}
+        showButton={false}
+        {...{ step, setStep, allSteps }}
+      />
+
       <FooterLink isActive={isActive === "more"}>More</FooterLink>
     </StyledBankingFooter>
   );
@@ -213,7 +250,17 @@ export const TransactionsDetails = ({
       >
         <BasicTooltip
           content={
-            "Transactions represent the money being spent (debited) and the money being added (credit) to your account.Click here to go to Account Information. Click here to go back to your transactions."
+            <>
+              <div>
+                Transactions represent the money being spent (debited) and the
+                money being added (credit) to your account.
+              </div>
+              {<br />}
+              <div>
+                Click here to go to Account Information. Click here to go back
+                to your transactions.
+              </div>
+            </>
           }
           showTip={allSteps[step] === transactions}
           staticOnly={true}
@@ -239,3 +286,57 @@ export const TransactionsDetails = ({
     </TransDetailsSection>
   );
 };
+
+const ItemListingWrapper = styled.div`
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 60px);
+  margin: 0 30px;
+  padding: 30px 0;
+  font-size: 20px;
+  border-bottom: solid 1px ${(p) => (p.isSummary ? "transparent" : "lightgray")};
+`;
+
+const ItemTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ItemPrincipalText = styled.span`
+  font-weight: bold;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+`;
+
+const ItemSubTextContainer = styled.span`
+  ${(p) => p.theme.fonts.large_button_text};
+  font-weight: normal;
+  text-transform: uppercase;
+`;
+
+const ItemDate = styled.span`
+  padding-right: 20px;
+`;
+
+const ItemTransaction = styled.span``;
+
+const ItemDetails = styled.span`
+  color: ${(p) => (p.isPositive ? "green" : "black")};
+`;
+
+export const ItemListing = ({ principal, date, trans, details, ...rest }) => (
+  <ItemListingWrapper {...rest}>
+    <ItemTextContainer>
+      <ItemPrincipalText>{principal}</ItemPrincipalText>
+      {(date || trans) && (
+        <ItemSubTextContainer>
+          <ItemDate>{date}</ItemDate>
+          <ItemTransaction>{trans}</ItemTransaction>
+        </ItemSubTextContainer>
+      )}
+    </ItemTextContainer>
+    <ItemDetails {...rest}>{details}</ItemDetails>
+  </ItemListingWrapper>
+);

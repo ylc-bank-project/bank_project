@@ -1,19 +1,9 @@
 import React from "react";
 import { BasicTipButton } from "../../Shared/Tip";
 import styled from "styled-components";
+import { Space, BoldDiv } from "../../Shared/BankPages";
 
 export const FirstStep = () => <div>Click here to sign in</div>;
-
-const Space = styled.span`
-  width: 10px;
-  display: inline-block;
-`;
-
-const BoldDiv = styled.div`
-  font-weight: bold;
-  text-align: center;
-  padding: 5px 0;
-`;
 
 export const SecondStep = ({ cardNumber, setStep }) => (
   <div>
