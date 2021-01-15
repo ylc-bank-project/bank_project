@@ -87,7 +87,7 @@ const AllAccounts = ({
           accNumber={"5522"}
           onClick={() => {
             setIsChecking(true);
-            setStep(step + 1);
+            allSteps[step] === check && setStep(step + 1);
           }}
         />
       </BasicTooltip>

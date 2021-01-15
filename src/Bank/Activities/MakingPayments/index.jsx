@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import styled from "styled-components";
 import { MarginedContainer } from "../../Shared/Layout";
-import NumberFormat from "react-number-format";
 import IntroOutro from "../../IntroOutro";
-import DatePicker from "react-datepicker";
 import AllAccounts from "../../Shared/AllAccounts";
 import { PaymentMethods } from "./PaymentMethods";
+import { ItemListing } from "../../Shared/BankPages";
+import { AddVerifyPayee } from "./AddVerifyPayee";
+import { PayVerifyBill } from "./PayVerifyBill";
 
 import {
   BankingBackground,
@@ -60,6 +62,28 @@ const allSteps = [
   confirmBillPayment,
 ];
 
+const PayeeControlsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-bottom: 1px solid lightgray;
+`;
+
+const ChooseText = styled.div`
+  ${(p) => p.theme.fonts.extra_small_header};
+`;
+
+const AddPayeeButton = styled.button`
+  /* background: ${(p) => p.theme.colors.bank_blue}; */
+  background: white;
+  width: 150px;
+  height: 50px;
+  /* color: white; */
+  cursor: pointer;
+  ${(p) => p.theme.fonts.large_button_text};
+`;
+
 const ListOfPayees = ({
   setPaymentStage,
   setStep,
@@ -68,325 +92,72 @@ const ListOfPayees = ({
   tacoAdded,
   payVerifyBillStage,
 }) => {
-  console.log({ setPaymentStage });
   return (
     <div>
-      <div>
+      <PayeeControlsContainer>
+        <ChooseText>Choose your payee</ChooseText>
         <InfoTip
           tipContent={<div>Click Add or Edit Payee should work</div>}
           tipTarget={
-            <button
+            <AddPayeeButton
               onClick={() => {
                 setPaymentStage(addVerifyPayeeStage);
                 setStep(step + 1);
               }}
             >
               Add Payee
-            </button>
+            </AddPayeeButton>
           }
           showTip={addEditPayee}
           showButton={false}
           {...{ step, setStep, allSteps }}
         />
-      </div>
+      </PayeeControlsContainer>
       {tacoAdded && (
-        <div>
-          <InfoTip
-            tipContent={
-              <div>
-                You did it! Taco Electric is set up for online bill payments.
-                You just need to pay the bill! Click on "Taco Electric", this
-                will take them to a screen where they choose an account, enter
-                an amount and a payment date.
-              </div>
-            }
-            tipTarget={
-              <button
-                onClick={() => {
-                  setPaymentStage(payVerifyBillStage);
-                  setStep(step + 1);
-                }}
-              >
-                Taco Electric
-              </button>
-            }
-            showTip={chooseTaco}
-            showButton={false}
-            {...{ step, setStep, allSteps }}
-          />
-        </div>
+        <InfoTip
+          tipContent={
+            <div>
+              You did it! Taco Electric is set up for online bill payments. You
+              just need to pay the bill! Click on "Taco Electric", this will
+              take them to a screen where they choose an account, enter an
+              amount and a payment date.
+            </div>
+          }
+          tipTarget={
+            <ItemListing
+              onClick={() => {
+                setPaymentStage(payVerifyBillStage);
+                setStep(step + 1);
+              }}
+              principal={"Taco Electric"}
+              date={"55117788992"}
+              details={"PAY BILL"}
+            />
+          }
+          showTip={chooseTaco}
+          showButton={false}
+          {...{ step, setStep, allSteps }}
+        />
       )}
-      <div>Other Payee</div>
-      <div>Other Payee</div>
-      <div>Other Payee</div>
-      <div>Other Payee</div>
-      <div>Other Payee</div>
+      <ItemListing
+        principal={"Toyota Canada"}
+        date={"20193924UQC685"}
+        details={"PAY BILL"}
+      />
+      <ItemListing
+        principal={"Bell Canada"}
+        date={"9988225511"}
+        details={"PAY BILL"}
+      />
+      <ItemListing principal={"NSLSC"} date={"088811"} details={"PAY BILL"} />
     </div>
   );
 };
 
-const AddVerifyPayee = ({
-  isVerifyPayee,
-  setTacoAdded,
-  setPaymentStage,
-  companyTitle,
-  TacoTitle,
-  setCompanyTitle,
-  step,
-  setStep,
-  setVerifyPayee,
-  inputedAccountNumber,
-  setInputedAccountNumber,
-  payeesStage,
-}) => {
-  return (
-    <div>
-      {isVerifyPayee ? (
-        <div>
-          <div>Review the new payee</div>
-          <div>{companyTitle}</div>
-          <div>{inputedAccountNumber}</div>
-          <div>
-            <InfoTip
-              tipContent={
-                <div>
-                  Verify everything is correct. It should say the payee name and
-                  account number entered. Choose "Add Payee" to continue.
-                </div>
-              }
-              tipTarget={
-                <button
-                  onClick={() => {
-                    setTacoAdded(true);
-                    setPaymentStage(payeesStage);
-                    setStep(step + 1);
-                  }}
-                >
-                  Add Payee
-                </button>
-              }
-              showTip={confirmPayee}
-              showButton={false}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div>
-            <div>
-              <InfoTip
-                tipContent={<div>enter company name: Taco Electric</div>}
-                // buttonDisabled={companyTitle !== TacoTitle}
-                buttonDisabled={false}
-                tipTarget={
-                  <label>
-                    Company Name:
-                    <input
-                      onChange={(e) => setCompanyTitle(e.target.value)}
-                      type="text"
-                    />
-                  </label>
-                }
-                showTip={addCompanyName}
-                showButton={true}
-                {...{ step, setStep, allSteps }}
-              />
-            </div>
-            <div>
-              <InfoTip
-                tipContent={
-                  <div>
-                    Now enter account/bill number. Make something up.{" "}
-                    <span role="img" aria-label="smile emoji">
-                      🙂
-                    </span>
-                  </div>
-                }
-                buttonDisabled={false}
-                tipTarget={
-                  <label>
-                    Account/Bill Number
-                    <input
-                      onChange={(e) => setInputedAccountNumber(e.target.value)}
-                    />
-                  </label>
-                }
-                showTip={addBillNumber}
-                showButton={true}
-                {...{ step, setStep, allSteps }}
-              />
-            </div>
-          </div>
-          <div>
-            <InfoTip
-              tipContent={<div>Now continue to review your new payee.</div>}
-              tipTarget={
-                <button
-                  onClick={() => {
-                    setStep(step + 1);
-                    setVerifyPayee(true);
-                  }}
-                >
-                  Continue
-                </button>
-              }
-              showTip={goToVerify}
-              showButton={false}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const PayVerifyBill = ({
-  isVerifyBill,
-  setStep,
-  step,
-  setVerifyBill,
-  setAccountType,
-  setBillAmount,
-  setBillDate,
-  accountType,
-  billAmount,
-  billDate,
-}) => {
-  let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
-  const todayDate = `${month}/${day}/${year}`;
-  const [bMonth, bDay, bYear] = billDate
-    ? billDate.toLocaleDateString("en-US").split("/")
-    : [];
-  const formattedBillDate = `${bMonth}/${bDay}/${bYear}`;
-  return (
-    <div>
-      {isVerifyBill ? (
-        <div>
-          <div>Verify here </div>
-          <div>
-            <InfoTip
-              tipContent={
-                <div>
-                  Review what you have entered and then press the ‘Confirm
-                  Payment’ button.
-                </div>
-              }
-              tipTarget={
-                <button
-                  onClick={() => {
-                    //Final Step
-                    setStep(step + 1);
-                  }}
-                >
-                  Confirm Payment
-                </button>
-              }
-              showTip={confirmBillPayment}
-              showButton={false}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div>
-            <InfoTip
-              tipContent={
-                <div>
-                  Choose an account that you would like to pay the bill with.
-                  For this activity, choose ‘chequing’.
-                </div>
-              }
-              tipTarget={
-                <label>
-                  Account:
-                  <select onChange={(e) => setAccountType(e.target.value)}>
-                    <option value="">Checking</option>
-                    <option value="checking">Checking</option>
-                    <option value="saving">Saving</option>
-                  </select>
-                </label>
-              }
-              showTip={chooseDebitAccount}
-              buttonDisabled={accountType !== "checking"}
-              showButton={true}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-          <div>
-            <InfoTip
-              tipContent={
-                <div>
-                  Enter the amount you would like pay. For this activity, enter
-                  $68.00.
-                </div>
-              }
-              tipTarget={
-                <label>
-                  Amount:
-                  <NumberFormat
-                    onChange={(e) => setBillAmount(e.target.value)}
-                    prefix={"$"}
-                  />
-                </label>
-              }
-              showTip={enterAmount}
-              buttonDisabled={billAmount !== "$68.00"}
-              showButton={true}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-          <div>
-            <InfoTip
-              tipContent={
-                <div>
-                  Enter the date you would like to pay the bill. For this
-                  activity, enter ‘Today’.
-                </div>
-              }
-              tipTarget={
-                <label>
-                  Date:
-                  <DatePicker
-                    selected={billDate}
-                    onChange={(date) => setBillDate(date)}
-                    todayButton="Today"
-                  />
-                </label>
-              }
-              showTip={enterDate}
-              buttonDisabled={todayDate !== formattedBillDate}
-              showButton={true}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-          <div>
-            <InfoTip
-              tipContent={
-                <div>Click 'Continue' to review your bill payment.</div>
-              }
-              tipTarget={
-                <button
-                  onClick={() => {
-                    setVerifyBill(true);
-                    setStep(step + 1);
-                  }}
-                >
-                  Continue
-                </button>
-              }
-              showTip={reviewBillPayment}
-              showButton={false}
-              {...{ step, setStep, allSteps }}
-            />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+const BillPaymentsContainer = styled.div`
+  min-height: 100vh;
+  background: white;
+`;
 
 const BillPayments = (props) => {
   const {
@@ -396,7 +167,7 @@ const BillPayments = (props) => {
     payVerifyBillStage,
   } = props;
   return (
-    <div>
+    <BillPaymentsContainer>
       {paymentStage === payeesStage ? (
         <ListOfPayees {...props} />
       ) : paymentStage === addVerifyPayeeStage ? (
@@ -406,7 +177,7 @@ const BillPayments = (props) => {
       ) : (
         <div>No Stage </div>
       )}
-    </div>
+    </BillPaymentsContainer>
   );
 };
 
@@ -428,7 +199,8 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const [payTabActive, setPayTabActive] = useState("home");
 
   // Main Page State
-  const [mainPage, setMainPage] = useState(allAccountsPage);
+  // const [mainPage, setMainPage] = useState(allAccountsPage);
+  const [mainPage, setMainPage] = useState(undefined);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
   // const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(true);
 
@@ -440,7 +212,8 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   // State for bill payments
   const TacoTitle = "Taco Electric";
   const [tacoAdded, setTacoAdded] = useState(false);
-  const [paymentStage, setPaymentStage] = useState(payeesStage);
+  // const [paymentStage, setPaymentStage] = useState(payeesStage);
+  const [paymentStage, setPaymentStage] = useState(addVerifyPayeeStage);
   const [companyTitle, setCompanyTitle] = useState(undefined);
   const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
   const [isVerifyPayee, setVerifyPayee] = useState(false);
@@ -504,6 +277,11 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
                   TacoTitle,
                   setCompanyTitle,
                   setVerifyPayee,
+                  confirmPayee,
+                  allSteps,
+                  addCompanyName,
+                  addBillNumber,
+                  goToVerify,
                   //payVerifyBill
                   isVerifyBill,
                   setVerifyBill,
@@ -513,6 +291,11 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
                   accountType,
                   billAmount,
                   billDate,
+                  confirmBillPayment,
+                  chooseDebitAccount,
+                  enterAmount,
+                  enterDate,
+                  reviewBillPayment,
                 }}
               />
             )}

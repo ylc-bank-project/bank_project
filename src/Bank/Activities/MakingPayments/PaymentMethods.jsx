@@ -26,6 +26,7 @@ const BankingButton = styled.button`
 
   img {
     max-height: 50px;
+    padding-bottom: 5px;
   }
 `;
 
@@ -71,7 +72,8 @@ export const PaymentMethods = ({
           />
           <BankingButton>
             <img src={interacIcon} alt="" />
-            Interac E-transfer
+            <div>Interac</div>
+            <div>E-transfer</div>
           </BankingButton>
           <BankingButton>
             <img src={depositIcon} alt="" />

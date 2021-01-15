@@ -304,6 +304,7 @@ const ItemListingWrapper = styled.div`
   padding: 30px 0;
   font-size: 20px;
   border-bottom: solid 1px ${(p) => (p.isSummary ? "transparent" : "lightgray")};
+  cursor: pointer;
 `;
 
 const ItemTextContainer = styled.div`
@@ -347,3 +348,49 @@ export const ItemListing = ({ principal, date, trans, details, ...rest }) => (
     <ItemDetails {...rest}>{details}</ItemDetails>
   </ItemListingWrapper>
 );
+
+export const BillPayeeTitle = styled.div`
+  ${(p) => p.theme.fonts.small_header};
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  margin-bottom: 10px;
+  background: ${(p) => p.theme.colors.light_accent};
+  /* border-bottom: 1px solid lightgray; */
+`;
+
+export const BillPayeeInput = styled.input`
+  width: calc(100% - 40px - 2px - 100px);
+  border: none;
+  padding: 20px;
+  margin: 0 50px;
+  border-bottom: 1px solid lightgray;
+  ${(p) => p.theme.fonts.body_text_bold};
+`;
+
+export const BillPayeeReview = styled.div`
+  width: calc(100% - 40px - 2px - 100px);
+  border: none;
+  padding: 20px;
+  margin: 0 50px;
+  border-bottom: 1px solid lightgray;
+  ${(p) => p.theme.fonts.body_text_bold};
+`;
+
+export const ContinueButton = styled.button`
+  background-color: ${(p) => p.background || "white"};
+  color: ${(p) => p.color || p.theme.colors.ylc_blue};
+  width: 140px;
+  height: 60px;
+  border-radius: 100px;
+  ${(p) => p.theme.fonts.extra_small_header}
+  cursor: pointer;
+`;
+
+export const ContinueButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+`;
