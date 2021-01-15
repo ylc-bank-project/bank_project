@@ -29,6 +29,7 @@ export const AddVerifyPayee = ({
   addBillNumber,
   goToVerify,
 }) => {
+  console.log({ it: allSteps[step] });
   return (
     <div>
       {isVerifyPayee ? (
@@ -53,6 +54,7 @@ export const AddVerifyPayee = ({
                     setPaymentStage(payeesStage);
                     setStep(step + 1);
                   }}
+                  disabled={allSteps[step] !== confirmPayee}
                 >
                   Add Payee
                 </ContinueButton>
@@ -69,7 +71,11 @@ export const AddVerifyPayee = ({
             <div>
               <BillPayeeTitle>Add a New Payee</BillPayeeTitle>
               <InfoTip
-                tipContent={<div>enter company name: Taco Electric</div>}
+                tipContent={
+                  <div>
+                    Enter company name: <strong>Taco Electric</strong>
+                  </div>
+                }
                 // buttonDisabled={companyTitle !== TacoTitle}
                 buttonDisabled={false}
                 tipTarget={
@@ -111,13 +117,16 @@ export const AddVerifyPayee = ({
           </div>
           <ContinueButtonContainer>
             <InfoTip
-              tipContent={<div>Now continue to review your new payee.</div>}
+              tipContent={
+                <div>Choose "Continue" to review your new payee.</div>
+              }
               tipTarget={
                 <ContinueButton
                   onClick={() => {
                     setStep(step + 1);
                     setVerifyPayee(true);
                   }}
+                  disabled={allSteps[step] !== goToVerify}
                 >
                   Continue
                 </ContinueButton>

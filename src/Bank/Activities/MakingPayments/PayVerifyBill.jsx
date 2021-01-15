@@ -17,6 +17,7 @@ const StyledNumberFormat = styled(NumberFormat)`
   padding: 20px;
   margin: 0 50px;
   border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
   ${(p) => p.theme.fonts.body_text_bold};
 `;
 
@@ -33,7 +34,7 @@ const StyledSelect = styled.select`
   border: none;
   padding: 20px;
   margin: 0 50px;
-  border-bottom: 1px solid lightgray;
+  /* border-bottom: 1px solid lightgray; */
   ${(p) => p.theme.fonts.body_text_bold};
 `;
 
@@ -78,7 +79,11 @@ export const PayVerifyBill = ({
     <div>
       {isVerifyBill ? (
         <div>
-          <div>Verify here </div>
+          <BillPayeeTitle>Verify Payment Information</BillPayeeTitle>
+          <BillPayeeReview>Payee: Taco Electric</BillPayeeReview>
+          <BillPayeeReview>Account: {accountType}</BillPayeeReview>
+          <BillPayeeReview>Amount: {billAmount}</BillPayeeReview>
+          <BillPayeeReview>Payment Date: {formattedBillDate}</BillPayeeReview>
           <ContinueButtonContainer>
             <InfoTip
               tipContent={
@@ -105,13 +110,16 @@ export const PayVerifyBill = ({
         </div>
       ) : (
         <div>
-          <BillPayeeTitle>Pay A Bill</BillPayeeTitle>
+          <BillPayeeTitle>Pay Taco Electric</BillPayeeTitle>
           <div>
             <InfoTip
               tipContent={
                 <div>
-                  Choose an account that you would like to pay the bill with.
-                  For this activity, choose ‘chequing’.
+                  <div>
+                    Choose an account that you would like to pay the bill with.
+                  </div>
+                  <br />
+                  <div>For this activity, choose ‘chequing’.</div>
                 </div>
               }
               tipTarget={
@@ -131,8 +139,9 @@ export const PayVerifyBill = ({
             <InfoTip
               tipContent={
                 <div>
-                  Enter the amount you would like pay. For this activity, enter
-                  $68.00.
+                  <div>Enter the amount you would like pay. </div>
+                  <br />
+                  <div>For this activity, enter $68.00.</div>
                 </div>
               }
               tipTarget={
@@ -152,8 +161,9 @@ export const PayVerifyBill = ({
             <InfoTip
               tipContent={
                 <div>
-                  Enter the date you would like to pay the bill. For this
-                  activity, enter ‘Today’.
+                  <div>Enter the date you would like to pay the bill.</div>
+                  <br />
+                  <div>For this activity, enter ‘Today’.</div>
                 </div>
               }
               tipTarget={
@@ -183,6 +193,7 @@ export const PayVerifyBill = ({
                     setVerifyBill(true);
                     setStep(step + 1);
                   }}
+                  disabled={allSteps[step] !== reviewBillPayment}
                 >
                   Continue
                 </ContinueButton>

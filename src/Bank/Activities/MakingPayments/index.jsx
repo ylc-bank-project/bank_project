@@ -91,13 +91,14 @@ const ListOfPayees = ({
   addVerifyPayeeStage,
   tacoAdded,
   payVerifyBillStage,
+  inputedAccountNumber,
 }) => {
   return (
     <div>
       <PayeeControlsContainer>
         <ChooseText>Choose your payee</ChooseText>
         <InfoTip
-          tipContent={<div>Click Add or Edit Payee should work</div>}
+          tipContent={<div>Choose "Add Payee".</div>}
           tipTarget={
             <AddPayeeButton
               onClick={() => {
@@ -117,10 +118,15 @@ const ListOfPayees = ({
         <InfoTip
           tipContent={
             <div>
-              You did it! Taco Electric is set up for online bill payments. You
-              just need to pay the bill! Click on "Taco Electric", this will
-              take them to a screen where they choose an account, enter an
-              amount and a payment date.
+              <div>
+                You did it! Taco Electric is set up for online bill payments.
+                You just need to pay the bill!
+              </div>
+              <br />
+              <div>
+                Click on "Taco Electric", this will take them to a screen where
+                they choose an account, enter an amount and a payment date.
+              </div>
             </div>
           }
           tipTarget={
@@ -130,7 +136,7 @@ const ListOfPayees = ({
                 setStep(step + 1);
               }}
               principal={"Taco Electric"}
-              date={"55117788992"}
+              date={inputedAccountNumber}
               details={"PAY BILL"}
             />
           }
@@ -193,14 +199,14 @@ const billPaymentsPage = "billPaymentsPage";
 
 const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   const [step, setStep] = useState(0);
-  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
   const [payTabActive, setPayTabActive] = useState("home");
 
   // Main Page State
-  // const [mainPage, setMainPage] = useState(allAccountsPage);
-  const [mainPage, setMainPage] = useState(undefined);
+  const [mainPage, setMainPage] = useState(allAccountsPage);
+  // const [mainPage, setMainPage] = useState(undefined);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
   // const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(true);
 
@@ -212,19 +218,22 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
   // State for bill payments
   const TacoTitle = "Taco Electric";
   const [tacoAdded, setTacoAdded] = useState(false);
-  // const [paymentStage, setPaymentStage] = useState(payeesStage);
-  const [paymentStage, setPaymentStage] = useState(payVerifyBillStage);
-  // const [companyTitle, setCompanyTitle] = useState(undefined);
-  const [companyTitle, setCompanyTitle] = useState("test title");
-  // const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
-  const [inputedAccountNumber, setInputedAccountNumber] = useState(
-    83838383838383
-  );
-  // const [isVerifyPayee, setVerifyPayee] = useState(false);
-  const [isVerifyPayee, setVerifyPayee] = useState(true);
+  const [paymentStage, setPaymentStage] = useState(payeesStage);
+  // const [paymentStage, setPaymentStage] = useState(payVerifyBillStage);
+  const [companyTitle, setCompanyTitle] = useState(undefined);
+  // const [companyTitle, setCompanyTitle] = useState("test title");
+  const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
+  // const [inputedAccountNumber, setInputedAccountNumber] = useState(
+  // 83838383838383
+  // );
+  const [isVerifyPayee, setVerifyPayee] = useState(false);
+  // const [isVerifyPayee, setVerifyPayee] = useState(true);
   const [isVerifyBill, setVerifyBill] = useState(false);
+  // const [isVerifyBill, setVerifyBill] = useState(true);
   const [accountType, setAccountType] = useState(undefined);
+  // const [accountType, setAccountType] = useState("Checking");
   const [billAmount, setBillAmount] = useState(undefined);
+  // const [billAmount, setBillAmount] = useState("$680.00");
   const [billDate, setBillDate] = useState(addDays(new Date(), 5));
 
   useEffect(() => {
