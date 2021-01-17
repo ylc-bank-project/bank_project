@@ -54,7 +54,7 @@ export const PaymentMethods = ({
       notOverlayCloseable={true}
       render={() => (
         <>
-          <div>Should say something here</div>
+          <div>Should say something here 2</div>
           <TransactionsContainer>
             <BankingButton>
               <img src={transferIcon} alt="" />
