@@ -18,6 +18,12 @@ const ContentSpan = styled.span`
 
 const PlacedElement = styled.div``;
 
+const ContentContainer = styled.div`
+  overflow: auto;
+  max-height: 300px;
+  padding: 20px;
+`;
+
 export const BasicTooltip = ({
   children,
   content,
@@ -50,6 +56,7 @@ export const BasicTooltip = ({
     arrowOffset: 5,
     preferX: preferX || "right",
     placement: placement || "right-center",
+    // overflowContainer: false,
   });
 
   return (
@@ -79,19 +86,21 @@ export const BasicTooltip = ({
                   {...layerProps}
                   style={{
                     ...layerProps.style,
-                    minWidth: 200,
+                    // minWidth: 300,
+                    maxHeight: 350,
                     // minHeight: 100,
                     borderWidth: 1,
                     borderColor: "#000000",
                     borderStyle: "solid",
                     backgroundColor: "white",
                     borderRadius: "3px",
-                    padding: "20px",
-                    maxWidth: "250px",
+                    // padding: "20px",
+                    maxWidth: "300px",
                     // boxShadow: "0 0 1px 1px gray",
+                    // overflow: "auto",
                   }}
                 >
-                  {content}
+                  <ContentContainer>{content}</ContentContainer>
                   <Arrow
                     {...arrowProps}
                     backgroundColor="white"

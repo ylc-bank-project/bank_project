@@ -126,6 +126,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                   content={<ThirdStep {...{ password, setStep }} />}
                   showTip={step === 3}
                   staticOnly={true}
+                  // placement={"center"}
                 >
                   <StyledInput
                     onChange={(e) => setPassword(e.target.value)}
