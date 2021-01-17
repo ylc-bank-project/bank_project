@@ -55,7 +55,7 @@ const allSteps = [
 const checkingTransactions = "checkingTransactions";
 const checkingInformation = "checkingInformation";
 
-const Overview = ({ currentActivity, returnToAllActivities }) => {
+const Overview = ({ currentActivity, endCurrentActivity }) => {
   const [step, setStep] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
   // const [isChecking, setIsChecking] = useState(true);
@@ -118,7 +118,7 @@ const Overview = ({ currentActivity, returnToAllActivities }) => {
 
           <IntroOutro
             closeModal={() => setIntroOutroVisible(false)}
-            endExercise={() => returnToAllActivities()}
+            endExercise={() => endCurrentActivity()}
             currentActivity={currentActivity}
             visible={introOutroVisible}
             isIntro={isIntro}

@@ -3,25 +3,28 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
-import { PageContainer } from "./Shared/Layout";
+import { PageContainer, ActButton } from "./Shared/Layout";
 import SignIn from "./Activities/SignIn";
 import { theme } from "./Global";
 // import { act } from "react-dom/test-utils";
 
-const AllActivitiesButton = styled.button`
+const AllActivitiesButton = styled(ActButton)`
   position: absolute;
   top: 5px;
   right: 5px;
+  z-index: 10000000;
+  padding: 10px 15px;
+  border-radius: 50px;
 `;
 
 function App() {
-  // const [activitiesListVisible, setActivitiesListVisible] = useState(true);
-  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
-  // const [currentActivity, setCurrentActivity] = useState(undefined);
+  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
+  // const [activitiesListVisible, setActivitiesListVisible] = useState(false);
+  const [currentActivity, setCurrentActivity] = useState(undefined);
   // const [currentActivity, setCurrentActivity] = useState("AccountOverview");
-  const [currentActivity, setCurrentActivity] = useState("MakingPayments");
+  // const [currentActivity, setCurrentActivity] = useState("MakingPayments");
 
-  const returnToAllActivities = () => {
+  const endCurrentActivity = () => {
     setCurrentActivity(undefined);
     setActivitiesListVisible(true);
   };
@@ -30,7 +33,7 @@ function App() {
     let Act = AllActivities[currentActivity];
     return Act ? (
       <Act
-        returnToAllActivities={returnToAllActivities}
+        endCurrentActivity={endCurrentActivity}
         currentActivity={currentActivity}
       />
     ) : undefined;
@@ -41,14 +44,24 @@ function App() {
       {currentActivity &&
         Object.values(activitiesEnums).some((act) => act === currentActivity) &&
         Activity({ currentActivity })}
-      <AllActivitiesButton
-        onClick={() => {
-          setActivitiesListVisible(true);
-          setCurrentActivity(undefined);
-        }}
-      >
-        Show All Activities
-      </AllActivitiesButton>
+      {!currentActivity && activitiesListVisible ? (
+        <span />
+      ) : (
+        <AllActivitiesButton
+          onClick={() => {
+            if (currentActivity && activitiesListVisible) {
+              setActivitiesListVisible(false);
+            } else {
+              setActivitiesListVisible(true);
+            }
+            // setCurrentActivity(undefined);
+          }}
+        >
+          {currentActivity && activitiesListVisible
+            ? "Back To Activity"
+            : "Show All Activities"}
+        </AllActivitiesButton>
+      )}
       <ActivityChooser
         closeModal={() => {
           setActivitiesListVisible(false);

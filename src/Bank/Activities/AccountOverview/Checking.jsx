@@ -64,7 +64,7 @@ const CheckingHeaderContainer = styled.div``;
 
 const CheckingSectionWrapper = styled.div`
   background: white;
-  /* padding-bottom: 300px; */
+  padding-bottom: 100px;
 `;
 
 const FullEmptyDiv = styled.div`

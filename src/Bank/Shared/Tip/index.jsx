@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useLayer, useHover, Arrow } from "react-laag";
 import { ActButton } from "../../Shared/Layout";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Link,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
+import scrollIntoView from "scroll-into-view-if-needed";
+
+const ContentSpan = styled.span`
+  position: relative;
+`;
+
+const PlacedElement = styled.div``;
 
 export const BasicTooltip = ({
   children,
@@ -14,6 +29,16 @@ export const BasicTooltip = ({
   placement,
 }) => {
   const [isOver, hoverProps] = useHover();
+
+  useEffect(() => {
+    scroller.scrollTo("myScrollToElement", {
+      // duration: 1500,
+      // delay: 100,
+      smooth: true,
+      // containerId: "ContainerElementID",
+      offset: -300, // Scrolls to element + 50 pixels down the page
+    });
+  }, []);
 
   const { triggerProps, layerProps, arrowProps, renderLayer } = useLayer({
     isOpen: showTip || (!staticOnly && isOver),
@@ -29,9 +54,16 @@ export const BasicTooltip = ({
 
   return (
     <>
-      <span {...triggerProps} {...hoverProps}>
+      <ContentSpan {...triggerProps} {...hoverProps}>
+        {(showTip || (!staticOnly && isOver)) && (
+          <>
+            <PlacedElement id="ContainerElementID">
+              <Element name="myScrollToElement" />
+            </PlacedElement>
+          </>
+        )}
         {children}
-      </span>
+      </ContentSpan>
       {(showTip || (!staticOnly && isOver)) &&
         renderLayer(
           <AnimatePresence>
@@ -101,7 +133,18 @@ export const InfoTip = ({
   allSteps,
   buttonDisabled,
 }) => {
-  console.log({ allSteps, step, showTip });
+  console.log({
+    infoTipProps: {
+      tipContent,
+      showTip,
+      tipTarget,
+      showButton,
+      setStep,
+      step,
+      allSteps,
+      buttonDisabled,
+    },
+  });
   const Content = () => {
     return (
       <div>

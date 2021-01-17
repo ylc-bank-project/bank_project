@@ -51,7 +51,7 @@ const TransferContainer = styled.div`
 const AllAccountsContainer = styled.div`
   /* background: white; */
   /* height: 100%; */
-  min-height: 100vh;
+  /* min-height: 100vh; */
 `;
 
 const AccountBlock = ({ title, onClick, balance, accNumber }) => (

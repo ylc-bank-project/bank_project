@@ -5,7 +5,8 @@ import { ActivityList } from "./ActivityListing";
 import logo from "../assets/dark_flake.png";
 
 const ActChooserBody = styled.div`
-  padding-top: 160px;
+  /* position: relative; */
+  /* top: -160px; */
   background: ${(p) => p.theme.colors.light_accent};
   height: 100%;
   padding-bottom: 20px;
@@ -41,18 +42,25 @@ const Choose = styled.div`
   padding: 30px 0 20px;
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 150px;
+`;
+
 const HeaderLogo = styled.img`
   height: 300px;
-  position: absolute;
+  position: relative;
   top: -150px;
-  right: calc(50% - 150px);
   overflow: hidden;
 `;
 
 const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
   const ActivityHeader = () => (
     <div>
-      <HeaderLogo src={logo} alt="" />
+      <LogoContainer>
+        <HeaderLogo src={logo} alt="" />
+      </LogoContainer>
       <Welcome>
         Welcome to the&nbsp;<BlueSpan>YLC Online Banking Simulator</BlueSpan>.
       </Welcome>

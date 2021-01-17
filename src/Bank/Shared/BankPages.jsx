@@ -28,6 +28,7 @@ const Logo = styled.img`
 
 const BankingBackgroundContainer = styled.div`
   height: 100%;
+  min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
   position: relative;
@@ -73,10 +74,11 @@ const LogoImg = styled.img`
   padding-left: 5px;
 `;
 
-const HeaderWrapper = styled.div`
+const LogoTagWrapper = styled.div`
   grid-column-start: 3;
   grid-column-end: 11;
   padding: 20px 0;
+  height: calc(170px - 40px);
 `;
 
 export const BankingLogo = ({ left, NewStyle }) => (
@@ -99,20 +101,26 @@ const ColoredDiv = styled.div`
   height: 30px;
   background-color: ${(p) => p.theme.colors.ylc_blue};
   opacity: 0.7;
-  margin: 20px 0 0;
+`;
+
+const HeaderWrapper = styled.div`
+  height: 200px;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* flex-direction: column; */
 `;
 
 export const BankingHeader = () => {
   return (
-    <>
+    <HeaderWrapper>
       <MarginedContainer>
-        <HeaderWrapper>
+        <LogoTagWrapper>
           <BankingLogo left={true} />
           <BankingTag />
-        </HeaderWrapper>
+        </LogoTagWrapper>
       </MarginedContainer>
       <ColoredDiv />
-    </>
+    </HeaderWrapper>
   );
 };
 
@@ -131,7 +139,11 @@ export const CleanBackground = styled.div`
   background: rgb(242, 242, 242);
   height: 100%;
   /* padding-top: 15px; */
-  padding-bottom: 200px;
+  /* padding-bottom: 300px; */
+
+  // BASED ON THE HEADER HEIGHT
+  min-height: calc(100vh - 200px);
+  /* overflow: hidden; */
 `;
 
 export const BankingContainer = styled.div`
@@ -142,6 +154,9 @@ export const BankingContainer = styled.div`
   flex-direction: column;
   border-radius: 10px;
   height: 100%;
+  /* padding-bottom: 200px; */
+  /* min-height: 100vh; */
+  /* overflow-y: hidden; */
 `;
 
 const StyledBankingFooter = styled.div`

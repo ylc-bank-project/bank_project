@@ -161,8 +161,9 @@ const ListOfPayees = ({
 };
 
 const BillPaymentsContainer = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 150px);
   background: white;
+  padding-bottom: 150px;
 `;
 
 const BillPayments = (props) => {
@@ -197,7 +198,7 @@ const addDays = (date, days) => {
 const allAccountsPage = "allAccounts";
 const billPaymentsPage = "billPaymentsPage";
 
-const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
+const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
   const [step, setStep] = useState(0);
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   // const [introOutroVisible, setIntroOutroVisible] = useState(false);
@@ -315,7 +316,7 @@ const MakingPayments = ({ currentActivity, returnToAllActivities }) => {
             )}
             <IntroOutro
               closeModal={() => setIntroOutroVisible(false)}
-              endExercise={() => returnToAllActivities()}
+              endExercise={() => endCurrentActivity()}
               currentActivity={currentActivity}
               visible={introOutroVisible}
               isIntro={isIntro}

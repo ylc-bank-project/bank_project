@@ -64,7 +64,7 @@ const RadioInputContainer = styled.span`
 
 const RadioInput = styled.input``;
 
-const SignIn = ({ currentActivity, returnToAllActivities }) => {
+const SignIn = ({ currentActivity, endCurrentActivity }) => {
   const [step, setStep] = useState(1);
   // const [step, setStep] = useState(2);
   const [readyToSign, setReadyToSign] = useState(false);
@@ -96,79 +96,83 @@ const SignIn = ({ currentActivity, returnToAllActivities }) => {
   );
 
   return (
-    <BankingBackground>
-      <MarginedContainer>
-        <BankingLogo />
-        <StyledGreeting>Welcome</StyledGreeting>
-        {readyToSign ? (
-          <SignInContainer>
-            <InputContainer>
-              {/* <label>
-                Card Number: */}
-              <BasicTooltip
-                content={<SecondStep {...{ cardNumber, setStep }} />}
-                showTip={step === 2}
-                staticOnly={true}
-              >
-                <StyledNumberFormat
-                  onChange={(e) => setCardNumber(e.target.value)}
-                  format="#### #### #### ####"
-                  placeholder={"Card Number"}
-                />
-              </BasicTooltip>
-              {/* </label> */}
-            </InputContainer>
-            <InputContainer>
-              {/* <label> */}
-              {/* Password: */}
-              <BasicTooltip
-                content={<ThirdStep {...{ password, setStep }} />}
-                showTip={step === 3}
-                staticOnly={true}
-              >
-                <StyledInput
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  placeholder={"Password"}
-                />
-              </BasicTooltip>
-              {/* </label> */}
-            </InputContainer>
-            <InputContainer>
-              <PasswordLabel>
-                Save password?
+    <>
+      <BankingBackground>
+        <MarginedContainer>
+          <BankingLogo />
+          <StyledGreeting>Welcome</StyledGreeting>
+          {readyToSign ? (
+            <SignInContainer>
+              <InputContainer>
+                {/* <label>
+                  Card Number: */}
                 <BasicTooltip
-                  content={
-                    <FourthStep
-                      {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
-                    />
-                  }
-                  showTip={step === 4}
+                  content={<SecondStep {...{ cardNumber, setStep }} />}
+                  showTip={step === 2}
                   staticOnly={true}
                 >
-                  <RadioInputContainer>
-                    <input
-                      type="checkbox"
-                      checked={saveToggled}
-                      onClick={() => setSaveToggled(saveToggled ? false : true)}
-                    />
-                  </RadioInputContainer>
+                  <StyledNumberFormat
+                    onChange={(e) => setCardNumber(e.target.value)}
+                    format="#### #### #### ####"
+                    placeholder={"Card Number"}
+                  />
                 </BasicTooltip>
-              </PasswordLabel>
-            </InputContainer>
-          </SignInContainer>
-        ) : (
-          <PreSignIn />
-        )}
-        <IntroOutro
-          closeModal={() => setIntroOutroVisible(false)}
-          endExercise={() => returnToAllActivities()}
-          currentActivity={currentActivity}
-          visible={introOutroVisible}
-          isIntro={isIntro}
-        />
-      </MarginedContainer>
-    </BankingBackground>
+                {/* </label> */}
+              </InputContainer>
+              <InputContainer>
+                {/* <label> */}
+                {/* Password: */}
+                <BasicTooltip
+                  content={<ThirdStep {...{ password, setStep }} />}
+                  showTip={step === 3}
+                  staticOnly={true}
+                >
+                  <StyledInput
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    placeholder={"Password"}
+                  />
+                </BasicTooltip>
+                {/* </label> */}
+              </InputContainer>
+              <InputContainer>
+                <PasswordLabel>
+                  Save password?
+                  <BasicTooltip
+                    content={
+                      <FourthStep
+                        {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
+                      />
+                    }
+                    showTip={step === 4}
+                    staticOnly={true}
+                  >
+                    <RadioInputContainer>
+                      <input
+                        type="checkbox"
+                        checked={saveToggled}
+                        onClick={() =>
+                          setSaveToggled(saveToggled ? false : true)
+                        }
+                      />
+                    </RadioInputContainer>
+                  </BasicTooltip>
+                </PasswordLabel>
+              </InputContainer>
+            </SignInContainer>
+          ) : (
+            <PreSignIn />
+          )}
+          <IntroOutro
+            closeModal={() => setIntroOutroVisible(false)}
+            endExercise={() => endCurrentActivity()}
+            currentActivity={currentActivity}
+            visible={introOutroVisible}
+            isIntro={isIntro}
+          />
+        </MarginedContainer>
+      </BankingBackground>
+    </>
   );
 };
 
