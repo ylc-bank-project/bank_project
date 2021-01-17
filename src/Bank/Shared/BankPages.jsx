@@ -208,7 +208,7 @@ export const BankingFooter = ({
             Pay & Transfer
           </FooterLink>
         }
-        placement={"top"}
+        placement={"top-center"}
         showTip={clickPayments}
         showButton={false}
         noScroll={true}
