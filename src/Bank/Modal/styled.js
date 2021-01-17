@@ -30,10 +30,10 @@ const fullScreen = css`
 `;
 
 const floating = css`
-  width: calc(100% - 10rem);
-  max-width: 64rem;
+  width: calc(100% - 100px);
+  max-width: 800px;
   height: unset;
-  max-height: calc(100% - 10rem);
+  max-height: calc(100% - 150px);
   /* max-height: 71rem; */
   position: relative;
   overflow-y: auto;
@@ -41,7 +41,7 @@ const floating = css`
   box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.5);
   border: ${(p) => p.theme.colors.ylc_blue} solid 3px;
   border-radius: 5px;
-  border-radius: 1rem;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
 `;
