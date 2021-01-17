@@ -15,7 +15,7 @@ const ActWrapper = styled.div`
   align-items: center;
   padding-left: 90px;
   padding-right: 90px;
-  height: 86px;
+  height: 70px;
 `;
 
 const ActTitle = styled.span`
