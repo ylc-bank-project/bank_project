@@ -53,9 +53,9 @@ export const PaymentMethods = ({
       // closeModal={closeModal}
       notOverlayCloseable={true}
       render={() => (
-        // <ResponsiveContent>
-        <ButtonsContainer>
-          {/* <BankingButton>
+        <div>Should say something here</div>
+        // <ButtonsContainer>
+        /* <BankingButton>
             <img src={transferIcon} alt="" />
             Transfer
           </BankingButton>
@@ -85,9 +85,8 @@ export const PaymentMethods = ({
           <BankingButton>
             <img src={depositIcon} alt="" />
             Deposit
-          </BankingButton> */}
-        </ButtonsContainer>
-        // </ResponsiveContent>
+          </BankingButton> */
+        // </ButtonsContainer>
       )}
     ></ModalOverlay>
   );
