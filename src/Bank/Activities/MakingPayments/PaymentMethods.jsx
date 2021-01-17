@@ -44,7 +44,7 @@ export const PaymentMethods = ({
   return (
     <ModalOverlay
       visible={billPaymentsStep}
-      zIndex={1}
+      zIndex={100}
       // closeModal={closeModal}
       notOverlayCloseable={true}
       render={() => (
