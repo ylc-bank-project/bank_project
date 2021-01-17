@@ -9,7 +9,7 @@ import depositIcon from "../../assets/piggy-bank.png";
 import transferIcon from "../../assets/exchange.png";
 import interacIcon from "../../assets/coin.png";
 
-const ButtonsContainer = styled.div`
+const TransactionsContainer = styled.div`
   display: flex;
   width: 400px;
   height: 400px;
@@ -53,40 +53,42 @@ export const PaymentMethods = ({
       // closeModal={closeModal}
       notOverlayCloseable={true}
       render={() => (
-        <div>Should say something here</div>
-        // <ButtonsContainer>
-        /* <BankingButton>
-            <img src={transferIcon} alt="" />
-            Transfer
-          </BankingButton>
-          <InfoTip
-            tipContent={<div>Click on 'Pay a Bill'.</div>}
-            tipTarget={
-              <BankingButton
-                onClick={() => {
-                  setStep(step + 1);
-                  setPaymentMethodsVisible(false);
-                  setMainPage(billPaymentsPage);
-                }}
-              >
-                <img src={payBillIcon} alt="" />
-                Pay a bill
-              </BankingButton>
-            }
-            showTip={billPaymentsStep}
-            showButton={false}
-            {...{ step, setStep, allSteps }}
-          />
-          <BankingButton>
-            <img src={interacIcon} alt="" />
-            <div>Interac</div>
-            <div>E-transfer</div>
-          </BankingButton>
-          <BankingButton>
-            <img src={depositIcon} alt="" />
-            Deposit
-          </BankingButton> */
-        // </ButtonsContainer>
+        <>
+          <div>Should say something here</div>
+          <TransactionsContainer>
+            <BankingButton>
+              <img src={transferIcon} alt="" />
+              Transfer
+            </BankingButton>
+            <InfoTip
+              tipContent={<div>Click on 'Pay a Bill'.</div>}
+              tipTarget={
+                <BankingButton
+                  onClick={() => {
+                    setStep(step + 1);
+                    setPaymentMethodsVisible(false);
+                    setMainPage(billPaymentsPage);
+                  }}
+                >
+                  <img src={payBillIcon} alt="" />
+                  Pay a bill
+                </BankingButton>
+              }
+              showTip={billPaymentsStep}
+              showButton={false}
+              {...{ step, setStep, allSteps }}
+            />
+            <BankingButton>
+              <img src={interacIcon} alt="" />
+              <div>Interac</div>
+              <div>E-transfer</div>
+            </BankingButton>
+            <BankingButton>
+              <img src={depositIcon} alt="" />
+              Deposit
+            </BankingButton>
+          </TransactionsContainer>
+        </>
       )}
     ></ModalOverlay>
   );
