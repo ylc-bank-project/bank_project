@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
-import { ModalOverlay, ResponsiveContent } from "../../Modal";
+// import { BasicTooltip, Ba÷sicTipButton, InfoTip } from "../../Shared/Tip";
+import { InfoTip } from "../../Shared/Tip";
+// import { ModalOverlay, ResponsiveContent } from "../../Modal";
+import { ModalOverlay } from "../../Modal";
 import payBillIcon from "../../assets/contract.png";
 import depositIcon from "../../assets/piggy-bank.png";
 import transferIcon from "../../assets/exchange.png";

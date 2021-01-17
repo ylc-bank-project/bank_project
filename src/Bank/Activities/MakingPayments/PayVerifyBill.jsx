@@ -1,11 +1,11 @@
 import React from "react";
-import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import DatePicker from "react-datepicker";
 import {
   BillPayeeTitle,
-  BillPayeeInput,
+  // BillPayeeInput,
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,

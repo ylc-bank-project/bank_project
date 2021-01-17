@@ -1,6 +1,6 @@
 import React from "react";
 import { BasicTipButton } from "../../Shared/Tip";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Space, BoldDiv } from "../../Shared/BankPages";
 
 export const FirstStep = () => <div>Click here to sign in</div>;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   TransactionsDetails,
   ItemListing,
-  Space,
+  // Space,
   BoldDiv,
 } from "../../Shared/BankPages";
 

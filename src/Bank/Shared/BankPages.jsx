@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/dark_flake.png";
 import blackLogo from "../assets/dark_flake_black.png";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { MarginedContainer } from "./Layout";
 import { BasicTooltip, InfoTip } from "./Tip";
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 import styled from "styled-components";
-import { BasicTooltip, BasicTipButton } from "../../Shared/Tip";
+import { BasicTooltip } from "../../Shared/Tip";
 import { MarginedContainer, SignInButton } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
 import {
@@ -10,7 +10,7 @@ import {
   SignInContainer,
 } from "../../Shared/BankPages";
 import { FirstStep, SecondStep, ThirdStep, FourthStep } from "./TipSteps";
-import { RadioButton } from "react-radio-buttons";
+// import { RadioButton } from "react-radio-buttons";
 
 const StyledSignInWrapper = styled.div`
   grid-column: span 12;
@@ -62,7 +62,7 @@ const RadioInputContainer = styled.span`
   padding: 10px;
 `;
 
-const RadioInput = styled.input``;
+// const RadioInput = styled.input``;
 
 const SignIn = ({ currentActivity, endCurrentActivity }) => {
   const [step, setStep] = useState(1);

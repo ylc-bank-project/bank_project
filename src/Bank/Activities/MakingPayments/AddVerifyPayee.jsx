@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+// import styled from "styled-components";
+// import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import { InfoTip } from "../../Shared/Tip";
 import {
   BillPayeeTitle,
   BillPayeeInput,
@@ -8,7 +9,7 @@ import {
   ContinueButton,
   ContinueButtonContainer,
 } from "../../Shared/BankPages";
-import { SignInButton } from "../../Shared/Layout";
+// import { SignInButton } from "../../Shared/Layout";
 
 export const AddVerifyPayee = ({
   isVerifyPayee,

@@ -4,7 +4,7 @@ import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer, ActButton } from "./Shared/Layout";
-import SignIn from "./Activities/SignIn";
+// import SignIn from "./Activities/SignIn";
 import { theme } from "./Global";
 // import { act } from "react-dom/test-utils";
 

@@ -6,7 +6,7 @@ import {
   BankingContainer,
   CleanBackground,
   BankingFooter,
-  TransactionsDetails,
+  // TransactionsDetails,
 } from "../../Shared/BankPages";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";

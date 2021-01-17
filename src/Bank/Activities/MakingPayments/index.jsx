@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+// import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
+import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";

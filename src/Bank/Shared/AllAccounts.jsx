@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicTooltip, BasicTipButton, InfoTip } from "./Tip";
+import { BasicTooltip } from "./Tip";
 
 const StyledAccountBlock = styled.div`
   display: flex;
