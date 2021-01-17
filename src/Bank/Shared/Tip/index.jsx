@@ -80,7 +80,7 @@ export const BasicTooltip = ({
                   {...layerProps}
                   style={{
                     ...layerProps.style,
-                    // minWidth: 150,
+                    minWidth: 200,
                     // minHeight: 100,
                     borderWidth: 1,
                     borderColor: "#000000",
