@@ -12,7 +12,9 @@ import interacIcon from "../../assets/coin.png";
 const ButtonsContainer = styled.div`
   display: flex;
   width: 400px;
+  height: 400px;
   flex-wrap: wrap;
+  background: yellow;
 `;
 
 const BankingButton = styled.button`
@@ -41,16 +43,18 @@ export const PaymentMethods = ({
   billPaymentsPage,
   allSteps,
 }) => {
+  console.log("test 1");
+
   return (
     <ModalOverlay
       visible={billPaymentsStep}
-      zIndex={100}
+      // zIndex={100}
       // closeModal={closeModal}
       notOverlayCloseable={true}
       render={() => (
         // <ResponsiveContent>
         <ButtonsContainer>
-          <BankingButton>
+          {/* <BankingButton>
             <img src={transferIcon} alt="" />
             Transfer
           </BankingButton>
@@ -80,7 +84,7 @@ export const PaymentMethods = ({
           <BankingButton>
             <img src={depositIcon} alt="" />
             Deposit
-          </BankingButton>
+          </BankingButton> */}
         </ButtonsContainer>
         // </ResponsiveContent>
       )}
