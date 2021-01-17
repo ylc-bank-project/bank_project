@@ -65,7 +65,6 @@ const BankLogoDiv = styled.div`
   color: white;
   padding: 40px 0;
   padding-bottom: ${(p) => (p.left ? "15px" : "40px")};
-  ${(p) => console.log({ p })};
 `;
 
 const LogoImg = styled.img`
@@ -195,14 +194,6 @@ export const BankingFooter = ({
   setStep = () => {},
   allSteps = [],
 }) => {
-  console.log({
-    isActive,
-    paymentsClick,
-    clickPayments,
-    step,
-    setStep,
-    allSteps,
-  });
   return (
     <StyledBankingFooter>
       <FooterLink isActive={isActive === "home"}>Home</FooterLink>

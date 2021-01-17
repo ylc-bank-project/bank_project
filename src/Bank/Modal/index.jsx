@@ -13,7 +13,6 @@ export const ModalOverlay = (props) => {
       closeModal();
     }
   };
-  console.log({ props });
 
   return (
     <ModalWrapper {...props} visible={visible}>

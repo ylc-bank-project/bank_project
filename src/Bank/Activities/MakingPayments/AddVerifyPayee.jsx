@@ -30,7 +30,6 @@ export const AddVerifyPayee = ({
   addBillNumber,
   goToVerify,
 }) => {
-  console.log({ it: allSteps[step] });
   return (
     <div>
       {isVerifyPayee ? (

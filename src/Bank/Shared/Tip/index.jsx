@@ -135,18 +135,6 @@ export const InfoTip = ({
   buttonDisabled,
   ...rest
 }) => {
-  console.log({
-    infoTipProps: {
-      tipContent,
-      showTip,
-      tipTarget,
-      showButton,
-      setStep,
-      step,
-      allSteps,
-      buttonDisabled,
-    },
-  });
   const Content = () => {
     return (
       <div>

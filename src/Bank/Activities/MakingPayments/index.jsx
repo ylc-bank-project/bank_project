@@ -253,8 +253,6 @@ const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
     setPayTabActive("pay");
   };
 
-  console.log({ paymentMethodsVisible });
-
   return (
     <BankingBackground>
       <BankingHeader />
