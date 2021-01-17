@@ -52,6 +52,7 @@ const AllAccountsContainer = styled.div`
   /* background: white; */
   /* height: 100%; */
   /* min-height: 100vh; */
+  padding-bottom: 150px;
 `;
 
 const AccountBlock = ({ title, onClick, balance, accNumber }) => (

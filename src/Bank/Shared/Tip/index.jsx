@@ -27,6 +27,7 @@ export const BasicTooltip = ({
   staticOnly,
   preferX,
   placement,
+  noScroll,
 }) => {
   const [isOver, hoverProps] = useHover();
 
@@ -55,7 +56,7 @@ export const BasicTooltip = ({
   return (
     <>
       <ContentSpan {...triggerProps} {...hoverProps}>
-        {(showTip || (!staticOnly && isOver)) && (
+        {(showTip || (!staticOnly && isOver)) && !noScroll && (
           <>
             <PlacedElement id="ContainerElementID">
               <Element name="myScrollToElement" />
@@ -133,6 +134,7 @@ export const InfoTip = ({
   step,
   allSteps,
   buttonDisabled,
+  ...rest
 }) => {
   console.log({
     infoTipProps: {
@@ -169,6 +171,7 @@ export const InfoTip = ({
         content={<Content />}
         showTip={showTip ? allSteps[step] === showTip : undefined}
         staticOnly={true}
+        {...rest}
       >
         {tipTarget}
       </BasicTooltip>

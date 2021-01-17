@@ -207,7 +207,7 @@ export const BankingFooter = ({
     <StyledBankingFooter>
       <FooterLink isActive={isActive === "home"}>Home</FooterLink>
       <InfoTip
-        tipContent={<div>Click on Bill Payments</div>}
+        tipContent={<div>Click on Pay & Transfer</div>}
         tipTarget={
           <FooterLink
             onClick={() => paymentsClick()}
@@ -217,8 +217,10 @@ export const BankingFooter = ({
             Pay & Transfer
           </FooterLink>
         }
+        placement={"top"}
         showTip={clickPayments}
         showButton={false}
+        noScroll={true}
         {...{ step, setStep, allSteps }}
       />
 

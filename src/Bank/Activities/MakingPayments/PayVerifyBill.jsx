@@ -141,7 +141,7 @@ export const PayVerifyBill = ({
                 <div>
                   <div>Enter the amount you would like pay. </div>
                   <br />
-                  <div>For this activity, enter $68.00.</div>
+                  <div>For this activity, enter 68.00.</div>
                 </div>
               }
               tipTarget={

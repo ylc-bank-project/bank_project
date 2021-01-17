@@ -105,6 +105,7 @@ const ListOfPayees = ({
                 setPaymentStage(addVerifyPayeeStage);
                 setStep(step + 1);
               }}
+              disabled={allSteps[step] !== addEditPayee}
             >
               Add Payee
             </AddPayeeButton>

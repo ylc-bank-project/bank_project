@@ -76,8 +76,7 @@ export const AddVerifyPayee = ({
                     Enter company name: <strong>Taco Electric</strong>
                   </div>
                 }
-                // buttonDisabled={companyTitle !== TacoTitle}
-                buttonDisabled={false}
+                buttonDisabled={companyTitle !== TacoTitle}
                 tipTarget={
                   <BillPayeeInput
                     onChange={(e) => setCompanyTitle(e.target.value)}
