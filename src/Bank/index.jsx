@@ -9,7 +9,7 @@ import { theme } from "./Global";
 // import { act } from "react-dom/test-utils";
 
 const AllActivitiesButton = styled(ActButton)`
-  position: absolute;
+  position: fixed;
   top: 5px;
   right: 5px;
   z-index: 10000000;

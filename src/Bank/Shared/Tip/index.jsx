@@ -88,6 +88,7 @@ export const BasicTooltip = ({
                     borderRadius: "3px",
                     padding: "20px",
                     maxWidth: "250px",
+                    // boxShadow: "0 0 1px 1px gray",
                   }}
                 >
                   {content}
