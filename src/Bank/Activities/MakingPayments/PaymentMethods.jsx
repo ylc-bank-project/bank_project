@@ -53,8 +53,7 @@ export const PaymentMethods = ({
       // closeModal={closeModal}
       notOverlayCloseable={true}
       render={() => (
-        <>
-          <div>Should say something here 2</div>
+        <div>
           <TransactionsContainer>
             <BankingButton>
               <img src={transferIcon} alt="" />
@@ -88,8 +87,8 @@ export const PaymentMethods = ({
               Deposit
             </BankingButton>
           </TransactionsContainer>
-        </>
+        </div>
       )}
-    ></ModalOverlay>
+    />
   );
 };
