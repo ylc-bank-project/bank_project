@@ -9,7 +9,7 @@ import { theme } from "./Global";
 // import { act } from "react-dom/test-utils";
 
 const AllActivitiesButton = styled(ActButton)`
-  position: fixed;
+  position: absolute;
   top: 5px;
   right: 5px;
   z-index: 10000000;
@@ -47,6 +47,7 @@ function App() {
       {!currentActivity && activitiesListVisible ? (
         <span />
       ) : (
+        // <span />
         <AllActivitiesButton
           onClick={() => {
             if (currentActivity && activitiesListVisible) {

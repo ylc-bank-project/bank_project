@@ -1,17 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useLayer, useHover, Arrow } from "react-laag";
 import { ActButton } from "../../Shared/Layout";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Link,
+  // Link,
   Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
+  // Events,
+  // animateScroll as scroll,
+  // scrollSpy,
   scroller,
 } from "react-scroll";
-import scrollIntoView from "scroll-into-view-if-needed";
 
 const ContentSpan = styled.span`
   position: relative;
@@ -37,7 +36,7 @@ export const BasicTooltip = ({
       // delay: 100,
       smooth: true,
       // containerId: "ContainerElementID",
-      offset: -300, // Scrolls to element + 50 pixels down the page
+      offset: -400, // Scrolls to element + 50 pixels down the page
     });
   }, []);
 

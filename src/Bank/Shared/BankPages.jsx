@@ -29,7 +29,7 @@ const Logo = styled.img`
 const BankingBackgroundContainer = styled.div`
   height: 100%;
   min-height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   overflow-x: hidden;
   position: relative;
 `;
