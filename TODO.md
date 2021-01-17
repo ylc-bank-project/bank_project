@@ -1,9 +1,9 @@
-Account overview
-- finish the transactions section
-- the account details should follow
-- position the tool tips correctly
-- fix tooltip text alignment
-- find out how to "scrol-to" the tooltip on render
-
-Making payments
-- chunk in what is already built and build what is not already built
+Final tasks
+- One sweep
+  - Responsivity for smaller views.
+  - Updating all copy.
+  - any alignment/styling updates
+- Deployment things
+  - Set the favicon and the website name
+  - Get a domain name
+  - Point it at the gh-page
