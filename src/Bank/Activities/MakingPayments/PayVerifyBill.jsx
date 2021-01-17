@@ -39,6 +39,7 @@ const StyledSelect = styled.select`
 `;
 
 const DateContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   width: calc(100% - 40px - 2px - 100px);
@@ -177,6 +178,7 @@ export const PayVerifyBill = ({
                 </DateContainer>
               }
               showTip={enterDate}
+              placement={"top"}
               buttonDisabled={todayDate !== formattedBillDate}
               showButton={true}
               {...{ step, setStep, allSteps }}
