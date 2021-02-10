@@ -5,7 +5,8 @@ Final tasks
   - any alignment/styling updates
 - First
   - Fix save password toggle box
-  - 
+- Third
+  - fix date pop up so that it is ON the date thing
 - Deployment things
   - Set the favicon and the website name
   - Get a domain name
