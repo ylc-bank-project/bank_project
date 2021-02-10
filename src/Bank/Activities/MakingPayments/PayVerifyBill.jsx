@@ -126,7 +126,7 @@ export const PayVerifyBill = ({
               tipTarget={
                 <StyledSelect onChange={(e) => setAccountType(e.target.value)}>
                   <LightOption value="">Select Account</LightOption>
-                  <option value="checking">Checking</option>
+                  <option value="checking">Chequing</option>
                   <option value="saving">Saving</option>
                 </StyledSelect>
               }

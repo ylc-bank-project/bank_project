@@ -271,10 +271,7 @@ export const TransactionsDetails = ({
                 money being added (credit) to your account.
               </div>
               {<br />}
-              <div>
-                Click here to go to Account Information. Click here to go back
-                to your transactions.
-              </div>
+              <div>Click here to go to your transactions.</div>
             </>
           }
           showTip={allSteps[step] === transactions}

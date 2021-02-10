@@ -83,7 +83,7 @@ const AllAccounts = ({
         placement="left-center"
       >
         <AccountBlock
-          title={"Checking"}
+          title={"Chequing"}
           balance={"$18,023.00"}
           accNumber={"5522"}
           onClick={() => {

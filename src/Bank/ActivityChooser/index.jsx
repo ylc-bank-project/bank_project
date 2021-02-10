@@ -3,6 +3,12 @@ import { ModalOverlay, ResponsiveContent } from "../Modal";
 import styled from "styled-components";
 import { ActivityList } from "./ActivityListing";
 import logo from "../assets/dark_flake.png";
+// import { Space, BoldDiv } from "../Shared/BankPages";
+
+const LargerSpace = styled.span`
+  width: 30px;
+  display: inline-block;
+`;
 
 const ActChooserBody = styled.div`
   /* position: relative; */
@@ -21,13 +27,16 @@ const Welcome = styled.div`
 const Intro = styled.div`
   ${(p) => p.theme.fonts.body_text_bold}
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 5px 0;
 `;
 
 const IntroContent = styled.div`
-  max-width: 400px;
-  text-align: center;
+  max-width: 550px;
+  padding: 10px 0;
+  font-weight: normal;
+  /* text-align: center; */
 `;
 
 const BlueSpan = styled.span`
@@ -39,7 +48,7 @@ const Choose = styled.div`
   ${(p) => p.theme.fonts.medium_header}
   display: flex;
   justify-content: center;
-  padding: 30px 0 20px;
+  padding: 15px 0 20px;
 `;
 
 const LogoContainer = styled.div`
@@ -66,8 +75,22 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
       </Welcome>
       <Intro>
         <IntroContent>
-          Banking is challenging and here are some nice introductory words.
-          Banking is challenging and here are some nice introductory words.
+          <LargerSpace />
+          The online banking simulator gives people everywhere the tools and
+          confidence to start banking online. The exercises guide users through
+          the step-by-step process to help them build familiarity with online
+          banking features. It is intended to show users how to use some of the
+          most common banking tasks. The appearance and navigation will differ
+          from bank to bank but most banks will allow you to complete these
+          tasks in a similar manner.
+        </IntroContent>
+        <IntroContent>
+          <LargerSpace />
+          To use the online banking simulator, scroll down and choose an
+          activity by selecting "start". You will then be prompted with a white
+          box with an orange border with instructions on how to interact with
+          the site. You do not need an account and you do not need to share
+          personal information.
         </IntroContent>
       </Intro>
       <Choose>Choose an exercise</Choose>

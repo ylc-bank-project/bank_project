@@ -3,6 +3,9 @@ Final tasks
   - Responsivity for smaller views.
   - Updating all copy.
   - any alignment/styling updates
+- First
+  - Fix save password toggle box
+  - 
 - Deployment things
   - Set the favicon and the website name
   - Get a domain name

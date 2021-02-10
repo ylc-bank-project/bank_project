@@ -20,7 +20,7 @@ const PlacedElement = styled.div``;
 
 const ContentContainer = styled.div`
   overflow: auto;
-  max-height: 300px;
+  max-height: ${(p) => (p.maxHeight ? `${p.maxHeight}px` : "300px")};
   padding: 20px;
 `;
 
@@ -33,8 +33,11 @@ export const BasicTooltip = ({
   preferX,
   placement,
   noScroll,
+  tipContentStyles = {},
+  maxHeight,
 }) => {
   const [isOver, hoverProps] = useHover();
+  // console.log({ maxHeight });
 
   useEffect(() => {
     scroller.scrollTo("myScrollToElement", {
@@ -87,25 +90,29 @@ export const BasicTooltip = ({
                   style={{
                     ...layerProps.style,
                     // minWidth: 300,
-                    maxHeight: 350,
+                    maxHeight: maxHeight || 350,
                     // minHeight: 100,
-                    borderWidth: 1,
-                    borderColor: "#000000",
+                    borderWidth: 4,
+                    borderColor: "#FFA500",
                     borderStyle: "solid",
                     backgroundColor: "white",
-                    borderRadius: "3px",
+                    borderRadius: "5px",
                     // padding: "20px",
                     maxWidth: "300px",
                     // boxShadow: "0 0 1px 1px gray",
-                    // overflow: "auto",
                   }}
                 >
-                  <ContentContainer>{content}</ContentContainer>
+                  <ContentContainer
+                    maxHeight={maxHeight}
+                    tipContentStyles={tipContentStyles}
+                  >
+                    {content}
+                  </ContentContainer>
                   <Arrow
                     {...arrowProps}
                     backgroundColor="white"
-                    borderWidth={1}
-                    borderColor="#000000"
+                    borderWidth={3}
+                    borderColor="#FFA500"
                     roundness={0.5}
                     size={18}
                     angle={30}

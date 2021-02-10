@@ -5,6 +5,11 @@ import introOutroCopy from "../introOutroCopy";
 import logo from "../assets/dark_flake.png";
 import { ActButton } from "../Shared/Layout";
 
+const LargerSpace = styled.span`
+  width: 30px;
+  display: inline-block;
+`;
+
 const HeaderLogo = styled.img`
   height: 300px;
   position: absolute;
@@ -54,10 +59,10 @@ const IntroOutro = ({
             <TextSection>{text}</TextSection>
             <ButtonSection>
               {isIntro ? (
-                <ActButton onClick={() => closeModal()}>Close</ActButton>
+                <ActButton onClick={() => closeModal()}>Continue</ActButton>
               ) : (
                 <ActButton onClick={() => endExercise()}>
-                  End Exercise
+                  Start A New Activity
                 </ActButton>
               )}
             </ButtonSection>

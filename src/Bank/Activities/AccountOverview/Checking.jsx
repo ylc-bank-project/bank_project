@@ -134,9 +134,9 @@ const Checking = ({
           tipContent={
             <>
               <div>
-                On January 21st, $12.50 was spent at Well Read Books. Point of
-                Sale (POS) Interac Retail purchase means you made a purchase
-                with your debit card.
+                On January 21st, $12.50 was spent at Books Galore. Point of Sale
+                (POS) Interac Retail purchase means you made a purchase with
+                your debit card.
               </div>
               {<br />}
               <div>
@@ -148,7 +148,7 @@ const Checking = ({
           }
           tipTarget={
             <ItemListing
-              principal={"Well-Read Books 000009887767"}
+              principal={"Books Galore 000009887767"}
               date={"Jan 21, 2020"}
               trans={"POS - Interac Retail purchase"}
               details={"-$12.50"}
@@ -214,15 +214,16 @@ const Checking = ({
             <>
               <div>
                 On January 1st, $96.00 was debited from your account to TD
-                Insurance National. It was a preauthorized debit which means
-                instead of sending a payment, a company withdraws funds from
-                your bank account.
+                insurance National. It was a preauthorized debit which means
+                instead of sending a payment, the owner of the account gave
+                permission for a company to withdraw funds.
               </div>
               {<br />}
               <div>
-                It’s a convenient way to pay bills and make other payments
-                automatically and has to be approved by the owner of the bank
-                account first.
+                It’s a convenient way to pay bills on time. It is important to
+                remember the date bill payments come out so that you have the
+                amount in your account waiting for it. If you forget you could
+                go into the overdraft and have to pay a fee.
               </div>
             </>
           }
@@ -258,7 +259,9 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              <div>The total under Debits is $1422.90</div>
+              <div>
+                The total amount spent (debited) in the account is $1422.90
+              </div>
             </div>
           }
           tipTarget={
@@ -274,7 +277,9 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              <div>the total under Credits is $2000.00</div>
+              <div>
+                The total amount deposited (credited) in the account is $2000.00
+              </div>
             </div>
           }
           tipTarget={
@@ -292,13 +297,10 @@ const Checking = ({
             <div>
               <div>
                 <BoldDiv>
-                  $2763.80 (credits) - $2606.19 (debits)= $157.61
+                  $2000.00 (Total credits)- $1422.90 (Total debits) = $577.10
                 </BoldDiv>
                 {<br />}
-                <div>
-                  $157.61 was not spent this month. It can be put into a savings
-                  account or spent at a later date.
-                </div>
+                <div>$577.10 was not spent this month.</div>
               </div>
             </div>
           }
@@ -318,8 +320,9 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              Funds on Hold are deposits made to your account that are not yet
-              available to withdraw.
+              Funds on hold are deposits made to your account that are not yet
+              available to withdraw. This sometimes happens when money is
+              deposited through an ATM.
             </div>
           }
           tipTarget={
@@ -336,7 +339,9 @@ const Checking = ({
           tipContent={
             <div>
               Overdraft Limit is the maximum amount of money you can withdraw
-              from your account after your balance reaches zero.
+              from your account after your balance reaches zero. There is
+              typically a fee to use overdraft. At many banks, an overdraft fee
+              can run upwards of $35.
             </div>
           }
           tipTarget={
@@ -352,9 +357,8 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              Available Funds is your balance minus any funds on hold plus any
-              overdraft limit (if applicable), representing money available for
-              immediate use in your account.
+              Available funds is the amount available for immediate use in your
+              account.
             </div>
           }
           tipTarget={
@@ -395,7 +399,7 @@ const Checking = ({
             <ItemListing
               // isSummary
               principal={"Transit Number"}
-              details="555"
+              details="55519"
             />
           }
           showTip={transit}

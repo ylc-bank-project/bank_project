@@ -9,7 +9,13 @@ import {
   BankingLogo,
   SignInContainer,
 } from "../../Shared/BankPages";
-import { FirstStep, SecondStep, ThirdStep, FourthStep } from "./TipSteps";
+import {
+  FirstStep,
+  SecondStep,
+  ThirdStep,
+  FourthStep,
+  FifthStep,
+} from "./TipSteps";
 // import { RadioButton } from "react-radio-buttons";
 
 const StyledSignInWrapper = styled.div`
@@ -110,6 +116,8 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                   content={<SecondStep {...{ cardNumber, setStep }} />}
                   showTip={step === 2}
                   staticOnly={true}
+                  tipContentStyles={{ overflow: "scroll" }}
+                  maxHeight={500}
                 >
                   <StyledNumberFormat
                     onChange={(e) => setCardNumber(e.target.value)}
@@ -126,6 +134,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                   content={<ThirdStep {...{ password, setStep }} />}
                   showTip={step === 3}
                   staticOnly={true}
+                  maxHeight={500}
                   // placement={"center"}
                 >
                   <StyledInput
@@ -135,17 +144,24 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                   />
                 </BasicTooltip>
                 {/* </label> */}
+                <BasicTooltip
+                  content={<FourthStep {...{ setStep }} />}
+                  showTip={step === 4}
+                  staticOnly={true}
+                ></BasicTooltip>
+                <span />
+                <BasicTooltip />
               </InputContainer>
               <InputContainer>
                 <PasswordLabel>
                   Save password?
                   <BasicTooltip
                     content={
-                      <FourthStep
+                      <FifthStep
                         {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
                       />
                     }
-                    showTip={step === 4}
+                    showTip={step === 5}
                     staticOnly={true}
                   >
                     <RadioInputContainer>
