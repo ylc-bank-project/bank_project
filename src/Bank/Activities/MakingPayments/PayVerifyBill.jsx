@@ -178,7 +178,7 @@ export const PayVerifyBill = ({
                 </DateContainer>
               }
               showTip={enterDate}
-              placement={"top"}
+              placement={"bottom-center"}
               buttonDisabled={todayDate !== formattedBillDate}
               showButton={true}
               {...{ step, setStep, allSteps }}

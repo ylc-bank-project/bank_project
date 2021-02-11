@@ -62,17 +62,32 @@ const StyledInput = styled.input`
 const PasswordLabel = styled.label`
   ${(p) => p.theme.fonts.body_text};
   color: ${(p) => p.theme.colors.ylc_blue};
+  display: flex;
 `;
 
 const RadioInputContainer = styled.span`
   padding: 10px;
+  width: 50px;
+`;
+
+const FullSpan = styled.span`
+  width: 100%;
+  display: block;
 `;
 
 // const RadioInput = styled.input``;
 
+/**
+ * Notes for future refactoring here:
+ * Unlike the other exercises, this step starts on 1 rather than 0
+ * We are NOT using an array of steps like in the previous exercises
+ * Basically, look at Making Payments for a much better stepper model
+ */
+
 const SignIn = ({ currentActivity, endCurrentActivity }) => {
+  // FIRST STEP IS 1 (should be 0 in next version)
   const [step, setStep] = useState(1);
-  // const [step, setStep] = useState(2);
+  // const [step, setStep] = useState(4);
   const [readyToSign, setReadyToSign] = useState(false);
   // const [readyToSign, setReadyToSign] = useState(true);
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
@@ -88,6 +103,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
         content={<FirstStep />}
         showTip={step === 1}
         staticOnly={true}
+        placement="bottom-center"
       >
         <SignInButton
           onClick={() => {
@@ -148,8 +164,10 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                   content={<FourthStep {...{ setStep }} />}
                   showTip={step === 4}
                   staticOnly={true}
+                  placement="center"
+                  showArrow={false}
                 ></BasicTooltip>
-                <span />
+                <FullSpan />
                 <BasicTooltip />
               </InputContainer>
               <InputContainer>
@@ -168,7 +186,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                       <input
                         type="checkbox"
                         checked={saveToggled}
-                        onClick={() =>
+                        onChange={() =>
                           setSaveToggled(saveToggled ? false : true)
                         }
                       />

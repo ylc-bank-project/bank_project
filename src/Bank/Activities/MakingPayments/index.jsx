@@ -83,6 +83,9 @@ const AddPayeeButton = styled.button`
   /* color: white; */
   cursor: pointer;
   ${(p) => p.theme.fonts.large_button_text};
+  border-radius: 10px;
+  border: none;
+  color: grey;
 `;
 
 const ListOfPayees = ({
@@ -97,7 +100,7 @@ const ListOfPayees = ({
   return (
     <div>
       <PayeeControlsContainer>
-        <ChooseText>Choose your payee</ChooseText>
+        <ChooseText>Select a Payee</ChooseText>
         <InfoTip
           tipContent={<div>Choose "Add Payee".</div>}
           tipTarget={
@@ -139,7 +142,8 @@ const ListOfPayees = ({
               }}
               principal={"Taco Electric"}
               date={inputedAccountNumber}
-              details={"PAY BILL"}
+              details={"PAY"}
+              separateDetails={true}
             />
           }
           showTip={chooseTaco}
@@ -150,14 +154,21 @@ const ListOfPayees = ({
       <ItemListing
         principal={"Toyota Canada"}
         date={"20193924UQC685"}
-        details={"PAY BILL"}
+        details={"PAY"}
+        separateDetails={true}
       />
       <ItemListing
         principal={"Bell Canada"}
         date={"9988225511"}
-        details={"PAY BILL"}
+        details={"PAY"}
+        separateDetails={true}
       />
-      <ItemListing principal={"NSLSC"} date={"088811"} details={"PAY BILL"} />
+      <ItemListing
+        principal={"NSLSC"}
+        date={"088811"}
+        details={"PAY"}
+        separateDetails={true}
+      />
     </div>
   );
 };
@@ -201,15 +212,16 @@ const allAccountsPage = "allAccounts";
 const billPaymentsPage = "billPaymentsPage";
 
 const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
-  const [step, setStep] = useState(0);
-  const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  // const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
   const [payTabActive, setPayTabActive] = useState("home");
 
   // Main Page State
-  const [mainPage, setMainPage] = useState(allAccountsPage);
-  // const [mainPage, setMainPage] = useState(undefined);
+  // const [mainPage, setMainPage] = useState(allAccountsPage);
+  const [mainPage, setMainPage] = useState(undefined);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
   // const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(true);
 

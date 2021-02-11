@@ -18,11 +18,12 @@ const AllActivitiesButton = styled(ActButton)`
 `;
 
 function App() {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
-  // const [activitiesListVisible, setActivitiesListVisible] = useState(false);
-  const [currentActivity, setCurrentActivity] = useState(undefined);
+  // const [activitiesListVisible, setActivitiesListVisible] = useState(true);
+  const [activitiesListVisible, setActivitiesListVisible] = useState(false);
+  // const [currentActivity, setCurrentActivity] = useState(undefined);
+  // const [currentActivity, setCurrentActivity] = useState("SignIn");
   // const [currentActivity, setCurrentActivity] = useState("AccountOverview");
-  // const [currentActivity, setCurrentActivity] = useState("MakingPayments");
+  const [currentActivity, setCurrentActivity] = useState("MakingPayments");
 
   const endCurrentActivity = () => {
     setCurrentActivity(undefined);

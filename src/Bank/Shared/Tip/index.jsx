@@ -35,6 +35,7 @@ export const BasicTooltip = ({
   noScroll,
   tipContentStyles = {},
   maxHeight,
+  showArrow = true,
 }) => {
   const [isOver, hoverProps] = useHover();
   // console.log({ maxHeight });
@@ -83,6 +84,7 @@ export const BasicTooltip = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
               >
                 <div
                   className="tooltip"
@@ -108,15 +110,17 @@ export const BasicTooltip = ({
                   >
                     {content}
                   </ContentContainer>
-                  <Arrow
-                    {...arrowProps}
-                    backgroundColor="white"
-                    borderWidth={3}
-                    borderColor="#FFA500"
-                    roundness={0.5}
-                    size={18}
-                    angle={30}
-                  />
+                  {showArrow && (
+                    <Arrow
+                      {...arrowProps}
+                      backgroundColor="white"
+                      borderWidth={3}
+                      borderColor="#FFA500"
+                      roundness={0.5}
+                      size={18}
+                      angle={30}
+                    />
+                  )}
                 </div>
               </motion.div>
             )}

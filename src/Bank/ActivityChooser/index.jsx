@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ActivityList } from "./ActivityListing";
 import logo from "../assets/dark_flake.png";
 // import { Space, BoldDiv } from "../Shared/BankPages";
+import { mq, mqMin } from "../Global";
 
 const LargerSpace = styled.span`
   width: 30px;
@@ -22,6 +23,10 @@ const Welcome = styled.div`
   ${(p) => p.theme.fonts.small_header};
   display: flex;
   justify-content: center;
+  align-items: center;
+  ${mq[1]} {
+    flex-direction: column;
+  }
 `;
 
 const Intro = styled.div`
@@ -34,7 +39,7 @@ const Intro = styled.div`
 
 const IntroContent = styled.div`
   max-width: 550px;
-  padding: 10px 0;
+  padding: 10px 5px;
   font-weight: normal;
   /* text-align: center; */
 `;
@@ -71,7 +76,8 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
         <HeaderLogo src={logo} alt="" />
       </LogoContainer>
       <Welcome>
-        Welcome to the&nbsp;<BlueSpan>YLC Online Banking Simulator</BlueSpan>.
+        <span>Welcome to the&nbsp;</span>
+        <BlueSpan>YLC Online Banking Simulator</BlueSpan>
       </Welcome>
       <Intro>
         <IntroContent>

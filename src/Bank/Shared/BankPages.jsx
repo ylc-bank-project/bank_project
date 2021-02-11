@@ -4,6 +4,7 @@ import blackLogo from "../assets/dark_flake_black.png";
 import styled from "styled-components";
 import { MarginedContainer } from "./Layout";
 import { BasicTooltip, InfoTip } from "./Tip";
+import { mq } from "../Global";
 
 export const Space = styled.span`
   width: 10px;
@@ -131,6 +132,10 @@ export const SignInContainer = styled.div`
   flex-direction: column;
   padding: 50px;
   border-radius: 10px;
+  ${mq[2]} {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
 `;
 
 export const CleanBackground = styled.div`
@@ -242,6 +247,9 @@ const TransButton = styled.button`
   font-size: 16px;
   border-radius: none;
   /* border-bottom: 1px solid ${(p) => p.theme.colors.bank_blue}; */
+  ${mq[1]} {
+    font-size: 14px;
+  }
 `;
 
 export const TransactionsDetails = ({
@@ -310,6 +318,10 @@ const ItemListingWrapper = styled.div`
   font-size: 20px;
   border-bottom: solid 1px ${(p) => (p.isSummary ? "transparent" : "lightgray")};
   cursor: pointer;
+  ${mq[1]} {
+    flex-direction: ${(p) => (p.separateDetails ? "row" : "column")};
+    align-items: flex-start;
+  }
 `;
 
 const ItemTextContainer = styled.div`
@@ -321,12 +333,23 @@ const ItemPrincipalText = styled.span`
   font-weight: bold;
   padding-bottom: 5px;
   text-transform: uppercase;
+  /* ${(p) => p.theme.fonts.extra_small_header}; */
+  font-size: 18px;
+  ${mq[1]} {
+    font-size: 16px;
+  }
 `;
 
 const ItemSubTextContainer = styled.span`
   ${(p) => p.theme.fonts.large_button_text};
   font-weight: normal;
   text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  ${mq[1]} {
+    flex-direction: column;
+    padding-top: 5px;
+  }
 `;
 
 const ItemDate = styled.span`
@@ -337,22 +360,32 @@ const ItemTransaction = styled.span``;
 
 const ItemDetails = styled.span`
   color: ${(p) => (p.isPositive ? "green" : "black")};
+  padding-right: 10px;
+  ${mq[1]} {
+    /* width: 100%; */
+    /* text-align: center; */
+    padding: 10px 10px 0 0;
+    justify-self: flex-end;
+  }
 `;
 
-export const ItemListing = ({ principal, date, trans, details, ...rest }) => (
-  <ItemListingWrapper {...rest}>
-    <ItemTextContainer>
-      <ItemPrincipalText>{principal}</ItemPrincipalText>
-      {(date || trans) && (
-        <ItemSubTextContainer>
-          <ItemDate>{date}</ItemDate>
-          <ItemTransaction>{trans}</ItemTransaction>
-        </ItemSubTextContainer>
-      )}
-    </ItemTextContainer>
-    <ItemDetails {...rest}>{details}</ItemDetails>
-  </ItemListingWrapper>
-);
+export const ItemListing = ({ principal, date, trans, details, ...rest }) => {
+  // console.log({ separateDetails });
+  return (
+    <ItemListingWrapper {...rest}>
+      <ItemTextContainer>
+        <ItemPrincipalText>{principal}</ItemPrincipalText>
+        {(date || trans) && (
+          <ItemSubTextContainer>
+            <ItemDate>{date}</ItemDate>
+            <ItemTransaction>{trans}</ItemTransaction>
+          </ItemSubTextContainer>
+        )}
+      </ItemTextContainer>
+      <ItemDetails {...rest}>{details}</ItemDetails>
+    </ItemListingWrapper>
+  );
+};
 
 export const BillPayeeTitle = styled.div`
   ${(p) => p.theme.fonts.small_header};
@@ -363,6 +396,9 @@ export const BillPayeeTitle = styled.div`
   margin-bottom: 10px;
   background: ${(p) => p.theme.colors.light_accent};
   /* border-bottom: 1px solid lightgray; */
+  ${mq[1]} {
+    font-size: 16px;
+  }
 `;
 
 export const BillPayeeInput = styled.input`

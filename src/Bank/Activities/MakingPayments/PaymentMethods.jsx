@@ -8,6 +8,7 @@ import payBillIcon from "../../assets/contract.png";
 import depositIcon from "../../assets/piggy-bank.png";
 import transferIcon from "../../assets/exchange.png";
 import interacIcon from "../../assets/coin.png";
+import { mq } from "../../Global";
 
 const TransactionsContainer = styled.div`
   display: flex;
@@ -15,6 +16,10 @@ const TransactionsContainer = styled.div`
   height: 400px;
   flex-wrap: wrap;
   background: yellow;
+  ${mq[1]} {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const BankingButton = styled.button`
@@ -31,6 +36,12 @@ const BankingButton = styled.button`
   img {
     max-height: 50px;
     padding-bottom: 5px;
+  }
+
+  ${mq[1]} {
+    width: 150px;
+    height: 150px;
+    font-size: 14px;
   }
 `;
 

@@ -307,6 +307,7 @@ const Checking = ({
           tipTarget={<FullEmptyDiv />}
           showTip={creditsDebits}
           placement={"center"}
+          showArrow={false}
           {...{ step, setStep, allSteps }}
         />
       </CheckingSectionWrapper>

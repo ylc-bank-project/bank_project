@@ -2,10 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { activitiesEnums } from "../enums";
 import { ActButton as ActButtonImport } from "../Shared/Layout";
+import { mq } from "../Global";
 
 const ActSectionHeader = styled.h2`
   ${(p) => p.theme.fonts.small_header}
   padding: 20px 0 20px 90px;
+  background: ${(p) => p.theme.colors.light_accent};
+  ${mq[1]} {
+    padding-left: 15px;
+  }
 `;
 
 const ActWrapper = styled.div`
@@ -16,10 +21,17 @@ const ActWrapper = styled.div`
   padding-left: 90px;
   padding-right: 90px;
   height: 70px;
+  ${mq[1]} {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const ActTitle = styled.span`
   font-size: 18px;
+  ${mq[1]} {
+    font-size: 16px;
+  }
 `;
 
 const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => (

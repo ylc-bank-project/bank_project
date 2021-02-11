@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BasicTooltip } from "./Tip";
+import { mq } from "../Global";
 
 const StyledAccountBlock = styled.div`
   display: flex;
@@ -46,6 +47,10 @@ const TransferContainer = styled.div`
   min-width: 150px;
   border-left: 2px solid lightgray;
   color: ${(p) => p.theme.colors.ylc_blue};
+  ${(p) => p.theme.fonts.body_text};
+  ${mq[1]} {
+    min-width: 100px;
+  }
 `;
 
 const AllAccountsContainer = styled.div`

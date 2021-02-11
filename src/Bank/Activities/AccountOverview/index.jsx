@@ -57,6 +57,7 @@ const checkingInformation = "checkingInformation";
 
 const Overview = ({ currentActivity, endCurrentActivity }) => {
   const [step, setStep] = useState(0);
+  // const [step, setStep] = useState(1);
   const [isChecking, setIsChecking] = useState(false);
   // const [isChecking, setIsChecking] = useState(true);
   const [checkingService, setCheckingService] = useState(checkingTransactions);
