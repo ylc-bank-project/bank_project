@@ -212,16 +212,16 @@ const allAccountsPage = "allAccounts";
 const billPaymentsPage = "billPaymentsPage";
 
 const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
-  // const [step, setStep] = useState(0);
-  const [step, setStep] = useState(2);
-  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  const [introOutroVisible, setIntroOutroVisible] = useState(false);
+  const [step, setStep] = useState(0);
+  // const [step, setStep] = useState(2);
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
   const [payTabActive, setPayTabActive] = useState("home");
 
   // Main Page State
-  // const [mainPage, setMainPage] = useState(allAccountsPage);
-  const [mainPage, setMainPage] = useState(undefined);
+  const [mainPage, setMainPage] = useState(allAccountsPage);
+  // const [mainPage, setMainPage] = useState(undefined);
   const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(false);
   // const [paymentMethodsVisible, setPaymentMethodsVisible] = useState(true);
 
