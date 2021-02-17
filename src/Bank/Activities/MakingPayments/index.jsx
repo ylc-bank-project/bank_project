@@ -130,7 +130,7 @@ const ListOfPayees = ({
               </div>
               <br />
               <div>
-                Click on "Taco Electric", which will take you to a screen where
+                Click on "Taco Electric". It will take you to a screen where
                 you’ll choose an account, the date of payment and the amount
                 you’re paying.
               </div>
