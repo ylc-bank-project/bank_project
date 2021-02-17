@@ -124,7 +124,10 @@ export const PayVerifyBill = ({
                 </div>
               }
               tipTarget={
-                <StyledSelect onChange={(e) => setAccountType(e.target.value)}>
+                <StyledSelect
+                  value={accountType}
+                  onChange={(e) => setAccountType(e.target.value)}
+                >
                   <LightOption value="">Select Account</LightOption>
                   <option value="checking">Chequing</option>
                   <option value="saving">Saving</option>
@@ -150,6 +153,7 @@ export const PayVerifyBill = ({
                   onChange={(e) => setBillAmount(e.target.value)}
                   prefix={"$"}
                   placeholder="Amount"
+                  value={billAmount}
                 />
               }
               showTip={enterAmount}
@@ -174,6 +178,7 @@ export const PayVerifyBill = ({
                     selected={billDate}
                     onChange={(date) => setBillDate(date)}
                     todayButton="Today"
+                    value={billDate}
                   />
                 </DateContainer>
               }

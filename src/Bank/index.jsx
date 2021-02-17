@@ -3,19 +3,10 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
-import { PageContainer, ActButton } from "./Shared/Layout";
+import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 // import SignIn from "./Activities/SignIn";
 import { theme } from "./Global";
 // import { act } from "react-dom/test-utils";
-
-const AllActivitiesButton = styled(ActButton)`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  z-index: 10000000;
-  padding: 10px 15px;
-  border-radius: 50px;
-`;
 
 function App() {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);

@@ -82,6 +82,7 @@ export const AddVerifyPayee = ({
                     onChange={(e) => setCompanyTitle(e.target.value)}
                     type="text"
                     placeholder="Company Name"
+                    value={companyTitle}
                   />
                 }
                 showTip={addCompanyName}
@@ -107,6 +108,7 @@ export const AddVerifyPayee = ({
                     <BillPayeeInput
                       onChange={(e) => setInputedAccountNumber(e.target.value)}
                       placeholder={"Account/Bill Number"}
+                      value={inputedAccountNumber}
                     />
                   </label>
                 }

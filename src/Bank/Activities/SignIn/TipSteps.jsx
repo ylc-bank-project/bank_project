@@ -1,11 +1,11 @@
 import React from "react";
 import { BasicTipButton } from "../../Shared/Tip";
 // import styled from "styled-components";
-import { Space, BoldDiv } from "../../Shared/BankPages";
+import { BoldDiv } from "../../Shared/BankPages";
 
 export const FirstStep = () => <div>Click here to sign in</div>;
 
-export const SecondStep = ({ cardNumber, setStep }) => (
+export const SecondStep = ({ cardNumber, setStep, step }) => (
   <div>
     This is where you enter the 16-digit number from the card you use for debit
     and ATM transactions. {<br />}
@@ -15,14 +15,14 @@ export const SecondStep = ({ cardNumber, setStep }) => (
     number box then select ‘continue’.
     <BasicTipButton
       disabled={cardNumber !== "1234 5678 9098 7654"}
-      onClick={() => setStep(3)}
+      onClick={() => setStep(step + 1)}
     >
       Continue
     </BasicTipButton>
   </div>
 );
 
-export const ThirdStep = ({ password, setStep }) => (
+export const ThirdStep = ({ password, setStep, step }) => (
   <div>
     This is where you enter your password. When creating your password, use a
     different password than you use for other websites. Make it difficult for
@@ -32,20 +32,20 @@ export const ThirdStep = ({ password, setStep }) => (
     password box then select 'continue'.
     <BasicTipButton
       disabled={password !== "literacy1234"}
-      onClick={() => setStep(4)}
+      onClick={() => setStep(step + 1)}
     >
       Continue
     </BasicTipButton>
   </div>
 );
 
-export const FourthStep = ({ setStep }) => (
+export const FourthStep = ({ setStep, step }) => (
   <div>
     Never share, disclose, or provide your card number or password to another
     person, party or website other than your bank. Your bank will never send you
     an email requesting this information. Giving your password to another person
     or company places your finances and privacy at risk.
-    <BasicTipButton onClick={() => setStep(5)}>Continue</BasicTipButton>
+    <BasicTipButton onClick={() => setStep(step + 1)}>Continue</BasicTipButton>
   </div>
 );
 

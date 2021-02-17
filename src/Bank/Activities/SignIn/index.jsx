@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 import styled from "styled-components";
 import { BasicTooltip } from "../../Shared/Tip";
+import { Stepper } from "../../Shared/Stepper";
 import { MarginedContainer, SignInButton } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
 import {
@@ -17,6 +18,8 @@ import {
   FifthStep,
 } from "./TipSteps";
 // import { RadioButton } from "react-radio-buttons";
+
+const allSteps = [FirstStep, SecondStep, ThirdStep, FourthStep, FifthStep];
 
 const StyledSignInWrapper = styled.div`
   grid-column: span 12;
@@ -75,18 +78,9 @@ const FullSpan = styled.span`
   display: block;
 `;
 
-// const RadioInput = styled.input``;
-
-/**
- * Notes for future refactoring here:
- * Unlike the other exercises, this step starts on 1 rather than 0
- * We are NOT using an array of steps like in the previous exercises
- * Basically, look at Making Payments for a much better stepper model
- */
-
 const SignIn = ({ currentActivity, endCurrentActivity }) => {
   // FIRST STEP IS 1 (should be 0 in next version)
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   // const [step, setStep] = useState(4);
   const [readyToSign, setReadyToSign] = useState(false);
   // const [readyToSign, setReadyToSign] = useState(true);
@@ -101,14 +95,14 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
     <StyledSignInWrapper>
       <BasicTooltip
         content={<FirstStep />}
-        showTip={step === 1}
+        showTip={step === 0}
         staticOnly={true}
         placement="bottom-center"
       >
         <SignInButton
           onClick={() => {
             setReadyToSign(true);
-            setStep(2);
+            setStep(step + 1);
           }}
         >
           Sign-In
@@ -129,8 +123,8 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                 {/* <label>
                   Card Number: */}
                 <BasicTooltip
-                  content={<SecondStep {...{ cardNumber, setStep }} />}
-                  showTip={step === 2}
+                  content={<SecondStep {...{ cardNumber, setStep, step }} />}
+                  showTip={step === 1}
                   staticOnly={true}
                   tipContentStyles={{ overflow: "scroll" }}
                   maxHeight={500}
@@ -147,8 +141,8 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                 {/* <label> */}
                 {/* Password: */}
                 <BasicTooltip
-                  content={<ThirdStep {...{ password, setStep }} />}
-                  showTip={step === 3}
+                  content={<ThirdStep {...{ password, setStep, step }} />}
+                  showTip={step === 2}
                   staticOnly={true}
                   maxHeight={500}
                   // placement={"center"}
@@ -161,8 +155,8 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                 </BasicTooltip>
                 {/* </label> */}
                 <BasicTooltip
-                  content={<FourthStep {...{ setStep }} />}
-                  showTip={step === 4}
+                  content={<FourthStep {...{ setStep, step }} />}
+                  showTip={step === 3}
                   staticOnly={true}
                   placement="center"
                   showArrow={false}
@@ -179,7 +173,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                         {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
                       />
                     }
-                    showTip={step === 5}
+                    showTip={step === 4}
                     staticOnly={true}
                   >
                     <RadioInputContainer>
@@ -207,6 +201,14 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
           />
         </MarginedContainer>
       </BankingBackground>
+      <Stepper
+        {...{ setStep, step, allSteps }}
+        onBack={() => {
+          if (step === 1) {
+            setReadyToSign(false);
+          }
+        }}
+      />
     </>
   );
 };

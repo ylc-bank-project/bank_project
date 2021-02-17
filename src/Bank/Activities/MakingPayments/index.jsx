@@ -17,6 +17,7 @@ import {
   CleanBackground,
   BankingFooter,
 } from "../../Shared/BankPages";
+import { Stepper } from "../../Shared/Stepper";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -235,9 +236,9 @@ const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
   const [tacoAdded, setTacoAdded] = useState(false);
   const [paymentStage, setPaymentStage] = useState(payeesStage);
   // const [paymentStage, setPaymentStage] = useState(payVerifyBillStage);
-  const [companyTitle, setCompanyTitle] = useState(undefined);
+  const [companyTitle, setCompanyTitle] = useState("");
   // const [companyTitle, setCompanyTitle] = useState("test title");
-  const [inputedAccountNumber, setInputedAccountNumber] = useState(undefined);
+  const [inputedAccountNumber, setInputedAccountNumber] = useState("");
   // const [inputedAccountNumber, setInputedAccountNumber] = useState(
   // 83838383838383
   // );
@@ -361,6 +362,37 @@ const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
           clickPayments,
         }}
         isActive={payTabActive}
+      />
+      <Stepper
+        {...{ setStep, step, allSteps }}
+        onBack={() => {
+          switch (allSteps[step]) {
+            case billPaymentsStep:
+              setPaymentMethodsVisible(false);
+              break;
+            case addEditPayee:
+              setPaymentMethodsVisible(true);
+              break;
+            case addCompanyName:
+              setPaymentStage(payeesStage);
+              break;
+            case confirmPayee:
+              setPaymentStage(addVerifyPayeeStage);
+              setVerifyPayee(false);
+              break;
+            case chooseTaco:
+              setPaymentStage(addVerifyPayeeStage);
+              break;
+            case chooseDebitAccount:
+              setPaymentStage(payeesStage);
+              break;
+            case confirmBillPayment:
+              setVerifyBill(false);
+              break;
+            default:
+              break;
+          }
+        }}
       />
     </BankingBackground>
   );

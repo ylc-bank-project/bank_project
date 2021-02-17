@@ -23,6 +23,16 @@ export const ActButton = styled.button`
   cursor: pointer;
 `;
 
+export const AllActivitiesButton = styled(ActButton)`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10000000;
+  padding: 5px 10px;
+  min-height: 30px;
+  border-radius: 50px;
+`;
+
 export const SignInButton = styled.button`
   background-color: ${(p) => p.background || "white"};
   color: ${(p) => p.color || p.theme.colors.ylc_blue};

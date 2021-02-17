@@ -8,6 +8,7 @@ import {
   BankingFooter,
   // TransactionsDetails,
 } from "../../Shared/BankPages";
+import { Stepper } from "../../Shared/Stepper";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";
 import AllAccounts from "../../Shared/AllAccounts";
@@ -127,6 +128,24 @@ const Overview = ({ currentActivity, endCurrentActivity }) => {
         </MarginedContainer>
       </CleanBackground>
       <BankingFooter />
+      <Stepper
+        {...{ setStep, step, allSteps }}
+        onBack={() => {
+          switch (allSteps[step]) {
+            case balance:
+              setIsChecking(false);
+              break;
+            case hold:
+              setCheckingService(checkingTransactions);
+              break;
+            case wellRead:
+              setCheckingService(checkingInformation);
+              break;
+            default:
+              break;
+          }
+        }}
+      />
     </BankingBackground>
   );
 };
