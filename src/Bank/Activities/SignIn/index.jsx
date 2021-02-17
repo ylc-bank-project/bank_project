@@ -105,7 +105,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
             setStep(step + 1);
           }}
         >
-          Sign-In
+          Sign In
         </SignInButton>
       </BasicTooltip>
     </StyledSignInWrapper>

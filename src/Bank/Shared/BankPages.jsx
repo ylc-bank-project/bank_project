@@ -276,7 +276,7 @@ export const TransactionsDetails = ({
             <>
               <div>
                 Transactions represent the money being spent (debited) and the
-                money being added (credit) to your account.
+                money being added (credited) to your account.
               </div>
               {<br />}
               <div>Click here to go to your transactions.</div>

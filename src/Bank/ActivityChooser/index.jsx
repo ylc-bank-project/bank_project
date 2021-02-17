@@ -82,13 +82,13 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
       <Intro>
         <IntroContent>
           <LargerSpace />
-          The online banking simulator gives people everywhere the tools and
-          confidence to start banking online. The exercises guide users through
-          the step-by-step process to help them build familiarity with online
-          banking features. It is intended to show users how to use some of the
-          most common banking tasks. The appearance and navigation will differ
-          from bank to bank but most banks will allow you to complete these
-          tasks in a similar manner.
+          The online banking simulator gives people everywhere needed to gain
+          the confidence to start banking online. The activities guide users
+          through the step-by-step process to help them build familiarity with
+          online banking features. It is intended to show users how to navigate
+          some of the most common banking tasks. The appearance and navigation
+          will differ from bank to bank but most online banking scenarios will
+          allow you to complete these tasks in a similar manner.
         </IntroContent>
         <IntroContent>
           <LargerSpace />
@@ -99,7 +99,7 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
           personal information.
         </IntroContent>
       </Intro>
-      <Choose>Choose an exercise</Choose>
+      <Choose>Choose an Activity</Choose>
     </div>
   );
 

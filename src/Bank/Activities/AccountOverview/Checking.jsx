@@ -33,8 +33,8 @@ const Balance = ({ setStep, step, allSteps, balance }) => {
   const BalanceContent = () => {
     return (
       <div>
-        Balance shows the amount of money in your account, including any funds
-        on hold.
+        This number represents your account balance, which shows the amount of
+        money in your account, including any funds on hold.
         <BasicTipButton
           onClick={() => {
             setStep(step + 1);
@@ -140,7 +140,7 @@ const Checking = ({
               </div>
               {<br />}
               <div>
-                The numbers you see represents the transaction number which is a
+                The numbers you see represent the transaction number which is a
                 special label that identifies the purchase. Every purchase will
                 have a different transaction number.
               </div>
@@ -162,13 +162,8 @@ const Checking = ({
             <>
               <div>
                 On January 16th, $109.45 was debited from your account to pay a
-                Taco Electric bill.
-              </div>
-              {<br />}
-              <div>
-                The numbers you see represents the transaction number which is a
-                special label that identifies the purchase. Every purchase will
-                have a different transaction number.
+                Taco Electric bill. An internet bill payment is made by sending
+                the company money online through online banking.
               </div>
             </>
           }
@@ -189,19 +184,13 @@ const Checking = ({
               <div>
                 On January 5th, $2000 was deposited (credited) in the account.
               </div>
-              {<br />}
-              <div>
-                The numbers you see represents the transaction number which is a
-                special label that identifies the purchase. Every purchase will
-                have a different transaction number.
-              </div>
             </>
           }
           tipTarget={
             <ItemListing
               principal={"Deposit 0000000261883"}
               date={"5 Jan, 2020"}
-              trans={"Internet banking - internet deposit"}
+              trans={"Internet banking - deposit"}
               details={"+$2000.00"}
               isPositive
             />
@@ -213,17 +202,18 @@ const Checking = ({
           tipContent={
             <>
               <div>
-                On January 1st, $96.00 was debited from your account to TD
-                insurance National. It was a preauthorized debit which means
-                instead of sending a payment, the owner of the account gave
-                permission for a company to withdraw funds.
+                On January 1st, $96.00 was debited from the account to TD
+                Insurance National. A preauthorized debit means instead of
+                sending a payment, the owner of the account gave permission for
+                a company to automatically withdraw funds. This typically
+                happens monthly.
               </div>
               {<br />}
               <div>
                 It’s a convenient way to pay bills on time. It is important to
-                remember the date bill payments come out so that you have the
-                amount in your account waiting for it. If you forget you could
-                go into the overdraft and have to pay a fee.
+                remember the date bill payments come out so that you have money
+                in your account for it. If you forget you could go into the
+                overdraft and have to pay a fee.
               </div>
             </>
           }
@@ -300,7 +290,7 @@ const Checking = ({
                   $2000.00 (Total credits)- $1422.90 (Total debits) = $577.10
                 </BoldDiv>
                 {<br />}
-                <div>$577.10 was not spent this month.</div>
+                <div>$577.10 is left over this month.</div>
               </div>
             </div>
           }
@@ -323,7 +313,7 @@ const Checking = ({
             <div>
               Funds on hold are deposits made to your account that are not yet
               available to withdraw. This sometimes happens when money is
-              deposited through an ATM.
+              deposited through a bank machine.
             </div>
           }
           tipTarget={
@@ -342,7 +332,7 @@ const Checking = ({
               Overdraft Limit is the maximum amount of money you can withdraw
               from your account after your balance reaches zero. There is
               typically a fee to use overdraft. At many banks, an overdraft fee
-              can run upwards of $35.
+              can cost up to $35.
             </div>
           }
           tipTarget={
@@ -375,8 +365,8 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              An institution number is a 3- digit code that identifies which
-              bank provider the account is associated with.
+              An institution number is a 3-digit code that identifies which bank
+              provider the account is associated with.
             </div>
           }
           tipTarget={
@@ -392,8 +382,8 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              A transit number is a 5- digit code that identifies where in
-              Canada your bank is located.
+              A transit number is a 5-digit code that identifies where in Canada
+              your bank is located.
             </div>
           }
           tipTarget={
@@ -409,8 +399,8 @@ const Checking = ({
         <InfoTip
           tipContent={
             <div>
-              An account number is a 7- digit number that identifies the owner
-              of the account.
+              An account number is a 7-digit number that identifies the owner of
+              the account.
             </div>
           }
           tipTarget={

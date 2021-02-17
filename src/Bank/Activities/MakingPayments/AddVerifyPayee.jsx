@@ -94,9 +94,9 @@ export const AddVerifyPayee = ({
               <InfoTip
                 tipContent={
                   <div>
-                    Now enter account/bill number. Your account number can be
-                    found on the top right corner of your bill. For this
-                    exercise make something up.{" "}
+                    Now enter account/bill number. Your account number can
+                    typically be found in the top right corner of your bill. For
+                    this activity enter any 7-digit number.{" "}
                     <span role="img" aria-label="smile emoji">
                       🙂
                     </span>

@@ -82,7 +82,7 @@ const AllAccounts = ({
     <AllAccountsContainer>
       <BankAccounts>Bank Accounts</BankAccounts>
       <BasicTooltip
-        content={"Click on ‘Chequing Account’."}
+        content={"Click on ‘Chequing’."}
         showTip={allSteps[step] === check}
         staticOnly={true}
         placement="left-center"

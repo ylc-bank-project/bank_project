@@ -59,13 +59,13 @@ export const ActivityList = ({ closeModal, setCurrentActivity }) => {
     <>
       <ActSectionHeader>Accessing Your Account</ActSectionHeader>
       <Activity
-        title={"Signing In"}
+        title={"Signing in"}
         activity={activitiesEnums.SIGNIN}
         {...{ closeModal, setCurrentActivity }}
       />
       <ActSectionHeader>Accounts</ActSectionHeader>
       <Activity
-        title={"Online Account Overview"}
+        title={"Online account overview"}
         activity={activitiesEnums.ACCOUNTOVERVIEW}
         {...{ closeModal, setCurrentActivity }}
       />

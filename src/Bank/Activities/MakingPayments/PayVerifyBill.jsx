@@ -120,7 +120,7 @@ export const PayVerifyBill = ({
                     Choose an account that you would like to pay the bill with.
                   </div>
                   <br />
-                  <div>For this activity, choose ‘chequing’.</div>
+                  <div>For this activity, choose ‘Chequing’.</div>
                 </div>
               }
               tipTarget={
@@ -129,12 +129,12 @@ export const PayVerifyBill = ({
                   onChange={(e) => setAccountType(e.target.value)}
                 >
                   <LightOption value="">Select Account</LightOption>
-                  <option value="checking">Chequing</option>
-                  <option value="saving">Saving</option>
+                  <option value="Chequing">Chequing</option>
+                  <option value="Saving">Saving</option>
                 </StyledSelect>
               }
               showTip={chooseDebitAccount}
-              buttonDisabled={accountType !== "checking"}
+              buttonDisabled={accountType !== "Chequing"}
               showButton={true}
               {...{ step, setStep, allSteps }}
             />
@@ -168,7 +168,7 @@ export const PayVerifyBill = ({
                 <div>
                   <div>Enter the date you would like to pay the bill.</div>
                   <br />
-                  <div>For this activity, enter ‘Today’.</div>
+                  <div>For this activity, enter today's date.</div>
                 </div>
               }
               tipTarget={
