@@ -1,13 +1,10 @@
-Final tasks
-- One sweep
-  - Responsivity for smaller views.
-  - Updating all copy.
-  - any alignment/styling updates
-- First
-  - Fix save password toggle box
-- Third
-  - fix date pop up so that it is ON the date thing
-- Deployment things
-  - Set the favicon and the website name
-  - Get a domain name
-  - Point it at the gh-page
+CURRENT
+- Making "AllAccounts" page neutral for both "AccountOverview" and "MakingPayments" and other activities
+  - news flash, it's actually only the footer that needs to be neutral, since we are using the e-transfer tab in the modal.
+  - I'm sure there are more things to be learned here.
+
+TODO
+- Separate visual components from the activity logic.
+	- As needed (no premature optimization)
+	- AllAccounts page is used by transfers, so it needs to be separated out.
+		- And there are a couple others.
