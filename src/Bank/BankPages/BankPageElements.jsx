@@ -2,8 +2,8 @@ import React from "react";
 import logo from "../assets/dark_flake.png";
 import blackLogo from "../assets/dark_flake_black.png";
 import styled from "styled-components";
-import { MarginedContainer } from "./Layout";
-import { BasicTooltip, InfoTip } from "./Tip";
+import { MarginedContainer } from "../Shared/Layout";
+import { BasicTooltip, InfoTip } from "../Shared/Tip";
 import { mq } from "../Global";
 
 export const Space = styled.span`

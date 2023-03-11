@@ -38,7 +38,6 @@ export const BasicTooltip = ({
   showArrow = true,
 }) => {
   const [isOver, hoverProps] = useHover();
-  // console.log({ maxHeight });
 
   useEffect(() => {
     scroller.scrollTo("myScrollToElement", {

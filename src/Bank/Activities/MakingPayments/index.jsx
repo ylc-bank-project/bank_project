@@ -6,7 +6,7 @@ import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
 import AllAccounts from "../../Shared/AllAccounts";
 import { PaymentMethods } from "./PaymentMethods";
-import { ItemListing } from "../../Shared/BankPages";
+import { ItemListing } from "../../BankPages/BankPageElements";
 import { AddVerifyPayee } from "./AddVerifyPayee";
 import { PayVerifyBill } from "./PayVerifyBill";
 
@@ -16,7 +16,7 @@ import {
   BankingContainer,
   CleanBackground,
   BankingFooter,
-} from "../../Shared/BankPages";
+} from "../../BankPages/BankPageElements";
 import { Stepper } from "../../Shared/Stepper";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -182,12 +182,8 @@ const BillPaymentsContainer = styled.div`
 `;
 
 const BillPayments = (props) => {
-  const {
-    paymentStage,
-    payeesStage,
-    addVerifyPayeeStage,
-    payVerifyBillStage,
-  } = props;
+  const { paymentStage, payeesStage, addVerifyPayeeStage, payVerifyBillStage } =
+    props;
   return (
     <BillPaymentsContainer>
       {paymentStage === payeesStage ? (

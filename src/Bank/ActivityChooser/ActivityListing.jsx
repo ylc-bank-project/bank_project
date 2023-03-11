@@ -59,11 +59,16 @@ export const ActivityList = ({ closeModal, setCurrentActivity }) => {
     <>
       <ActSectionHeader>Accessing Your Account</ActSectionHeader>
       <Activity
+        title={"Creating an account"}
+        activity={activitiesEnums.CREATINGACCOUNT}
+        {...{ closeModal, setCurrentActivity }}
+      />
+      <Activity
         title={"Signing in"}
         activity={activitiesEnums.SIGNIN}
         {...{ closeModal, setCurrentActivity }}
       />
-      <ActSectionHeader>Accounts</ActSectionHeader>
+      <ActSectionHeader>Account Details</ActSectionHeader>
       <Activity
         title={"Online account overview"}
         activity={activitiesEnums.ACCOUNTOVERVIEW}
@@ -73,6 +78,17 @@ export const ActivityList = ({ closeModal, setCurrentActivity }) => {
       <Activity
         title={"Pay a new company for the first time"}
         activity={activitiesEnums.MAKINGPAYMENTS}
+        {...{ closeModal, setCurrentActivity }}
+      />
+      <ActSectionHeader>Transferring Funds</ActSectionHeader>
+      <Activity
+        title={"Transfer funds between accounts"}
+        activity={activitiesEnums.TRANSFERFUNDS}
+        {...{ closeModal, setCurrentActivity }}
+      />
+      <Activity
+        title={"Send an e-transfer to someone"}
+        activity={activitiesEnums.ETRANSFER}
         {...{ closeModal, setCurrentActivity }}
       />
     </>

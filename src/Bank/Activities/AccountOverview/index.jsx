@@ -7,7 +7,7 @@ import {
   CleanBackground,
   BankingFooter,
   // TransactionsDetails,
-} from "../../Shared/BankPages";
+} from "../../BankPages/BankPageElements";
 import { Stepper } from "../../Shared/Stepper";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";

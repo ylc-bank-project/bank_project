@@ -6,7 +6,7 @@ import {
   ItemListing,
   // Space,
   BoldDiv,
-} from "../../Shared/BankPages";
+} from "../../BankPages/BankPageElements";
 
 const CheckingHeader = styled.div`
   ${(p) => p.theme.fonts.small_header};

@@ -9,7 +9,7 @@ import {
   BankingBackground,
   BankingLogo,
   SignInContainer,
-} from "../../Shared/BankPages";
+} from "../../BankPages/BankPageElements";
 import {
   FirstStep,
   SecondStep,
@@ -81,10 +81,13 @@ const FullSpan = styled.span`
 const SignIn = ({ currentActivity, endCurrentActivity }) => {
   // FIRST STEP IS 1 (should be 0 in next version)
   const [step, setStep] = useState(0);
+  // FOR TESTING PURPOSES
   // const [step, setStep] = useState(4);
   const [readyToSign, setReadyToSign] = useState(false);
+  // FOR TESTING PURPOSES
   // const [readyToSign, setReadyToSign] = useState(true);
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // FOR TESTING PURPOSES
   // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
   const [cardNumber, setCardNumber] = useState(undefined);
@@ -120,8 +123,6 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
           {readyToSign ? (
             <SignInContainer>
               <InputContainer>
-                {/* <label>
-                  Card Number: */}
                 <BasicTooltip
                   content={<SecondStep {...{ cardNumber, setStep, step }} />}
                   showTip={step === 1}
@@ -135,17 +136,13 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                     placeholder={"Card Number"}
                   />
                 </BasicTooltip>
-                {/* </label> */}
               </InputContainer>
               <InputContainer>
-                {/* <label> */}
-                {/* Password: */}
                 <BasicTooltip
                   content={<ThirdStep {...{ password, setStep, step }} />}
                   showTip={step === 2}
                   staticOnly={true}
                   maxHeight={500}
-                  // placement={"center"}
                 >
                   <StyledInput
                     onChange={(e) => setPassword(e.target.value)}
@@ -153,7 +150,6 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
                     placeholder={"Password"}
                   />
                 </BasicTooltip>
-                {/* </label> */}
                 <BasicTooltip
                   content={<FourthStep {...{ setStep, step }} />}
                   showTip={step === 3}

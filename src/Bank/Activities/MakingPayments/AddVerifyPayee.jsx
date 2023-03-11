@@ -8,7 +8,7 @@ import {
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,
-} from "../../Shared/BankPages";
+} from "../../BankPages/BankPageElements";
 // import { SignInButton } from "../../Shared/Layout";
 
 export const AddVerifyPayee = ({

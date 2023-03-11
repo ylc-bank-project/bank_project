@@ -9,7 +9,7 @@ import {
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,
-} from "../../Shared/BankPages";
+} from "../../BankPages/BankPageElements";
 
 const StyledNumberFormat = styled(NumberFormat)`
   width: calc(100% - 40px - 2px - 100px);

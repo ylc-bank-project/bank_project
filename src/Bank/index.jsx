@@ -4,17 +4,11 @@ import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
-// import SignIn from "./Activities/SignIn";
 import { theme } from "./Global";
-// import { act } from "react-dom/test-utils";
 
 function App() {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
-  // const [activitiesListVisible, setActivitiesListVisible] = useState(false);
   const [currentActivity, setCurrentActivity] = useState(undefined);
-  // const [currentActivity, setCurrentActivity] = useState("SignIn");
-  // const [currentActivity, setCurrentActivity] = useState("AccountOverview");
-  // const [currentActivity, setCurrentActivity] = useState("MakingPayments");
 
   const endCurrentActivity = () => {
     setCurrentActivity(undefined);
