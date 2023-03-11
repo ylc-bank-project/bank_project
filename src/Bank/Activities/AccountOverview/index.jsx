@@ -12,6 +12,7 @@ import { Stepper } from "../../Shared/Stepper";
 import IntroOutro from "../../IntroOutro";
 import Checking from "./Checking";
 import AllAccounts from "../../Shared/AllAccounts";
+import { BasicTooltip } from "../../Shared/Tip";
 
 // ALL STEPS
 const check = "check";
@@ -75,6 +76,17 @@ const Overview = ({ currentActivity, endCurrentActivity }) => {
     }
   }, [step]);
 
+  const CheckingTip = (child) => (
+    <BasicTooltip
+      content={"Click on ‘Chequing’."}
+      showTip={allSteps[step] === "check"}
+      staticOnly={true}
+      placement="left-center"
+    >
+      {child}
+    </BasicTooltip>
+  );
+
   return (
     <BankingBackground>
       <BankingHeader />
@@ -113,7 +125,14 @@ const Overview = ({ currentActivity, endCurrentActivity }) => {
               </>
             ) : (
               <AllAccounts
-                {...{ allSteps, step, check, setIsChecking, setStep }}
+                {...{
+                  allSteps,
+                  step,
+                  check,
+                  setIsChecking,
+                  setStep,
+                  CheckingTip,
+                }}
               />
             )}
           </BankingContainer>

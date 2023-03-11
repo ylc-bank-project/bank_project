@@ -77,26 +77,25 @@ const AllAccounts = ({
   check,
   setIsChecking = () => {},
   setStep,
+  CheckingTip,
 }) => {
+  const CheckingBlock = (
+    <AccountBlock
+      title={"Chequing"}
+      balance={"$18,023.00"}
+      accNumber={"5522"}
+      onClick={() => {
+        setIsChecking(true);
+        allSteps[step] === check && setStep(step + 1);
+      }}
+    />
+  );
+
   return (
     <AllAccountsContainer>
       <BankAccounts>Bank Accounts</BankAccounts>
-      <BasicTooltip
-        content={"Click on ‘Chequing’."}
-        showTip={allSteps[step] === check}
-        staticOnly={true}
-        placement="left-center"
-      >
-        <AccountBlock
-          title={"Chequing"}
-          balance={"$18,023.00"}
-          accNumber={"5522"}
-          onClick={() => {
-            setIsChecking(true);
-            allSteps[step] === check && setStep(step + 1);
-          }}
-        />
-      </BasicTooltip>
+
+      {CheckingTip ? CheckingTip(CheckingBlock) : <CheckingBlock />}
       <AccountBlock
         title={"Savings"}
         balance={"$12,115.50"}
