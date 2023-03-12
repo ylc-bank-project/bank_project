@@ -6,6 +6,7 @@ import { Stepper } from "../../Shared/Stepper";
 import { MarginedContainer, SignInButton } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
 import {
+  BankHeader,
   BankingBackground,
   BankingLogo,
   SignInContainer,
@@ -24,14 +25,6 @@ const allSteps = [FirstStep, SecondStep, ThirdStep, FourthStep, FifthStep];
 const StyledSignInWrapper = styled.div`
   grid-column: span 12;
   text-align: center;
-`;
-
-const StyledGreeting = styled.div`
-  grid-column: span 12;
-  text-align: center;
-  ${(p) => p.theme.fonts.big_header}
-  color: white;
-  padding: 0 0 40px;
 `;
 
 const InputContainer = styled.div`
@@ -119,7 +112,7 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
       <BankingBackground>
         <MarginedContainer>
           <BankingLogo />
-          <StyledGreeting>Welcome</StyledGreeting>
+          <BankHeader>Welcome</BankHeader>
           {readyToSign ? (
             <SignInContainer>
               <InputContainer>

@@ -437,3 +437,11 @@ export const ContinueButtonContainer = styled.div`
   width: 100%;
   padding: 20px 0;
 `;
+
+export const BankHeader = styled.div`
+  grid-column: span 12;
+  text-align: center;
+  ${(p) => p.theme.fonts.big_header}
+  color: white;
+  padding: 0 0 40px;
+`;

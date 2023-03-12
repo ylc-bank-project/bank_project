@@ -33,7 +33,6 @@ function App() {
       {!currentActivity && activitiesListVisible ? (
         <span />
       ) : (
-        // <span />
         <AllActivitiesButton
           onClick={() => {
             if (currentActivity && activitiesListVisible) {

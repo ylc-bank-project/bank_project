@@ -24,7 +24,7 @@ const IntroOutroContainer = styled.div`
 `;
 
 const TextSection = styled.div`
-  padding: 40px 50px;
+  padding: 10px 50px;
   ${(p) => p.theme.fonts.body_text_bold}
 `;
 
@@ -57,6 +57,11 @@ const IntroOutro = ({
           <IntroOutroContainer>
             <HeaderLogo src={logo} />
             <TextSection>{text}</TextSection>
+            <TextSection>
+              {
+                "No personal information will be required. The information used is not a real bank account, it is an example for learning purposes."
+              }
+            </TextSection>
             <ButtonSection>
               {isIntro ? (
                 <ActButton onClick={() => closeModal()}>Continue</ActButton>
