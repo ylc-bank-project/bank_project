@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Bank from "./Bank";
 import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Bank />
+    <BrowserRouter>
+      <Bank />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

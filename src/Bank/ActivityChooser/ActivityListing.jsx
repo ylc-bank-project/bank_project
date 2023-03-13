@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { activitiesEnums } from "../enums";
 import { ActButton as ActButtonImport } from "../Shared/Layout";
 import { mq } from "../Global";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ActSectionHeader = styled.h2`
   ${(p) => p.theme.fonts.small_header}
@@ -35,17 +35,23 @@ const ActTitle = styled.span`
   }
 `;
 
-const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => (
-  <ActButtonImport
-    onClick={() => {
-      setCurrentActivity(activity);
-      redirect(`/${activity}`);
-      closeModal();
-    }}
-  >
-    {children}
-  </ActButtonImport>
-);
+//${activity}
+
+const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
+  const navigate = useNavigate();
+
+  return (
+    <ActButtonImport
+      onClick={() => {
+        // setCurrentActivity(activity);
+        navigate(`/creating-account`);
+        closeModal();
+      }}
+    >
+      {children}
+    </ActButtonImport>
+  );
+};
 
 const Activity = ({ closeModal, setCurrentActivity, activity, title }) => (
   <ActWrapper>

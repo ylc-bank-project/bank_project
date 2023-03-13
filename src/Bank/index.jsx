@@ -5,6 +5,8 @@ import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+import CreatingAccount from "./Activities/CreatingAccount";
 
 function App() {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
@@ -25,11 +27,22 @@ function App() {
     ) : undefined;
   };
 
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: <Bank />,
+  //   },
+  // ]);
+  // <RouterProvider router={router} />
+
   return (
     <PageContainer>
-      {currentActivity &&
+      <Routes>
+        <Route path="creating-account" element={<CreatingAccount />} />
+      </Routes>
+      {/* {currentActivity &&
         Object.values(activitiesEnums).some((act) => act === currentActivity) &&
-        Activity({ currentActivity })}
+        Activity({ currentActivity })} */}
       {!currentActivity && activitiesListVisible ? (
         <span />
       ) : (
