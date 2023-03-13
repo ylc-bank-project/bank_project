@@ -4,15 +4,7 @@ import MakingPayments from "./MakingPayments";
 import CreatingAccount from "./CreatingAccount";
 import TransferFunds from "./TransferFunds";
 import ETransfer from "./ETransfer";
-
-export const activitiesEnums = {
-  TRANSFERFUNDS: "TransferFunds",
-  ETRANSFER: "ETransfer",
-  CREATINGACCOUNT: "CreatingAccount",
-  SIGNIN: "SignIn",
-  ACCOUNTOVERVIEW: "AccountOverview",
-  MAKINGPAYMENTS: "MakingPayments",
-};
+import { activitiesEnums } from "../enums";
 
 export default {
   [activitiesEnums.CREATINGACCOUNT]: CreatingAccount,
