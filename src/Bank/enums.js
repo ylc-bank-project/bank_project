@@ -1,8 +1,12 @@
 export const activitiesEnums = {
   TRANSFERFUNDS: "TransferFunds",
   ETRANSFER: "ETransfer",
-  CREATINGACCOUNT: "CreatingAnAccount",
+  CREATINGACCOUNT: "CreatingAccount",
   SIGNIN: "SignIn",
   ACCOUNTOVERVIEW: "AccountOverview",
   MAKINGPAYMENTS: "MakingPayments",
+};
+
+export const bankPageEnums = {
+  BANKHOMEPAGE: "BankHomepage",
 };

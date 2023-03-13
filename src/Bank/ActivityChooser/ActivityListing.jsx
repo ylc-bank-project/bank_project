@@ -4,6 +4,7 @@ import { activitiesEnums } from "../enums";
 import { ActButton as ActButtonImport } from "../Shared/Layout";
 import { mq } from "../Global";
 import { useNavigate } from "react-router-dom";
+import { bankPageEnums } from "../enums";
 
 const ActSectionHeader = styled.h2`
   ${(p) => p.theme.fonts.small_header}
@@ -35,7 +36,7 @@ const ActTitle = styled.span`
   }
 `;
 
-//${activity}
+// url: /activity/:activityName/:bankPage/:step
 
 const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
   const navigate = useNavigate();
@@ -43,8 +44,11 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
   return (
     <ActButtonImport
       onClick={() => {
-        // setCurrentActivity(activity);
-        navigate(`/creating-account`);
+        if (activity === activitiesEnums.CREATINGACCOUNT) {
+          navigate(`/activity/${activity}/${bankPageEnums.BANKHOMEPAGE}/1`);
+        } else {
+          setCurrentActivity(activity);
+        }
         closeModal();
       }}
     >

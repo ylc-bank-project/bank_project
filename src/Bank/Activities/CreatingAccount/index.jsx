@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import IntroOutro from "../../IntroOutro";
 
+import { useParams } from "react-router-dom";
+
 // NOTES
-// This component probably requires
-// Switching between bank pages... if it is even needed.
-// Any state for the activity
-// the Intro/Outro state... but I feel like this could be done in the parent component upon starting an activity.
-//
 
 const CreatingAccount = ({ currentActivity, endCurrentActivity }) => {
+  const routeParams = useParams();
+  console.log({ routeParams });
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);

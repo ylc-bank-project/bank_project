@@ -27,22 +27,20 @@ function App() {
     ) : undefined;
   };
 
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: <Bank />,
-  //   },
-  // ]);
-  // <RouterProvider router={router} />
+  // url /activity/page/
 
   return (
     <PageContainer>
       <Routes>
-        <Route path="creating-account" element={<CreatingAccount />} />
+        <Route
+          path={`/activity/:activityName/:bankPage/:step}`}
+          element={<CreatingAccount />}
+        />
       </Routes>
-      {/* {currentActivity &&
+      {currentActivity &&
+        currentActivity !== activitiesEnums.CREATINGACCOUNT &&
         Object.values(activitiesEnums).some((act) => act === currentActivity) &&
-        Activity({ currentActivity })} */}
+        Activity({ currentActivity })}
       {!currentActivity && activitiesListVisible ? (
         <span />
       ) : (
