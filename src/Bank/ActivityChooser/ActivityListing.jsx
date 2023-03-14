@@ -36,7 +36,7 @@ const ActTitle = styled.span`
   }
 `;
 
-// url: /activity/:activityName/:bankPage/:step
+// url: /activity/activityName/step/bankPage/../..
 
 const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
   const navigate = useNavigate();
@@ -45,8 +45,10 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
     <ActButtonImport
       onClick={() => {
         if (activity === activitiesEnums.CREATINGACCOUNT) {
-          navigate(`/activity/${activity}/${bankPageEnums.BANKHOMEPAGE}/1`);
+          setCurrentActivity(activity);
+          navigate(`/activity/${activity}/1/${bankPageEnums.BANKHOMEPAGE}`);
         } else {
+          navigate(`/`);
           setCurrentActivity(activity);
         }
         closeModal();

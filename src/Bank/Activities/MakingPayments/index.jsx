@@ -249,13 +249,13 @@ const MakingPayments = ({ currentActivity, endCurrentActivity }) => {
   // const [billAmount, setBillAmount] = useState("$680.00");
   const [billDate, setBillDate] = useState(addDays(new Date(), 5));
 
-  useEffect(() => {
-    if (step === allSteps.length) {
-      setStep(step + 1);
-      setIsIntro(false);
-      setIntroOutroVisible(true);
-    }
-  }, [step]);
+  // useEffect(() => {
+  //   if (step === allSteps.length) {
+  //     setStep(step + 1);
+  //     setIsIntro(false);
+  //     setIntroOutroVisible(true);
+  //   }
+  // }, [step]);
 
   const paymentsClick = () => {
     setStep(step + 1);

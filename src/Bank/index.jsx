@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import CreatingAccount from "./Activities/CreatingAccount";
+import BankHomepage from "./BankPages/BankHomepage/BankHomepage";
+import AccountRegistration from "./BankPages/BankHomepage/AccountRegistration";
 
 function App() {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
   const [currentActivity, setCurrentActivity] = useState(undefined);
+  let location = useLocation();
 
   const endCurrentActivity = () => {
     setCurrentActivity(undefined);
@@ -27,16 +30,29 @@ function App() {
     ) : undefined;
   };
 
-  // url /activity/page/
+  console.log({ location });
 
   return (
     <PageContainer>
       <Routes>
         <Route
-          path={`/activity/:activityName/:bankPage/:step}`}
-          element={<CreatingAccount />}
-        />
+          path={`/activity/${activitiesEnums.CREATINGACCOUNT}/:step`}
+          element={Activity({ currentActivity })}
+        >
+          <Route
+            path="BankHomepage"
+            element={<BankHomepage currentActivity={currentActivity} />}
+          >
+            <Route
+              path="AccountRegistration"
+              element={
+                <AccountRegistration currentActivity={currentActivity} />
+              }
+            />
+          </Route>
+        </Route>
       </Routes>
+
       {currentActivity &&
         currentActivity !== activitiesEnums.CREATINGACCOUNT &&
         Object.values(activitiesEnums).some((act) => act === currentActivity) &&

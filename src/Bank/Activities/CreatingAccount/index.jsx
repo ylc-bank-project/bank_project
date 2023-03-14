@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import IntroOutro from "../../IntroOutro";
 
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import { bankPageEnums } from "../../enums";
 
 // NOTES
 
-const CreatingAccount = ({ currentActivity, endCurrentActivity }) => {
-  const routeParams = useParams();
-  console.log({ routeParams });
+const CreatingAccount = (endCurrentActivity) => {
+  const { currentActivity } = useParams();
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
+
   return (
     <>
-      <div>CreatingAccount</div>
-
+      <Outlet />
       <IntroOutro
         closeModal={() => setIntroOutroVisible(false)}
         endExercise={() => endCurrentActivity()}

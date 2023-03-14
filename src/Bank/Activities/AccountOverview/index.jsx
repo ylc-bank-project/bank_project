@@ -68,13 +68,13 @@ const Overview = ({ currentActivity, endCurrentActivity }) => {
   // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
 
-  useEffect(() => {
-    if (step === allSteps.length) {
-      setStep(step + 1);
-      setIsIntro(false);
-      setIntroOutroVisible(true);
-    }
-  }, [step]);
+  // useEffect(() => {
+  //   if (step === allSteps.length) {
+  //     setStep(step + 1);
+  //     setIsIntro(false);
+  //     setIntroOutroVisible(true);
+  //   }
+  // }, [step]);
 
   const CheckingTip = (child) => (
     <BasicTooltip
