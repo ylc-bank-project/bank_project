@@ -5,15 +5,13 @@ import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
-import { Routes, Route, useLocation } from "react-router-dom";
-import CreatingAccount from "./Activities/CreatingAccount";
+import { Routes, Route } from "react-router-dom";
 import BankHomepage from "./BankPages/BankHomepage/BankHomepage";
 import AccountRegistration from "./BankPages/BankHomepage/AccountRegistration";
 
-function App() {
+const App = () => {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
   const [currentActivity, setCurrentActivity] = useState(undefined);
-  let location = useLocation();
 
   const endCurrentActivity = () => {
     setCurrentActivity(undefined);
@@ -30,13 +28,11 @@ function App() {
     ) : undefined;
   };
 
-  console.log({ location });
-
   return (
     <PageContainer>
       <Routes>
         <Route
-          path={`/activity/${activitiesEnums.CREATINGACCOUNT}/:step`}
+          path={`/activity/${activitiesEnums.CREATINGACCOUNT}/:stepIndex`}
           element={Activity({ currentActivity })}
         >
           <Route
@@ -84,7 +80,7 @@ function App() {
       />
     </PageContainer>
   );
-}
+};
 
 const GlobalStyle = createGlobalStyle`
 body {

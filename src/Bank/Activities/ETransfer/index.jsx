@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import IntroOutro from "../../IntroOutro";
 
-const ETransfer = () => {
-  return <div>ETransfer</div>;
+import { Outlet, useParams } from "react-router-dom";
+
+const ETransfer = ({ currentActivity, endCurrentActivity }) => {
+  const { stepIndex } = useParams();
+  console.log({ currentActivity, stepIndex });
+  const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  const [isIntro, setIsIntro] = useState(true);
+
+  return (
+    <>
+      <Outlet />
+      <IntroOutro
+        closeModal={() => setIntroOutroVisible(false)}
+        endExercise={() => endCurrentActivity()}
+        currentActivity={currentActivity}
+        visible={introOutroVisible}
+        isIntro={isIntro}
+      />
+    </>
+  );
 };
 
 export default ETransfer;

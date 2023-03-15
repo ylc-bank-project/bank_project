@@ -46,7 +46,7 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
       onClick={() => {
         if (activity === activitiesEnums.CREATINGACCOUNT) {
           setCurrentActivity(activity);
-          navigate(`/activity/${activity}/1/${bankPageEnums.BANKHOMEPAGE}`);
+          navigate(`/activity/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
         } else {
           navigate(`/`);
           setCurrentActivity(activity);
