@@ -6,11 +6,6 @@ import { activitiesEnums } from "../../enums";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 
-const StyledSignInWrapper = styled.div`
-  grid-column: span 12;
-  text-align: center;
-`;
-
 const InputContainer = styled.div`
   padding: 15px 0;
 `;
