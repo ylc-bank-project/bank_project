@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ActButton } from "../Layout";
+import { useNavigate } from "react-router-dom";
 
 const StepperContainer = styled.div`
   position: fixed;
@@ -28,32 +29,24 @@ export const Stepper = ({
   step,
   allSteps,
 }) => {
-  // console.log({ step: allSteps[step] });
-  // console.log({ onBack });
+  const navigate = useNavigate();
   return (
     <StepperContainer>
       <DirectionButton
         disabled={step <= 0}
         onClick={() => {
           if (step > 0) {
-            setStep(step - 1);
+            if (setStep) {
+              setStep(step - 1);
+            } else {
+              navigate(-1);
+            }
             onBack();
           }
         }}
       >
         Back
       </DirectionButton>
-      {/* <button
-        disabled={step >= allSteps.length - 1}
-        onClick={() => {
-          if (step <= allSteps.length) {
-            setStep(step + 1);
-            onForwards();
-          }
-        }}
-      >
-        FORWARDS
-      </button> */}
     </StepperContainer>
   );
 };
