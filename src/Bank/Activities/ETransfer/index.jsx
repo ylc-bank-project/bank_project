@@ -4,10 +4,10 @@ import IntroOutro from "../../IntroOutro";
 import { Outlet, useParams } from "react-router-dom";
 
 const ETransfer = ({ currentActivity, endCurrentActivity }) => {
-  const { stepIndex } = useParams();
-  console.log({ currentActivity, stepIndex });
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
   const [isIntro, setIsIntro] = useState(true);
+  const { stepIndex } = useParams();
+  console.log({ currentActivity, stepIndex });
 
   return (
     <>

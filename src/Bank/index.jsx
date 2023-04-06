@@ -5,9 +5,7 @@ import AllActivities from "./Activities";
 import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
-import { Routes, Route } from "react-router-dom";
-import BankHomepage from "./BankPages/BankHomepage/BankHomepage";
-import AccountRegistration from "./BankPages/BankHomepage/AccountRegistration";
+import { AllRoutes } from "./routes";
 
 const App = () => {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
@@ -18,7 +16,7 @@ const App = () => {
     setActivitiesListVisible(true);
   };
 
-  const Activity = ({ currentActivity }) => {
+  const getActivity = ({ currentActivity }) => {
     let Act = AllActivities[currentActivity];
     return Act ? (
       <Act
@@ -30,29 +28,12 @@ const App = () => {
 
   return (
     <PageContainer>
-      <Routes>
-        <Route
-          path={`/activity/${activitiesEnums.CREATINGACCOUNT}/:stepIndex`}
-          element={Activity({ currentActivity })}
-        >
-          <Route
-            path="BankHomepage"
-            element={<BankHomepage currentActivity={currentActivity} />}
-          >
-            <Route
-              path="AccountRegistration"
-              element={
-                <AccountRegistration currentActivity={currentActivity} />
-              }
-            />
-          </Route>
-        </Route>
-      </Routes>
+      <AllRoutes {...{ currentActivity, getActivity }} />
 
       {currentActivity &&
         currentActivity !== activitiesEnums.CREATINGACCOUNT &&
         Object.values(activitiesEnums).some((act) => act === currentActivity) &&
-        Activity({ currentActivity })}
+        getActivity({ currentActivity })}
       {!currentActivity && activitiesListVisible ? (
         <span />
       ) : (
@@ -63,7 +44,6 @@ const App = () => {
             } else {
               setActivitiesListVisible(true);
             }
-            // setCurrentActivity(undefined);
           }}
         >
           {currentActivity && activitiesListVisible

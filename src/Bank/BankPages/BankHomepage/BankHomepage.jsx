@@ -27,22 +27,6 @@ const BankHomepage = ({ currentActivity, allSteps }) => {
 
   const PreSignIn = () => (
     <StyledSignInWrapper>
-      {/* <BasicTooltip
-        content={<FirstStep />}
-        showTip={step === 0}
-        staticOnly={true}
-        placement="bottom-center"
-      >
-        <SignInButton
-          onClick={() => {
-            setReadyToSign(true);
-            setStep(step + 1);
-          }}
-        >
-          Sign In
-        </SignInButton>
-      </BasicTooltip> */}
-
       <InfoTip
         tipContent={<FirstStep />}
         tipTarget={
@@ -50,6 +34,7 @@ const BankHomepage = ({ currentActivity, allSteps }) => {
             onClick={() => {
               // setReadyToSign(true);
               // setStep(step + 1);
+              // TODO: Should change route to sign-in and increment the step
               console.log("should change route to sign-in");
             }}
           >
@@ -59,6 +44,9 @@ const BankHomepage = ({ currentActivity, allSteps }) => {
         showTip={true}
         showButton={true}
       />
+      <SignInButton onClick={() => console.log("register clicked")}>
+        REGISTER BUTTON
+      </SignInButton>
     </StyledSignInWrapper>
   );
 
@@ -67,18 +55,18 @@ const BankHomepage = ({ currentActivity, allSteps }) => {
       <BankingBackground>
         <MarginedContainer>
           <BankingLogo />
-          <BankHeader>Welcome</BankHeader>
+          <BankHeader>Welcome HOMEPAGE</BankHeader>
           {Outlet ? <Outlet /> : <PreSignIn />}
         </MarginedContainer>
       </BankingBackground>
-      <Stepper
+      {/* <Stepper
         {...{ step, allSteps }}
         // onBack={() => {
         // if (step === 1) {
         // setReadyToSign(false);
         // }
         // }}
-      />
+      /> */}
     </>
   );
 };

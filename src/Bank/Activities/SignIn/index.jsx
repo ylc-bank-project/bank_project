@@ -19,6 +19,7 @@ import {
   FifthStep,
 } from "./TipSteps";
 // import { RadioButton } from "react-radio-buttons";
+import { Outlet, useParams } from "react-router-dom";
 
 const allSteps = [FirstStep, SecondStep, ThirdStep, FourthStep, FifthStep];
 
@@ -72,133 +73,153 @@ const FullSpan = styled.span`
 `;
 
 const SignIn = ({ currentActivity, endCurrentActivity }) => {
-  // FIRST STEP IS 1 (should be 0 in next version)
-  const [step, setStep] = useState(0);
-  // FOR TESTING PURPOSES
-  // const [step, setStep] = useState(4);
-  const [readyToSign, setReadyToSign] = useState(false);
-  // FOR TESTING PURPOSES
-  // const [readyToSign, setReadyToSign] = useState(true);
   const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  // FOR TESTING PURPOSES
-  // const [introOutroVisible, setIntroOutroVisible] = useState(false);
   const [isIntro, setIsIntro] = useState(true);
-  const [cardNumber, setCardNumber] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-  const [saveToggled, setSaveToggled] = useState(false);
+  // const { stepIndex } = useParams();
 
-  const PreSignIn = () => (
-    <StyledSignInWrapper>
-      <BasicTooltip
-        content={<FirstStep />}
-        showTip={step === 0}
-        staticOnly={true}
-        placement="bottom-center"
-      >
-        <SignInButton
-          onClick={() => {
-            setReadyToSign(true);
-            setStep(step + 1);
-          }}
-        >
-          Sign In
-        </SignInButton>
-      </BasicTooltip>
-    </StyledSignInWrapper>
-  );
+  // FIRST STEP IS 1 (should be 0 in next version)
+  // const [step, setStep] = useState(0);
+
+  // // FOR TESTING PURPOSES
+  // // const [step, setStep] = useState(4);
+
+  // const [readyToSign, setReadyToSign] = useState(false);
+
+  // // FOR TESTING PURPOSES
+  // // const [readyToSign, setReadyToSign] = useState(true);
+
+  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
+
+  // // FOR TESTING PURPOSES
+  // // const [introOutroVisible, setIntroOutroVisible] = useState(false);
+
+  // const [isIntro, setIsIntro] = useState(true);
+  // const [cardNumber, setCardNumber] = useState(undefined);
+  // const [password, setPassword] = useState(undefined);
+  // const [saveToggled, setSaveToggled] = useState(false);
+
+  // const PreSignIn = () => (
+  //   <StyledSignInWrapper>
+  //     <BasicTooltip
+  //       content={<FirstStep />}
+  //       showTip={step === 0}
+  //       staticOnly={true}
+  //       placement="bottom-center"
+  //     >
+  //       <SignInButton
+  //         onClick={() => {
+  //           setReadyToSign(true);
+  //           setStep(step + 1);
+  //         }}
+  //       >
+  //         Sign In
+  //       </SignInButton>
+  //     </BasicTooltip>
+  //   </StyledSignInWrapper>
+  // );
 
   return (
     <>
-      <BankingBackground>
-        <MarginedContainer>
-          <BankingLogo />
-          <BankHeader>Welcome</BankHeader>
-          {readyToSign ? (
-            <SignInContainer>
-              <InputContainer>
-                <BasicTooltip
-                  content={<SecondStep {...{ cardNumber, setStep, step }} />}
-                  showTip={step === 1}
-                  staticOnly={true}
-                  tipContentStyles={{ overflow: "scroll" }}
-                  maxHeight={500}
-                >
-                  <StyledNumberFormat
-                    onChange={(e) => setCardNumber(e.target.value)}
-                    format="#### #### #### ####"
-                    placeholder={"Card Number"}
-                  />
-                </BasicTooltip>
-              </InputContainer>
-              <InputContainer>
-                <BasicTooltip
-                  content={<ThirdStep {...{ password, setStep, step }} />}
-                  showTip={step === 2}
-                  staticOnly={true}
-                  maxHeight={500}
-                >
-                  <StyledInput
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="password"
-                    placeholder={"Password"}
-                  />
-                </BasicTooltip>
-                <BasicTooltip
-                  content={<FourthStep {...{ setStep, step }} />}
-                  showTip={step === 3}
-                  staticOnly={true}
-                  placement="center"
-                  showArrow={false}
-                ></BasicTooltip>
-                <FullSpan />
-                <BasicTooltip />
-              </InputContainer>
-              <InputContainer>
-                <PasswordLabel>
-                  Save password?
-                  <BasicTooltip
-                    content={
-                      <FifthStep
-                        {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
-                      />
-                    }
-                    showTip={step === 4}
-                    staticOnly={true}
-                  >
-                    <RadioInputContainer>
-                      <input
-                        type="checkbox"
-                        checked={saveToggled}
-                        onChange={() =>
-                          setSaveToggled(saveToggled ? false : true)
-                        }
-                      />
-                    </RadioInputContainer>
-                  </BasicTooltip>
-                </PasswordLabel>
-              </InputContainer>
-            </SignInContainer>
-          ) : (
-            <PreSignIn />
-          )}
-          <IntroOutro
-            closeModal={() => setIntroOutroVisible(false)}
-            endExercise={() => endCurrentActivity()}
-            currentActivity={currentActivity}
-            visible={introOutroVisible}
-            isIntro={isIntro}
-          />
-        </MarginedContainer>
-      </BankingBackground>
-      <Stepper
-        {...{ setStep, step, allSteps }}
-        onBack={() => {
-          if (step === 1) {
-            setReadyToSign(false);
-          }
-        }}
+      <Outlet />
+      <IntroOutro
+        closeModal={() => setIntroOutroVisible(false)}
+        endExercise={() => endCurrentActivity()}
+        currentActivity={currentActivity}
+        visible={introOutroVisible}
+        isIntro={isIntro}
       />
     </>
+    //   <>
+    //     <BankingBackground>
+    //       <MarginedContainer>
+    //         <BankingLogo />
+    //         <BankHeader>Welcome</BankHeader>
+    //         {readyToSign ? (
+    //           <SignInContainer>
+    //             <InputContainer>
+    //               <BasicTooltip
+    //                 content={<SecondStep {...{ cardNumber, setStep, step }} />}
+    //                 showTip={step === 1}
+    //                 staticOnly={true}
+    //                 tipContentStyles={{ overflow: "scroll" }}
+    //                 maxHeight={500}
+    //               >
+    //                 <StyledNumberFormat
+    //                   onChange={(e) => setCardNumber(e.target.value)}
+    //                   format="#### #### #### ####"
+    //                   placeholder={"Card Number"}
+    //                 />
+    //               </BasicTooltip>
+    //             </InputContainer>
+    //             <InputContainer>
+    //               <BasicTooltip
+    //                 content={<ThirdStep {...{ password, setStep, step }} />}
+    //                 showTip={step === 2}
+    //                 staticOnly={true}
+    //                 maxHeight={500}
+    //               >
+    //                 <StyledInput
+    //                   onChange={(e) => setPassword(e.target.value)}
+    //                   type="password"
+    //                   placeholder={"Password"}
+    //                 />
+    //               </BasicTooltip>
+    //               <BasicTooltip
+    //                 content={<FourthStep {...{ setStep, step }} />}
+    //                 showTip={step === 3}
+    //                 staticOnly={true}
+    //                 placement="center"
+    //                 showArrow={false}
+    //               ></BasicTooltip>
+    //               <FullSpan />
+    //               <BasicTooltip />
+    //             </InputContainer>
+    //             <InputContainer>
+    //               <PasswordLabel>
+    //                 Save password?
+    //                 <BasicTooltip
+    //                   content={
+    //                     <FifthStep
+    //                       {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
+    //                     />
+    //                   }
+    //                   showTip={step === 4}
+    //                   staticOnly={true}
+    //                 >
+    //                   <RadioInputContainer>
+    //                     <input
+    //                       type="checkbox"
+    //                       checked={saveToggled}
+    //                       onChange={() =>
+    //                         setSaveToggled(saveToggled ? false : true)
+    //                       }
+    //                     />
+    //                   </RadioInputContainer>
+    //                 </BasicTooltip>
+    //               </PasswordLabel>
+    //             </InputContainer>
+    //           </SignInContainer>
+    //         ) : (
+    //           <PreSignIn />
+    //         )}
+    //         <IntroOutro
+    //           closeModal={() => setIntroOutroVisible(false)}
+    //           endExercise={() => endCurrentActivity()}
+    //           currentActivity={currentActivity}
+    //           visible={introOutroVisible}
+    //           isIntro={isIntro}
+    //         />
+    //       </MarginedContainer>
+    //     </BankingBackground>
+    //     <Stepper
+    //       {...{ setStep, step, allSteps }}
+    //       onBack={() => {
+    //         if (step === 1) {
+    //           setReadyToSign(false);
+    //         }
+    //       }}
+    //     />
+    // </>
   );
 };
 

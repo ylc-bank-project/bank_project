@@ -44,12 +44,24 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
   return (
     <ActButtonImport
       onClick={() => {
-        if (activity === activitiesEnums.CREATINGACCOUNT) {
-          setCurrentActivity(activity);
-          navigate(`/activity/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
-        } else {
-          navigate(`/`);
-          setCurrentActivity(activity);
+        console.log("ON CLICK", activity);
+        switch (activity) {
+          case activitiesEnums.CREATINGACCOUNT:
+            console.log("WOOF");
+            setCurrentActivity(activity);
+            navigate(`/activity/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
+            break;
+
+          case activitiesEnums.SIGNIN:
+            console.log("MEOW");
+            setCurrentActivity(activity);
+            navigate(`/activity/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
+            break;
+
+          default:
+            navigate(`/`);
+            setCurrentActivity(activity);
+            break;
         }
         closeModal();
       }}

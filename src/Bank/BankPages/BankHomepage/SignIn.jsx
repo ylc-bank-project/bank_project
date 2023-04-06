@@ -56,69 +56,70 @@ const SignIn = ({ currentActivity }) => {
   const isCreateAccount = currentActivity === activitiesEnums.CREATINGACCOUNT;
 
   return (
-    <SignInContainer>
-      <InputContainer>
-        <BasicTooltip
-          content={<SecondStep {...{ cardNumber, setStep, step }} />}
-          showTip={step === 1}
-          staticOnly={true}
-          tipContentStyles={{ overflow: "scroll" }}
-          maxHeight={500}
-        >
-          <StyledNumberFormat
-            onChange={(e) => setCardNumber(e.target.value)}
-            format="#### #### #### ####"
-            placeholder={"Card Number"}
-          />
-        </BasicTooltip>
-      </InputContainer>
-      <InputContainer>
-        <BasicTooltip
-          content={<ThirdStep {...{ password, setStep, step }} />}
-          showTip={step === 2}
-          staticOnly={true}
-          maxHeight={500}
-        >
-          <StyledInput
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder={"Password"}
-          />
-        </BasicTooltip>
-        <BasicTooltip
-          content={<FourthStep {...{ setStep, step }} />}
-          showTip={step === 3}
-          staticOnly={true}
-          placement="center"
-          showArrow={false}
-        ></BasicTooltip>
-        <FullSpan />
-        <BasicTooltip />
-      </InputContainer>
-      <InputContainer>
-        <PasswordLabel>
-          Save password?
-          <BasicTooltip
-            content={
-              <FifthStep
-                {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
-              />
-            }
-            showTip={step === 4}
-            staticOnly={true}
-          >
-            <RadioInputContainer>
-              <input
-                type="checkbox"
-                checked={saveToggled}
-                onChange={() => setSaveToggled(saveToggled ? false : true)}
-              />
-            </RadioInputContainer>
-          </BasicTooltip>
-        </PasswordLabel>
-      </InputContainer>
-      <Link to={"AccountRegistration"}>Go to Registration</Link>
-    </SignInContainer>
+    <div>This is the Sign-In container</div>
+    // <SignInContainer>
+    //   <InputContainer>
+    //     <BasicTooltip
+    //       content={<SecondStep {...{ cardNumber, setStep, step }} />}
+    //       showTip={step === 1}
+    //       staticOnly={true}
+    //       tipContentStyles={{ overflow: "scroll" }}
+    //       maxHeight={500}
+    //     >
+    //       <StyledNumberFormat
+    //         onChange={(e) => setCardNumber(e.target.value)}
+    //         format="#### #### #### ####"
+    //         placeholder={"Card Number"}
+    //       />
+    //     </BasicTooltip>
+    //   </InputContainer>
+    //   <InputContainer>
+    //     <BasicTooltip
+    //       content={<ThirdStep {...{ password, setStep, step }} />}
+    //       showTip={step === 2}
+    //       staticOnly={true}
+    //       maxHeight={500}
+    //     >
+    //       <StyledInput
+    //         onChange={(e) => setPassword(e.target.value)}
+    //         type="password"
+    //         placeholder={"Password"}
+    //       />
+    //     </BasicTooltip>
+    //     <BasicTooltip
+    //       content={<FourthStep {...{ setStep, step }} />}
+    //       showTip={step === 3}
+    //       staticOnly={true}
+    //       placement="center"
+    //       showArrow={false}
+    //     ></BasicTooltip>
+    //     <FullSpan />
+    //     <BasicTooltip />
+    //   </InputContainer>
+    //   <InputContainer>
+    //     <PasswordLabel>
+    //       Save password?
+    //       <BasicTooltip
+    //         content={
+    //           <FifthStep
+    //             {...{ setIsIntro, setIntroOutroVisible, saveToggled }}
+    //           />
+    //         }
+    //         showTip={step === 4}
+    //         staticOnly={true}
+    //       >
+    //         <RadioInputContainer>
+    //           <input
+    //             type="checkbox"
+    //             checked={saveToggled}
+    //             onChange={() => setSaveToggled(saveToggled ? false : true)}
+    //           />
+    //         </RadioInputContainer>
+    //       </BasicTooltip>
+    //     </PasswordLabel>
+    //   </InputContainer>
+    //   <Link to={"AccountRegistration"}>Go to Registration</Link>
+    // </SignInContainer>
   );
 };
 
