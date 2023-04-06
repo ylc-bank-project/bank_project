@@ -2,6 +2,7 @@ CURRENT
 - Get BankHomePage to property toggle between sign-in and register.
 - Update the Sign-in process. Adapt it to the shared component, and use the better InfoTip (in Shared/Stepper folder).
   - Next: how to update steps? Or is it all based on route?
+- FUTURE: Get these two activities working, and then consider whether or not I want to adopt the old activities to any of the routing.
 
 
 Notes
