@@ -1,6 +1,6 @@
 CURRENT
-- Get SignIn.jsx (in BankHomepage folder) to work properly.
-  - Adapt the better InfoTip (in Shared/Stepper folder)
+- Get BankHomePage to property toggle between sign-in and register.
+- Update the Sign-in process. Adapt it to the shared component, and use the better InfoTip (in Shared/Stepper folder).
   - Next: how to update steps? Or is it all based on route?
 
 
@@ -9,10 +9,7 @@ Notes
 
 Setting statefulness based on the route
 - Realistically, all a location needs is the activity and step it is on. It can set state based on all of that. I don't think the application needs more data than that.
-- Do I want the app to be useful otherwise? I mean, It would like to have routing, and it could simply have global state as well. Routing does not obviate having global state. In fact, it would make it make more sense, if I ever wanted to go that route.
-
-NEW
-- Add routing for new activity
-  - Allowing use of back/forward buttons.
-  - Statefulness can still be instantiated if necessary
+- Route-based statefulness allows for the user to use the "back" and forwards buttons to navigate the activities.
+- Routing does not obviate having global state. In fact, it would make it make more sense, if I ever wanted to go that route.
+- I could still have global/local statefulness as needed
 
