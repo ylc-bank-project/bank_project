@@ -1,9 +1,11 @@
 CURRENT
-- Get BankHomePage to property toggle between sign-in and register.
-- Update the Sign-in process. Adapt it to the shared component, and use the better InfoTip (in Shared/Stepper folder).
-  - Next: how to update steps? Or is it all based on route?
+- Continue bringing the SignIn.jsx components up-to-date to use the new InfoTip Component.
+- This will naturally lead to clarifying the rest of both the SignIn and the AccountCreation activities.
+- I may be forced into updating the other activities to the new system. This may not be the worst thing, but it will take a bit of work
 - FUTURE: Get these two activities working, and then consider whether or not I want to adopt the old activities to any of the routing.
 
+Thoughts
+- It might be useful to create an Enum of activity steps, like in the previous incarnations, just as a way to keep track of which step we are currently on.
 
 Notes
 - Initial routes are set in ActivityListing.jsx
