@@ -5,7 +5,7 @@ CURRENT
 - FUTURE: Get these two activities working, and then consider whether or not I want to adopt the old activities to any of the routing.
 
 Thoughts
-- It might be useful to create an Enum of activity steps, like in the previous incarnations, just as a way to keep track of which step we are currently on.
+- It might be useful to create an Enum of activity steps, like in the previous incarnations, just as a way to keep track of which step we are currently on. Naming them, rather than trying to understand the index makes a lot more sense.
 
 Notes
 - Initial routes are set in ActivityListing.jsx
