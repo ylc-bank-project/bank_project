@@ -9,4 +9,6 @@ export const activitiesEnums = {
 
 export const bankPageEnums = {
   BANKHOMEPAGE: "BankHomepage",
+  SIGNIN: "SignIn",
+  ACCOUNTREGISTRATION: "AccountRegistration",
 };

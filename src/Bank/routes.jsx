@@ -2,9 +2,12 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { activitiesEnums } from "./enums";
 import AllActivities from "./Activities";
-import BankHomepage from "./BankPages/BankHomepage/BankHomepage";
-import AccountRegistration from "./BankPages/BankHomepage/AccountRegistration";
-import SignIn from "./BankPages/BankHomepage/SignIn";
+
+import BankHomepage, {
+  AccountRegistration,
+  SignIn,
+  Welcome,
+} from "./BankPages/BankHomepage";
 
 export const AllRoutes = ({ currentActivity, getActivity }) => {
   return (
@@ -17,6 +20,10 @@ export const AllRoutes = ({ currentActivity, getActivity }) => {
           path="BankHomepage"
           element={<BankHomepage currentActivity={currentActivity} />}
         >
+          <Route
+            path=""
+            element={<Welcome currentActivity={currentActivity} />}
+          />
           <Route
             path="AccountRegistration"
             element={<AccountRegistration currentActivity={currentActivity} />}

@@ -11,17 +11,17 @@ import {
   BankingLogo,
   SignInContainer,
 } from "../../BankPages/BankPageElements";
-import {
-  FirstStep,
-  SecondStep,
-  ThirdStep,
-  FourthStep,
-  FifthStep,
-} from "./TipSteps";
+// import {
+//   FirstStep,
+//   SecondStep,
+//   ThirdStep,
+//   FourthStep,
+//   FifthStep,
+// } from "./TipSteps";
 // import { RadioButton } from "react-radio-buttons";
 import { Outlet, useParams } from "react-router-dom";
 
-const allSteps = [FirstStep, SecondStep, ThirdStep, FourthStep, FifthStep];
+// const allSteps = [FirstStep, SecondStep, ThirdStep, FourthStep, FifthStep];
 
 const StyledSignInWrapper = styled.div`
   grid-column: span 12;

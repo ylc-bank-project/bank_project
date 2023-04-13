@@ -149,9 +149,10 @@ export const InfoTip = ({
   tipTarget,
   showButton = true,
   setStep,
-  step,
-  allSteps,
+  // step,
+  // allSteps,
   buttonDisabled,
+  onClick,
   ...rest
 }) => {
   const Content = () => {
@@ -161,9 +162,10 @@ export const InfoTip = ({
         {showButton && (
           <BasicTipButton
             disabled={buttonDisabled}
-            onClick={() => {
-              setStep(step + 1);
-            }}
+            onClick={onClick}
+            // onClick={() => {
+            //   setStep(step + 1);
+            // }}
           >
             Continue
           </BasicTipButton>
@@ -175,7 +177,8 @@ export const InfoTip = ({
     <div>
       <BasicTooltip
         content={<Content />}
-        showTip={showTip ? allSteps[step] === showTip : undefined}
+        // showTip={showTip ? allSteps[step] === showTip : undefined}
+        showTip={showTip}
         staticOnly={true}
         {...rest}
       >

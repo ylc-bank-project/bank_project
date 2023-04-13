@@ -6,6 +6,7 @@ CURRENT
 
 
 Notes
+- Initial routes are set in ActivityListing.jsx
 - All routes are in routes.jsx
 
 Setting statefulness based on the route

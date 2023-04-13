@@ -1,25 +1,27 @@
+// THIS IS THE OLD ONE
+
 import React from "react";
 import { BasicTipButton } from "../../Shared/Tip";
 // import styled from "styled-components";
 import { BoldDiv } from "../../BankPages/BankPageElements";
 
-export const FirstStep = () => <div>Click here to sign in</div>;
+// export const FirstStep = () => <div>Click here to sign in</div>;
 
-export const SecondStep = ({ cardNumber, setStep, step }) => (
-  <div>
-    This is where you enter the 16-digit number from your debit card. {<br />}
-    If you don’t have a card, you can use the number you were given at the bank
-    or a username to log into online banking. {<br />}
-    For this activity, enter: <BoldDiv>1234 5678 9098 7654</BoldDiv> in the card
-    number box then select ‘Continue’.
-    <BasicTipButton
-      disabled={cardNumber !== "1234 5678 9098 7654"}
-      onClick={() => setStep(step + 1)}
-    >
-      Continue
-    </BasicTipButton>
-  </div>
-);
+// export const SecondStep = ({ cardNumber, setStep, step }) => (
+//   <div>
+//     This is where you enter the 16-digit number from your debit card. {<br />}
+//     If you don’t have a card, you can use the number you were given at the bank
+//     or a username to log into online banking. {<br />}
+//     For this activity, enter: <BoldDiv>1234 5678 9098 7654</BoldDiv> in the card
+//     number box then select ‘Continue’.
+//     <BasicTipButton
+//       disabled={cardNumber !== "1234 5678 9098 7654"}
+//       onClick={() => setStep(step + 1)}
+//     >
+//       Continue
+//     </BasicTipButton>
+//   </div>
+// );
 
 export const ThirdStep = ({ password, setStep, step }) => (
   <div>
