@@ -73,8 +73,8 @@ const FullSpan = styled.span`
 `;
 
 const SignIn = ({ currentActivity, endCurrentActivity }) => {
-  const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  const [isIntro, setIsIntro] = useState(true);
+  // const [introOutroVisible, setIntroOutroVisible] = useState(true);
+  // const [isIntro, setIsIntro] = useState(true);
   // const { stepIndex } = useParams();
 
   // FIRST STEP IS 1 (should be 0 in next version)
@@ -121,13 +121,13 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
   return (
     <>
       <Outlet />
-      <IntroOutro
+      {/* <IntroOutro
         closeModal={() => setIntroOutroVisible(false)}
         endExercise={() => endCurrentActivity()}
         currentActivity={currentActivity}
         visible={introOutroVisible}
         isIntro={isIntro}
-      />
+      /> */}
     </>
     //   <>
     //     <BankingBackground>

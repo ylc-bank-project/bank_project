@@ -24,10 +24,11 @@ const Welcome = ({ currentActivity }) => {
   const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
 
   console.log("In Welcome", { isSignIn, stepIndex, activity });
+  console.log("WOOF", typeof stepIndex, Number(stepIndex) + 1);
 
   return (
     <StyledSignInWrapper>
-      {/* SignIn - 0 */}
+      {/* SignIn stepIndex: 0 */}
       <InfoTip
         tipContent={<div>Click here to sign in</div>}
         tipTarget={
@@ -35,7 +36,7 @@ const Welcome = ({ currentActivity }) => {
             onClick={() => {
               if (isSignIn && stepIndex === "0") {
                 navigate(
-                  `/activity/${activity}/${stepIndex + 1}/${
+                  `/activity/${activity}/${Number(stepIndex) + 1}/${
                     bankPageEnums.BANKHOMEPAGE
                   }/${bankPageEnums.SIGNIN}`
                 );
@@ -55,7 +56,7 @@ const Welcome = ({ currentActivity }) => {
           <SignInButton
             onClick={() => {
               navigate(
-                `/activity/${activity}/${stepIndex + 1}/${
+                `/activity/${activity}/${Number(stepIndex) + 1}/${
                   bankPageEnums.BANKHOMEPAGE
                 }/${bankPageEnums.ACCOUNTREGISTRATION}`
               );

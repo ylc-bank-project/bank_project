@@ -39,15 +39,16 @@ export const BasicTooltip = ({
 }) => {
   const [isOver, hoverProps] = useHover();
 
-  useEffect(() => {
-    scroller.scrollTo("myScrollToElement", {
-      // duration: 1500,
-      // delay: 100,
-      smooth: true,
-      // containerId: "ContainerElementID",
-      offset: -400, // Scrolls to element + 50 pixels down the page
-    });
-  }, []);
+  // TODO: Reinstate Scroll-to
+  // useEffect(() => {
+  //   scroller.scrollTo("myScrollToElement", {
+  //     // duration: 1500,
+  //     // delay: 100,
+  //     smooth: true,
+  //     // containerId: "ContainerElementID",
+  //     offset: -400, // Scrolls to element + 50 pixels down the page
+  //   });
+  // }, []);
 
   const { triggerProps, layerProps, arrowProps, renderLayer } = useLayer({
     isOpen: showTip || (!staticOnly && isOver),
