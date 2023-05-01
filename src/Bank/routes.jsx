@@ -9,11 +9,18 @@ import BankHomepage, {
   Welcome,
 } from "./BankPages/BankHomepage";
 
+/*
+So, what if I want
+BankHomepag
+
+
+*/
+
 export const AllRoutes = ({ currentActivity, getActivity }) => {
   return (
     <Routes>
       <Route
-        path={`/activity/:activity/:stepIndex`}
+        path={`/:activity/:stepIndex`}
         element={getActivity({ currentActivity })}
       >
         <Route

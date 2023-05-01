@@ -1,80 +1,70 @@
-import React, { useState } from "react";
-import NumberFormat from "react-number-format";
-import styled from "styled-components";
-import { BasicTooltip } from "../../Shared/Tip";
-import { Stepper } from "../../Shared/Stepper";
-import { MarginedContainer, SignInButton } from "../../Shared/Layout";
-import IntroOutro from "../../IntroOutro";
-import {
-  BankHeader,
-  BankingBackground,
-  BankingLogo,
-  SignInContainer,
-} from "../../BankPages/BankPageElements";
-// import {
-//   FirstStep,
-//   SecondStep,
-//   ThirdStep,
-//   FourthStep,
-//   FifthStep,
-// } from "./TipSteps";
-// import { RadioButton } from "react-radio-buttons";
+import React, { useContext, useState } from "react";
+// import NumberFormat from "react-number-format";
+// import styled from "styled-components";
+
 import { Outlet, useParams } from "react-router-dom";
+import IntroOutro from "../../IntroOutro";
+import { ModalContext } from "../../context";
 
 // const allSteps = [FirstStep, SecondStep, ThirdStep, FourthStep, FifthStep];
 
-const StyledSignInWrapper = styled.div`
-  grid-column: span 12;
-  text-align: center;
-`;
+// const StyledSignInWrapper = styled.div`
+//   grid-column: span 12;
+//   text-align: center;
+// `;
 
-const InputContainer = styled.div`
-  padding: 15px 0;
-`;
+// const InputContainer = styled.div`
+//   padding: 15px 0;
+// `;
 
-const StyledNumberFormat = styled(NumberFormat)`
-  border: none;
-  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
-  width: 100%;
-  ${(p) => p.theme.fonts.body_text};
-  font-weight: normal;
-  height: 40px;
-  ::placeholder {
-    color: ${(p) => p.theme.colors.ylc_blue};
-  }
-`;
+// const StyledNumberFormat = styled(NumberFormat)`
+//   border: none;
+//   border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+//   width: 100%;
+//   ${(p) => p.theme.fonts.body_text};
+//   font-weight: normal;
+//   height: 40px;
+//   ::placeholder {
+//     color: ${(p) => p.theme.colors.ylc_blue};
+//   }
+// `;
 
-const StyledInput = styled.input`
-  border: none;
-  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
-  width: 100%;
-  ${(p) => p.theme.fonts.body_text};
-  font-weight: normal;
-  height: 40px;
-  ::placeholder {
-    color: ${(p) => p.theme.colors.ylc_blue};
-  }
-`;
+// const StyledInput = styled.input`
+//   border: none;
+//   border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+//   width: 100%;
+//   ${(p) => p.theme.fonts.body_text};
+//   font-weight: normal;
+//   height: 40px;
+//   ::placeholder {
+//     color: ${(p) => p.theme.colors.ylc_blue};
+//   }
+// `;
 
-const PasswordLabel = styled.label`
-  ${(p) => p.theme.fonts.body_text};
-  color: ${(p) => p.theme.colors.ylc_blue};
-  display: flex;
-`;
+// const PasswordLabel = styled.label`
+//   ${(p) => p.theme.fonts.body_text};
+//   color: ${(p) => p.theme.colors.ylc_blue};
+//   display: flex;
+// `;
 
-const RadioInputContainer = styled.span`
-  padding: 10px;
-  width: 50px;
-`;
+// const RadioInputContainer = styled.span`
+//   padding: 10px;
+//   width: 50px;
+// `;
 
-const FullSpan = styled.span`
-  width: 100%;
-  display: block;
-`;
+// const FullSpan = styled.span`
+//   width: 100%;
+//   display: block;
+// `;
 
-const SignIn = ({ currentActivity, endCurrentActivity }) => {
+const SignIn = (props) => {
+  console.log("singin props", props);
+  const { currentActivity, endCurrentActivity } = props;
   // const [introOutroVisible, setIntroOutroVisible] = useState(true);
   // const [isIntro, setIsIntro] = useState(true);
+
+  const { modalState, setModalState } = useContext(ModalContext);
+
   // const { stepIndex } = useParams();
 
   // FIRST STEP IS 1 (should be 0 in next version)
@@ -121,13 +111,15 @@ const SignIn = ({ currentActivity, endCurrentActivity }) => {
   return (
     <>
       <Outlet />
-      {/* <IntroOutro
-        closeModal={() => setIntroOutroVisible(false)}
+      <IntroOutro
+        closeModal={() =>
+          setModalState({ isVisible: false, isIntro: modalState.isIntro })
+        }
         endExercise={() => endCurrentActivity()}
         currentActivity={currentActivity}
-        visible={introOutroVisible}
-        isIntro={isIntro}
-      /> */}
+        visible={modalState.isVisible}
+        isIntro={modalState.isIntro}
+      />
     </>
     //   <>
     //     <BankingBackground>

@@ -6,6 +6,7 @@ import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
 import { AllRoutes } from "./routes";
+import { ModalContext } from "./context";
 
 const App = () => {
   const [activitiesListVisible, setActivitiesListVisible] = useState(true);
@@ -78,11 +79,33 @@ h2 {
 }
 `;
 
-const AppExport = () => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>
-);
+const AppExport = () => {
+  const switchModalState = ({ isVisible, isIntro }) => {
+    setModalContextValue(() => ({
+      modalState: {
+        isVisible,
+        isIntro,
+      },
+      setModalContextValue,
+    }));
+  };
+
+  const [modalContextValue, setModalContextValue] = useState({
+    modalState: {
+      isVisible: false,
+      isIntro: true,
+    },
+    switchModalState,
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <ModalContext.Provider value={modalContextValue}>
+        <App />
+      </ModalContext.Provider>
+    </ThemeProvider>
+  );
+};
 
 export default AppExport;

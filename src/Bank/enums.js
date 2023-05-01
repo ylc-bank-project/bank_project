@@ -12,3 +12,20 @@ export const bankPageEnums = {
   SIGNIN: "SignIn",
   ACCOUNTREGISTRATION: "AccountRegistration",
 };
+
+// ACTIVITIES
+export const signInEnums = {
+  CLICKSIGNIN: "ClieckSignIn",
+  ENTERCARD: "EnterCard",
+  ENTERPW: "EnterPw",
+  NEVERSHARE: "NeverShare",
+  SAVECARD: "SaveCard",
+};
+
+export const signInSteps = [
+  signInEnums.CLICKSIGNIN,
+  signInEnums.ENTERCARD,
+  signInEnums.ENTERPW,
+  signInEnums.NEVERSHARE,
+  signInEnums.SAVECARD,
+];

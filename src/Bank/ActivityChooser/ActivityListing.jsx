@@ -36,7 +36,7 @@ const ActTitle = styled.span`
   }
 `;
 
-// url: /activity/activityName/step/bankPage/../..
+// url: activityName/step/bankPage/../..
 
 const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
   const navigate = useNavigate();
@@ -49,13 +49,13 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
           case activitiesEnums.CREATINGACCOUNT:
             console.log("WOOF");
             setCurrentActivity(activity);
-            navigate(`/activity/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
+            navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
             break;
 
           case activitiesEnums.SIGNIN:
             console.log("MEOW");
             setCurrentActivity(activity);
-            navigate(`/activity/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
+            navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
             break;
 
           default:

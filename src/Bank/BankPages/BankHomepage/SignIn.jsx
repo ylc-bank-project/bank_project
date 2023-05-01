@@ -2,7 +2,12 @@ import React from "react";
 import { BoldDiv, SignInContainer } from "../BankPageElements";
 // import { MarginedContainer } from "../../Shared/Layout";
 import { useNavigate, useParams } from "react-router-dom";
-import { activitiesEnums, bankPageEnums } from "../../enums";
+import {
+  activitiesEnums,
+  bankPageEnums,
+  signInEnums,
+  signInSteps,
+} from "../../enums";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import { BasicTipButton, InfoTip } from "../../Shared/Tip";
@@ -89,12 +94,12 @@ const SignIn = ({ currentActivity }) => {
           buttonDisabled={cardNumber !== "1234567890987654"}
           onClick={() =>
             navigate(
-              `/activity/${activity}/${Number(stepIndex) + 1}/${
+              `/${activity}/${Number(stepIndex) + 1}/${
                 bankPageEnums.BANKHOMEPAGE
               }/${bankPageEnums.SIGNIN}`
             )
           }
-          showTip={isSignIn && stepIndex === "1"}
+          showTip={isSignIn && signInSteps[stepIndex] === signInEnums.ENTERCARD}
           tipTarget={
             <StyledInput
               onChange={(e) => setCardNumber(e.target.value)}
@@ -121,11 +126,11 @@ const SignIn = ({ currentActivity }) => {
               in the password box then select 'Continue'.
             </div>
           }
-          showTip={isSignIn && stepIndex === "2"}
+          showTip={isSignIn && signInSteps[stepIndex] === signInEnums.ENTERPW}
           buttonDisabled={password !== "literacy1234"}
           onClick={() =>
             navigate(
-              `/activity/${activity}/${Number(stepIndex) + 1}/${
+              `/${activity}/${Number(stepIndex) + 1}/${
                 bankPageEnums.BANKHOMEPAGE
               }/${bankPageEnums.SIGNIN}`
             )
@@ -153,13 +158,15 @@ const SignIn = ({ currentActivity }) => {
           }
           onClick={() =>
             navigate(
-              `/activity/${activity}/${Number(stepIndex) + 1}/${
+              `/${activity}/${Number(stepIndex) + 1}/${
                 bankPageEnums.BANKHOMEPAGE
               }/${bankPageEnums.SIGNIN}`
             )
           }
           tipTarget={<FullSpan />}
-          showTip={isSignIn && stepIndex === "3"}
+          showTip={
+            isSignIn && signInSteps[stepIndex] === signInEnums.NEVERSHARE
+          }
         />
       </InputContainer>
       <InputContainer>
@@ -192,7 +199,9 @@ const SignIn = ({ currentActivity }) => {
                 />
               </RadioInputContainer>
             }
-            showTip={isSignIn && stepIndex === "4"}
+            showTip={
+              isSignIn && signInSteps[stepIndex] === signInEnums.SAVECARD
+            }
           />
         </PasswordLabel>
       </InputContainer>

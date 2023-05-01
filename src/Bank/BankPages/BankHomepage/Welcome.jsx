@@ -6,7 +6,12 @@ import React from "react";
 // } from "../BankPageElements";
 // import { MarginedContainer } from "../../Shared/Layout";
 import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
-import { activitiesEnums, bankPageEnums } from "../../enums";
+import {
+  activitiesEnums,
+  bankPageEnums,
+  signInEnums,
+  signInSteps,
+} from "../../enums";
 import styled from "styled-components";
 import { SignInButton } from "../../Shared/Layout";
 import { InfoTip } from "../../Shared/Tip";
@@ -36,7 +41,7 @@ const Welcome = ({ currentActivity }) => {
             onClick={() => {
               if (isSignIn && stepIndex === "0") {
                 navigate(
-                  `/activity/${activity}/${Number(stepIndex) + 1}/${
+                  `/${activity}/${Number(stepIndex) + 1}/${
                     bankPageEnums.BANKHOMEPAGE
                   }/${bankPageEnums.SIGNIN}`
                 );
@@ -46,7 +51,7 @@ const Welcome = ({ currentActivity }) => {
             Sign In
           </SignInButton>
         }
-        showTip={isSignIn && stepIndex === "0"}
+        showTip={isSignIn && signInSteps[stepIndex] === signInEnums.CLICKSIGNIN}
         showButton={false}
       />
       {/* Register - 0 */}
@@ -56,7 +61,7 @@ const Welcome = ({ currentActivity }) => {
           <SignInButton
             onClick={() => {
               navigate(
-                `/activity/${activity}/${Number(stepIndex) + 1}/${
+                `/${activity}/${Number(stepIndex) + 1}/${
                   bankPageEnums.BANKHOMEPAGE
                 }/${bankPageEnums.ACCOUNTREGISTRATION}`
               );
