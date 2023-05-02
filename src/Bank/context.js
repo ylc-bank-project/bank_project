@@ -1,9 +1,14 @@
 import { createContext } from "react";
 
-export const ModalContext = createContext({
-  modalState: {
+export const IntroModalContext = createContext({
+  introModalState: {
     isVisible: false,
     isIntro: true,
   },
-  setModalState: () => {},
+  setIntroContext: () => {},
+});
+
+export const ActivityModalContext = createContext({
+  activityModalIsVisible: false,
+  setActivityContext: () => {},
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
 import AllActivities from "./Activities";
@@ -6,15 +6,23 @@ import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
 import { AllRoutes } from "./routes";
-import { ModalContext } from "./context";
+import { ActivityModalContext, IntroModalContext } from "./context";
+import { useLocation } from "react-router-dom";
 
 const App = () => {
-  const [activitiesListVisible, setActivitiesListVisible] = useState(true);
   const [currentActivity, setCurrentActivity] = useState(undefined);
+  const location = useLocation();
+
+  const { activityModalIsVisible, setActivityContext } =
+    useContext(ActivityModalContext);
+
+  if (location.pathname === "/" && !activityModalIsVisible) {
+    setActivityContext(true);
+  }
 
   const endCurrentActivity = () => {
     setCurrentActivity(undefined);
-    setActivitiesListVisible(true);
+    setActivityContext(true);
   };
 
   const getActivity = ({ currentActivity }) => {
@@ -35,28 +43,28 @@ const App = () => {
         currentActivity !== activitiesEnums.CREATINGACCOUNT &&
         Object.values(activitiesEnums).some((act) => act === currentActivity) &&
         getActivity({ currentActivity })}
-      {!currentActivity && activitiesListVisible ? (
+      {!currentActivity && activityModalIsVisible ? (
         <span />
       ) : (
         <AllActivitiesButton
           onClick={() => {
-            if (currentActivity && activitiesListVisible) {
-              setActivitiesListVisible(false);
+            if (currentActivity && activityModalIsVisible) {
+              setActivityContext(false);
             } else {
-              setActivitiesListVisible(true);
+              setActivityContext(true);
             }
           }}
         >
-          {currentActivity && activitiesListVisible
+          {currentActivity && activityModalIsVisible
             ? "Back To Activity"
             : "Show All Activities"}
         </AllActivitiesButton>
       )}
       <ActivityChooser
         closeModal={() => {
-          setActivitiesListVisible(false);
+          setActivityContext(false);
         }}
-        visible={activitiesListVisible}
+        visible={activityModalIsVisible}
         setCurrentActivity={setCurrentActivity}
       />
     </PageContainer>
@@ -80,30 +88,24 @@ h2 {
 `;
 
 const AppExport = () => {
-  const switchModalState = ({ isVisible, isIntro }) => {
-    setModalContextValue(() => ({
-      modalState: {
-        isVisible,
-        isIntro,
-      },
-      setModalContextValue,
-    }));
-  };
-
-  const [modalContextValue, setModalContextValue] = useState({
-    modalState: {
-      isVisible: false,
-      isIntro: true,
-    },
-    switchModalState,
+  // CONTEXT PROVIDERS
+  const [introModalState, setIntroContext] = useState({
+    isVisible: false,
+    isIntro: true,
   });
+  const introContextValue = { introModalState, setIntroContext };
+
+  const [activityModalIsVisible, setActivityContext] = useState(false);
+  const activityContextValue = { activityModalIsVisible, setActivityContext };
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <ModalContext.Provider value={modalContextValue}>
-        <App />
-      </ModalContext.Provider>
+      <ActivityModalContext.Provider value={activityContextValue}>
+        <IntroModalContext.Provider value={introContextValue}>
+          <App />
+        </IntroModalContext.Provider>
+      </ActivityModalContext.Provider>
     </ThemeProvider>
   );
 };

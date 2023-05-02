@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BoldDiv, SignInContainer } from "../BankPageElements";
-// import { MarginedContainer } from "../../Shared/Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   activitiesEnums,
@@ -10,9 +9,9 @@ import {
 } from "../../enums";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
-import { BasicTipButton, InfoTip } from "../../Shared/Tip";
+import { InfoTip } from "../../Shared/Tip";
 import { useState } from "react";
-// import activitySteps from "../../activitySteps";
+import { IntroModalContext } from "../../context";
 
 const InputContainer = styled.div`
   padding: 15px 0;
@@ -58,26 +57,20 @@ const FullSpan = styled.span`
   display: block;
 `;
 
-const SignIn = ({ currentActivity }) => {
+const SignIn = () => {
   const { activity, stepIndex } = useParams();
   const [cardNumber, setCardNumber] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [saveToggled, setSaveToggled] = useState(false);
   const navigate = useNavigate();
+  const { introModalState, setIntroContext } = useContext(IntroModalContext);
 
-  console.log({ cardNumber }, typeof cardNumber);
-
-  // should be able to load the activity from the activitySteps
-  // const currentSteps = activitySteps[activity];
-
-  const isCreateAccount = currentActivity === activitiesEnums.CREATINGACCOUNT;
-  const isSignIn = currentActivity === activitiesEnums.SIGNIN;
+  const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
+  const isSignIn = activity === activitiesEnums.SIGNIN;
 
   return (
-    // <div>This is the Sign-In container</div>
     <SignInContainer>
       <InputContainer>
-        {/* SignIn stepIndex: 1 */}
         <InfoTip
           tipContentStyles={{ overflow: "scroll" }}
           maxHeight={500}
@@ -87,11 +80,13 @@ const SignIn = ({ currentActivity }) => {
               {<br />}
               If you don’t have a card, you can use the number you were given at
               the bank or a username to log into online banking. {<br />}
-              For this activity, enter: <BoldDiv>1234567890987654</BoldDiv> in
-              the card number box then select ‘Continue’.
+              For this activity, enter: <BoldDiv>
+                1234 5678 9098 7654
+              </BoldDiv>{" "}
+              in the card number box then select ‘Continue’.
             </div>
           }
-          buttonDisabled={cardNumber !== "1234567890987654"}
+          buttonDisabled={cardNumber !== "1234 5678 9098 7654"}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -101,9 +96,9 @@ const SignIn = ({ currentActivity }) => {
           }
           showTip={isSignIn && signInSteps[stepIndex] === signInEnums.ENTERCARD}
           tipTarget={
-            <StyledInput
+            <StyledNumberFormat
               onChange={(e) => setCardNumber(e.target.value)}
-              type="text"
+              format="#### #### #### ####"
               placeholder={"Card Number"}
             />
           }
@@ -184,12 +179,9 @@ const SignIn = ({ currentActivity }) => {
               </div>
             }
             buttonDisabled={!saveToggled}
-            onClick={() =>
-              //
-              console.log(
-                "Here we need to set back to the `IsIntro(false)` and `setIntroOutroVisible(true)`"
-              )
-            }
+            onClick={() => {
+              setIntroContext({ isVisible: true, isIntro: false });
+            }}
             tipTarget={
               <RadioInputContainer>
                 <input

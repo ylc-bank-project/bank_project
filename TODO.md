@@ -1,6 +1,9 @@
 CURRENT
-- Question: Should I put the IntroOutro modal togggling in the parent component? Probably yes. This might be a good use of context. And it may actually want to sit in the exercise component. Allowing me to have an exercise-specific state component might be simpler.
-  - Get this working
+- OK, sign-in activity seems to work perfectly. I moved the activitiesModalState into a context object. Simpler for separation of concerns.
+- I think next would be to get the register account activity working, without styling.
+- Then after that would be to look at which activities (more than one?) use the same components, so I can begin separating them into shared BankPages.
+- Feels exciting, because the larger heavy-lifting seems to be sorted out, for the most part.
+
 - Question: What is the simplest thing to do to ensure that the other activities also use routing? I don't necessarily need to move their components around if they aren't shared.
   - Routing-based components are different, and there will need to be a reorganization of the component structure.
   - For this it's worth understanding URL parameters a bit better.

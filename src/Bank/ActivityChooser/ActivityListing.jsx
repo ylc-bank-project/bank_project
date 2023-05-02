@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { activitiesEnums } from "../enums";
 import { ActButton as ActButtonImport } from "../Shared/Layout";
 import { mq } from "../Global";
 import { useNavigate } from "react-router-dom";
 import { bankPageEnums } from "../enums";
+import { IntroModalContext } from "../context";
 
 const ActSectionHeader = styled.h2`
   ${(p) => p.theme.fonts.small_header}
@@ -39,12 +40,16 @@ const ActTitle = styled.span`
 // url: activityName/step/bankPage/../..
 
 const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
+  const { introModalState, setIntroContext } = useContext(IntroModalContext);
   const navigate = useNavigate();
 
   return (
     <ActButtonImport
       onClick={() => {
-        console.log("ON CLICK", activity);
+        setIntroContext({
+          isVisible: true,
+          isIntro: introModalState.isIntro,
+        });
         switch (activity) {
           case activitiesEnums.CREATINGACCOUNT:
             console.log("WOOF");
