@@ -39,7 +39,7 @@ const ActTitle = styled.span`
 
 // url: activityName/step/bankPage/../..
 
-const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
+const ActButton = ({ activity, children, closeModal }) => {
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
   const navigate = useNavigate();
 
@@ -52,20 +52,15 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
         });
         switch (activity) {
           case activitiesEnums.CREATINGACCOUNT:
-            console.log("WOOF");
-            setCurrentActivity(activity);
             navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
             break;
 
           case activitiesEnums.SIGNIN:
-            console.log("MEOW");
-            setCurrentActivity(activity);
             navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
             break;
 
           default:
             navigate(`/`);
-            setCurrentActivity(activity);
             break;
         }
         closeModal();
@@ -76,51 +71,49 @@ const ActButton = ({ activity, children, closeModal, setCurrentActivity }) => {
   );
 };
 
-const Activity = ({ closeModal, setCurrentActivity, activity, title }) => (
+const Activity = ({ closeModal, activity, title }) => (
   <ActWrapper>
     <ActTitle>{title}</ActTitle>
-    <ActButton {...{ closeModal, setCurrentActivity, activity }}>
-      Start
-    </ActButton>
+    <ActButton {...{ closeModal, activity }}>Start</ActButton>
   </ActWrapper>
 );
 
-export const ActivityList = ({ closeModal, setCurrentActivity }) => {
+export const ActivityList = ({ closeModal }) => {
   return (
     <>
       <ActSectionHeader>Accessing Your Account</ActSectionHeader>
       <Activity
         title={"Creating an account"}
         activity={activitiesEnums.CREATINGACCOUNT}
-        {...{ closeModal, setCurrentActivity }}
+        {...{ closeModal }}
       />
       <Activity
         title={"Signing in"}
         activity={activitiesEnums.SIGNIN}
-        {...{ closeModal, setCurrentActivity }}
+        {...{ closeModal }}
       />
       <ActSectionHeader>Account Details</ActSectionHeader>
       <Activity
         title={"Online account overview"}
         activity={activitiesEnums.ACCOUNTOVERVIEW}
-        {...{ closeModal, setCurrentActivity }}
+        {...{ closeModal }}
       />
       <ActSectionHeader>Making Payments</ActSectionHeader>
       <Activity
         title={"Pay a new company for the first time"}
         activity={activitiesEnums.MAKINGPAYMENTS}
-        {...{ closeModal, setCurrentActivity }}
+        {...{ closeModal }}
       />
       <ActSectionHeader>Transferring Funds</ActSectionHeader>
       <Activity
         title={"Transfer funds between accounts"}
         activity={activitiesEnums.TRANSFERFUNDS}
-        {...{ closeModal, setCurrentActivity }}
+        {...{ closeModal }}
       />
       <Activity
         title={"Send an e-transfer to someone"}
         activity={activitiesEnums.ETRANSFER}
-        {...{ closeModal, setCurrentActivity }}
+        {...{ closeModal }}
       />
     </>
   );

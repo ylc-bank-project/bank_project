@@ -1,11 +1,5 @@
 import React from "react";
-// import {
-//   BankHeader,
-//   BankingBackground,
-//   BankingLogo,
-// } from "../BankPageElements";
-// import { MarginedContainer } from "../../Shared/Layout";
-import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   activitiesEnums,
   bankPageEnums,
@@ -27,9 +21,6 @@ const Welcome = ({ currentActivity }) => {
 
   const isSignIn = activity === activitiesEnums.SIGNIN;
   const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
-
-  console.log("In Welcome", { isSignIn, stepIndex, activity });
-  console.log("WOOF", typeof stepIndex, Number(stepIndex) + 1);
 
   return (
     <StyledSignInWrapper>

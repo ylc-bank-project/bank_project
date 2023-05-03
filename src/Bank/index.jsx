@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import ActivityChooser from "./ActivityChooser";
-import AllActivities from "./Activities";
-import { activitiesEnums } from "./enums";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
 import { AllRoutes } from "./routes";
@@ -10,7 +8,6 @@ import { ActivityModalContext, IntroModalContext } from "./context";
 import { useLocation } from "react-router-dom";
 
 const App = () => {
-  const [currentActivity, setCurrentActivity] = useState(undefined);
   const location = useLocation();
 
   const { activityModalIsVisible, setActivityContext } =
@@ -20,52 +17,25 @@ const App = () => {
     setActivityContext(true);
   }
 
-  const endCurrentActivity = () => {
-    setCurrentActivity(undefined);
-    setActivityContext(true);
-  };
-
-  const getActivity = ({ currentActivity }) => {
-    let Act = AllActivities[currentActivity];
-    return Act ? (
-      <Act
-        endCurrentActivity={endCurrentActivity}
-        currentActivity={currentActivity}
-      />
-    ) : undefined;
-  };
-
   return (
     <PageContainer>
-      <AllRoutes {...{ currentActivity, getActivity }} />
-
-      {currentActivity &&
-        currentActivity !== activitiesEnums.CREATINGACCOUNT &&
-        Object.values(activitiesEnums).some((act) => act === currentActivity) &&
-        getActivity({ currentActivity })}
-      {!currentActivity && activityModalIsVisible ? (
-        <span />
-      ) : (
-        <AllActivitiesButton
-          onClick={() => {
-            if (currentActivity && activityModalIsVisible) {
-              setActivityContext(false);
-            } else {
-              setActivityContext(true);
-            }
-          }}
-        >
-          {currentActivity && activityModalIsVisible
-            ? "Back To Activity"
-            : "Show All Activities"}
-        </AllActivitiesButton>
-      )}
+      <AllRoutes />
+      <AllActivitiesButton
+        onClick={() => {
+          if (activityModalIsVisible) {
+            setActivityContext(false);
+          } else {
+            setActivityContext(true);
+          }
+        }}
+      >
+        {activityModalIsVisible ? "Back To Activity" : "Show All Activities"}
+      </AllActivitiesButton>
       <ActivityChooser
         closeModal={() => {
           setActivityContext(false);
         }}
         visible={activityModalIsVisible}
-        setCurrentActivity={setCurrentActivity}
       />
     </PageContainer>
   );
@@ -88,13 +58,14 @@ h2 {
 `;
 
 const AppExport = () => {
-  // CONTEXT PROVIDERS
+  // Intro Modal Context
   const [introModalState, setIntroContext] = useState({
     isVisible: false,
     isIntro: true,
   });
   const introContextValue = { introModalState, setIntroContext };
 
+  // Activity Modal Context
   const [activityModalIsVisible, setActivityContext] = useState(false);
   const activityContextValue = { activityModalIsVisible, setActivityContext };
 

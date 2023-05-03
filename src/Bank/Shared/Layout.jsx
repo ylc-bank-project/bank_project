@@ -42,3 +42,19 @@ export const SignInButton = styled.button`
   ${(p) => p.theme.fonts.small_header}
   cursor: pointer;
 `;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  padding: 20px 0 0 0;
+  text-align: center;
+`;
+
+export const NeutralBankingButton = styled.button`
+  background-color: ${(p) => p.background || "white"};
+  color: ${(p) => p.color || p.theme.colors.ylc_blue};
+  width: 100px;
+  height: 40px;
+  border-radius: 100px;
+  ${(p) => p.theme.fonts.body_text_bold}
+  cursor: pointer;
+`;

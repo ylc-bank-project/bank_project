@@ -5,6 +5,31 @@ import styled from "styled-components";
 import { MarginedContainer } from "../Shared/Layout";
 import { BasicTooltip, InfoTip } from "../Shared/Tip";
 import { mq } from "../Global";
+import NumberFormat from "react-number-format";
+
+export const SubTitle = styled.div`
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-family: Poppins;
+  ${(p) => p.theme.fonts.small_header}
+  color: ${(p) => p.theme.colors.ylc_blue};
+  ${mq[1]} {
+    font-size: 16px;
+  }
+`;
+
+export const StyledInput = styled.input`
+  border: none;
+  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  width: 100%;
+  ${(p) => p.theme.fonts.body_text};
+  font-weight: normal;
+  height: 40px;
+  ::placeholder {
+    color: ${(p) => p.theme.colors.ylc_blue};
+  }
+`;
 
 export const Space = styled.span`
   width: 10px;
@@ -124,7 +149,7 @@ export const BankingHeader = () => {
   );
 };
 
-export const SignInContainer = styled.div`
+export const AuthContainer = styled.div`
   background: white;
   grid-column-start: 4;
   grid-column-end: 10;
@@ -444,4 +469,16 @@ export const BankHeader = styled.div`
   ${(p) => p.theme.fonts.big_header}
   color: white;
   padding: 0 0 40px;
+`;
+
+export const StyledNumberFormat = styled(NumberFormat)`
+  border: none;
+  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  width: 100%;
+  ${(p) => p.theme.fonts.body_text};
+  font-weight: normal;
+  height: 40px;
+  ::placeholder {
+    color: ${(p) => p.theme.colors.ylc_blue};
+  }
 `;

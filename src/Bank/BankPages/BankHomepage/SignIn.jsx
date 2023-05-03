@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { BoldDiv, SignInContainer } from "../BankPageElements";
+import {
+  BoldDiv,
+  AuthContainer,
+  SubTitle,
+  StyledInput,
+} from "../BankPageElements";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   activitiesEnums,
@@ -8,37 +13,13 @@ import {
   signInSteps,
 } from "../../enums";
 import styled from "styled-components";
-import NumberFormat from "react-number-format";
+import { StyledNumberFormat } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import { useState } from "react";
 import { IntroModalContext } from "../../context";
 
 const InputContainer = styled.div`
   padding: 15px 0;
-`;
-
-const StyledNumberFormat = styled(NumberFormat)`
-  border: none;
-  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
-  width: 100%;
-  ${(p) => p.theme.fonts.body_text};
-  font-weight: normal;
-  height: 40px;
-  ::placeholder {
-    color: ${(p) => p.theme.colors.ylc_blue};
-  }
-`;
-
-const StyledInput = styled.input`
-  border: none;
-  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
-  width: 100%;
-  ${(p) => p.theme.fonts.body_text};
-  font-weight: normal;
-  height: 40px;
-  ::placeholder {
-    color: ${(p) => p.theme.colors.ylc_blue};
-  }
 `;
 
 const PasswordLabel = styled.label`
@@ -64,12 +45,11 @@ const SignIn = () => {
   const [saveToggled, setSaveToggled] = useState(false);
   const navigate = useNavigate();
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
-
-  const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
   const isSignIn = activity === activitiesEnums.SIGNIN;
 
   return (
-    <SignInContainer>
+    <AuthContainer>
+      <SubTitle>Sign In</SubTitle>
       <InputContainer>
         <InfoTip
           tipContentStyles={{ overflow: "scroll" }}
@@ -180,6 +160,7 @@ const SignIn = () => {
             }
             buttonDisabled={!saveToggled}
             onClick={() => {
+              console.log("should go to next step");
               setIntroContext({ isVisible: true, isIntro: false });
             }}
             tipTarget={
@@ -197,7 +178,7 @@ const SignIn = () => {
           />
         </PasswordLabel>
       </InputContainer>
-    </SignInContainer>
+    </AuthContainer>
   );
 };
 

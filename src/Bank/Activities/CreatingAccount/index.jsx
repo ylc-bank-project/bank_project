@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import IntroOutro from "../../IntroOutro";
+import { Outlet } from "react-router-dom";
 
-import { Outlet, useParams } from "react-router-dom";
-
-const CreatingAccount = ({ currentActivity, endCurrentActivity }) => {
-  const [introOutroVisible, setIntroOutroVisible] = useState(true);
-  const [isIntro, setIsIntro] = useState(true);
-  const { stepIndex } = useParams();
-  console.log({ currentActivity, stepIndex });
-
+const CreatingAccount = () => {
   return (
     <>
       <Outlet />
-      <IntroOutro
-        closeModal={() => setIntroOutroVisible(false)}
-        endExercise={() => endCurrentActivity()}
-        currentActivity={currentActivity}
-        visible={introOutroVisible}
-        isIntro={isIntro}
-      />
+      <IntroOutro />
     </>
   );
 };

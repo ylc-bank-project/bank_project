@@ -69,7 +69,7 @@ const HeaderLogo = styled.img`
   overflow: hidden;
 `;
 
-const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
+const ActivityChooser = ({ visible, closeModal }) => {
   const ActivityHeader = () => (
     <div>
       <LogoContainer>
@@ -112,7 +112,7 @@ const ActivityChooser = ({ visible, closeModal, setCurrentActivity }) => {
         <ResponsiveContent>
           <ActChooserBody>
             <ActivityHeader />
-            <ActivityList {...{ closeModal, setCurrentActivity }} />
+            <ActivityList {...{ closeModal }} />
           </ActChooserBody>
         </ResponsiveContent>
       )}

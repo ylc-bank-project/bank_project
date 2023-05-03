@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ModalOverlay, ResponsiveContent } from "../Modal";
 import styled from "styled-components";
 import introOutroCopy from "../introOutroCopy";
 import logo from "../assets/dark_flake.png";
 import { ActButton } from "../Shared/Layout";
+import { useParams } from "react-router-dom";
+import { ActivityModalContext, IntroModalContext } from "../context";
 
 const LargerSpace = styled.span`
   width: 30px;
@@ -34,17 +36,24 @@ const ButtonSection = styled.div`
   justify-content: center;
 `;
 
-const IntroOutro = ({
-  visible,
-  closeModal,
-  currentActivity,
-  isIntro,
-  endExercise,
-  copy,
-}) => {
+const IntroOutro = ({ copy }) => {
+  let { isVisible, setActivityContext } = useContext(ActivityModalContext);
+  let { introModalState, setIntroContext } = useContext(IntroModalContext);
+  let { activity } = useParams();
+
+  const visible = introModalState.isVisible;
+  const isIntro = introModalState.isIntro;
+
+  const closeModal = () => {
+    setIntroContext({
+      isVisible: false,
+      isIntro: introModalState.isIntro,
+    });
+  };
+
   const text =
     copy ||
-    introOutroCopy?.[currentActivity]?.[isIntro ? "intro" : "outro"] ||
+    introOutroCopy?.[activity]?.[isIntro ? "intro" : "outro"] ||
     "copy not available";
   return (
     <ModalOverlay
@@ -66,7 +75,12 @@ const IntroOutro = ({
               {isIntro ? (
                 <ActButton onClick={() => closeModal()}>Continue</ActButton>
               ) : (
-                <ActButton onClick={() => endExercise()}>
+                <ActButton
+                  onClick={() => {
+                    setActivityContext(true);
+                    setIntroContext({ isVisible: false, isIntro: true });
+                  }}
+                >
                   Start A New Activity
                 </ActButton>
               )}
