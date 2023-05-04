@@ -9,7 +9,6 @@ import {
   ContinueButton,
   ContinueButtonContainer,
 } from "../../BankPages/BankPageElements";
-// import { SignInButton } from "../../Shared/Layout";
 
 export const AddVerifyPayee = ({
   isVerifyPayee,
