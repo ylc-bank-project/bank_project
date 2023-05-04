@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicTooltip } from "./Tip";
-import { mq } from "../Global";
+import { mq } from "../../Global";
 
 const StyledAccountBlock = styled.div`
   display: flex;
@@ -79,8 +78,22 @@ const AllAccounts = ({
   setStep,
   CheckingTip,
 }) => {
-  const CheckingBlock = (
-    <AccountBlock
+  return (
+    <AllAccountsContainer>
+      <BankAccounts>Bank Accounts</BankAccounts>
+
+      {/* const CheckingTip = (child) => (
+    <BasicTooltip
+      content={"Click on ‘Chequing’."}
+      showTip={allSteps[step] === "check"}
+      staticOnly={true}
+      placement="left-center"
+    >
+      {child}
+    </BasicTooltip>
+  ); */}
+
+      {/* <AccountBlock
       title={"Chequing"}
       balance={"$18,023.00"}
       accNumber={"5522"}
@@ -88,14 +101,8 @@ const AllAccounts = ({
         setIsChecking(true);
         allSteps[step] === check && setStep(step + 1);
       }}
-    />
-  );
+    /> */}
 
-  return (
-    <AllAccountsContainer>
-      <BankAccounts>Bank Accounts</BankAccounts>
-
-      {CheckingTip ? CheckingTip(CheckingBlock) : <CheckingBlock />}
       <AccountBlock
         title={"Savings"}
         balance={"$12,115.50"}

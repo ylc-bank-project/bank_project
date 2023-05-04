@@ -10,7 +10,8 @@ import BankHomepage, {
   CreateEmail,
 } from "./BankPages/BankHomepage";
 import NotFound from "./NotFound";
-import { bankPageEnums } from "./enums";
+import { accountPagesEnums, bankPageEnums } from "./enums";
+import Accounts, { AllAccounts, Checking } from "./BankPages/Accounts/";
 
 function Activity(props) {
   let { activity } = useParams();
@@ -34,6 +35,10 @@ export const AllRoutes = () => {
             element={<PhoneVerification />}
           />
           <Route path={bankPageEnums.CREATEEMAIL} element={<CreateEmail />} />
+        </Route>
+        <Route path={accountPagesEnums.ACCOUNTS} element={<Accounts />}>
+          <Route path="" element={<AllAccounts />} />
+          <Route path={accountPagesEnums.CHECKING} element={<Checking />} />
         </Route>
       </Route>
     </Routes>

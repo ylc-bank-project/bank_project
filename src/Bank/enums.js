@@ -1,3 +1,4 @@
+// ACTIVITIES
 export const activitiesEnums = {
   TRANSFERFUNDS: "TransferFunds",
   ETRANSFER: "ETransfer",
@@ -7,6 +8,7 @@ export const activitiesEnums = {
   MAKINGPAYMENTS: "MakingPayments",
 };
 
+// PAGES
 export const bankPageEnums = {
   BANKHOMEPAGE: "BankHomepage",
   SIGNIN: "SignIn",
@@ -15,7 +17,12 @@ export const bankPageEnums = {
   CREATEEMAIL: "CreateEmail",
 };
 
-// ACTIVITIES
+export const accountPagesEnums = {
+  ACCOUNTS: "Accounts",
+  ALLACCOUNTS: "AllAccounts",
+  CHECKING: "Checking",
+};
+
 // SIGNIN
 export const signInEnums = {
   CLICKSIGNIN: "ClieckSignIn",
@@ -56,4 +63,46 @@ export const createSteps = [
   createEnums.ENTEREMAIL,
   createEnums.CREATEPASSWORD,
   createEnums.REENTERPW,
+];
+
+// ACCOUNT OVERVIEW
+export const overviewEnums = {
+  check: "check",
+  balance: "balance",
+  accountInfo: "accountInfo",
+  hold: "hold",
+  overdraft: "overdraft",
+  available: "available",
+  institution: "institution",
+  transit: "transit",
+  accountNumber: "accountNumber",
+  transactions: "transactions",
+  wellRead: "wellRead",
+  taco: "taco",
+  internetDeposit: "internetDeposit",
+  preAuth: "preAuth",
+  totalDebits: "totalDebits",
+  credits: "credits",
+  creditsDebits: "creditsDebits",
+};
+
+// All steps array for sequence
+export const overviewSteps = [
+  overviewEnums.check,
+  overviewEnums.balance,
+  overviewEnums.accountInfo,
+  overviewEnums.hold,
+  overviewEnums.overdraft,
+  overviewEnums.available,
+  overviewEnums.institution,
+  overviewEnums.transit,
+  overviewEnums.accountNumber,
+  overviewEnums.transactions,
+  overviewEnums.wellRead,
+  overviewEnums.taco,
+  overviewEnums.internetDeposit,
+  overviewEnums.preAuth,
+  overviewEnums.totalDebits,
+  overviewEnums.credits,
+  overviewEnums.creditsDebits,
 ];
