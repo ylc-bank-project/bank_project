@@ -4,7 +4,7 @@ import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
 import { MarginedContainer } from "../../Shared/Layout";
 import IntroOutro from "../../IntroOutro";
-import AllAccounts from "../../Shared/AllAccounts";
+import { AllAccounts } from "../../BankPages/Accounts";
 import { PaymentMethods } from "./PaymentMethods";
 import { ItemListing } from "../../BankPages/BankPageElements";
 import { AddVerifyPayee } from "./AddVerifyPayee";

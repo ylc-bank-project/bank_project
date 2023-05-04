@@ -5,7 +5,7 @@ import {
   SubTitle,
   StyledInput,
 } from "../BankPageElements";
-import { redirect, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   activitiesEnums,
   bankPageEnums,
@@ -40,10 +40,10 @@ const FullSpan = styled.span`
 
 const SignIn = () => {
   const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [saveToggled, setSaveToggled] = useState(false);
-  // const navigate = useNavigate();
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
   const isSignIn = activity === activitiesEnums.SIGNIN;
 
@@ -68,7 +68,7 @@ const SignIn = () => {
           }
           buttonDisabled={cardNumber !== "1234 5678 9098 7654"}
           onClick={() =>
-            redirect(
+            navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
                 bankPageEnums.BANKHOMEPAGE
               }/${bankPageEnums.SIGNIN}`
@@ -104,7 +104,7 @@ const SignIn = () => {
           showTip={isSignIn && signInSteps[stepIndex] === signInEnums.ENTERPW}
           buttonDisabled={password !== "literacy1234"}
           onClick={() =>
-            redirect(
+            navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
                 bankPageEnums.BANKHOMEPAGE
               }/${bankPageEnums.SIGNIN}`
@@ -132,7 +132,7 @@ const SignIn = () => {
             </div>
           }
           onClick={() =>
-            redirect(
+            navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
                 bankPageEnums.BANKHOMEPAGE
               }/${bankPageEnums.SIGNIN}`

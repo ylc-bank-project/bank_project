@@ -1,5 +1,5 @@
 import React from "react";
-import { redirect, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   activitiesEnums,
   bankPageEnums,
@@ -17,6 +17,7 @@ const StyledSignInWrapper = styled.div`
 
 const Welcome = () => {
   const { stepIndex, activity } = useParams();
+  const navigate = useNavigate();
   const isSignIn = activity === activitiesEnums.SIGNIN;
   const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
 
@@ -29,7 +30,7 @@ const Welcome = () => {
           <SignInButton
             onClick={() => {
               if (isSignIn && stepIndex === "0") {
-                redirect(
+                navigate(
                   `/${activity}/${Number(stepIndex) + 1}/${
                     bankPageEnums.BANKHOMEPAGE
                   }/${bankPageEnums.SIGNIN}`
@@ -49,7 +50,7 @@ const Welcome = () => {
         tipTarget={
           <SignInButton
             onClick={() => {
-              redirect(
+              navigate(
                 `/${activity}/${Number(stepIndex) + 1}/${
                   bankPageEnums.BANKHOMEPAGE
                 }/${bankPageEnums.ACCOUNTREGISTRATION}`

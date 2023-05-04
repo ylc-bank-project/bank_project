@@ -1,7 +1,8 @@
 CURRENT
-- CreateAccount working
-- Then after that would be to look at which activities (more than one?) use the same components, so I can begin separating them into shared BankPages.
-
+- Refine AccountOverview activity
+  - Get scroll-to working. Probably on first render?
+  - fix the "Transactions" and "Account Details" buttons
+- Move onto the next activity
 
 - Question: What is the simplest thing to do to ensure that the other activities also use routing? I don't necessarily need to move their components around if they aren't shared.
   - Routing-based components are different, and there will need to be a reorganization of the component structure.

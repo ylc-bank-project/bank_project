@@ -20,7 +20,9 @@ export const bankPageEnums = {
 export const accountPagesEnums = {
   ACCOUNTS: "Accounts",
   ALLACCOUNTS: "AllAccounts",
-  CHECKING: "Checking",
+  CHECKINGHOME: "CheckingHome",
+  CHECKINGINFO: "CheckingInfo",
+  CHECKINGTRANSACTIONS: "CheckingTransactions",
 };
 
 // SIGNIN
@@ -97,6 +99,7 @@ export const overviewSteps = [
   overviewEnums.institution,
   overviewEnums.transit,
   overviewEnums.accountNumber,
+  // TODO: Where does transactions start?
   overviewEnums.transactions,
   overviewEnums.wellRead,
   overviewEnums.taco,

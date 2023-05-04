@@ -16,7 +16,6 @@ const Accounts = () => {
       <CleanBackground>
         <MarginedContainer>
           <BankingContainer>
-            <div>Accounts Main Page</div>
             <Outlet />
           </BankingContainer>
         </MarginedContainer>

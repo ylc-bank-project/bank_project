@@ -1,7 +1,8 @@
 import Accounts from "./Accounts";
 import AllAccounts from "./AllAccounts";
-import Checking from "./Checking/Checking";
+import { CheckingInfo, CheckingTransactions } from "./Checking";
+import CheckingHome from "./CheckingHome";
 
-export { AllAccounts, Checking };
+export { AllAccounts, CheckingHome, CheckingInfo, CheckingTransactions };
 
 export default Accounts;

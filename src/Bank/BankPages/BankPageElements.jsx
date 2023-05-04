@@ -3,9 +3,11 @@ import logo from "../assets/dark_flake.png";
 import blackLogo from "../assets/dark_flake_black.png";
 import styled from "styled-components";
 import { MarginedContainer } from "../Shared/Layout";
-import { BasicTooltip, InfoTip } from "../Shared/Tip";
+import { InfoTip } from "../Shared/Tip";
 import { mq } from "../Global";
 import NumberFormat from "react-number-format";
+import { useNavigate, useParams } from "react-router-dom";
+import { accountPagesEnums, overviewEnums, overviewSteps } from "../enums";
 
 export const SubTitle = styled.div`
   width: 100%;
@@ -277,57 +279,73 @@ const TransButton = styled.button`
   }
 `;
 
-export const TransactionsDetails = ({
-  transactionsClick,
-  detailsClick,
-  transactionsDisabled,
-  detailsDisabled,
-  transactionsActive,
-  detailsActive,
-  allSteps,
-  step,
-  transactions,
-  accountInfo,
-}) => {
+export const TransactionsDetails = () => {
+  const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
   return (
     <TransDetailsSection>
-      <TransButton
-        onClick={() => transactionsClick()}
-        disabled={transactionsDisabled}
-        isActive={transactionsActive}
-      >
-        <BasicTooltip
-          content={
-            <>
-              <div>
-                Transactions represent the money being spent (debited) and the
-                money being added (credited) to your account.
-              </div>
-              {<br />}
-              <div>Click here to go to your transactions.</div>
-            </>
-          }
-          showTip={allSteps[step] === transactions}
-          staticOnly={true}
-        >
-          Transactions
-        </BasicTooltip>
-      </TransButton>
-      <TransButton
-        onClick={() => detailsClick()}
-        disabled={detailsDisabled}
-        isActive={detailsActive}
-      >
-        <BasicTooltip
-          content={
-            "Click here to go to Account Details to view all the details of your bank account."
-          }
-          showTip={allSteps[step] === accountInfo}
-          staticOnly={true}
-        >
-          Account Details
-        </BasicTooltip>
-      </TransButton>
+      <InfoTip
+        tipContent={
+          <div>
+            <div>
+              Transactions represent the money being spent (debited) and the
+              money being added (credited) to your account.
+            </div>
+            {<br />}
+            <div>Click here to go to your transactions.</div>
+          </div>
+        }
+        showButton={false}
+        showTip={overviewSteps[stepIndex] === overviewEnums.transactions}
+        tipTarget={
+          <TransButton
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }/${accountPagesEnums.CHECKINGHOME}/${
+                  accountPagesEnums.CHECKINGTRANSACTIONS
+                }`
+              );
+            }}
+            disabled={overviewSteps[stepIndex] !== overviewEnums.transactions}
+            // isActive={transactionsActive}
+            // TODO: Programmatically check if we are in the transactions section
+            isActive={true}
+          >
+            Transactions
+          </TransButton>
+        }
+      />
+      <InfoTip
+        tipContent={
+          <div>
+            Click here to go to Account Details to view all the details of your
+            bank account.
+          </div>
+        }
+        showButton={false}
+        showTip={overviewSteps[stepIndex] === overviewEnums.accountInfo}
+        tipTarget={
+          <TransButton
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }/${accountPagesEnums.CHECKINGHOME}/${
+                  accountPagesEnums.CHECKINGINFO
+                }`
+              );
+            }}
+            disabled={overviewSteps[stepIndex] !== overviewEnums.accountInfo}
+            // isActive={detailsActive}
+            isActive={true}
+            // TODO: Programmatically check if we are in the transactions section
+          >
+            Account Details
+          </TransButton>
+        }
+      />
     </TransDetailsSection>
   );
 };
@@ -395,7 +413,6 @@ const ItemDetails = styled.span`
 `;
 
 export const ItemListing = ({ principal, date, trans, details, ...rest }) => {
-  // console.log({ separateDetails });
   return (
     <ItemListingWrapper {...rest}>
       <ItemTextContainer>

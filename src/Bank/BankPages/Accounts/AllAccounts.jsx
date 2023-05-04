@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { mq } from "../../Global";
+import { InfoTip } from "../../Shared/Tip";
+import { accountPagesEnums, overviewEnums, overviewSteps } from "../../enums";
+import { useNavigate, useParams } from "react-router-dom";
 
 const StyledAccountBlock = styled.div`
   display: flex;
@@ -53,15 +56,18 @@ const TransferContainer = styled.div`
 `;
 
 const AllAccountsContainer = styled.div`
-  /* background: white; */
-  /* height: 100%; */
-  /* min-height: 100vh; */
   padding-bottom: 150px;
 `;
 
-const AccountBlock = ({ title, onClick, balance, accNumber }) => (
+const AccountBlock = ({
+  title,
+  onClick,
+  disabled = false,
+  balance,
+  accNumber,
+}) => (
   <StyledAccountBlock>
-    <AccountInfo onClick={onClick}>
+    <AccountInfo onClick={!disabled && onClick}>
       <AccountTitle>{title}</AccountTitle>
       <AccountNumber>{accNumber}</AccountNumber>
       <AccountBalance>{balance}</AccountBalance>
@@ -70,39 +76,33 @@ const AccountBlock = ({ title, onClick, balance, accNumber }) => (
   </StyledAccountBlock>
 );
 
-const AllAccounts = ({
-  allSteps,
-  step,
-  check,
-  setIsChecking = () => {},
-  setStep,
-  CheckingTip,
-}) => {
+const AllAccounts = () => {
+  const { stepIndex, activity } = useParams();
+  const navigate = useNavigate();
   return (
     <AllAccountsContainer>
       <BankAccounts>Bank Accounts</BankAccounts>
-
-      {/* const CheckingTip = (child) => (
-    <BasicTooltip
-      content={"Click on ‘Chequing’."}
-      showTip={allSteps[step] === "check"}
-      staticOnly={true}
-      placement="left-center"
-    >
-      {child}
-    </BasicTooltip>
-  ); */}
-
-      {/* <AccountBlock
-      title={"Chequing"}
-      balance={"$18,023.00"}
-      accNumber={"5522"}
-      onClick={() => {
-        setIsChecking(true);
-        allSteps[step] === check && setStep(step + 1);
-      }}
-    /> */}
-
+      <InfoTip
+        tipContent={<div>Click on ‘Chequing’.</div>}
+        showTip={overviewSteps[stepIndex] === overviewEnums.check}
+        showButton={false}
+        placement="left-center"
+        tipTarget={
+          <AccountBlock
+            title={"Chequing"}
+            balance={"$18,023.00"}
+            accNumber={"5522"}
+            disabled={overviewSteps[stepIndex] !== overviewEnums.check}
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }/${accountPagesEnums.CHECKINGHOME}`
+              );
+            }}
+          />
+        }
+      />
       <AccountBlock
         title={"Savings"}
         balance={"$12,115.50"}

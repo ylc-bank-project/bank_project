@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { activitiesEnums } from "../enums";
+import { accountPagesEnums, activitiesEnums } from "../enums";
 import { ActButton as ActButtonImport } from "../Shared/Layout";
 import { mq } from "../Global";
 import { useNavigate } from "react-router-dom";
@@ -46,17 +46,25 @@ const ActButton = ({ activity, children, closeModal }) => {
   return (
     <ActButtonImport
       onClick={() => {
+        console.log("Act Button Click");
+        console.log({ activity });
         setIntroContext({
           isVisible: true,
           isIntro: introModalState.isIntro,
         });
+
         switch (activity) {
           case activitiesEnums.CREATINGACCOUNT:
             navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
+            console.log("after navigate");
             break;
 
           case activitiesEnums.SIGNIN:
             navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
+            break;
+
+          case activitiesEnums.ACCOUNTOVERVIEW:
+            navigate(`/${activity}/0/${accountPagesEnums.ACCOUNTS}`);
             break;
 
           default:

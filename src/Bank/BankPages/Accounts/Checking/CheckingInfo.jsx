@@ -2,8 +2,16 @@ import React from "react";
 import { InfoTip } from "../../../Shared/Tip";
 import styled from "styled-components";
 import { ItemListing } from "../../BankPageElements";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  accountPagesEnums,
+  overviewEnums,
+  overviewSteps,
+} from "../../../enums";
 
 const AccountInformation = () => {
+  const navigate = useNavigate();
+  const { activity, stepIndex } = useParams();
   return (
     <>
       <InfoTip
@@ -15,14 +23,18 @@ const AccountInformation = () => {
           </div>
         }
         tipTarget={
-          <ItemListing
-            // isSummary
-            principal={"Funds on Hold"}
-            details="$500.00"
-          />
+          <ItemListing principal={"Funds on Hold"} details="$500.00" />
         }
-        showTip={hold}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGINFO
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.hold}
       />
       <InfoTip
         tipContent={
@@ -34,14 +46,18 @@ const AccountInformation = () => {
           </div>
         }
         tipTarget={
-          <ItemListing
-            // isSummary
-            principal={"Overdraft Limit"}
-            details="$100.00"
-          />
+          <ItemListing principal={"Overdraft Limit"} details="$100.00" />
         }
-        showTip={overdraft}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGINFO
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.overdraft}
       />
       <InfoTip
         tipContent={
@@ -51,14 +67,18 @@ const AccountInformation = () => {
           </div>
         }
         tipTarget={
-          <ItemListing
-            // isSummary
-            principal={"Available Funds"}
-            details="$17,623.00"
-          />
+          <ItemListing principal={"Available Funds"} details="$17,623.00" />
         }
-        showTip={available}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGINFO
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.available}
       />
       <InfoTip
         tipContent={
@@ -68,14 +88,18 @@ const AccountInformation = () => {
           </div>
         }
         tipTarget={
-          <ItemListing
-            // isSummary
-            principal={"Institution Number"}
-            details="554"
-          />
+          <ItemListing principal={"Institution Number"} details="554" />
         }
-        showTip={institution}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGINFO
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.institution}
       />
       <InfoTip
         tipContent={
@@ -84,15 +108,17 @@ const AccountInformation = () => {
             your bank is located.
           </div>
         }
-        tipTarget={
-          <ItemListing
-            // isSummary
-            principal={"Transit Number"}
-            details="55519"
-          />
-        }
-        showTip={transit}
-        {...{ step, setStep, allSteps }}
+        tipTarget={<ItemListing principal={"Transit Number"} details="55519" />}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGINFO
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.transit}
       />
       <InfoTip
         tipContent={
@@ -102,14 +128,18 @@ const AccountInformation = () => {
           </div>
         }
         tipTarget={
-          <ItemListing
-            // isSummary
-            principal={"Account Number"}
-            details="555-5555"
-          />
+          <ItemListing principal={"Account Number"} details="555-5555" />
         }
-        showTip={accountNumber}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGINFO
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.accountNumber}
       />
     </>
   );

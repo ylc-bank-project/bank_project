@@ -11,7 +11,12 @@ import BankHomepage, {
 } from "./BankPages/BankHomepage";
 import NotFound from "./NotFound";
 import { accountPagesEnums, bankPageEnums } from "./enums";
-import Accounts, { AllAccounts, Checking } from "./BankPages/Accounts/";
+import Accounts, {
+  AllAccounts,
+  CheckingHome,
+  CheckingInfo,
+  CheckingTransactions,
+} from "./BankPages/Accounts/";
 
 function Activity(props) {
   let { activity } = useParams();
@@ -38,7 +43,20 @@ export const AllRoutes = () => {
         </Route>
         <Route path={accountPagesEnums.ACCOUNTS} element={<Accounts />}>
           <Route path="" element={<AllAccounts />} />
-          <Route path={accountPagesEnums.CHECKING} element={<Checking />} />
+          <Route
+            path={accountPagesEnums.CHECKINGHOME}
+            element={<CheckingHome />}
+          >
+            <Route
+              path={accountPagesEnums.CHECKINGINFO}
+              element={<CheckingInfo />}
+            />
+            <Route
+              path={accountPagesEnums.CHECKINGTRANSACTIONS}
+              element={<CheckingTransactions />}
+            />
+            <Route />
+          </Route>
         </Route>
       </Route>
     </Routes>

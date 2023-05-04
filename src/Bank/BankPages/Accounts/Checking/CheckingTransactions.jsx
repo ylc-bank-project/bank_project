@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { InfoTip } from "../../../Shared/Tip";
+import { BoldDiv, ItemListing } from "../../BankPageElements";
+import {
+  accountPagesEnums,
+  overviewEnums,
+  overviewSteps,
+} from "../../../enums";
+import { useNavigate, useParams } from "react-router-dom";
+import { IntroModalContext } from "../../../context";
+
+const FullEmptyDiv = styled.div`
+  width: 100%;
+  height: 10px;
+`;
 
 const Transactions = () => {
+  const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
+  const { introModalState, setIntroContext } = useContext(IntroModalContext);
   return (
     <>
       <InfoTip
@@ -27,8 +45,16 @@ const Transactions = () => {
             details={"-$12.50"}
           />
         }
-        showTip={wellRead}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGTRANSACTIONS
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.wellRead}
       />
       <InfoTip
         tipContent={
@@ -48,8 +74,16 @@ const Transactions = () => {
             details={"-$109.45"}
           />
         }
-        showTip={taco}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGTRANSACTIONS
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.taco}
       />
       <InfoTip
         tipContent={
@@ -68,8 +102,16 @@ const Transactions = () => {
             isPositive
           />
         }
-        showTip={internetDeposit}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGTRANSACTIONS
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.internetDeposit}
       />
       <InfoTip
         tipContent={
@@ -97,8 +139,16 @@ const Transactions = () => {
             details={"-$96.00"}
           />
         }
-        showTip={preAuth}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGTRANSACTIONS
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.preAuth}
       />
       <ItemListing
         principal={"midnight sun co 000009767867"}
@@ -133,8 +183,16 @@ const Transactions = () => {
             details={"-$1422.90"}
           />
         }
-        showTip={totalDebits}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGTRANSACTIONS
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.totalDebits}
       />
       <InfoTip
         tipContent={
@@ -151,26 +209,38 @@ const Transactions = () => {
             details="+$2000.00"
           />
         }
-        showTip={credits}
-        {...{ step, setStep, allSteps }}
+        onClick={() => {
+          navigate(
+            `/${activity}/${Number(stepIndex) + 1}/${
+              accountPagesEnums.ACCOUNTS
+            }/${accountPagesEnums.CHECKINGHOME}/${
+              accountPagesEnums.CHECKINGTRANSACTIONS
+            }`
+          );
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.credits}
       />
       <InfoTip
         tipContent={
           <div>
             <div>
               <BoldDiv>
-                $2000.00 (Total credits)- $1422.90 (Total debits) = $577.10
+                $2000.00 (Total credits) - $1422.90 (Total debits) = $577.10
               </BoldDiv>
               {<br />}
               <div>$577.10 is left over this month.</div>
+              {<br />}
             </div>
           </div>
         }
         tipTarget={<FullEmptyDiv />}
-        showTip={creditsDebits}
+        onClick={() => {
+          console.log("is clicked");
+          setIntroContext({ isVisible: true, isIntro: false });
+        }}
+        showTip={overviewSteps[stepIndex] === overviewEnums.creditsDebits}
         placement={"center"}
         showArrow={false}
-        {...{ step, setStep, allSteps }}
       />
     </>
   );
