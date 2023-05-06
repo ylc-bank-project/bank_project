@@ -1,5 +1,6 @@
 CURRENT
-- Move onto Making Payments and then the other activities
+- Finish up the Making Payments activity. Pretty close.
+- Fill out the rest of the new activities.
 - Fixes and refinements as needed.
 - Styling sweep? 
 
@@ -9,4 +10,5 @@ QUESTIONS/THOUGHTS
 Notes
 - Initial routes are set in ActivityListing.jsx
 - All routes are in routes.jsx
+- enums in enums.js
 

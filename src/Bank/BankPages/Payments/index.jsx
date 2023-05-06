@@ -1,6 +1,18 @@
 import { PaymentsHome } from "./PaymentsHome";
-import { PayVerifyBill } from "./PayVerifyBill";
-import { ListOfPayees } from "./ListOfPayees";
-import { AddVerifyPayee } from "./AddVerifyPayee";
 
-export { PaymentsHome, PayVerifyBill, ListOfPayees, AddVerifyPayee };
+import { ListOfPayees } from "./ListOfPayees";
+
+import { AddPayee } from "./AddPayee";
+import { VerifyPayee } from "./VerifyPayee";
+
+import { AddBill } from "./AddBill";
+import { VerifyBill } from "./VerifyBill";
+
+export {
+  PaymentsHome,
+  AddBill,
+  VerifyBill,
+  ListOfPayees,
+  VerifyPayee,
+  AddPayee,
+};

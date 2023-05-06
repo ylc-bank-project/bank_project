@@ -28,8 +28,10 @@ export const accountPagesEnums = {
 export const paymentPagesEnums = {
   PAYMENTSHOME: "PaymentsHome",
   LISTOFPAYEES: "ListOfPayees",
-  ADDVERIFYPAYEE: "AddVerifyPayee",
-  PAYVERIFYBILL: "PayVerifyBill",
+  VERIFYPAYEE: "VerifyPayee",
+  ADDPAYEE: "AddPayee",
+  VERIFYBILL: "VerifyBill",
+  ADDBILL: "AddBill",
 };
 
 // SIGNIN
@@ -141,7 +143,7 @@ export const makingPaymentsSteps = [
   makingPaymentsEnums.addBillNumber,
   makingPaymentsEnums.goToVerify,
   makingPaymentsEnums.confirmPayee,
-  // TacoAdded after confirmPayee
+  // NOTE: TacoAdded after confirmPayee
   makingPaymentsEnums.chooseTaco,
   makingPaymentsEnums.chooseDebitAccount,
   makingPaymentsEnums.enterAmount,

@@ -23,6 +23,10 @@ import {
   ListOfPayees,
   PayVerifyBill,
   AddVerifyPayee,
+  VerifyPayee,
+  AddBill,
+  VerifyBill,
+  AddPayee,
 } from "./BankPages/Payments";
 
 function Activity(props) {
@@ -72,13 +76,15 @@ export const AllRoutes = () => {
               path={paymentPagesEnums.LISTOFPAYEES}
               element={<ListOfPayees />}
             />
+            <Route path={paymentPagesEnums.ADDBILL} element={<AddBill />} />
             <Route
-              path={paymentPagesEnums.PAYVERIFYBILL}
-              element={<PayVerifyBill />}
+              path={paymentPagesEnums.VERIFYBILL}
+              element={<VerifyBill />}
             />
+            <Route path={paymentPagesEnums.ADDPAYEE} element={<AddPayee />} />
             <Route
-              path={paymentPagesEnums.ADDVERIFYPAYEE}
-              element={<AddVerifyPayee />}
+              path={paymentPagesEnums.VERIFYPAYEE}
+              element={<VerifyPayee />}
             />
           </Route>
         </Route>
