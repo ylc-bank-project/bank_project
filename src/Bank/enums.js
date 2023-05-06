@@ -25,6 +25,13 @@ export const accountPagesEnums = {
   CHECKINGTRANSACTIONS: "CheckingTransactions",
 };
 
+export const paymentPagesEnums = {
+  PAYMENTSHOME: "PaymentsHome",
+  LISTOFPAYEES: "ListOfPayees",
+  ADDVERIFYPAYEE: "AddVerifyPayee",
+  PAYVERIFYBILL: "PayVerifyBill",
+};
+
 // SIGNIN
 export const signInEnums = {
   CLICKSIGNIN: "ClieckSignIn",
@@ -88,7 +95,6 @@ export const overviewEnums = {
   creditsDebits: "creditsDebits",
 };
 
-// All steps array for sequence
 export const overviewSteps = [
   overviewEnums.check,
   overviewEnums.balance,
@@ -99,7 +105,6 @@ export const overviewSteps = [
   overviewEnums.institution,
   overviewEnums.transit,
   overviewEnums.accountNumber,
-  // TODO: Where does transactions start?
   overviewEnums.transactions,
   overviewEnums.wellRead,
   overviewEnums.taco,
@@ -108,4 +113,39 @@ export const overviewSteps = [
   overviewEnums.totalDebits,
   overviewEnums.credits,
   overviewEnums.creditsDebits,
+];
+
+// MAKING PAYMENTS
+export const makingPaymentsEnums = {
+  clickPayments: "clickPayments",
+  billPaymentsStep: "billPaymentsStep",
+  addEditPayee: "addEditPayee",
+  addCompanyName: "addCompanyName",
+  addBillNumber: "addBillNumber",
+  goToVerify: "goToVerify",
+  confirmPayee: "confirmPayee",
+  //  payBillNow : "payBillNow",
+  chooseTaco: "chooseTaco",
+  chooseDebitAccount: "chooseDebitAccount",
+  enterAmount: "enterAmount",
+  enterDate: "enterDate",
+  reviewBillPayment: "reviewBillPayment",
+  confirmBillPayment: "confirmBillPayment",
+};
+
+export const makingPaymentsSteps = [
+  makingPaymentsEnums.clickPayments,
+  makingPaymentsEnums.billPaymentsStep,
+  makingPaymentsEnums.addEditPayee,
+  makingPaymentsEnums.addCompanyName,
+  makingPaymentsEnums.addBillNumber,
+  makingPaymentsEnums.goToVerify,
+  makingPaymentsEnums.confirmPayee,
+  // TacoAdded after confirmPayee
+  makingPaymentsEnums.chooseTaco,
+  makingPaymentsEnums.chooseDebitAccount,
+  makingPaymentsEnums.enterAmount,
+  makingPaymentsEnums.enterDate,
+  makingPaymentsEnums.reviewBillPayment,
+  makingPaymentsEnums.confirmBillPayment,
 ];

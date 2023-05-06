@@ -10,13 +10,20 @@ import BankHomepage, {
   CreateEmail,
 } from "./BankPages/BankHomepage";
 import NotFound from "./NotFound";
-import { accountPagesEnums, bankPageEnums } from "./enums";
-import Accounts, {
+import { accountPagesEnums, bankPageEnums, paymentPagesEnums } from "./enums";
+import {
   AllAccounts,
   CheckingHome,
   CheckingInfo,
   CheckingTransactions,
 } from "./BankPages/Accounts/";
+import BasePage from "./BankPages/BaseBankPage";
+import {
+  PaymentsHome,
+  ListOfPayees,
+  PayVerifyBill,
+  AddVerifyPayee,
+} from "./BankPages/Payments";
 
 function Activity(props) {
   let { activity } = useParams();
@@ -41,7 +48,8 @@ export const AllRoutes = () => {
           />
           <Route path={bankPageEnums.CREATEEMAIL} element={<CreateEmail />} />
         </Route>
-        <Route path={accountPagesEnums.ACCOUNTS} element={<Accounts />}>
+        {/* Here, ACCOUNTS just uses the base page */}
+        <Route path={accountPagesEnums.ACCOUNTS} element={<BasePage />}>
           <Route path="" element={<AllAccounts />} />
           <Route
             path={accountPagesEnums.CHECKINGHOME}
@@ -56,6 +64,22 @@ export const AllRoutes = () => {
               element={<CheckingTransactions />}
             />
             <Route />
+          </Route>
+        </Route>
+        <Route path={paymentPagesEnums.PAYMENTSHOME} element={<BasePage />}>
+          <Route index element={<PaymentsHome />}>
+            <Route
+              path={paymentPagesEnums.LISTOFPAYEES}
+              element={<ListOfPayees />}
+            />
+            <Route
+              path={paymentPagesEnums.PAYVERIFYBILL}
+              element={<PayVerifyBill />}
+            />
+            <Route
+              path={paymentPagesEnums.ADDVERIFYPAYEE}
+              element={<AddVerifyPayee />}
+            />
           </Route>
         </Route>
       </Route>

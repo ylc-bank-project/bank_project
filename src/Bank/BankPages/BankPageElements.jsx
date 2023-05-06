@@ -6,8 +6,15 @@ import { MarginedContainer } from "../Shared/Layout";
 import { InfoTip } from "../Shared/Tip";
 import { mq } from "../Global";
 import NumberFormat from "react-number-format";
-import { useNavigate, useParams } from "react-router-dom";
-import { accountPagesEnums, overviewEnums, overviewSteps } from "../enums";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  accountPagesEnums,
+  activitiesEnums,
+  makingPaymentsEnums,
+  makingPaymentsSteps,
+  overviewEnums,
+  overviewSteps,
+} from "../enums";
 
 export const SubTitle = styled.div`
   width: 100%;
@@ -30,6 +37,10 @@ export const StyledInput = styled.input`
   height: 40px;
   ::placeholder {
     color: ${(p) => p.theme.colors.ylc_blue};
+    opacity: 0.5;
+  }
+  :disabled {
+    background: transparent;
   }
 `;
 
@@ -218,14 +229,15 @@ const FooterLink = styled.button`
   cursor: pointer;
 `;
 
-export const BankingFooter = ({
-  isActive = "home",
-  paymentsClick = () => {},
-  clickPayments,
-  step,
-  setStep = () => {},
-  allSteps = [],
-}) => {
+export const BankingFooter = () => {
+  const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
+
+  const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
+
+  // TODO: Set the isActive bit
+  const isActive = true;
+
   return (
     <StyledBankingFooter>
       <FooterLink isActive={isActive === "home"}>Home</FooterLink>
@@ -233,18 +245,30 @@ export const BankingFooter = ({
         tipContent={<div>Click on Pay & Transfer</div>}
         tipTarget={
           <FooterLink
-            onClick={() => paymentsClick()}
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }`
+              );
+            }}
             isActive={isActive === "pay"}
-            disabled={allSteps[step] !== clickPayments}
+            disabled={
+              !isMakingPayments &&
+              makingPaymentsSteps[stepIndex] !==
+                makingPaymentsEnums.clickPayments
+            }
           >
             Pay & Transfer
           </FooterLink>
         }
         placement={"top-center"}
-        showTip={clickPayments}
+        showTip={
+          isMakingPayments &&
+          makingPaymentsSteps[stepIndex] === makingPaymentsEnums.clickPayments
+        }
         showButton={false}
         noScroll={true}
-        {...{ step, setStep, allSteps }}
       />
 
       <FooterLink isActive={isActive === "more"}>More</FooterLink>
@@ -265,14 +289,14 @@ const TransButton = styled.button`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  padding: 10px 0;
   color: ${(p) => (p.isActive ? "grey" : "white")};
   background: ${(p) => (p.isActive ? "white" : p.theme.colors.bank_blue)};
   cursor: pointer;
   border: none;
   ${(p) => p.theme.fonts.extra_small_header};
   font-size: 16px;
-  border-radius: none;
+  border-radius: 2px;
+  padding: 5px;
   /* border-bottom: 1px solid ${(p) => p.theme.colors.bank_blue}; */
   ${mq[1]} {
     font-size: 14px;
@@ -282,6 +306,14 @@ const TransButton = styled.button`
 export const TransactionsDetails = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log({ location, split: location.pathname.split("/") });
+  const isDetails = location.pathname
+    .split("/")
+    .includes(accountPagesEnums.CHECKINGINFO);
+  const isTransactions = location.pathname
+    .split("/")
+    .includes(accountPagesEnums.CHECKINGTRANSACTIONS);
   return (
     <TransDetailsSection>
       <InfoTip
@@ -309,9 +341,7 @@ export const TransactionsDetails = () => {
               );
             }}
             disabled={overviewSteps[stepIndex] !== overviewEnums.transactions}
-            // isActive={transactionsActive}
-            // TODO: Programmatically check if we are in the transactions section
-            isActive={true}
+            isActive={!isTransactions}
           >
             Transactions
           </TransButton>
@@ -338,9 +368,7 @@ export const TransactionsDetails = () => {
               );
             }}
             disabled={overviewSteps[stepIndex] !== overviewEnums.accountInfo}
-            // isActive={detailsActive}
-            isActive={true}
-            // TODO: Programmatically check if we are in the transactions section
+            isActive={!isDetails}
           >
             Account Details
           </TransButton>

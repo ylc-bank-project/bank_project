@@ -9,7 +9,7 @@ import {
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,
-} from "../../BankPages/BankPageElements";
+} from "../BankPageElements";
 
 const StyledNumberFormat = styled(NumberFormat)`
   width: calc(100% - 40px - 2px - 100px);
@@ -35,7 +35,7 @@ const StyledSelect = styled.select`
   padding: 20px;
   margin: 0 50px;
   /* border-bottom: 1px solid lightgray; */
-  ${(p) => p.theme.fonts.body_text_bold};
+  ${(p) => p.theme.fonts.body_text_bold}
 `;
 
 const DateContainer = styled.div`

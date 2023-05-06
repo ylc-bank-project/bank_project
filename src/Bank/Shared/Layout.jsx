@@ -41,6 +41,7 @@ export const SignInButton = styled.button`
   border-radius: 100px;
   ${(p) => p.theme.fonts.small_header}
   cursor: pointer;
+  margin-bottom: 15px;
 `;
 
 export const ButtonContainer = styled.div`

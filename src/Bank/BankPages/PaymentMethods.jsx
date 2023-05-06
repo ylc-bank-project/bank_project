@@ -1,14 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 // import { BasicTooltip, Ba÷sicTipButton, InfoTip } from "../../Shared/Tip";
-import { InfoTip } from "../../Shared/Tip";
+import { InfoTip } from "../Shared/Tip";
 // import { ModalOverlay, ResponsiveContent } from "../../Modal";
-import { ModalOverlay } from "../../Modal";
+import { ModalOverlay } from "../Modal";
 import payBillIcon from "../../assets/contract.png";
 import depositIcon from "../../assets/piggy-bank.png";
 import transferIcon from "../../assets/exchange.png";
 import interacIcon from "../../assets/coin.png";
-import { mq } from "../../Global";
+import { mq } from "../Global";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  activitiesEnums,
+  makingPaymentsEnums,
+  makingPaymentsSteps,
+  paymentPagesEnums,
+} from "../enums";
 
 const TransactionsContainer = styled.div`
   display: flex;
@@ -46,20 +53,23 @@ const BankingButton = styled.button`
 `;
 
 export const PaymentMethods = ({
-  setStep,
   setPaymentMethodsVisible,
   setMainPage,
-  step,
-  billPaymentsStep,
+  // billPaymentsStep,
   billPaymentsPage,
-  allSteps,
 }) => {
-  // console.log("test 1");
-  // console.log({ billPaymentsStep });
+  const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
+
+  const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
+
+  const isBillPayments =
+    isMakingPayments &&
+    makingPaymentsSteps[stepIndex] === makingPaymentsEnums.billPaymentsStep;
 
   return (
     <ModalOverlay
-      visible={billPaymentsStep}
+      visible={true}
       zIndex={1}
       // closeModal={closeModal}
       notOverlayCloseable={true}
@@ -75,18 +85,20 @@ export const PaymentMethods = ({
               tipTarget={
                 <BankingButton
                   onClick={() => {
-                    setStep(step + 1);
-                    setPaymentMethodsVisible(false);
-                    setMainPage(billPaymentsPage);
+                    // should open the modal
+                    navigate(
+                      `/${activity}/${Number(stepIndex) + 1}/${
+                        paymentPagesEnums.PAYMENTSHOME
+                      }/${paymentPagesEnums.PAYVERIFYBILL}`
+                    );
                   }}
                 >
                   <img src={payBillIcon} alt="" />
                   Pay a bill
                 </BankingButton>
               }
-              showTip={billPaymentsStep}
+              showTip={isBillPayments}
               showButton={false}
-              {...{ step, setStep, allSteps }}
             />
             <BankingButton>
               <img src={interacIcon} alt="" />

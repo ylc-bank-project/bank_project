@@ -12,3 +12,8 @@ export const ActivityModalContext = createContext({
   activityModalIsVisible: false,
   setActivityContext: () => {},
 });
+
+export const PaymentMethodsContext = createContext({
+  paymentMethodsIsVisible: false,
+  setPaymentMethodsContext: () => {},
+});

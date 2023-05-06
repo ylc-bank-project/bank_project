@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import {
   AuthContainer,
   BoldDiv,
+  Space,
   StyledInput,
   SubTitle,
 } from "../BankPageElements";
@@ -17,14 +18,23 @@ const InputContainer = styled.div`
 `;
 
 const CreateEmail = () => {
-  const [email, setEmail] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-  const [passwordTwo, setPasswordTwo] = useState(undefined);
   const { activity, stepIndex } = useParams();
-  const { introModalState, setIntroContext } = useContext(IntroModalContext);
   const navigate = useNavigate();
+  const isEnterEmailStep = createSteps[stepIndex] === createEnums.ENTEREMAIL;
+  const isEnterPWStep = createSteps[stepIndex] === createEnums.CREATEPASSWORD;
+  const defaultEmail = "iloveliteracy@email.com";
+  const defaultPassword = "literacy1234";
 
-  console.log("STEP: ", createSteps[stepIndex]);
+  const [email, setEmail] = useState(
+    isEnterEmailStep ? undefined : defaultEmail
+  );
+
+  const [password, setPassword] = useState(
+    isEnterPWStep || isEnterEmailStep ? undefined : defaultPassword
+  );
+
+  const [passwordTwo, setPasswordTwo] = useState(undefined);
+  const { introModalState, setIntroContext } = useContext(IntroModalContext);
 
   return (
     <AuthContainer>
@@ -41,7 +51,7 @@ const CreateEmail = () => {
               <BoldDiv>iloveliteracy@email.com</BoldDiv>
             </div>
           }
-          buttonDisabled={email !== "iloveliteracy@email.com"}
+          buttonDisabled={email !== defaultEmail}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -52,12 +62,15 @@ const CreateEmail = () => {
           showTip={createSteps[stepIndex] === createEnums.ENTEREMAIL}
           tipTarget={
             <StyledInput
+              disabled={createSteps[stepIndex] !== createEnums.ENTEREMAIL}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder={"Email"}
+              value={email}
             />
           }
         />
+        <Space />
         <InfoTip
           tipContentStyles={{ overflow: "scroll" }}
           maxHeight={500}
@@ -68,7 +81,7 @@ const CreateEmail = () => {
               as the password.
             </div>
           }
-          buttonDisabled={password !== "literacy1234"}
+          buttonDisabled={password !== defaultPassword}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -79,9 +92,11 @@ const CreateEmail = () => {
           showTip={createSteps[stepIndex] === createEnums.CREATEPASSWORD}
           tipTarget={
             <StyledInput
+              disabled={createSteps[stepIndex] !== createEnums.CREATEPASSWORD}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder={"Password"}
+              value={password}
             />
           }
         />
@@ -102,15 +117,17 @@ const CreateEmail = () => {
             </div>
           }
           buttonDisabled={
-            password !== "literacy1234" || passwordTwo !== password
+            password !== defaultPassword || passwordTwo !== password
           }
           onClick={() => setIntroContext({ isVisible: true, isIntro: false })}
           showTip={createSteps[stepIndex] === createEnums.REENTERPW}
           tipTarget={
             <StyledInput
+              disabled={createSteps[stepIndex] !== createEnums.REENTERPW}
               onChange={(e) => setPasswordTwo(e.target.value)}
               type="password"
               placeholder={"Re-enter Password"}
+              value={passwordTwo}
             />
           }
         />

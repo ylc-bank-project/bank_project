@@ -8,7 +8,8 @@ import {
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,
-} from "../../BankPages/BankPageElements";
+  BoldDiv,
+} from "../BankPageElements";
 
 export const AddVerifyPayee = ({
   isVerifyPayee,
@@ -17,14 +18,14 @@ export const AddVerifyPayee = ({
   companyTitle,
   TacoTitle,
   setCompanyTitle,
-  step,
-  setStep,
+  // step,
+  // setStep,
   setVerifyPayee,
-  inputedAccountNumber,
-  setInputedAccountNumber,
+  // inputedAccountNumber,
+  // setInputedAccountNumber,
   payeesStage,
   confirmPayee,
-  allSteps,
+  // allSteps,
   addCompanyName,
   addBillNumber,
   goToVerify,
@@ -35,9 +36,7 @@ export const AddVerifyPayee = ({
         <div>
           <BillPayeeTitle>Review the new payee</BillPayeeTitle>
           <BillPayeeReview>Company Name: {companyTitle}</BillPayeeReview>
-          <BillPayeeReview>
-            Account/Bill Number: {inputedAccountNumber}
-          </BillPayeeReview>
+          <BillPayeeReview>Account/Bill Number: {1234567}</BillPayeeReview>
           <ContinueButtonContainer>
             <InfoTip
               tipContent={
@@ -51,7 +50,6 @@ export const AddVerifyPayee = ({
                   onClick={() => {
                     setTacoAdded(true);
                     setPaymentStage(payeesStage);
-                    setStep(step + 1);
                   }}
                   disabled={allSteps[step] !== confirmPayee}
                 >
@@ -60,7 +58,6 @@ export const AddVerifyPayee = ({
               }
               showTip={confirmPayee}
               showButton={false}
-              {...{ step, setStep, allSteps }}
             />
           </ContinueButtonContainer>
         </div>
@@ -86,7 +83,6 @@ export const AddVerifyPayee = ({
                 }
                 showTip={addCompanyName}
                 showButton={true}
-                {...{ step, setStep, allSteps }}
               />
             </div>
             <div>
@@ -94,11 +90,12 @@ export const AddVerifyPayee = ({
                 tipContent={
                   <div>
                     Now enter account/bill number. Your account number can
-                    typically be found in the top right corner of your bill. For
-                    this activity enter any 7-digit number.{" "}
-                    <span role="img" aria-label="smile emoji">
+                    typically be found in the top right corner of your bill.
+                    Typically, it is a 7-digit number. For this activity enter
+                    <BoldDiv>1234 567</BoldDiv>
+                    {/* <span role="img" aria-label="smile emoji">
                       🙂
-                    </span>
+                    </span> */}
                   </div>
                 }
                 buttonDisabled={false}
@@ -107,13 +104,12 @@ export const AddVerifyPayee = ({
                     <BillPayeeInput
                       onChange={(e) => setInputedAccountNumber(e.target.value)}
                       placeholder={"Account/Bill Number"}
-                      value={inputedAccountNumber}
+                      // value={inputedAccountNumber}
                     />
                   </label>
                 }
                 showTip={addBillNumber}
                 showButton={true}
-                {...{ step, setStep, allSteps }}
               />
             </div>
           </div>
@@ -125,7 +121,6 @@ export const AddVerifyPayee = ({
               tipTarget={
                 <ContinueButton
                   onClick={() => {
-                    setStep(step + 1);
                     setVerifyPayee(true);
                   }}
                   disabled={allSteps[step] !== goToVerify}
@@ -135,7 +130,6 @@ export const AddVerifyPayee = ({
               }
               showTip={goToVerify}
               showButton={false}
-              {...{ step, setStep, allSteps }}
             />
           </ContinueButtonContainer>
         </div>

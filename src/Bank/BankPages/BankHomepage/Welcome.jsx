@@ -57,7 +57,7 @@ const Welcome = () => {
               );
             }}
           >
-            REGISTER BUTTON
+            Register
           </SignInButton>
         }
         showTip={isCreateAccount && stepIndex === "0"}

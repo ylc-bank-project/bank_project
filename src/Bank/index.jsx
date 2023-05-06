@@ -4,7 +4,11 @@ import ActivityChooser from "./ActivityChooser";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
 import { AllRoutes } from "./routes";
-import { ActivityModalContext, IntroModalContext } from "./context";
+import {
+  ActivityModalContext,
+  IntroModalContext,
+  PaymentMethodsContext,
+} from "./context";
 import { useLocation } from "react-router-dom";
 
 const App = () => {
@@ -69,12 +73,21 @@ const AppExport = () => {
   const [activityModalIsVisible, setActivityContext] = useState(false);
   const activityContextValue = { activityModalIsVisible, setActivityContext };
 
+  // Payment Methods Modal Context
+  // const [paymentMethodsIsVisible, setPaymentMethodsIsVisible] = useState(false);
+  // const paymentMethodsValue = {
+  //   paymentMethodsIsVisible,
+  //   setPaymentMethodsIsVisible,
+  // };
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <ActivityModalContext.Provider value={activityContextValue}>
         <IntroModalContext.Provider value={introContextValue}>
+          {/* <PaymentMethodsContext.Provider value={paymentMethodsValue}> */}
           <App />
+          {/* </PaymentMethodsContext.Provider> */}
         </IntroModalContext.Provider>
       </ActivityModalContext.Provider>
     </ThemeProvider>
