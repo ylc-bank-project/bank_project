@@ -4,10 +4,10 @@ import styled from "styled-components";
 import { InfoTip } from "../Shared/Tip";
 // import { ModalOverlay, ResponsiveContent } from "../../Modal";
 import { ModalOverlay } from "../Modal";
-import payBillIcon from "../../assets/contract.png";
-import depositIcon from "../../assets/piggy-bank.png";
-import transferIcon from "../../assets/exchange.png";
-import interacIcon from "../../assets/coin.png";
+import payBillIcon from "../assets/contract.png";
+import depositIcon from "../assets/piggy-bank.png";
+import transferIcon from "../assets/exchange.png";
+import interacIcon from "../assets/coin.png";
 import { mq } from "../Global";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -89,7 +89,7 @@ export const PaymentMethods = ({
                     navigate(
                       `/${activity}/${Number(stepIndex) + 1}/${
                         paymentPagesEnums.PAYMENTSHOME
-                      }/${paymentPagesEnums.PAYVERIFYBILL}`
+                      }/${paymentPagesEnums.LISTOFPAYEES}`
                     );
                   }}
                 >

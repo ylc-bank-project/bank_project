@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BillPayeeTitle,
   ContinueButton,
@@ -8,6 +8,16 @@ import { InfoTip } from "../../Shared/Tip";
 import NumberFormat from "react-number-format";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  ACCOUNTNUMBER,
+  ACCOUNTTYPE,
+  BILLAMOUNT,
+  makingPaymentsEnums,
+  makingPaymentsSteps,
+  paymentPagesEnums,
+} from "../../enums";
+import { getFormattedBillDate } from "./shared";
 
 const StyledNumberFormat = styled(NumberFormat)`
   width: calc(100% - 40px - 2px - 100px);
@@ -50,7 +60,29 @@ const LightOption = styled.option`
   /* color: lightgray !important; */
 `;
 
-export const AddBill = () => {
+export const AddBill = ({
+  accountType,
+  setAccountType,
+  billAmount,
+  setBillAmount,
+  billDate,
+  setBillDate,
+}) => {
+  const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
+
+  let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
+  const todayDate = `${month}/${day}/${year}`;
+
+  const isPay = (enumStep) => {
+    return makingPaymentsSteps[stepIndex] === enumStep;
+  };
+
+  const isChooseDebitAccount = isPay(makingPaymentsEnums.chooseDebitAccount);
+  const isEnterAmount = isPay(makingPaymentsEnums.enterAmount);
+  const isEnterDate = isPay(makingPaymentsEnums.enterDate);
+  const isReview = isPay(makingPaymentsEnums.reviewBillPayment);
+
   return (
     <div>
       <BillPayeeTitle>Pay Taco Electric</BillPayeeTitle>
@@ -71,11 +103,18 @@ export const AddBill = () => {
               onChange={(e) => setAccountType(e.target.value)}
             >
               <LightOption value="">Select Account</LightOption>
-              <option value="Chequing">Chequing</option>
+              <option value="Chequing">{ACCOUNTTYPE}</option>
               <option value="Saving">Saving</option>
             </StyledSelect>
           }
-          showTip={chooseDebitAccount}
+          onClick={() => {
+            navigate(
+              `/${activity}/${Number(stepIndex) + 1}/${
+                paymentPagesEnums.PAYMENTSHOME
+              }/${paymentPagesEnums.ADDBILL}`
+            );
+          }}
+          showTip={isChooseDebitAccount}
           buttonDisabled={accountType !== "Chequing"}
           showButton={true}
         />
@@ -86,7 +125,7 @@ export const AddBill = () => {
             <div>
               <div>Enter the amount you would like pay. </div>
               <br />
-              <div>For this activity, enter 68.00.</div>
+              <div>For this activity, enter {BILLAMOUNT}.</div>
             </div>
           }
           tipTarget={
@@ -97,8 +136,15 @@ export const AddBill = () => {
               value={billAmount}
             />
           }
-          showTip={enterAmount}
-          buttonDisabled={billAmount !== "$68.00"}
+          onClick={() => {
+            navigate(
+              `/${activity}/${Number(stepIndex) + 1}/${
+                paymentPagesEnums.PAYMENTSHOME
+              }/${paymentPagesEnums.ADDBILL}`
+            );
+          }}
+          showTip={isEnterAmount}
+          buttonDisabled={billAmount !== `$${BILLAMOUNT}`}
           showButton={true}
         />
       </div>
@@ -122,9 +168,16 @@ export const AddBill = () => {
               />
             </DateContainer>
           }
-          showTip={enterDate}
+          onClick={() => {
+            navigate(
+              `/${activity}/${Number(stepIndex) + 1}/${
+                paymentPagesEnums.PAYMENTSHOME
+              }/${paymentPagesEnums.ADDBILL}`
+            );
+          }}
+          showTip={isEnterDate}
           placement={"top-center"}
-          buttonDisabled={todayDate !== formattedBillDate}
+          buttonDisabled={todayDate !== getFormattedBillDate(billDate)}
           showButton={true}
         />
       </div>
@@ -134,15 +187,20 @@ export const AddBill = () => {
           tipTarget={
             <ContinueButton
               onClick={() => {
-                setVerifyBill(true);
-                setStep(step + 1);
+                // setVerifyBill(true);
+                // setStep(step + 1);
+                navigate(
+                  `/${activity}/${Number(stepIndex) + 1}/${
+                    paymentPagesEnums.PAYMENTSHOME
+                  }/${paymentPagesEnums.VERIFYBILL}`
+                );
               }}
-              disabled={allSteps[step] !== reviewBillPayment}
+              disabled={!isReview}
             >
               Continue
             </ContinueButton>
           }
-          showTip={reviewBillPayment}
+          showTip={isReview}
           showButton={false}
         />
       </ContinueButtonContainer>

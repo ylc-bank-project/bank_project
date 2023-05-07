@@ -71,7 +71,7 @@ export const AllRoutes = () => {
           </Route>
         </Route>
         <Route path={paymentPagesEnums.PAYMENTSHOME} element={<BasePage />}>
-          <Route index element={<PaymentsHome />}>
+          <Route path={""} element={<PaymentsHome />}>
             <Route
               path={paymentPagesEnums.LISTOFPAYEES}
               element={<ListOfPayees />}

@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BillPayeeInput,
   BillPayeeTitle,
+  BoldDiv,
   ContinueButton,
   ContinueButtonContainer,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
+import {
+  ACCOUNTNUMBER,
+  TACOTITLE,
+  makingPaymentsEnums,
+  makingPaymentsSteps,
+  paymentPagesEnums,
+} from "../../enums";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const AddPayee = () => {
+  const [companyTitle, setCompanyTitle] = useState("");
+  const [inputedAccountNumber, setInputedAccountNumber] = useState("");
+  const { activity, stepIndex } = useParams();
+  const navigate = useNavigate();
+
+  const isAddCompanyName =
+    makingPaymentsSteps[stepIndex] === makingPaymentsEnums.addCompanyName;
+
+  const isAddBillNumber =
+    makingPaymentsSteps[stepIndex] === makingPaymentsEnums.addBillNumber;
+
+  const isGoToVerify =
+    makingPaymentsSteps[stepIndex] === makingPaymentsEnums.goToVerify;
   return (
     <div>
       <div>
@@ -19,16 +41,24 @@ export const AddPayee = () => {
                 Enter company name: <strong>Taco Electric</strong>
               </div>
             }
-            buttonDisabled={companyTitle !== TacoTitle}
+            buttonDisabled={companyTitle !== TACOTITLE}
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  paymentPagesEnums.PAYMENTSHOME
+                }/${paymentPagesEnums.ADDPAYEE}`
+              );
+            }}
             tipTarget={
               <BillPayeeInput
                 onChange={(e) => setCompanyTitle(e.target.value)}
                 type="text"
                 placeholder="Company Name"
                 value={companyTitle}
+                disabled={!isAddCompanyName}
               />
             }
-            showTip={addCompanyName}
+            showTip={isAddCompanyName}
             showButton={true}
           />
         </div>
@@ -39,23 +69,31 @@ export const AddPayee = () => {
                 Now enter account/bill number. Your account number can typically
                 be found in the top right corner of your bill. Typically, it is
                 a 7-digit number. For this activity enter
-                <BoldDiv>1234 567</BoldDiv>
+                <BoldDiv>`${ACCOUNTNUMBER}`</BoldDiv>
                 {/* <span role="img" aria-label="smile emoji">
               🙂
             </span> */}
               </div>
             }
-            buttonDisabled={false}
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  paymentPagesEnums.PAYMENTSHOME
+                }/${paymentPagesEnums.ADDPAYEE}`
+              );
+            }}
+            buttonDisabled={inputedAccountNumber !== ACCOUNTNUMBER}
             tipTarget={
               <label>
                 <BillPayeeInput
                   onChange={(e) => setInputedAccountNumber(e.target.value)}
                   placeholder={"Account/Bill Number"}
-                  // value={inputedAccountNumber}
+                  value={inputedAccountNumber}
+                  disabled={!isAddBillNumber}
                 />
               </label>
             }
-            showTip={addBillNumber}
+            showTip={isAddBillNumber}
             showButton={true}
           />
         </div>
@@ -66,14 +104,19 @@ export const AddPayee = () => {
           tipTarget={
             <ContinueButton
               onClick={() => {
-                setVerifyPayee(true);
+                // setVerifyPayee(true);
+                navigate(
+                  `/${activity}/${Number(stepIndex) + 1}/${
+                    paymentPagesEnums.PAYMENTSHOME
+                  }/${paymentPagesEnums.VERIFYPAYEE}`
+                );
               }}
-              disabled={allSteps[step] !== goToVerify}
+              disabled={!isGoToVerify}
             >
               Continue
             </ContinueButton>
           }
-          showTip={goToVerify}
+          showTip={isGoToVerify}
           showButton={false}
         />
       </ContinueButtonContainer>

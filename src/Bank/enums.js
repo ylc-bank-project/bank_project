@@ -1,3 +1,9 @@
+//OTHER
+export const TACOTITLE = "Taco Electric";
+export const ACCOUNTNUMBER = "1234567";
+export const ACCOUNTTYPE = "Chequing";
+export const BILLAMOUNT = "68.00";
+
 // ACTIVITIES
 export const activitiesEnums = {
   TRANSFERFUNDS: "TransferFunds",

@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { mq } from "../../Global";
 import { InfoTip } from "../../Shared/Tip";
-import { accountPagesEnums, overviewEnums, overviewSteps } from "../../enums";
+import {
+  accountPagesEnums,
+  activitiesEnums,
+  overviewEnums,
+  overviewSteps,
+} from "../../enums";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StyledAccountBlock = styled.div`
@@ -67,7 +72,7 @@ const AccountBlock = ({
   accNumber,
 }) => (
   <StyledAccountBlock>
-    <AccountInfo onClick={!disabled && onClick}>
+    <AccountInfo disabled={disabled} onClick={onClick}>
       <AccountTitle>{title}</AccountTitle>
       <AccountNumber>{accNumber}</AccountNumber>
       <AccountBalance>{balance}</AccountBalance>
@@ -79,12 +84,15 @@ const AccountBlock = ({
 const AllAccounts = () => {
   const { stepIndex, activity } = useParams();
   const navigate = useNavigate();
+
+  const isOverview = activitiesEnums.ACCOUNTOVERVIEW === activity;
+
   return (
     <AllAccountsContainer>
       <BankAccounts>Bank Accounts</BankAccounts>
       <InfoTip
         tipContent={<div>Click on ‘Chequing’.</div>}
-        showTip={overviewSteps[stepIndex] === overviewEnums.check}
+        showTip={isOverview && overviewSteps[stepIndex] === overviewEnums.check}
         showButton={false}
         placement="left-center"
         tipTarget={
@@ -92,7 +100,9 @@ const AllAccounts = () => {
             title={"Chequing"}
             balance={"$18,023.00"}
             accNumber={"5522"}
-            disabled={overviewSteps[stepIndex] !== overviewEnums.check}
+            disabled={
+              !isOverview && overviewSteps[stepIndex] !== overviewEnums.check
+            }
             onClick={() => {
               navigate(
                 `/${activity}/${Number(stepIndex) + 1}/${

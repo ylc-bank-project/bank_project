@@ -56,7 +56,6 @@ const ActButton = ({ activity, children, closeModal }) => {
         switch (activity) {
           case activitiesEnums.CREATINGACCOUNT:
             navigate(`/${activity}/0/${bankPageEnums.BANKHOMEPAGE}`);
-            console.log("after navigate");
             break;
 
           case activitiesEnums.SIGNIN:
@@ -64,6 +63,10 @@ const ActButton = ({ activity, children, closeModal }) => {
             break;
 
           case activitiesEnums.ACCOUNTOVERVIEW:
+            navigate(`/${activity}/0/${accountPagesEnums.ACCOUNTS}`);
+            break;
+
+          case activitiesEnums.MAKINGPAYMENTS:
             navigate(`/${activity}/0/${accountPagesEnums.ACCOUNTS}`);
             break;
 

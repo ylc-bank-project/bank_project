@@ -4,7 +4,7 @@ import styled from "styled-components";
 import introOutroCopy from "../introOutroCopy";
 import logo from "../assets/dark_flake.png";
 import { ActButton } from "../Shared/Layout";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ActivityModalContext, IntroModalContext } from "../context";
 
 const LargerSpace = styled.span`
@@ -40,6 +40,7 @@ const IntroOutro = ({ copy }) => {
   let { isVisible, setActivityContext } = useContext(ActivityModalContext);
   let { introModalState, setIntroContext } = useContext(IntroModalContext);
   let { activity } = useParams();
+  const navigate = useNavigate();
 
   const visible = introModalState.isVisible;
   const isIntro = introModalState.isIntro;
@@ -77,8 +78,8 @@ const IntroOutro = ({ copy }) => {
               ) : (
                 <ActButton
                   onClick={() => {
-                    setActivityContext(true);
                     setIntroContext({ isVisible: false, isIntro: true });
+                    navigate("/");
                   }}
                 >
                   Start A New Activity
