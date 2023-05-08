@@ -11,7 +11,7 @@ import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import {
-  ACCOUNTTYPE,
+  CHEQUINGACCOUNT,
   BILLAMOUNT,
   makingPaymentsEnums,
   makingPaymentsSteps,
@@ -87,7 +87,7 @@ export const AddBill = () => {
                 Choose the account that you would like to pay the bill with.
               </div>
               <br />
-              <div>For this activity, choose {ACCOUNTTYPE}.</div>
+              <div>For this activity, choose {CHEQUINGACCOUNT}.</div>
             </div>
           }
           tipTarget={
@@ -96,7 +96,7 @@ export const AddBill = () => {
               onChange={(e) => setAccountType(e.target.value)}
             >
               <LightOption value="">Select Account</LightOption>
-              <option value={ACCOUNTTYPE}>{ACCOUNTTYPE}</option>
+              <option value={CHEQUINGACCOUNT}>{CHEQUINGACCOUNT}</option>
               <option value="Saving">Saving</option>
             </StyledSelect>
           }

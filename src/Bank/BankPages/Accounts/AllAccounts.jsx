@@ -113,11 +113,8 @@ const AllAccounts = () => {
           />
         }
       />
-      <AccountBlock
-        title={"Savings"}
-        balance={"$12,115.50"}
-        accNumber={"7788"}
-      />
+      {/* TODO: Need to increment when we are at the next step */}
+      <AccountBlock title={"Savings"} balance={"$500.00"} accNumber={"7788"} />
       <AccountBlock
         title={"Checking 2"}
         balance={"$5,112.50"}

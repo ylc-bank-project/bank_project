@@ -46,9 +46,9 @@ const BasePage = () => {
         <BankingHeader />
         <CleanBackground>
           <MarginedContainer>
-            <BankingContainer>
-              <Outlet />
-            </BankingContainer>
+            {/* <BankingContainer> */}
+            <Outlet />
+            {/* </BankingContainer> */}
           </MarginedContainer>
         </CleanBackground>
         <BankingFooter />

@@ -8,7 +8,7 @@ import {
   createSteps,
 } from "../../enums";
 import {
-  AuthContainer,
+  SmallContainer,
   BoldDiv,
   StyledNumberFormat,
   SubTitle,
@@ -29,7 +29,7 @@ const AccountRegistration = () => {
   // const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
 
   return (
-    <AuthContainer>
+    <SmallContainer>
       <SubTitle>Register Your Account</SubTitle>
       <InputContainer>
         <InfoTip
@@ -116,7 +116,7 @@ const AccountRegistration = () => {
           />
         </ButtonContainer>
       </InputContainer>
-    </AuthContainer>
+    </SmallContainer>
   );
 };
 

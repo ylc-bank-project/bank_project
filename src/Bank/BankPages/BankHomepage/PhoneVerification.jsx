@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  AuthContainer,
+  SmallContainer,
   BoldDiv,
   StyledNumberFormat,
   SubTitle,
@@ -20,7 +20,7 @@ const PhoneVerification = () => {
   const navigate = useNavigate();
   const [verifCode, setVerifCode] = useState(undefined);
   return (
-    <AuthContainer>
+    <SmallContainer>
       <SubTitle>Insert Phone Code</SubTitle>
       <InputContainer>
         <InfoTip
@@ -78,7 +78,7 @@ const PhoneVerification = () => {
           />
         </ButtonContainer>
       </InputContainer>
-    </AuthContainer>
+    </SmallContainer>
   );
 };
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
   BillPayeeInput,
-  BillPayeeTitle,
   BoldDiv,
   ContinueButton,
   ContinueButtonContainer,
+  TransactionSubtitle,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import {
@@ -34,7 +34,7 @@ export const AddPayee = () => {
     <div>
       <div>
         <div>
-          <BillPayeeTitle>Add a New Payee</BillPayeeTitle>
+          <TransactionSubtitle>Add a New Payee</TransactionSubtitle>
           <InfoTip
             tipContent={
               <div>

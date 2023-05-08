@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
-  AuthContainer,
+  SmallContainer,
   BoldDiv,
   Space,
   StyledInput,
@@ -37,7 +37,7 @@ const CreateEmail = () => {
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
 
   return (
-    <AuthContainer>
+    <SmallContainer>
       <SubTitle>Enter Email and Password</SubTitle>
       <InputContainer>
         <InfoTip
@@ -135,7 +135,7 @@ const CreateEmail = () => {
           <NeutralBankingButton>Confirm</NeutralBankingButton>
         </ButtonContainer>
       </InputContainer>
-    </AuthContainer>
+    </SmallContainer>
   );
 };
 

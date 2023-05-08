@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { InfoTip } from "../../Shared/Tip";
 
 import {
-  BillPayeeTitle,
+  TransactionSubtitle,
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,
 } from "../BankPageElements";
 import { useOutletContext, useParams } from "react-router-dom";
 import {
-  ACCOUNTTYPE,
+  CHEQUINGACCOUNT,
   BILLAMOUNT,
   TACOTITLE,
   activitiesEnums,
@@ -45,7 +45,7 @@ export const VerifyBill = () => {
   // const formattedBillDate = `${bMonth}/${bDay}/${bYear}`;
 
   if (!accountType) {
-    setAccountType(ACCOUNTTYPE);
+    setAccountType(CHEQUINGACCOUNT);
   }
 
   if (!billAmount) {
@@ -61,7 +61,7 @@ export const VerifyBill = () => {
 
   return (
     <div>
-      <BillPayeeTitle>Verify Payment Information</BillPayeeTitle>
+      <TransactionSubtitle>Verify Payment Information</TransactionSubtitle>
       <BillPayeeReview>Payee: {TACOTITLE}</BillPayeeReview>
       <BillPayeeReview>Account: {accountType}</BillPayeeReview>
       <BillPayeeReview>Amount: {billAmount}</BillPayeeReview>

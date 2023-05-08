@@ -1,7 +1,8 @@
 //OTHER
 export const TACOTITLE = "Taco Electric";
 export const ACCOUNTNUMBER = "1234567";
-export const ACCOUNTTYPE = "Chequing";
+export const CHEQUINGACCOUNT = "Chequing";
+export const SAVINGSACCOUNT = "Savings";
 export const BILLAMOUNT = "68.00";
 
 // ACTIVITIES
@@ -28,6 +29,9 @@ export const accountPagesEnums = {
   CHECKINGHOME: "CheckingHome",
   CHECKINGINFO: "CheckingInfo",
   CHECKINGTRANSACTIONS: "CheckingTransactions",
+  SAVINGSHOME: "SavingsHome",
+  SAVINGSINFO: "SavingsInfo",
+  SAVINGSTRANSACTIONS: "SavingsTransactions",
   TRANSFERFUNDS: "Transfer",
 };
 

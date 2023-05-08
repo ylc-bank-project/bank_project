@@ -3,7 +3,7 @@ import React from "react";
 // import { BasicTooltip, BasicTipButton, InfoTip } from "../../Shared/Tip";
 import { InfoTip } from "../../Shared/Tip";
 import {
-  BillPayeeTitle,
+  TransactionSubtitle,
   BillPayeeReview,
   ContinueButton,
   ContinueButtonContainer,
@@ -28,7 +28,7 @@ export const VerifyPayee = () => {
 
   return (
     <div>
-      <BillPayeeTitle>Review the new payee</BillPayeeTitle>
+      <TransactionSubtitle>Review the new payee</TransactionSubtitle>
       <BillPayeeReview>Company Name: Taco Electric</BillPayeeReview>
       <BillPayeeReview>Account/Bill Number: 1234567</BillPayeeReview>
       <ContinueButtonContainer>

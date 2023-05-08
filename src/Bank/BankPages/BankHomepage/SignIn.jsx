@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import {
   BoldDiv,
-  AuthContainer,
+  SmallContainer,
   SubTitle,
   StyledInput,
 } from "../BankPageElements";
@@ -48,7 +48,7 @@ const SignIn = () => {
   const isSignIn = activity === activitiesEnums.SIGNIN;
 
   return (
-    <AuthContainer>
+    <SmallContainer>
       <SubTitle>Sign In</SubTitle>
       <InputContainer>
         <InfoTip
@@ -178,7 +178,7 @@ const SignIn = () => {
           />
         </PasswordLabel>
       </InputContainer>
-    </AuthContainer>
+    </SmallContainer>
   );
 };
 

@@ -155,7 +155,7 @@ export const BankingHeader = () => {
   );
 };
 
-export const AuthContainer = styled.div`
+export const SmallContainer = styled.div`
   background: white;
   grid-column-start: 4;
   grid-column-end: 10;
@@ -437,7 +437,8 @@ export const BankHeader = styled.div`
 export const StyledNumberFormat = styled(NumberFormat)`
   border: none;
   border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
-  width: 100%;
+  display: inline-block;
+  /* width: 100%; */
   ${(p) => p.theme.fonts.body_text};
   font-weight: normal;
   height: 40px;
@@ -447,10 +448,38 @@ export const StyledNumberFormat = styled(NumberFormat)`
 `;
 
 export const StyledSelect = styled.select`
-  width: calc(100% - 40px - 2px - 100px);
+  /* width: calc(100% - 40px - 2px - 100px); */
+  display: inline-block;
   border: none;
-  padding: 20px;
-  margin: 0 50px;
+  padding: 25px;
+  /* margin: 0 50px; */
   /* border-bottom: 1px solid lightgray; */
+  /* border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray; */
+  ${(p) => p.theme.fonts.body_text}
+`;
+
+export const StyledLabel = styled.label`
+  display: inline-block;
   ${(p) => p.theme.fonts.body_text_bold}
+  padding: 25px;
+  width: 150px;
+  /* margin: 0 50px; */
+`;
+
+export const InputContainer = styled.div`
+  grid-column-start: 4;
+  grid-column-end: 10;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 100%;
+  ${mq[2]} {
+    grid-column-start: 3;
+    grid-column-end: 11;
+  }
+  ${mq[1]} {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
 `;

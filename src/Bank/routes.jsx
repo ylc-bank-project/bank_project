@@ -16,6 +16,7 @@ import {
   CheckingHome,
   CheckingInfo,
   CheckingTransactions,
+  SavingsHome,
   TransferFunds,
 } from "./BankPages/Accounts/";
 import BasePage from "./BankPages/BaseBankPage";
@@ -27,6 +28,7 @@ import {
   VerifyBill,
   AddPayee,
 } from "./BankPages/Payments";
+import { SavingsInfo, SavingsTransactions } from "./BankPages/Accounts/Savings";
 
 function Activity(props) {
   let { activity } = useParams();
@@ -69,6 +71,17 @@ export const AllRoutes = () => {
             <Route
               path={accountPagesEnums.CHECKINGTRANSACTIONS}
               element={<CheckingTransactions />}
+            />
+            <Route />
+          </Route>
+          <Route path={accountPagesEnums.SAVINGSHOME} element={<SavingsHome />}>
+            <Route
+              path={accountPagesEnums.SAVINGSINFO}
+              element={<SavingsInfo />}
+            />
+            <Route
+              path={accountPagesEnums.SAVINGSTRANSACTIONS}
+              element={<SavingsTransactions />}
             />
             <Route />
           </Route>
