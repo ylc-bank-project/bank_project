@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import {
-  BillPayeeTitle,
+  TransactionSubtitle,
   ContinueButton,
   ContinueButtonContainer,
+  StyledSelect,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import NumberFormat from "react-number-format";
@@ -34,15 +35,6 @@ const StyledDatePicker = styled(DatePicker)`
   padding: 20px;
   margin: 0 50px;
   ${(p) => p.theme.fonts.body_text_bold};
-`;
-
-const StyledSelect = styled.select`
-  width: calc(100% - 40px - 2px - 100px);
-  border: none;
-  padding: 20px;
-  margin: 0 50px;
-  /* border-bottom: 1px solid lightgray; */
-  ${(p) => p.theme.fonts.body_text_bold}
 `;
 
 const DateContainer = styled.div`
@@ -86,7 +78,7 @@ export const AddBill = () => {
 
   return (
     <div>
-      <BillPayeeTitle>Pay Taco Electric</BillPayeeTitle>
+      <TransactionSubtitle>Pay Taco Electric</TransactionSubtitle>
       <div>
         <InfoTip
           tipContent={
@@ -104,7 +96,7 @@ export const AddBill = () => {
               onChange={(e) => setAccountType(e.target.value)}
             >
               <LightOption value="">Select Account</LightOption>
-              <option value="Chequing">{ACCOUNTTYPE}</option>
+              <option value={ACCOUNTTYPE}>{ACCOUNTTYPE}</option>
               <option value="Saving">Saving</option>
             </StyledSelect>
           }

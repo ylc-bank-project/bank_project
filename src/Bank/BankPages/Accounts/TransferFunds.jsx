@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { StyledSelect, TransactionSubtitle } from "../BankPageElements";
+import { ACCOUNTTYPE } from "../../enums";
 const Container = styled.div`
   min-height: calc(100vh - 150px);
   background: white;
@@ -9,8 +11,12 @@ const Container = styled.div`
 export const TransferFunds = () => {
   return (
     <Container>
-      <input />
-      <div>TEST</div>
+      <TransactionSubtitle>Transfer Funds</TransactionSubtitle>
+      <StyledSelect>
+        <option value={""}>Select Account</option>
+        <option value={ACCOUNTTYPE}>{ACCOUNTTYPE}</option>
+        <option value="Saving">Saving</option>
+      </StyledSelect>
     </Container>
   );
 };

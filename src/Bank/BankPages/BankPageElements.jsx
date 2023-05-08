@@ -375,7 +375,7 @@ export const ItemListing = ({ principal, date, trans, details, ...rest }) => {
   );
 };
 
-export const BillPayeeTitle = styled.div`
+export const TransactionSubtitle = styled.div`
   ${(p) => p.theme.fonts.small_header};
   width: 100%;
   display: flex;
@@ -444,4 +444,13 @@ export const StyledNumberFormat = styled(NumberFormat)`
   ::placeholder {
     color: ${(p) => p.theme.colors.ylc_blue};
   }
+`;
+
+export const StyledSelect = styled.select`
+  width: calc(100% - 40px - 2px - 100px);
+  border: none;
+  padding: 20px;
+  margin: 0 50px;
+  /* border-bottom: 1px solid lightgray; */
+  ${(p) => p.theme.fonts.body_text_bold}
 `;
