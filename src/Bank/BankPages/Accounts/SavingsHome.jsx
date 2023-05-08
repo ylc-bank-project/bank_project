@@ -1,7 +1,7 @@
 import React from "react";
 import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
-import { TransactionsDetails } from "../BankPageElements";
+import { BankingContainer, TransactionsDetails } from "../BankPageElements";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import {
   accountPagesEnums,
@@ -10,14 +10,14 @@ import {
   overviewSteps,
 } from "../../enums";
 
-const CheckingSectionWrapper = styled.div`
+const AccountSectionWrapper = styled.div`
   background: white;
   padding-bottom: 100px;
 `;
 
-const CheckingHeaderContainer = styled.div``;
+const AccountHeaderContainer = styled.div``;
 
-const CheckingHeader = styled.div`
+const AccountHeader = styled.div`
   ${(p) => p.theme.fonts.small_header};
   display: flex;
   justify-content: center;
@@ -38,28 +38,30 @@ const NotedBalance = styled.div`
   font-weight: normal;
 `;
 
-const CheckingHeaderInfo = () => {
+const AccountHeaderInfo = () => {
   const { activity, stepIndex } = useParams();
   const isOverview = activity === activitiesEnums.ACCOUNTOVERVIEW;
   const navigate = useNavigate();
 
   return (
-    <CheckingHeaderContainer>
-      <CheckingHeader>Savings</CheckingHeader>
+    <AccountHeaderContainer>
+      <AccountHeader>Savings</AccountHeader>
       <AccountNumber>5522 8899-222</AccountNumber>
       <NotedBalance>$500.00</NotedBalance>
       <TransactionsDetails />
-    </CheckingHeaderContainer>
+    </AccountHeaderContainer>
   );
 };
 
-const CheckingHome = () => {
+const SavingsHome = () => {
   return (
-    <CheckingSectionWrapper>
-      <CheckingHeaderInfo />
-      <Outlet />
-    </CheckingSectionWrapper>
+    <BankingContainer>
+      <AccountSectionWrapper>
+        <AccountHeaderInfo />
+        <Outlet />
+      </AccountSectionWrapper>
+    </BankingContainer>
   );
 };
 
-export default CheckingHome;
+export default SavingsHome;

@@ -144,6 +144,10 @@ export const BasicTipButton = (props) => {
   );
 };
 
+const TipContainer = styled.div`
+  position: absolute;
+`;
+
 export const InfoTip = ({
   tipContent,
   showTip,
@@ -156,18 +160,18 @@ export const InfoTip = ({
 }) => {
   const Content = () => {
     return (
-      <div>
-        <div>{tipContent}</div>
+      <>
+        <>{tipContent}</>
         {showButton && (
           <BasicTipButton disabled={buttonDisabled} onClick={onClick}>
             Continue
           </BasicTipButton>
         )}
-      </div>
+      </>
     );
   };
   return (
-    <div>
+    <>
       <BasicTooltip
         content={<Content />}
         showTip={showTip}
@@ -176,6 +180,6 @@ export const InfoTip = ({
       >
         {tipTarget}
       </BasicTooltip>
-    </div>
+    </>
   );
 };

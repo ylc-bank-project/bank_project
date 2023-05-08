@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import styled from "styled-components";
+import { BankingContainer } from "../BankPageElements";
 
 const BillPaymentsContainer = styled.div`
   min-height: calc(100vh - 150px);
@@ -20,17 +21,19 @@ export const PaymentsHome = () => {
   const [billAmount, setBillAmount] = useState(undefined);
   const [billDate, setBillDate] = useState(addDays(new Date(), 5));
   return (
-    <BillPaymentsContainer>
-      <Outlet
-        context={{
-          accountType,
-          setAccountType,
-          billAmount,
-          setBillAmount,
-          billDate,
-          setBillDate,
-        }}
-      />
-    </BillPaymentsContainer>
+    <BankingContainer>
+      <BillPaymentsContainer>
+        <Outlet
+          context={{
+            accountType,
+            setAccountType,
+            billAmount,
+            setBillAmount,
+            billDate,
+            setBillDate,
+          }}
+        />
+      </BillPaymentsContainer>
+    </BankingContainer>
   );
 };

@@ -439,24 +439,30 @@ export const StyledNumberFormat = styled(NumberFormat)`
   border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
   display: inline-block;
   /* width: 100%; */
-  ${(p) => p.theme.fonts.body_text};
-  font-weight: normal;
   height: 40px;
   ::placeholder {
     color: ${(p) => p.theme.colors.ylc_blue};
   }
+  ${(p) => p.theme.fonts.body_text};
+  font-weight: normal;
 `;
 
 export const StyledSelect = styled.select`
   /* width: calc(100% - 40px - 2px - 100px); */
   display: inline-block;
   border: none;
-  padding: 25px;
+  padding: 25px 0;
   /* margin: 0 50px; */
   /* border-bottom: 1px solid lightgray; */
   /* border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray; */
   ${(p) => p.theme.fonts.body_text}
+`;
+
+export const OldStyledSelect = styled(StyledSelect)`
+  margin: 0 50px;
+  padding: 25px;
+  ${(p) => p.theme.fonts.body_text_bold}
 `;
 
 export const StyledLabel = styled.label`

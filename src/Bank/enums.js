@@ -166,9 +166,21 @@ export const makingPaymentsSteps = [
 export const transferFundsEnums = {
   clickPayTransfer: "clickPayTransfer",
   clickTransfer: "clickTransfer",
+  selectChequing: "selectChequing",
+  selectSavings: "selectSavings",
+  enterAmount: "enterAmount",
+  transferType: "transferType",
+  confirmTransfer: "confirmTransfer",
+  goToSavings: "goToSavings",
 };
 
 export const transferFundsSteps = [
   transferFundsEnums.clickPayTransfer,
   transferFundsEnums.clickTransfer,
+  transferFundsEnums.selectChequing,
+  transferFundsEnums.selectSavings,
+  transferFundsEnums.enterAmount,
+  transferFundsEnums.transferType,
+  transferFundsEnums.confirmTransfer,
+  transferFundsEnums.goToSavings,
 ];

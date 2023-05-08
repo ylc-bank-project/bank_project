@@ -7,8 +7,12 @@ import {
   activitiesEnums,
   overviewEnums,
   overviewSteps,
+  transferFundsEnums,
+  transferFundsSteps,
 } from "../../enums";
 import { useNavigate, useParams } from "react-router-dom";
+
+import { BankingContainer } from "../BankPageElements";
 
 const StyledAccountBlock = styled.div`
   display: flex;
@@ -86,41 +90,72 @@ const AllAccounts = () => {
   const navigate = useNavigate();
 
   const isOverview = activitiesEnums.ACCOUNTOVERVIEW === activity;
+  const isTransfer = activitiesEnums.TRANSFERFUNDS === activity;
 
   return (
-    <AllAccountsContainer>
-      <BankAccounts>Bank Accounts</BankAccounts>
-      <InfoTip
-        tipContent={<div>Click on ‘Chequing’.</div>}
-        showTip={isOverview && overviewSteps[stepIndex] === overviewEnums.check}
-        showButton={false}
-        placement="left-center"
-        tipTarget={
-          <AccountBlock
-            title={"Chequing"}
-            balance={"$18,023.00"}
-            accNumber={"5522"}
-            disabled={
-              !isOverview && overviewSteps[stepIndex] !== overviewEnums.check
-            }
-            onClick={() => {
-              navigate(
-                `/${activity}/${Number(stepIndex) + 1}/${
-                  accountPagesEnums.ACCOUNTS
-                }/${accountPagesEnums.CHECKINGHOME}`
-              );
-            }}
-          />
-        }
-      />
-      {/* TODO: Need to increment when we are at the next step */}
-      <AccountBlock title={"Savings"} balance={"$500.00"} accNumber={"7788"} />
-      <AccountBlock
-        title={"Checking 2"}
-        balance={"$5,112.50"}
-        accNumber={"9811"}
-      />
-    </AllAccountsContainer>
+    <BankingContainer>
+      <AllAccountsContainer>
+        <BankAccounts>Bank Accounts</BankAccounts>
+        <InfoTip
+          tipContent={<div>Click on ‘Chequing’.</div>}
+          showTip={
+            isOverview && overviewSteps[stepIndex] === overviewEnums.check
+          }
+          showButton={false}
+          placement="left-center"
+          tipTarget={
+            <AccountBlock
+              title={"Chequing"}
+              balance={"$18,023.00"}
+              accNumber={"5522"}
+              disabled={
+                !isOverview && overviewSteps[stepIndex] !== overviewEnums.check
+              }
+              onClick={() => {
+                navigate(
+                  `/${activity}/${Number(stepIndex) + 1}/${
+                    accountPagesEnums.ACCOUNTS
+                  }/${accountPagesEnums.CHECKINGHOME}`
+                );
+              }}
+            />
+          }
+        />
+        {/* TODO: Need to increment when we are at the next step */}
+        <InfoTip
+          tipContent={<div>Click on "Savings".</div>}
+          showTip={
+            isTransfer &&
+            transferFundsSteps[stepIndex] === transferFundsEnums.goToSavings
+          }
+          showButton={false}
+          placement="left-center"
+          tipTarget={
+            <AccountBlock
+              title={"Savings"}
+              balance={"$500.00"}
+              accNumber={"7788"}
+              disabled={
+                !isTransfer ||
+                transferFundsSteps[stepIndex] !== transferFundsEnums.goToSavings
+              }
+              onClick={() => {
+                navigate(
+                  `/${activity}/${Number(stepIndex) + 1}/${
+                    accountPagesEnums.ACCOUNTS
+                  }/${accountPagesEnums.SAVINGSHOME}`
+                );
+              }}
+            />
+          }
+        />
+        <AccountBlock
+          title={"Checking 2"}
+          balance={"$5,112.50"}
+          accNumber={"9811"}
+        />
+      </AllAccountsContainer>
+    </BankingContainer>
   );
 };
 

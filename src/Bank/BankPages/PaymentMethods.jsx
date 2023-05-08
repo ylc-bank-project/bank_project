@@ -85,7 +85,7 @@ export const PaymentMethods = ({
         <div>
           <TransactionsContainer>
             <InfoTip
-              tipContent={"Click on “Transfer”"}
+              tipContent={<div>Click on “Transfer”</div>}
               showTip={isTransferFunds}
               showButton={false}
               tipTarget={

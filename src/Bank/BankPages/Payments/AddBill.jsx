@@ -4,6 +4,7 @@ import {
   ContinueButton,
   ContinueButtonContainer,
   StyledSelect,
+  OldStyledSelect,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import NumberFormat from "react-number-format";
@@ -91,14 +92,14 @@ export const AddBill = () => {
             </div>
           }
           tipTarget={
-            <StyledSelect
+            <OldStyledSelect
               value={accountType}
               onChange={(e) => setAccountType(e.target.value)}
             >
               <LightOption value="">Select Account</LightOption>
               <option value={CHEQUINGACCOUNT}>{CHEQUINGACCOUNT}</option>
               <option value="Saving">Saving</option>
-            </StyledSelect>
+            </OldStyledSelect>
           }
           onClick={() => {
             navigate(

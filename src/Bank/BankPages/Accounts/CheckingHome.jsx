@@ -1,7 +1,7 @@
 import React from "react";
 import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
-import { TransactionsDetails } from "../BankPageElements";
+import { BankingContainer, TransactionsDetails } from "../BankPageElements";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import {
   accountPagesEnums,
@@ -77,10 +77,12 @@ const CheckingHeaderInfo = () => {
 
 const CheckingHome = () => {
   return (
-    <CheckingSectionWrapper>
-      <CheckingHeaderInfo />
-      <Outlet />
-    </CheckingSectionWrapper>
+    <BankingContainer>
+      <CheckingSectionWrapper>
+        <CheckingHeaderInfo />
+        <Outlet />
+      </CheckingSectionWrapper>
+    </BankingContainer>
   );
 };
 
