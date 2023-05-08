@@ -70,6 +70,10 @@ const ActButton = ({ activity, children, closeModal }) => {
             navigate(`/${activity}/0/${accountPagesEnums.ACCOUNTS}`);
             break;
 
+          case activitiesEnums.TRANSFERFUNDS:
+            navigate(`/${activity}/0/${accountPagesEnums.ACCOUNTS}`);
+            break;
+
           default:
             navigate(`/`);
             break;

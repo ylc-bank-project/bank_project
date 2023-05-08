@@ -11,6 +11,7 @@ import interacIcon from "../assets/coin.png";
 import { mq } from "../Global";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  accountPagesEnums,
   activitiesEnums,
   makingPaymentsEnums,
   makingPaymentsSteps,
@@ -39,6 +40,12 @@ const BankingButton = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: white;
+  color: black;
+  border: black 1px solid;
+  :disabled {
+    background: white;
+  }
 
   img {
     max-height: 50px;
@@ -62,6 +69,7 @@ export const PaymentMethods = ({
   const navigate = useNavigate();
 
   const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
+  const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
 
   const isBillPayments =
     isMakingPayments &&
@@ -76,22 +84,38 @@ export const PaymentMethods = ({
       render={() => (
         <div>
           <TransactionsContainer>
-            <BankingButton>
-              <img src={transferIcon} alt="" />
-              Transfer
-            </BankingButton>
+            <InfoTip
+              tipContent={"Click on “Transfer”"}
+              showTip={isTransferFunds}
+              showButton={false}
+              tipTarget={
+                <BankingButton
+                  onClick={() => {
+                    navigate(
+                      `/${activity}/${Number(stepIndex) + 1}/${
+                        accountPagesEnums.ACCOUNTS
+                      }/${accountPagesEnums.TRANSFERFUNDS}`
+                    );
+                  }}
+                  disabled={!isTransferFunds}
+                >
+                  <img src={transferIcon} alt="" />
+                  Transfer
+                </BankingButton>
+              }
+            />
             <InfoTip
               tipContent={<div>Click on 'Pay a Bill'.</div>}
               tipTarget={
                 <BankingButton
                   onClick={() => {
-                    // should open the modal
                     navigate(
                       `/${activity}/${Number(stepIndex) + 1}/${
                         paymentPagesEnums.PAYMENTSHOME
                       }/${paymentPagesEnums.LISTOFPAYEES}`
                     );
                   }}
+                  disabled={!isBillPayments}
                 >
                   <img src={payBillIcon} alt="" />
                   Pay a bill

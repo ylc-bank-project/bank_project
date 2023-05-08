@@ -39,7 +39,6 @@ export const BasicTooltip = ({
 }) => {
   const [isOver, hoverProps] = useHover();
 
-  // TODO: Reinstate Scroll-to
   useEffect(() => {
     showTip &&
       scroller.scrollTo("myScrollToElement", {

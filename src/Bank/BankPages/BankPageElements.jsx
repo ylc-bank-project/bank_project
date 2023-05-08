@@ -7,14 +7,7 @@ import { InfoTip } from "../Shared/Tip";
 import { mq } from "../Global";
 import NumberFormat from "react-number-format";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-  accountPagesEnums,
-  activitiesEnums,
-  makingPaymentsEnums,
-  makingPaymentsSteps,
-  overviewEnums,
-  overviewSteps,
-} from "../enums";
+import { accountPagesEnums, overviewEnums, overviewSteps } from "../enums";
 
 export const SubTitle = styled.div`
   width: 100%;
@@ -200,81 +193,6 @@ export const BankingContainer = styled.div`
   /* min-height: 100vh; */
   /* overflow-y: hidden; */
 `;
-
-const StyledBankingFooter = styled.div`
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background: white;
-  height: 75px;
-`;
-
-const FooterLink = styled.button`
-  width: 140px;
-  margin: 10px;
-  border: none;
-  background: none;
-  border-bottom: 4px solid
-    ${(p) => (p.isActive ? p.theme.colors.ylc_blue : "transparent")};
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: grey;
-  ${(p) => p.theme.fonts.body_text};
-  font-size: 18px;
-  cursor: pointer;
-`;
-
-export const BankingFooter = () => {
-  const { activity, stepIndex } = useParams();
-  const navigate = useNavigate();
-
-  const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
-
-  // TODO: Set the isActive bit
-  const isActive = true;
-
-  return (
-    <StyledBankingFooter>
-      <FooterLink isActive={isActive === "home"}>Home</FooterLink>
-      <InfoTip
-        tipContent={<div>Click on Pay & Transfer</div>}
-        tipTarget={
-          <FooterLink
-            onClick={() => {
-              navigate(
-                `/${activity}/${Number(stepIndex) + 1}/${
-                  accountPagesEnums.ACCOUNTS
-                }`
-              );
-            }}
-            isActive={isActive === "pay"}
-            disabled={
-              !isMakingPayments &&
-              makingPaymentsSteps[stepIndex] !==
-                makingPaymentsEnums.clickPayments
-            }
-          >
-            Pay & Transfer
-          </FooterLink>
-        }
-        placement={"top-center"}
-        showTip={
-          isMakingPayments &&
-          makingPaymentsSteps[stepIndex] === makingPaymentsEnums.clickPayments
-        }
-        showButton={false}
-        noScroll={true}
-      />
-
-      <FooterLink isActive={isActive === "more"}>More</FooterLink>
-    </StyledBankingFooter>
-  );
-};
 
 const TransDetailsSection = styled.div`
   background: white;

@@ -16,6 +16,7 @@ import {
   CheckingHome,
   CheckingInfo,
   CheckingTransactions,
+  TransferFunds,
 } from "./BankPages/Accounts/";
 import BasePage from "./BankPages/BaseBankPage";
 import {
@@ -55,6 +56,10 @@ export const AllRoutes = () => {
         {/* Here, ACCOUNTS just uses the base page */}
         <Route path={accountPagesEnums.ACCOUNTS} element={<BasePage />}>
           <Route path="" element={<AllAccounts />} />
+          <Route
+            path={accountPagesEnums.TRANSFERFUNDS}
+            element={<TransferFunds />}
+          />
           <Route
             path={accountPagesEnums.CHECKINGHOME}
             element={<CheckingHome />}

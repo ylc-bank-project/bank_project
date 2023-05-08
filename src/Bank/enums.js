@@ -25,10 +25,10 @@ export const bankPageEnums = {
 
 export const accountPagesEnums = {
   ACCOUNTS: "Accounts",
-  ALLACCOUNTS: "AllAccounts",
   CHECKINGHOME: "CheckingHome",
   CHECKINGINFO: "CheckingInfo",
   CHECKINGTRANSACTIONS: "CheckingTransactions",
+  TRANSFERFUNDS: "Transfer",
 };
 
 export const paymentPagesEnums = {
@@ -156,4 +156,15 @@ export const makingPaymentsSteps = [
   makingPaymentsEnums.enterDate,
   makingPaymentsEnums.reviewBillPayment,
   makingPaymentsEnums.confirmBillPayment,
+];
+
+// TRANSFER FUNDS
+export const transferFundsEnums = {
+  clickPayTransfer: "clickPayTransfer",
+  clickTransfer: "clickTransfer",
+};
+
+export const transferFundsSteps = [
+  transferFundsEnums.clickPayTransfer,
+  transferFundsEnums.clickTransfer,
 ];
