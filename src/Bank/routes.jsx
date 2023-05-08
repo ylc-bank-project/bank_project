@@ -22,8 +22,6 @@ import BasePage from "./BankPages/BaseBankPage";
 import {
   PaymentsHome,
   ListOfPayees,
-  PayVerifyBill,
-  AddVerifyPayee,
   VerifyPayee,
   AddBill,
   VerifyBill,

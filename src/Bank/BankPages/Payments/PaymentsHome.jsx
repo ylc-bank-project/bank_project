@@ -22,8 +22,7 @@ export const PaymentsHome = () => {
   return (
     <BillPaymentsContainer>
       <Outlet
-        {...{
-          // BILLS
+        context={{
           accountType,
           setAccountType,
           billAmount,

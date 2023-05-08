@@ -8,9 +8,8 @@ import { InfoTip } from "../../Shared/Tip";
 import NumberFormat from "react-number-format";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import {
-  ACCOUNTNUMBER,
   ACCOUNTTYPE,
   BILLAMOUNT,
   makingPaymentsEnums,
@@ -60,16 +59,18 @@ const LightOption = styled.option`
   /* color: lightgray !important; */
 `;
 
-export const AddBill = ({
-  accountType,
-  setAccountType,
-  billAmount,
-  setBillAmount,
-  billDate,
-  setBillDate,
-}) => {
+export const AddBill = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
+
+  const {
+    accountType,
+    setAccountType,
+    billAmount,
+    setBillAmount,
+    billDate,
+    setBillDate,
+  } = useOutletContext();
 
   let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
   const todayDate = `${month}/${day}/${year}`;
@@ -91,10 +92,10 @@ export const AddBill = ({
           tipContent={
             <div>
               <div>
-                Choose your "Chequing" that you would like to pay the bill with.
+                Choose the account that you would like to pay the bill with.
               </div>
               <br />
-              <div>For this activity, choose ‘Chequing’.</div>
+              <div>For this activity, choose {ACCOUNTTYPE}.</div>
             </div>
           }
           tipTarget={

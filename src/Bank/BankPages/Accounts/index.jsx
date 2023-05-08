@@ -1,7 +1,7 @@
 import AllAccounts from "./AllAccounts";
 import { CheckingInfo, CheckingTransactions } from "./Checking";
 import CheckingHome from "./CheckingHome";
-import TransferFunds from "../../Activities/TransferFunds";
+import { TransferFunds } from "./TransferFunds";
 
 export {
   AllAccounts,

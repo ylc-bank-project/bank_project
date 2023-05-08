@@ -69,7 +69,7 @@ const IntroOutro = ({ copy }) => {
             <TextSection>{text}</TextSection>
             <TextSection>
               {
-                "No personal information will be required. The information used is not a real bank account, it is an example for learning purposes."
+                "No personal information will be required in these exercises. The information used is not a real bank account, it is an example for learning purposes."
               }
             </TextSection>
             <ButtonSection>

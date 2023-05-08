@@ -68,8 +68,8 @@ export const AddPayee = () => {
               <div>
                 Now enter account/bill number. Your account number can typically
                 be found in the top right corner of your bill. Typically, it is
-                a 7-digit number. For this activity enter
-                <BoldDiv>`${ACCOUNTNUMBER}`</BoldDiv>
+                a 7-digit number. For this activity enter:
+                <BoldDiv>{ACCOUNTNUMBER}</BoldDiv>
                 {/* <span role="img" aria-label="smile emoji">
               🙂
             </span> */}

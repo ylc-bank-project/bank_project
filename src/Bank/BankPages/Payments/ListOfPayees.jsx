@@ -35,15 +35,7 @@ const AddPayeeButton = styled.button`
   color: grey;
 `;
 
-export const ListOfPayees = (
-  {
-    // setPaymentStage,
-    // addVerifyPayeeStage,
-    // tacoAdded,
-    // payVerifyBillStage,
-    // inputedAccountNumber,
-  }
-) => {
+export const ListOfPayees = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
 
@@ -70,7 +62,7 @@ export const ListOfPayees = (
                 navigate(
                   `/${activity}/${Number(stepIndex) + 1}/${
                     paymentPagesEnums.PAYMENTSHOME
-                  }/${paymentPagesEnums.ADDVERIFYPAYEE}`
+                  }/${paymentPagesEnums.ADDPAYEE}`
                 );
               }}
               disabled={!isAddEditPayee}
@@ -105,7 +97,7 @@ export const ListOfPayees = (
                 navigate(
                   `/${activity}/${Number(stepIndex) + 1}/${
                     paymentPagesEnums.PAYMENTSHOME
-                  }/${paymentPagesEnums.PAYVERIFYBILL}`
+                  }/${paymentPagesEnums.ADDBILL}`
                 );
               }}
               principal={"Taco Electric"}

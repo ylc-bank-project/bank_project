@@ -7,7 +7,7 @@ import {
   ContinueButton,
   ContinueButtonContainer,
 } from "../BankPageElements";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import {
   ACCOUNTTYPE,
   BILLAMOUNT,
@@ -19,14 +19,15 @@ import {
 import { IntroModalContext } from "../../context";
 import { getFormattedBillDate } from "./shared";
 
-export const VerifyBill = ({
-  accountType,
-  setAccountType,
-  billAmount,
-  setBillAmount,
-  billDate,
-  setBillDate,
-}) => {
+export const VerifyBill = () => {
+  const {
+    accountType,
+    setAccountType,
+    billAmount,
+    setBillAmount,
+    billDate,
+    setBillDate,
+  } = useOutletContext();
   const { activity, stepIndex } = useParams();
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
 

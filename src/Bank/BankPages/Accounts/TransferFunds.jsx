@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-const BillPaymentsContainer = styled.div`
+const Container = styled.div`
   min-height: calc(100vh - 150px);
   background: white;
   padding-bottom: 150px;
@@ -8,11 +8,9 @@ const BillPaymentsContainer = styled.div`
 
 export const TransferFunds = () => {
   return (
-    // <BillPaymentsContainer>
-    <div>
+    <Container>
       <input />
       <div>TEST</div>
-    </div>
-    // </BillPaymentsContainer>
+    </Container>
   );
 };
