@@ -40,14 +40,18 @@ const NotedBalance = styled.div`
 
 const AccountHeaderInfo = () => {
   const { activity, stepIndex } = useParams();
-  const isOverview = activity === activitiesEnums.ACCOUNTOVERVIEW;
+
   const navigate = useNavigate();
+
+  const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+  const isIncreasedSavingsBalance = isTransferFunds && stepIndex >= 6;
+  const balance = isIncreasedSavingsBalance ? 800 : 500;
 
   return (
     <AccountHeaderContainer>
       <AccountHeader>Savings</AccountHeader>
-      <AccountNumber>5522 8899-222</AccountNumber>
-      <NotedBalance>$500.00</NotedBalance>
+      <AccountNumber>7788 8899-222</AccountNumber>
+      <NotedBalance>${balance}</NotedBalance>
       <TransactionsDetails />
     </AccountHeaderContainer>
   );

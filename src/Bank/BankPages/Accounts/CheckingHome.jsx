@@ -43,6 +43,10 @@ const CheckingHeaderInfo = () => {
   const isOverview = activity === activitiesEnums.ACCOUNTOVERVIEW;
   const navigate = useNavigate();
 
+  const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+  const isIncreasedSavingsBalance = isTransferFunds && stepIndex >= 6;
+  const chequingBalance = isIncreasedSavingsBalance ? "17,723.00" : "18,023.00";
+
   return (
     <CheckingHeaderContainer>
       <CheckingHeader>Chequing</CheckingHeader>
@@ -67,7 +71,7 @@ const CheckingHeaderInfo = () => {
         showTip={
           isOverview && overviewSteps[stepIndex] === overviewEnums.balance
         }
-        tipTarget={<NotedBalance>$18,023.00</NotedBalance>}
+        tipTarget={<NotedBalance>${chequingBalance}</NotedBalance>}
       />
 
       <TransactionsDetails />

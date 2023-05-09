@@ -172,6 +172,12 @@ export const transferFundsEnums = {
   transferType: "transferType",
   confirmTransfer: "confirmTransfer",
   goToSavings: "goToSavings",
+  goToSavingsTransactions: "goToSavingsTransactions",
+  confirmSavingsIncrease: "confirmSavingsIncrease",
+  goHomeToCheckChequing: "goHomeToCheckChequing",
+  toChequingForFinalReview: "toChequingForFinalReview",
+  toChequingTransactionsFinalReview: "toChequingTransactionsFinalReview",
+  finalReview: "finalReview",
 };
 
 export const transferFundsSteps = [
@@ -183,4 +189,10 @@ export const transferFundsSteps = [
   transferFundsEnums.transferType,
   transferFundsEnums.confirmTransfer,
   transferFundsEnums.goToSavings,
+  transferFundsEnums.goToSavingsTransactions,
+  transferFundsEnums.confirmSavingsIncrease,
+  transferFundsEnums.goHomeToCheckChequing,
+  transferFundsEnums.toChequingForFinalReview,
+  transferFundsEnums.toChequingTransactionsFinalReview,
+  transferFundsEnums.finalReview,
 ];

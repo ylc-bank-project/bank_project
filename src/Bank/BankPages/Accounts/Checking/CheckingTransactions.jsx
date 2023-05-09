@@ -4,8 +4,11 @@ import { InfoTip } from "../../../Shared/Tip";
 import { BoldDiv, ItemListing } from "../../BankPageElements";
 import {
   accountPagesEnums,
+  activitiesEnums,
   overviewEnums,
   overviewSteps,
+  transferFundsEnums,
+  transferFundsSteps,
 } from "../../../enums";
 import { useNavigate, useParams } from "react-router-dom";
 import { IntroModalContext } from "../../../context";
@@ -15,12 +18,42 @@ const FullEmptyDiv = styled.div`
   height: 10px;
 `;
 
+let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
+const todayDate = `${day} ${month}, ${year}`;
+
 const Transactions = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
+
+  const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+  const isOverview = activity === activitiesEnums.ACCOUNTOVERVIEW;
+
+  const isTransferFinal =
+    isTransferFunds &&
+    transferFundsSteps[stepIndex] === transferFundsEnums.finalReview;
+
   return (
     <>
+      <InfoTip
+        tipContent={
+          <div>
+            Here you can see the amount transferred from your chequing account
+            to savings!
+          </div>
+        }
+        showTip={isTransferFinal}
+        onClick={() => setIntroContext({ isVisible: true, isIntro: false })}
+        tipTarget={
+          <ItemListing
+            principal={"7788 8899-222"}
+            date={todayDate}
+            trans={"Transfer - Savings"}
+            details={"-$300.00"}
+          />
+        }
+      />
+
       <InfoTip
         tipContent={
           <>
@@ -54,7 +87,9 @@ const Transactions = () => {
             }`
           );
         }}
-        showTip={overviewSteps[stepIndex] === overviewEnums.wellRead}
+        showTip={
+          isOverview && overviewSteps[stepIndex] === overviewEnums.wellRead
+        }
       />
       <InfoTip
         tipContent={
@@ -148,7 +183,9 @@ const Transactions = () => {
             }`
           );
         }}
-        showTip={overviewSteps[stepIndex] === overviewEnums.preAuth}
+        showTip={
+          isOverview && overviewSteps[stepIndex] === overviewEnums.preAuth
+        }
       />
       <ItemListing
         principal={"midnight sun co 000009767867"}
@@ -235,7 +272,6 @@ const Transactions = () => {
         }
         tipTarget={<FullEmptyDiv />}
         onClick={() => {
-          console.log("is clicked");
           setIntroContext({ isVisible: true, isIntro: false });
         }}
         showTip={overviewSteps[stepIndex] === overviewEnums.creditsDebits}

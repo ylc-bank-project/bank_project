@@ -46,6 +46,10 @@ export const BankingFooter = () => {
   const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
   const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
 
+  const isGoHomeToCheckChequing =
+    isTransferFunds &&
+    transferFundsSteps[stepIndex] === transferFundsEnums.goHomeToCheckChequing;
+
   // TODO: Set the isActive bit
   const isActive = true;
 
@@ -110,7 +114,27 @@ export const BankingFooter = () => {
 
   return (
     <StyledBankingFooter>
-      <FooterLink isActive={isActive === "home"}>Home</FooterLink>
+      <InfoTip
+        tipContent={<div>Click "home"</div>}
+        showTip={isGoHomeToCheckChequing}
+        showButton={false}
+        tipTarget={
+          <FooterLink
+            disabled={!isGoHomeToCheckChequing}
+            onClick={() => {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }`
+              );
+            }}
+            isActive={isActive === "home"}
+          >
+            Home
+          </FooterLink>
+        }
+      />
+
       <InfoTip
         tipContent={"Click on “Pay and Transfer"}
         tipTarget={<PaymentsTip />}
@@ -122,7 +146,7 @@ export const BankingFooter = () => {
         showButton={false}
         noScroll={true}
       />
-      {/* <PaymentsTip /> */}
+
       <FooterLink isActive={isActive === "more"}>More</FooterLink>
     </StyledBankingFooter>
   );

@@ -7,7 +7,14 @@ import { InfoTip } from "../Shared/Tip";
 import { mq } from "../Global";
 import NumberFormat from "react-number-format";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { accountPagesEnums, overviewEnums, overviewSteps } from "../enums";
+import {
+  accountPagesEnums,
+  activitiesEnums,
+  overviewEnums,
+  overviewSteps,
+  transferFundsEnums,
+  transferFundsSteps,
+} from "../enums";
 
 export const SubTitle = styled.div`
   width: 100%;
@@ -225,15 +232,98 @@ export const TransactionsDetails = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log({ location, split: location.pathname.split("/") });
+
   const isDetails = location.pathname
     .split("/")
-    .includes(accountPagesEnums.CHECKINGINFO);
+    .some((e) =>
+      [accountPagesEnums.CHECKINGINFO, accountPagesEnums.SAVINGSINFO].includes(
+        e
+      )
+    );
+
   const isTransactions = location.pathname
     .split("/")
-    .includes(accountPagesEnums.CHECKINGTRANSACTIONS);
-  return (
-    <TransDetailsSection>
+    .some((e) =>
+      [
+        accountPagesEnums.CHECKINGTRANSACTIONS,
+        accountPagesEnums.SAVINGSTRANSACTIONS,
+      ].includes(e)
+    );
+
+  const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+  const isOverview = activitiesEnums.ACCOUNTOVERVIEW === activity;
+
+  const isGoToSavingsTransactions =
+    isTransferFunds &&
+    transferFundsSteps[stepIndex] ===
+      transferFundsEnums.goToSavingsTransactions;
+
+  const isToChequingTransactionsFinalTransfer =
+    isTransferFunds &&
+    transferFundsSteps[stepIndex] ===
+      transferFundsEnums.toChequingTransactionsFinalReview;
+
+  console.log({ isToChequingTransactionsFinalTransfer });
+
+  const SpecifiedTransButton = () => {
+    if (isGoToSavingsTransactions || isToChequingTransactionsFinalTransfer) {
+      return (
+        <TransButton
+          onClick={() => {
+            console.log("CLICKY");
+            if (isToChequingTransactionsFinalTransfer) {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }/${accountPagesEnums.CHECKINGHOME}/${
+                  accountPagesEnums.CHECKINGTRANSACTIONS
+                }`
+              );
+            } else {
+              navigate(
+                `/${activity}/${Number(stepIndex) + 1}/${
+                  accountPagesEnums.ACCOUNTS
+                }/${accountPagesEnums.SAVINGSHOME}/${
+                  accountPagesEnums.SAVINGSTRANSACTIONS
+                }`
+              );
+            }
+          }}
+          disabled={
+            !isGoToSavingsTransactions && !isToChequingTransactionsFinalTransfer
+          }
+          isActive={!isTransactions}
+        >
+          Transactions
+        </TransButton>
+      );
+    } else {
+      return (
+        <TransButton
+          onClick={() => {
+            console.log("CLICKY 2");
+            navigate(
+              `/${activity}/${Number(stepIndex) + 1}/${
+                accountPagesEnums.ACCOUNTS
+              }/${accountPagesEnums.CHECKINGHOME}/${
+                accountPagesEnums.CHECKINGTRANSACTIONS
+              }`
+            );
+          }}
+          disabled={
+            !isOverview ||
+            overviewSteps[stepIndex] !== overviewEnums.transactions
+          }
+          isActive={!isTransactions}
+        >
+          Transactions
+        </TransButton>
+      );
+    }
+  };
+
+  const OverviewTransactionsTip = () => {
+    return (
       <InfoTip
         tipContent={
           <div>
@@ -246,25 +336,34 @@ export const TransactionsDetails = () => {
           </div>
         }
         showButton={false}
-        showTip={overviewSteps[stepIndex] === overviewEnums.transactions}
-        tipTarget={
-          <TransButton
-            onClick={() => {
-              navigate(
-                `/${activity}/${Number(stepIndex) + 1}/${
-                  accountPagesEnums.ACCOUNTS
-                }/${accountPagesEnums.CHECKINGHOME}/${
-                  accountPagesEnums.CHECKINGTRANSACTIONS
-                }`
-              );
-            }}
-            disabled={overviewSteps[stepIndex] !== overviewEnums.transactions}
-            isActive={!isTransactions}
-          >
-            Transactions
-          </TransButton>
+        showTip={
+          isOverview && overviewSteps[stepIndex] === overviewEnums.transactions
         }
+        tipTarget={<SpecifiedTransButton />}
       />
+    );
+  };
+
+  const TransferSavingsTip = () => {
+    return (
+      <InfoTip
+        tipContent={<div>Click on "Transactions"</div>}
+        showButton={false}
+        showTip={
+          isGoToSavingsTransactions || isToChequingTransactionsFinalTransfer
+        }
+        tipTarget={<SpecifiedTransButton />}
+      />
+    );
+  };
+
+  return (
+    <TransDetailsSection>
+      {isToChequingTransactionsFinalTransfer || isGoToSavingsTransactions ? (
+        <TransferSavingsTip />
+      ) : (
+        <OverviewTransactionsTip />
+      )}
       <InfoTip
         tipContent={
           <div>
@@ -273,7 +372,9 @@ export const TransactionsDetails = () => {
           </div>
         }
         showButton={false}
-        showTip={overviewSteps[stepIndex] === overviewEnums.accountInfo}
+        showTip={
+          isOverview && overviewSteps[stepIndex] === overviewEnums.accountInfo
+        }
         tipTarget={
           <TransButton
             onClick={() => {
@@ -285,7 +386,10 @@ export const TransactionsDetails = () => {
                 }`
               );
             }}
-            disabled={overviewSteps[stepIndex] !== overviewEnums.accountInfo}
+            disabled={
+              !isOverview ||
+              overviewSteps[stepIndex] !== overviewEnums.accountInfo
+            }
             isActive={!isDetails}
           >
             Account Details

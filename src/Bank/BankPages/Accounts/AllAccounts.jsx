@@ -90,7 +90,19 @@ const AllAccounts = () => {
   const navigate = useNavigate();
 
   const isOverview = activitiesEnums.ACCOUNTOVERVIEW === activity;
-  const isTransfer = activitiesEnums.TRANSFERFUNDS === activity;
+  const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+
+  const isIncreasedSavingsBalance = isTransferFunds && stepIndex >= 6;
+  const chequingBalance = isIncreasedSavingsBalance ? "17,723.00" : "18,023.00";
+  const savingsBalance = isIncreasedSavingsBalance ? "800" : "500";
+
+  const isOverviewCheck =
+    isOverview && overviewSteps[stepIndex] === overviewEnums.check;
+
+  const isTransferFinalReview =
+    isTransferFunds &&
+    transferFundsSteps[stepIndex] ===
+      transferFundsEnums.toChequingForFinalReview;
 
   return (
     <BankingContainer>
@@ -98,19 +110,15 @@ const AllAccounts = () => {
         <BankAccounts>Bank Accounts</BankAccounts>
         <InfoTip
           tipContent={<div>Click on ‘Chequing’.</div>}
-          showTip={
-            isOverview && overviewSteps[stepIndex] === overviewEnums.check
-          }
+          showTip={isOverviewCheck || isTransferFinalReview}
           showButton={false}
           placement="left-center"
           tipTarget={
             <AccountBlock
               title={"Chequing"}
-              balance={"$18,023.00"}
+              balance={`$${chequingBalance}`}
               accNumber={"5522"}
-              disabled={
-                !isOverview && overviewSteps[stepIndex] !== overviewEnums.check
-              }
+              disabled={!isOverviewCheck && !isTransferFinalReview}
               onClick={() => {
                 navigate(
                   `/${activity}/${Number(stepIndex) + 1}/${
@@ -125,7 +133,7 @@ const AllAccounts = () => {
         <InfoTip
           tipContent={<div>Click on "Savings".</div>}
           showTip={
-            isTransfer &&
+            isTransferFunds &&
             transferFundsSteps[stepIndex] === transferFundsEnums.goToSavings
           }
           showButton={false}
@@ -133,10 +141,10 @@ const AllAccounts = () => {
           tipTarget={
             <AccountBlock
               title={"Savings"}
-              balance={"$500.00"}
+              balance={`$${savingsBalance}`}
               accNumber={"7788"}
               disabled={
-                !isTransfer ||
+                !isTransferFunds ||
                 transferFundsSteps[stepIndex] !== transferFundsEnums.goToSavings
               }
               onClick={() => {
