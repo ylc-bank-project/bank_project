@@ -5,6 +5,14 @@ export const CHEQUINGACCOUNT = "Chequing";
 export const SAVINGSACCOUNT = "Savings";
 export const BILLAMOUNT = "68.00";
 
+// ETRANSFER SPECIFIC
+export const LANDLORDNAME = "Landlord John";
+export const LANDLORDEMAIL = "mylandlordjohn@email.com";
+export const LANDLORDAMT = "$500";
+export const SECRETQ = "what is my dogs name";
+export const SECRETA = "Buster";
+export const EXTRAMESSAGE = "April Rent";
+
 // ACTIVITIES
 export const activitiesEnums = {
   TRANSFERFUNDS: "TransferFunds",

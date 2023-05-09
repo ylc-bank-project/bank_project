@@ -557,6 +557,27 @@ export const StyledNumberFormat = styled(NumberFormat)`
   font-weight: normal;
 `;
 
+export const StyledTextInput = styled.input`
+  border: none;
+  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  display: inline-block;
+  /* max-width: 100%; */
+  /* width: 300px; */
+  height: 40px;
+  ::placeholder {
+    color: ${(p) => p.theme.colors.ylc_blue};
+  }
+  ${(p) => p.theme.fonts.body_text};
+  font-weight: normal;
+  flex-grow: 1;
+  margin-right: 20px;
+`;
+
+export const LabelInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const StyledSelect = styled.select`
   /* width: calc(100% - 40px - 2px - 100px); */
   display: inline-block;
@@ -578,8 +599,9 @@ export const OldStyledSelect = styled(StyledSelect)`
 export const StyledLabel = styled.label`
   display: inline-block;
   ${(p) => p.theme.fonts.body_text_bold}
+  max-width: 125px;
   padding: 25px;
-  width: 150px;
+  width: ${(p) => (p.width ? p.width : "150px")};
   /* margin: 0 50px; */
 `;
 

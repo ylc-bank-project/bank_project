@@ -25,27 +25,6 @@ const Container = styled.div`
   padding-bottom: 150px;
 `;
 
-/* <InfoTip
-tipContent={<div>Click on “Transfer”</div>}
-showTip={isTransferFunds}
-showButton={false}
-tipTarget={
-  <BankingButton
-    onClick={() => {
-      navigate(
-        `/${activity}/${Number(stepIndex) + 1}/${
-          accountPagesEnums.ACCOUNTS
-        }/${accountPagesEnums.TRANSFERFUNDS}`
-      );
-    }}
-    disabled={!isTransferFunds}
-  >
-    <img src={transferIcon} alt="" />
-    Transfer
-  </BankingButton>
-}
-/> */
-
 export const TransferFunds = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
