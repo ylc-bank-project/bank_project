@@ -3,6 +3,7 @@ import { ModalOverlay, ResponsiveContent } from "../Modal";
 import styled from "styled-components";
 import { ActivityList } from "./ActivityListing";
 import logo from "../assets/dark_flake.png";
+
 // import { Space, BoldDiv } from "../Shared/BankPages";
 import { mq, mqMin } from "../Global";
 

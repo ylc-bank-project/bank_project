@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import styled from "styled-components";
-import { BankingContainer } from "../BankPageElements";
-
-const BillPaymentsContainer = styled.div`
-  min-height: calc(100vh - 150px);
-  background: white;
-  padding-bottom: 150px;
-`;
+import { BankingContainer, BillPaymentsContainer } from "../BankPageElements";
 
 const addDays = (date, days) => {
   const result = new Date(date);

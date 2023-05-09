@@ -270,7 +270,6 @@ export const TransactionsDetails = () => {
       return (
         <TransButton
           onClick={() => {
-            console.log("CLICKY");
             if (isToChequingTransactionsFinalTransfer) {
               navigate(
                 `/${activity}/${Number(stepIndex) + 1}/${
@@ -436,7 +435,7 @@ const ItemPrincipalText = styled.span`
 const ItemSubTextContainer = styled.span`
   ${(p) => p.theme.fonts.large_button_text};
   font-weight: normal;
-  text-transform: uppercase;
+  text-transform: ${(p) => (p.lowercase ? "none" : "uppercase")};
   display: flex;
   flex-wrap: wrap;
   ${mq[1]} {
@@ -462,13 +461,20 @@ const ItemDetails = styled.span`
   }
 `;
 
-export const ItemListing = ({ principal, date, trans, details, ...rest }) => {
+export const ItemListing = ({
+  principal,
+  date,
+  trans,
+  details,
+  lowercase,
+  ...rest
+}) => {
   return (
     <ItemListingWrapper {...rest}>
       <ItemTextContainer>
         <ItemPrincipalText>{principal}</ItemPrincipalText>
         {(date || trans) && (
-          <ItemSubTextContainer>
+          <ItemSubTextContainer {...{ lowercase }}>
             <ItemDate>{date}</ItemDate>
             <ItemTransaction>{trans}</ItemTransaction>
           </ItemSubTextContainer>
@@ -592,4 +598,10 @@ export const InputContainer = styled.div`
     grid-column-start: 2;
     grid-column-end: 12;
   }
+`;
+
+export const BillPaymentsContainer = styled.div`
+  min-height: calc(100vh - 150px);
+  background: white;
+  padding-bottom: 150px;
 `;
