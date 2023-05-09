@@ -4,6 +4,8 @@ import styled from "styled-components";
 import {
   accountPagesEnums,
   activitiesEnums,
+  eTransferEnums,
+  eTransferSteps,
   makingPaymentsEnums,
   makingPaymentsSteps,
   transferFundsEnums,
@@ -45,16 +47,29 @@ export const BankingFooter = () => {
 
   const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
   const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+  const isEtransfer = activitiesEnums.ETRANSFER === activity;
 
-  const isGoHomeToCheckChequing =
+  const isMakingPaymentsStep =
+    isMakingPayments &&
+    makingPaymentsSteps[stepIndex] === makingPaymentsEnums.clickPayments;
+
+  const isTransferFundsStepHome =
     isTransferFunds &&
     transferFundsSteps[stepIndex] === transferFundsEnums.goHomeToCheckChequing;
+
+  const isTransferFundsStepPayTransfer =
+    isTransferFunds &&
+    transferFundsSteps[stepIndex] === transferFundsEnums.clickPayTransfer;
+
+  const isEtransferStep =
+    isEtransfer &&
+    eTransferSteps[stepIndex] === eTransferEnums.clickPayTransfer;
 
   // TODO: Set the isActive bit
   const isActive = true;
 
   const SpecificFooterLink = () => {
-    if (!isTransferFunds) {
+    if (isMakingPaymentsStep) {
       return (
         <FooterLink
           onClick={() => {
@@ -65,15 +80,29 @@ export const BankingFooter = () => {
             );
           }}
           isActive={isActive === "pay"}
-          disabled={
-            !isMakingPayments ||
-            makingPaymentsSteps[stepIndex] !== makingPaymentsEnums.clickPayments
-          }
+          disabled={!isMakingPaymentsStep}
+        >
+          Pay & Transfer
+        </FooterLink>
+      );
+    } else if (isTransferFundsStepPayTransfer) {
+      return (
+        <FooterLink
+          onClick={() => {
+            navigate(
+              `/${activity}/${Number(stepIndex) + 1}/${
+                accountPagesEnums.ACCOUNTS
+              }`
+            );
+          }}
+          isActive={isActive === "pay"}
+          disabled={!isTransferFundsStepPayTransfer}
         >
           Pay & Transfer
         </FooterLink>
       );
     } else {
+      // for etransfer
       return (
         <FooterLink
           onClick={() => {
@@ -84,11 +113,7 @@ export const BankingFooter = () => {
             );
           }}
           isActive={isActive === "pay"}
-          disabled={
-            !isTransferFunds ||
-            transferFundsSteps[stepIndex] !==
-              transferFundsEnums.clickPayTransfer
-          }
+          disabled={!isEtransferStep}
         >
           Pay & Transfer
         </FooterLink>
@@ -96,31 +121,52 @@ export const BankingFooter = () => {
     }
   };
 
-  const PaymentsTip = () => {
-    return (
-      <InfoTip
-        tipContent={<div>Click on Pay & Transfer</div>}
-        tipTarget={<SpecificFooterLink />}
-        placement={"top-center"}
-        showTip={
-          isMakingPayments &&
-          makingPaymentsSteps[stepIndex] === makingPaymentsEnums.clickPayments
-        }
-        showButton={false}
-        noScroll={true}
-      />
-    );
+  const PayTransferTip = () => {
+    if (isMakingPaymentsStep) {
+      return (
+        <InfoTip
+          tipContent={<div>Click on Pay & Transfer</div>}
+          tipTarget={<SpecificFooterLink />}
+          placement={"top-center"}
+          showTip={isMakingPaymentsStep}
+          showButton={false}
+          noScroll={true}
+        />
+      );
+    } else if (isTransferFundsStepPayTransfer) {
+      return (
+        <InfoTip
+          tipContent={"Click on “Pay and Transfer"}
+          tipTarget={<SpecificFooterLink />}
+          placement={"top-center"}
+          showTip={isTransferFundsStepPayTransfer}
+          showButton={false}
+          noScroll={true}
+        />
+      );
+    } else {
+      return (
+        <InfoTip
+          tipContent={"Click on “Pay and Transfer"}
+          tipTarget={<SpecificFooterLink />}
+          placement={"top-center"}
+          showTip={isEtransferStep}
+          showButton={false}
+          noScroll={true}
+        />
+      );
+    }
   };
 
   return (
     <StyledBankingFooter>
       <InfoTip
         tipContent={<div>Click "home"</div>}
-        showTip={isGoHomeToCheckChequing}
+        showTip={isTransferFundsStepHome}
         showButton={false}
         tipTarget={
           <FooterLink
-            disabled={!isGoHomeToCheckChequing}
+            disabled={!isTransferFundsStepHome}
             onClick={() => {
               navigate(
                 `/${activity}/${Number(stepIndex) + 1}/${
@@ -134,19 +180,7 @@ export const BankingFooter = () => {
           </FooterLink>
         }
       />
-
-      <InfoTip
-        tipContent={"Click on “Pay and Transfer"}
-        tipTarget={<PaymentsTip />}
-        placement={"top-center"}
-        showTip={
-          isTransferFunds &&
-          transferFundsSteps[stepIndex] === transferFundsEnums.clickPayTransfer
-        }
-        showButton={false}
-        noScroll={true}
-      />
-
+      <PayTransferTip />
       <FooterLink isActive={isActive === "more"}>More</FooterLink>
     </StyledBankingFooter>
   );

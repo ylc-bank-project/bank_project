@@ -13,6 +13,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   accountPagesEnums,
   activitiesEnums,
+  eTransferEnums,
+  eTransferPagesEnums,
+  eTransferSteps,
   makingPaymentsEnums,
   makingPaymentsSteps,
   paymentPagesEnums,
@@ -70,6 +73,10 @@ export const PaymentMethods = ({
 
   const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
   const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
+  const isEtransfer = activitiesEnums.ETRANSFER === activity;
+
+  const isEtransferStep =
+    isEtransfer && eTransferSteps[stepIndex] === eTransferEnums.chooseETransfer;
 
   const isBillPayments =
     isMakingPayments &&
@@ -105,6 +112,8 @@ export const PaymentMethods = ({
             />
             <InfoTip
               tipContent={<div>Click on 'Pay a Bill'.</div>}
+              showTip={isBillPayments}
+              showButton={false}
               tipTarget={
                 <BankingButton
                   onClick={() => {
@@ -120,14 +129,28 @@ export const PaymentMethods = ({
                   Pay a bill
                 </BankingButton>
               }
-              showTip={isBillPayments}
-              showButton={false}
             />
-            <BankingButton>
-              <img src={interacIcon} alt="" />
-              <div>Interac</div>
-              <div>E-transfer</div>
-            </BankingButton>
+            <InfoTip
+              tipContent={<div>Click on “Interact E-Transfer”.</div>}
+              showTip={isEtransferStep}
+              showButton={false}
+              tipTarget={
+                <BankingButton
+                  onClick={() => {
+                    navigate(
+                      `/${activity}/${Number(stepIndex) + 1}/${
+                        eTransferPagesEnums.ETHOME
+                      }/${eTransferPagesEnums.ETCONTACTS}`
+                    );
+                  }}
+                  disabled={!isEtransferStep}
+                >
+                  <img src={interacIcon} alt="" />
+                  <div>Interac</div>
+                  <div>E-transfer</div>
+                </BankingButton>
+              }
+            />
             <BankingButton>
               <img src={depositIcon} alt="" />
               Deposit

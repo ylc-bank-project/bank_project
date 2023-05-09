@@ -10,3 +10,5 @@ const SendETransfer = () => {
     </div>
   );
 };
+
+export default SendETransfer;

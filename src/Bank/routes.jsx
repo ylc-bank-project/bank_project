@@ -10,7 +10,12 @@ import BankHomepage, {
   CreateEmail,
 } from "./BankPages/BankHomepage";
 import NotFound from "./NotFound";
-import { accountPagesEnums, bankPageEnums, paymentPagesEnums } from "./enums";
+import {
+  accountPagesEnums,
+  bankPageEnums,
+  eTransferPagesEnums,
+  paymentPagesEnums,
+} from "./enums";
 import {
   AllAccounts,
   CheckingHome,
@@ -28,6 +33,8 @@ import {
   VerifyBill,
   AddPayee,
 } from "./BankPages/Payments";
+
+import { Contacts, AddContact, SendETransfer } from "./BankPages/ETransfer";
 import { SavingsInfo, SavingsTransactions } from "./BankPages/Accounts/Savings";
 
 function Activity(props) {
@@ -103,6 +110,17 @@ export const AllRoutes = () => {
               element={<VerifyPayee />}
             />
           </Route>
+        </Route>
+        <Route path={eTransferPagesEnums.ETHOME} element={<BasePage />}>
+          <Route path={eTransferPagesEnums.ETCONTACTS} element={<Contacts />} />
+          <Route
+            path={eTransferPagesEnums.ETADDCONTACT}
+            element={<AddContact />}
+          />
+          <Route
+            path={eTransferPagesEnums.SENDETRANSFER}
+            element={<SendETransfer />}
+          />
         </Route>
       </Route>
     </Routes>

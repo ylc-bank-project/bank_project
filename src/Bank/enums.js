@@ -44,6 +44,13 @@ export const paymentPagesEnums = {
   ADDBILL: "AddBill",
 };
 
+export const eTransferPagesEnums = {
+  ETHOME: "eTransferHome",
+  ETCONTACTS: "eTransferContacts",
+  ETADDCONTACT: "eTAddContact",
+  SENDETRANSFER: "sendETransfer",
+};
+
 // SIGNIN
 export const signInEnums = {
   CLICKSIGNIN: "ClieckSignIn",
@@ -198,7 +205,6 @@ export const transferFundsSteps = [
 ];
 
 // ETRANSFER ACTIVITY
-
 export const eTransferEnums = {
   clickPayTransfer: "clickPayTransfer",
   chooseETransfer: "chooseETransfer",
