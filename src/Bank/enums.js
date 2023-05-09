@@ -196,3 +196,45 @@ export const transferFundsSteps = [
   transferFundsEnums.toChequingTransactionsFinalReview,
   transferFundsEnums.finalReview,
 ];
+
+// ETRANSFER ACTIVITY
+
+export const eTransferEnums = {
+  clickPayTransfer: "clickPayTransfer",
+  chooseETransfer: "chooseETransfer",
+  addNewContact: "addNewContact",
+  enterName: "enterName",
+  enterEmail: "enterEmail",
+  addContact: "addContact",
+  chooseNewContact: "chooseNewContact",
+  enterAmount: "enterAmount",
+  chooseAccount: "chooseAccount",
+  chooseSecurityQuestion: "chooseSecurityQuestion",
+  enterQuestionAnswer: "enterQuestionAnswer",
+  reEnterAnswer: "reEnterAnswer",
+  addMessage: "addMessage",
+  addPersonalInfo: "addPersonalInfo",
+  goToSummary: "goToSummary",
+  reviewSummary: "reviewSummary",
+  clickSend: "clickSend",
+};
+
+export const eTransferSteps = [
+  eTransferEnums.clickPayTransfer,
+  eTransferEnums.chooseETransfer,
+  eTransferEnums.addNewContact,
+  eTransferEnums.enterName,
+  eTransferEnums.enterEmail,
+  eTransferEnums.addContact,
+  eTransferEnums.chooseNewContact,
+  eTransferEnums.enterAmount,
+  eTransferEnums.chooseAccount,
+  eTransferEnums.chooseSecurityQuestion,
+  eTransferEnums.enterQuestionAnswer,
+  eTransferEnums.reEnterAnswer,
+  eTransferEnums.addMessage,
+  eTransferEnums.addPersonalInfo,
+  eTransferEnums.goToSummary,
+  eTransferEnums.reviewSummary,
+  eTransferEnums.clickSend,
+];
