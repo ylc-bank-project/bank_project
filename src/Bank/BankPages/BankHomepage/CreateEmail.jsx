@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   SmallContainer,
   BoldDiv,
@@ -10,7 +10,13 @@ import styled from "styled-components";
 import { ButtonContainer, NeutralBankingButton } from "../../Shared/Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import { InfoTip } from "../../Shared/Tip";
-import { bankPageEnums, createEnums, createSteps } from "../../enums";
+import {
+  REGISTEREMAIL,
+  REGISTERPW,
+  bankPageEnums,
+  createEnums,
+  createSteps,
+} from "../../enums";
 import { IntroModalContext } from "../../context";
 
 const InputContainer = styled.div`
@@ -20,21 +26,37 @@ const InputContainer = styled.div`
 const CreateEmail = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
+
   const isEnterEmailStep = createSteps[stepIndex] === createEnums.ENTEREMAIL;
+
   const isEnterPWStep = createSteps[stepIndex] === createEnums.CREATEPASSWORD;
-  const defaultEmail = "iloveliteracy@email.com";
-  const defaultPassword = "literacy1234";
 
   const [email, setEmail] = useState(
-    isEnterEmailStep ? undefined : defaultEmail
+    isEnterEmailStep ? undefined : REGISTEREMAIL
   );
 
   const [password, setPassword] = useState(
-    isEnterPWStep || isEnterEmailStep ? undefined : defaultPassword
+    isEnterPWStep || isEnterEmailStep ? undefined : REGISTERPW
   );
 
   const [passwordTwo, setPasswordTwo] = useState(undefined);
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
+
+  useEffect(() => {
+    !isEnterEmailStep && setEmail(REGISTEREMAIL);
+  }, [isEnterEmailStep]);
+
+  useEffect(() => {
+    if (stepIndex > createSteps.indexOf(createEnums.CREATEPASSWORD)) {
+      setPassword(REGISTERPW);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (stepIndex > createSteps.indexOf(createEnums.REENTERPW)) {
+      setPassword(REGISTERPW);
+    }
+  }, [stepIndex]);
 
   return (
     <SmallContainer>
@@ -48,10 +70,10 @@ const CreateEmail = () => {
               Enter the email here.
               <br />
               For this activity we will use:
-              <BoldDiv>iloveliteracy@email.com</BoldDiv>
+              <BoldDiv>{REGISTEREMAIL}</BoldDiv>
             </div>
           }
-          buttonDisabled={email !== defaultEmail}
+          buttonDisabled={email !== REGISTEREMAIL}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -77,11 +99,11 @@ const CreateEmail = () => {
           tipContent={
             <div>
               For this activity use:
-              <BoldDiv>literacy1234</BoldDiv>
+              <BoldDiv>{REGISTERPW}</BoldDiv>
               as the password.
             </div>
           }
-          buttonDisabled={password !== defaultPassword}
+          buttonDisabled={password !== REGISTERPW}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -116,9 +138,7 @@ const CreateEmail = () => {
               </BoldDiv>
             </div>
           }
-          buttonDisabled={
-            password !== defaultPassword || passwordTwo !== password
-          }
+          buttonDisabled={password !== REGISTERPW || passwordTwo !== password}
           onClick={() => setIntroContext({ isVisible: true, isIntro: false })}
           showTip={createSteps[stepIndex] === createEnums.REENTERPW}
           tipTarget={

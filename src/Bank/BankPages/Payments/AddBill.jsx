@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TransactionSubtitle,
   ContinueButton,
   ContinueButtonContainer,
   StyledSelect,
   OldStyledSelect,
+  BoldDiv,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import NumberFormat from "react-number-format";
@@ -77,6 +78,23 @@ export const AddBill = () => {
   const isEnterDate = isPay(makingPaymentsEnums.enterDate);
   const isReview = isPay(makingPaymentsEnums.reviewBillPayment);
 
+  useEffect(() => {
+    if (
+      stepIndex >
+      makingPaymentsSteps.indexOf(makingPaymentsEnums.chooseDebitAccount)
+    ) {
+      setAccountType(CHEQUINGACCOUNT);
+    }
+  }, [setAccountType, stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex > makingPaymentsSteps.indexOf(makingPaymentsEnums.enterAmount)
+    ) {
+      setBillAmount(BILLAMOUNT);
+    }
+  }, [setBillAmount, stepIndex]);
+
   return (
     <div>
       <TransactionSubtitle>Pay Taco Electric</TransactionSubtitle>
@@ -88,9 +106,12 @@ export const AddBill = () => {
                 Choose the account that you would like to pay the bill with.
               </div>
               <br />
-              <div>For this activity, choose {CHEQUINGACCOUNT}.</div>
+              <div>
+                For this activity, choose: <BoldDiv>{CHEQUINGACCOUNT}</BoldDiv>
+              </div>
             </div>
           }
+          placement={"bottom-center"}
           tipTarget={
             <OldStyledSelect
               value={accountType}
@@ -117,16 +138,17 @@ export const AddBill = () => {
         <InfoTip
           tipContent={
             <div>
-              <div>Enter the amount you would like pay. </div>
-              <br />
-              <div>For this activity, enter {BILLAMOUNT}.</div>
+              <div>
+                Enter the amount you would like pay. For this activity, enter:{" "}
+                <BoldDiv>{BILLAMOUNT}</BoldDiv>{" "}
+              </div>
             </div>
           }
           tipTarget={
             <StyledNumberFormat
               onChange={(e) => setBillAmount(e.target.value)}
               prefix={"$"}
-              placeholder="Amount"
+              placeholder="Enter Amount"
               value={billAmount}
             />
           }
@@ -153,7 +175,7 @@ export const AddBill = () => {
           }
           tipTarget={
             <DateContainer>
-              <div>Select Date</div>
+              <div>Select Date:</div>
               <StyledDatePicker
                 selected={billDate}
                 onChange={(date) => setBillDate(date)}

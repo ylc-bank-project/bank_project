@@ -19,6 +19,7 @@ export const ActButton = styled.button`
   min-width: 70px;
   min-height: 40px;
   border-radius: 5px;
+  cursor: pointer;
   ${(p) => p.theme.fonts.body_text_bold}
   cursor: pointer;
 `;
@@ -36,12 +37,12 @@ export const AllActivitiesButton = styled(ActButton)`
 export const SignInButton = styled.button`
   background-color: ${(p) => p.background || "white"};
   color: ${(p) => p.color || p.theme.colors.ylc_blue};
-  width: 240px;
-  height: 80px;
-  border-radius: 100px;
-  ${(p) => p.theme.fonts.small_header}
+  width: 200px;
+  height: 60px;
+  border-radius: 20px;
+  ${(p) => p.theme.fonts.extra_small_header}
   cursor: pointer;
-  margin-bottom: 15px;
+  margin: 30px;
 `;
 
 export const ButtonContainer = styled.div`

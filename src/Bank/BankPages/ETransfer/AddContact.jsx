@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   BoldDiv,
   ContinueButton,
   ContinueButtonContainer,
+  FormContainer,
   InputContainer,
   LabelInputContainer,
   StyledLabel,
@@ -20,12 +21,6 @@ import {
 } from "../../enums";
 import { useNavigate, useParams } from "react-router-dom";
 
-const Container = styled.div`
-  /* min-height: calc(100vh - 150px); */
-  background: white;
-  padding-bottom: 50px;
-`;
-
 const AddContact = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
@@ -40,10 +35,21 @@ const AddContact = () => {
   const isEnterEmail = is(eTransferEnums.enterEmail);
   const isAddContact = is(eTransferEnums.addContact);
 
+  useEffect(() => {
+    if (stepIndex > eTransferSteps.indexOf(eTransferEnums.enterName)) {
+      setInputName(LANDLORDNAME);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (stepIndex > eTransferSteps.indexOf(eTransferEnums.enterEmail)) {
+      setInputEmail(LANDLORDEMAIL);
+    }
+  }, [stepIndex]);
+
   return (
     <InputContainer>
-      <Container>
-        <TransactionSubtitle>Add New Contact</TransactionSubtitle>
+      <FormContainer subtitle={"Add New Contact"}>
         <InfoTip
           placement="bottom-center"
           tipContent={
@@ -72,10 +78,12 @@ const AddContact = () => {
               <StyledTextInput
                 id="name"
                 type="text"
+                width={"300px"}
                 onChange={(e) => {
                   setInputName(e.target.value);
                 }}
                 value={inputName}
+                placeholder="Insert Name Here"
               />
             </LabelInputContainer>
           }
@@ -107,6 +115,7 @@ const AddContact = () => {
                 value={inputEmail}
                 id="email"
                 type="email"
+                placeholder="Insert Email Here"
               />
             </LabelInputContainer>
           }
@@ -133,7 +142,7 @@ const AddContact = () => {
             }
           />
         </ContinueButtonContainer>
-      </Container>
+      </FormContainer>
     </InputContainer>
   );
 };

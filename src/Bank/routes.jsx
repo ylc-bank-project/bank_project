@@ -34,7 +34,12 @@ import {
   AddPayee,
 } from "./BankPages/Payments";
 
-import { Contacts, AddContact, SendETransfer } from "./BankPages/ETransfer";
+import {
+  Contacts,
+  AddContact,
+  SendETransfer,
+  VerifyETransfer,
+} from "./BankPages/ETransfer";
 import { SavingsInfo, SavingsTransactions } from "./BankPages/Accounts/Savings";
 
 function Activity(props) {
@@ -120,6 +125,10 @@ export const AllRoutes = () => {
           <Route
             path={eTransferPagesEnums.SENDETRANSFER}
             element={<SendETransfer />}
+          />
+          <Route
+            path={eTransferPagesEnums.VERIFYETRANSFER}
+            element={<VerifyETransfer />}
           />
         </Route>
       </Route>

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InfoTip } from "../../Shared/Tip";
 import {
   BoldDiv,
+  ContinueButton,
+  ContinueButtonContainer,
+  FormContainer,
   InputContainer,
+  LabelInputContainer,
   StyledLabel,
   StyledNumberFormat,
   StyledSelect,
@@ -22,12 +26,6 @@ import {
   eTransferPagesEnums,
   eTransferSteps,
 } from "../../enums";
-
-const Container = styled.div`
-  /* min-height: calc(100vh - 150px); */
-  background: white;
-  padding-bottom: 50px;
-`;
 
 const SendETransfer = () => {
   const { activity, stepIndex } = useParams();
@@ -53,10 +51,49 @@ const SendETransfer = () => {
   const isAddPersonal = is(eTransferEnums.addPersonalInfo);
   const isGoToSummary = is(eTransferEnums.goToSummary);
 
+  useEffect(() => {
+    if (stepIndex > eTransferSteps.indexOf(eTransferEnums.enterAmount)) {
+      setPayAmt(LANDLORDAMT);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (stepIndex > eTransferSteps.indexOf(eTransferEnums.chooseAccount)) {
+      setFromAcc(CHEQUINGACCOUNT);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex > eTransferSteps.indexOf(eTransferEnums.chooseSecurityQuestion)
+    ) {
+      setSecretQ(SECRETQ);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex > eTransferSteps.indexOf(eTransferEnums.enterQuestionAnswer)
+    ) {
+      setSecretA(SECRETA);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (stepIndex > eTransferSteps.indexOf(eTransferEnums.reEnterAnswer)) {
+      setAnswer2(SECRETA);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (stepIndex > eTransferSteps.indexOf(eTransferEnums.addMessage)) {
+      setMessage(EXTRAMESSAGE);
+    }
+  }, [stepIndex]);
+
   return (
     <InputContainer>
-      <Container>
-        <TransactionSubtitle>Enter E-Transfer Details</TransactionSubtitle>
+      <FormContainer subtitle={"Enter E-Transfer Details"}>
         <InfoTip
           tipContent={
             <div>
@@ -76,8 +113,10 @@ const SendETransfer = () => {
             );
           }}
           tipTarget={
-            <div>
-              <StyledLabel htmlFor="from-select">Amount:</StyledLabel>
+            <LabelInputContainer>
+              <StyledLabel width={"200px"} htmlFor="transfer-amount">
+                Amount:
+              </StyledLabel>
               <StyledNumberFormat
                 id="transfer-amount"
                 onChange={(e) => setPayAmt(e.target.value)}
@@ -86,7 +125,7 @@ const SendETransfer = () => {
                 value={payAmt}
                 disabled={!isEnterAmount}
               />
-            </div>
+            </LabelInputContainer>
           }
         />
         <InfoTip
@@ -103,8 +142,10 @@ const SendETransfer = () => {
             );
           }}
           tipTarget={
-            <div>
-              <StyledLabel htmlFor="from-select">From Account:</StyledLabel>
+            <LabelInputContainer>
+              <StyledLabel width={"200px"} htmlFor="from-select">
+                From Account:
+              </StyledLabel>
               <StyledSelect
                 value={fromAcc}
                 id="from-select"
@@ -118,7 +159,7 @@ const SendETransfer = () => {
                 <option value={CHEQUINGACCOUNT}>{CHEQUINGACCOUNT}</option>
                 <option value={SAVINGSACCOUNT}>{SAVINGSACCOUNT}</option>
               </StyledSelect>
-            </div>
+            </LabelInputContainer>
           }
         />
         <InfoTip
@@ -145,9 +186,12 @@ const SendETransfer = () => {
             );
           }}
           tipTarget={
-            <div>
-              <StyledLabel htmlFor="secretQ">Security Question:</StyledLabel>
+            <LabelInputContainer>
+              <StyledLabel width={"200px"} htmlFor="secretQ">
+                Security Question:
+              </StyledLabel>
               <StyledTextInput
+                width={"250px"}
                 id="secretQ"
                 type="text"
                 onChange={(e) => {
@@ -155,16 +199,16 @@ const SendETransfer = () => {
                 }}
                 value={secretQInput}
                 disabled={!isChooseSecurityQ}
+                placeholder="Enter Security Question"
               />
-            </div>
+            </LabelInputContainer>
           }
         />
         <InfoTip
           tipContent={
             <div>
-              Now enter:
+              Now enter the answer to the question. For this exercise, enter:
               <BoldDiv>{SECRETA}</BoldDiv>
-              for the answer to the question.
             </div>
           }
           showTip={isEnterSecurityA}
@@ -179,25 +223,28 @@ const SendETransfer = () => {
             );
           }}
           tipTarget={
-            <div>
-              <StyledLabel htmlFor="secretQ">Security Answer:</StyledLabel>
+            <LabelInputContainer>
+              <StyledLabel width={"200px"} htmlFor="secretA">
+                Security Answer:
+              </StyledLabel>
               <StyledTextInput
-                id="secretQ"
+                id="secretA"
                 type="text"
                 onChange={(e) => {
                   setSecretA(e.target.value);
                 }}
                 value={secretAInput}
                 disabled={!isEnterSecurityA}
+                placeholder="Enter Answer"
               />
-            </div>
+            </LabelInputContainer>
           }
         />
         <InfoTip
           tipContent={
             <div>
-              Reenter the answer to confirm. As a reminder, it is:
-              <BoldDiv>{SECRETA}</BoldDiv>
+              Reenter the answer to confirm that it is correct. As a reminder,
+              it is: <strong>{SECRETA}</strong>
             </div>
           }
           showTip={isReenterA}
@@ -212,18 +259,21 @@ const SendETransfer = () => {
             );
           }}
           tipTarget={
-            <div>
-              <StyledLabel htmlFor="secretQ">Reenter Answer:</StyledLabel>
+            <LabelInputContainer>
+              <StyledLabel width={"200px"} htmlFor="reenter">
+                Reenter Answer:
+              </StyledLabel>
               <StyledTextInput
-                id="secretQ"
+                id="reenter"
                 type="text"
                 onChange={(e) => {
                   setAnswer2(e.target.value);
                 }}
                 value={answer2}
                 disabled={!isReenterA}
+                placeholder="Reenter Answer"
               />
-            </div>
+            </LabelInputContainer>
           }
         />
         <InfoTip
@@ -231,13 +281,14 @@ const SendETransfer = () => {
             <div>
               Adding a message is optional but can sometimes be helpful for
               records. In this case, it can be helpful to keep track of your
-              payments to ensure you are not falling behind. Enter:
+              payments to ensure you are not falling behind. For this exercise,
+              enter:
               <BoldDiv>{EXTRAMESSAGE}</BoldDiv>
             </div>
           }
           showTip={isAddMessage}
           showButton={true}
-          buttonDisabled={answer2 !== SECRETA}
+          buttonDisabled={messageInput !== EXTRAMESSAGE}
           placement="bottom-center"
           onClick={() => {
             navigate(
@@ -247,21 +298,59 @@ const SendETransfer = () => {
             );
           }}
           tipTarget={
-            <div>
-              <StyledLabel htmlFor="secretQ">Reenter Answer:</StyledLabel>
+            <LabelInputContainer>
+              <StyledLabel width={"200px"} htmlFor="messageOptional">
+                Message (optional):
+              </StyledLabel>
               <StyledTextInput
-                id="secretQ"
+                id="messageOptional"
                 type="text"
                 onChange={(e) => {
-                  setAnswer2(e.target.value);
+                  setMessage(e.target.value);
                 }}
-                value={answer2}
-                disabled={!isReenterA}
+                value={messageInput}
+                disabled={!isAddMessage}
+                placeholder="Enter Message"
               />
-            </div>
+            </LabelInputContainer>
           }
         />
-      </Container>
+        <LabelInputContainer>
+          <StyledLabel width={"200px"} htmlFor="personalInfo">
+            Your information:
+          </StyledLabel>
+          <StyledTextInput
+            id="personalInfo"
+            type="text"
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+            value={"heyitsme@email.com"}
+            disabled={true}
+          />
+        </LabelInputContainer>
+        <ContinueButtonContainer>
+          <InfoTip
+            tipContent={<div>Choose "Continue"</div>}
+            showTip={isGoToSummary}
+            showButton={false}
+            tipTarget={
+              <ContinueButton
+                disabled={!isGoToSummary}
+                onClick={() => {
+                  navigate(
+                    `/${activity}/${Number(stepIndex) + 1}/${
+                      eTransferPagesEnums.ETHOME
+                    }/${eTransferPagesEnums.VERIFYETRANSFER}`
+                  );
+                }}
+              >
+                Continue
+              </ContinueButton>
+            }
+          />
+        </ContinueButtonContainer>
+      </FormContainer>
     </InputContainer>
   );
 };

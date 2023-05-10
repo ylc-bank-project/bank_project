@@ -4,6 +4,7 @@ import {
   SmallContainer,
   SubTitle,
   StyledInput,
+  StyledLabel,
 } from "../BankPageElements";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -76,11 +77,15 @@ const SignIn = () => {
           }
           showTip={isSignIn && signInSteps[stepIndex] === signInEnums.ENTERCARD}
           tipTarget={
-            <StyledNumberFormat
-              onChange={(e) => setCardNumber(e.target.value)}
-              format="#### #### #### ####"
-              placeholder={"Card Number"}
-            />
+            <div>
+              <StyledLabel htmlFor="cardNum"> Card Number:</StyledLabel>
+              <StyledNumberFormat
+                id="cardNum"
+                onChange={(e) => setCardNumber(e.target.value)}
+                format="#### #### #### ####"
+                placeholder={"#### #### #### ####"}
+              />
+            </div>
           }
         />
         <InfoTip />

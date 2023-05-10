@@ -23,6 +23,7 @@ export const SubTitle = styled.div`
   font-family: Poppins;
   ${(p) => p.theme.fonts.small_header}
   color: ${(p) => p.theme.colors.ylc_blue};
+  padding-bottom: 20px;
   ${mq[1]} {
     font-size: 16px;
   }
@@ -168,7 +169,7 @@ export const SmallContainer = styled.div`
   grid-column-end: 10;
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  padding: 30px;
   border-radius: 10px;
   ${mq[2]} {
     grid-column-start: 2;
@@ -491,7 +492,6 @@ export const TransactionSubtitle = styled.div`
   display: flex;
   justify-content: center;
   padding: 15px 0;
-  margin-bottom: 10px;
   background: ${(p) => p.theme.colors.light_accent};
   /* border-bottom: 1px solid lightgray; */
   ${mq[1]} {
@@ -506,6 +506,9 @@ export const BillPayeeInput = styled.input`
   margin: 0 50px;
   border-bottom: 1px solid lightgray;
   ${(p) => p.theme.fonts.body_text_bold};
+  :disabled {
+    background: transparent;
+  }
 `;
 
 export const BillPayeeReview = styled.div`
@@ -519,14 +522,19 @@ export const BillPayeeReview = styled.div`
 
 export const ContinueButton = styled.button`
   background-color: ${(p) => p.background || "white"};
-  color: ${(p) =>
-    p.disabled ? "lightgrey" : p.color || p.theme.colors.ylc_blue};
+  /* color: ${(p) =>
+    p.disabled ? "lightgrey" : p.color || p.theme.colors.ylc_blue}; */
+  color: ${(p) => p.theme.colors.ylc_blue};
+  border-color: ${(p) => p.theme.colors.ylc_blue};
   min-width: 140px;
   height: 60px;
   border-radius: 100px;
   ${(p) => p.theme.fonts.extra_small_header}
   font-size: 17px;
   cursor: pointer;
+  :disabled {
+    /* background: red; */
+  }
 `;
 
 export const ContinueButtonContainer = styled.div`
@@ -546,36 +554,45 @@ export const BankHeader = styled.div`
 
 export const StyledNumberFormat = styled(NumberFormat)`
   border: none;
-  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  /* border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue}; */
   display: inline-block;
-  /* width: 100%; */
   height: 40px;
   ::placeholder {
     color: ${(p) => p.theme.colors.ylc_blue};
   }
+  ${(p) => p.centerText && "text-align: center"}
   ${(p) => p.theme.fonts.body_text};
   font-weight: normal;
+  flex-grow: 1;
+  :disabled {
+    background: transparent;
+  }
 `;
 
 export const StyledTextInput = styled.input`
   border: none;
-  border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue};
+  /* border-bottom: 1px solid ${(p) => p.theme.colors.ylc_blue}; */
   display: inline-block;
-  /* max-width: 100%; */
+  max-width: 100%;
   /* width: 300px; */
   height: 40px;
   ::placeholder {
     color: ${(p) => p.theme.colors.ylc_blue};
   }
+  width: ${(p) => p.width && p.width};
   ${(p) => p.theme.fonts.body_text};
   font-weight: normal;
   flex-grow: 1;
   margin-right: 20px;
+  :disabled {
+    background: transparent;
+  }
 `;
 
 export const LabelInputContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
 `;
 
 export const StyledSelect = styled.select`
@@ -588,6 +605,9 @@ export const StyledSelect = styled.select`
   /* border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray; */
   ${(p) => p.theme.fonts.body_text}
+  :disabled {
+    color: inherit;
+  }
 `;
 
 export const OldStyledSelect = styled(StyledSelect)`
@@ -599,17 +619,29 @@ export const OldStyledSelect = styled(StyledSelect)`
 export const StyledLabel = styled.label`
   display: inline-block;
   ${(p) => p.theme.fonts.body_text_bold}
-  max-width: 125px;
-  padding: 25px;
-  width: ${(p) => (p.width ? p.width : "150px")};
+  /* font-size: 13px; */
+  padding: 5px 15px 5px 5px;
+  width: ${(p) => (p.width ? p.width : "130px")};
   /* margin: 0 50px; */
+  /* ${mq[3]} {
+    width: 110px;
+  } */
+  /* ${mq[2]} {
+    width: 110px;
+  } */
+  /* ${mq[1]} {
+    width: 110px;
+  } */
+  word-wrap: none;
 `;
 
 export const InputContainer = styled.div`
   grid-column-start: 4;
   grid-column-end: 10;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
+  align-items: center;
   border-radius: 10px;
   height: 100%;
   ${mq[2]} {
@@ -627,3 +659,24 @@ export const BillPaymentsContainer = styled.div`
   background: white;
   padding-bottom: 150px;
 `;
+
+const InnerContainer = styled.div`
+  /* min-height: calc(100vh - 150px); */
+  background: white;
+  padding: 15px 20px 0;
+  /* padding-bottom: 150px; */
+`;
+
+const OuterContainer = styled.div`
+  width: max-content;
+  background: white;
+`;
+
+export const FormContainer = ({ children, subtitle }) => {
+  return (
+    <OuterContainer>
+      {subtitle && <TransactionSubtitle>{subtitle}</TransactionSubtitle>}
+      <InnerContainer>{children}</InnerContainer>
+    </OuterContainer>
+  );
+};

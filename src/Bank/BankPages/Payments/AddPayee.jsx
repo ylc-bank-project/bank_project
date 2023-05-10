@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BillPayeeInput,
   BoldDiv,
@@ -30,6 +30,25 @@ export const AddPayee = () => {
 
   const isGoToVerify =
     makingPaymentsSteps[stepIndex] === makingPaymentsEnums.goToVerify;
+
+  useEffect(() => {
+    if (
+      stepIndex >
+      makingPaymentsSteps.indexOf(makingPaymentsEnums.addCompanyName)
+    ) {
+      setCompanyTitle(TACOTITLE);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex >
+      makingPaymentsSteps.indexOf(makingPaymentsEnums.isAddBillNumber)
+    ) {
+      setInputedAccountNumber(ACCOUNTNUMBER);
+    }
+  }, [stepIndex]);
+
   return (
     <div>
       <div>
@@ -53,7 +72,7 @@ export const AddPayee = () => {
               <BillPayeeInput
                 onChange={(e) => setCompanyTitle(e.target.value)}
                 type="text"
-                placeholder="Company Name"
+                placeholder="Enter Payee Name"
                 value={companyTitle}
                 disabled={!isAddCompanyName}
               />
@@ -87,7 +106,7 @@ export const AddPayee = () => {
               <label>
                 <BillPayeeInput
                   onChange={(e) => setInputedAccountNumber(e.target.value)}
-                  placeholder={"Account/Bill Number"}
+                  placeholder={"Enter Account/Bill Number"}
                   value={inputedAccountNumber}
                   disabled={!isAddBillNumber}
                 />

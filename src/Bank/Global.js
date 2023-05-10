@@ -69,6 +69,9 @@ export const theme = {
       font-size: 16px;
       font-family: Noto Sans;
       font-weight: bold;
+      ${mq[3]} {
+        font-size: 14px;
+      }
       ${mq[2]} {
         font-size: 14px;
       }

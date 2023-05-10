@@ -1,27 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SmallContainer,
   BoldDiv,
   StyledNumberFormat,
   SubTitle,
+  LabelInputContainer,
+  StyledLabel,
 } from "../BankPageElements";
 import styled from "styled-components";
 import { InfoTip } from "../../Shared/Tip";
 import { useNavigate, useParams } from "react-router-dom";
-import { bankPageEnums, createEnums, createSteps } from "../../enums";
+import {
+  VERIFCODE,
+  bankPageEnums,
+  createEnums,
+  createSteps,
+} from "../../enums";
 import { ButtonContainer, NeutralBankingButton } from "../../Shared/Layout";
 
 const InputContainer = styled.div`
   padding: 15px 0;
+  text-align: center;
 `;
 
 const PhoneVerification = () => {
   let { activity, stepIndex } = useParams();
   const navigate = useNavigate();
   const [verifCode, setVerifCode] = useState(undefined);
+
+  const isVerifStep =
+    createSteps[stepIndex] === createEnums.ENTERVERIFICATIONCODE;
+
+  useEffect(() => {
+    !isVerifStep && setVerifCode(VERIFCODE);
+  }, [isVerifStep]);
+
   return (
     <SmallContainer>
-      <SubTitle>Insert Phone Code</SubTitle>
+      <SubTitle>Insert Verification Code</SubTitle>
       <InputContainer>
         <InfoTip
           tipContentStyles={{ overflow: "scroll" }}
@@ -31,11 +47,11 @@ const PhoneVerification = () => {
               Your institution will send you a verification code to get to the
               next step via text or phone call. <br />
               Let's say you received the text and it gives you the following
-              verification code: <BoldDiv>0987</BoldDiv>
+              verification code: <BoldDiv>{VERIFCODE}</BoldDiv>
               Enter the verification code in this box.
             </div>
           }
-          buttonDisabled={verifCode !== "0 9 8 7"}
+          buttonDisabled={verifCode !== VERIFCODE}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -43,13 +59,17 @@ const PhoneVerification = () => {
               }/${bankPageEnums.PHONEVERIFICATION}`
             )
           }
-          showTip={createSteps[stepIndex] === createEnums.ENTERVERIFICATIONCODE}
+          showTip={isVerifStep}
           tipTarget={
-            <StyledNumberFormat
-              onChange={(e) => setVerifCode(e.target.value)}
-              format="# # # #"
-              placeholder={"Verifcation Code"}
-            />
+            <LabelInputContainer>
+              <StyledLabel>Insert Code:</StyledLabel>
+              <StyledNumberFormat
+                onChange={(e) => setVerifCode(e.target.value)}
+                format="####"
+                placeholder={"####"}
+                value={verifCode}
+              />
+            </LabelInputContainer>
           }
         />
         <ButtonContainer>

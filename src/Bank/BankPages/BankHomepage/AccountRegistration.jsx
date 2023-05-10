@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import {
+  CARDNUM,
+  PHONENUM,
   activitiesEnums,
   bankPageEnums,
   createEnums,
@@ -12,21 +14,34 @@ import {
   BoldDiv,
   StyledNumberFormat,
   SubTitle,
+  InputContainer,
+  StyledLabel,
+  LabelInputContainer,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import { BankingButton } from "../../Shared/Components";
 import { ButtonContainer, NeutralBankingButton } from "../../Shared/Layout";
 
-const InputContainer = styled.div`
-  padding: 15px 0;
-`;
-
 const AccountRegistration = () => {
-  const [cardNumber, setCardNumber] = useState(undefined);
-  const [phoneNumber, setPhoneNumber] = useState(undefined);
   const navigate = useNavigate();
   const { activity, stepIndex } = useParams();
-  // const isCreateAccount = activity === activitiesEnums.CREATINGACCOUNT;
+
+  const isEnterCard = createSteps[stepIndex] === createEnums.ENTERCARD;
+
+  const isPhone = createSteps[stepIndex] === createEnums.ENTERPHONE;
+
+  const isAfterPhone = stepIndex > 2;
+
+  const [cardNumber, setCardNumber] = useState(undefined);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
+
+  useEffect(() => {
+    !isEnterCard && setCardNumber(CARDNUM);
+  }, [isEnterCard]);
+
+  useEffect(() => {
+    isAfterPhone && setPhoneNumber(PHONENUM);
+  }, [isAfterPhone]);
 
   return (
     <SmallContainer>
@@ -39,13 +54,11 @@ const AccountRegistration = () => {
             <div>
               This is where you enter the 16-digit number from your debit card.{" "}
               {<br />}
-              For this activity, enter: <BoldDiv>
-                1234 5678 9098 7654
-              </BoldDiv>{" "}
-              in the card number box then select ‘Continue’.
+              For this activity, enter: <BoldDiv>{CARDNUM}</BoldDiv> in the card
+              number box then select ‘Continue’.
             </div>
           }
-          buttonDisabled={cardNumber !== "1234 5678 9098 7654"}
+          buttonDisabled={cardNumber !== CARDNUM}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -53,13 +66,19 @@ const AccountRegistration = () => {
               }/${bankPageEnums.ACCOUNTREGISTRATION}`
             )
           }
-          showTip={createSteps[stepIndex] === createEnums.ENTERCARD}
+          showTip={isEnterCard}
           tipTarget={
-            <StyledNumberFormat
-              onChange={(e) => setCardNumber(e.target.value)}
-              format="#### #### #### ####"
-              placeholder={"Card Number"}
-            />
+            <LabelInputContainer>
+              <StyledLabel htmlFor="cardNum">Card Number</StyledLabel>
+              <StyledNumberFormat
+                id={"cardNum"}
+                onChange={(e) => setCardNumber(e.target.value)}
+                value={cardNumber}
+                format="#### #### #### ####"
+                placeholder={"#### #### #### ####"}
+                disabled={!isEnterCard}
+              />
+            </LabelInputContainer>
           }
         />
       </InputContainer>
@@ -71,11 +90,11 @@ const AccountRegistration = () => {
             <div>
               Next enter your phone number associated with your bank account.{" "}
               {<br />}
-              For this activity, enter: <BoldDiv>867-123-4567</BoldDiv> in the
+              For this activity, enter: <BoldDiv>{PHONENUM}</BoldDiv> in the
               phone number box then click "Register".
             </div>
           }
-          buttonDisabled={phoneNumber !== "867-123-4567"}
+          buttonDisabled={phoneNumber !== PHONENUM}
           onClick={() =>
             navigate(
               `/${activity}/${Number(stepIndex) + 1}/${
@@ -83,13 +102,19 @@ const AccountRegistration = () => {
               }/${bankPageEnums.ACCOUNTREGISTRATION}`
             )
           }
-          showTip={createSteps[stepIndex] === createEnums.ENTERPHONE}
+          showTip={isPhone}
           tipTarget={
-            <StyledNumberFormat
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              format="###-###-####"
-              placeholder={"Phone Number"}
-            />
+            <div>
+              <StyledLabel htmlFor="phoneNum">Phone Number</StyledLabel>
+              <StyledNumberFormat
+                id="phoneNum"
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={phoneNumber}
+                disabled={!isPhone}
+                format="###-###-####"
+                placeholder={"###-###-####"}
+              />
+            </div>
           }
         />
         <ButtonContainer>

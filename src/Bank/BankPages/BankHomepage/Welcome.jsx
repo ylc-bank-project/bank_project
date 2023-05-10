@@ -28,6 +28,7 @@ const Welcome = () => {
         tipContent={<div>Click here to sign in</div>}
         tipTarget={
           <SignInButton
+            disabled={!isSignIn}
             onClick={() => {
               if (isSignIn && stepIndex === "0") {
                 navigate(
@@ -49,6 +50,7 @@ const Welcome = () => {
         tipContent={<div>Click here to register for online banking</div>}
         tipTarget={
           <SignInButton
+            disabled={!isCreateAccount}
             onClick={() => {
               navigate(
                 `/${activity}/${Number(stepIndex) + 1}/${

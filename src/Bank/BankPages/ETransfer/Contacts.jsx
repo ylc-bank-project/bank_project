@@ -99,6 +99,7 @@ const Contacts = () => {
             }
             showTip={isSelectNewContact}
             showButton={false}
+            placement="bottom-center"
             tipTarget={
               <ItemListing
                 principal={LANDLORDNAME}

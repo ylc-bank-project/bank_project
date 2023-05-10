@@ -1,9 +1,19 @@
+// REGISTER
+export const CARDNUM = "1234 5678 9098 7654";
+export const PHONENUM = "867-123-4567";
+export const VERIFCODE = "0987";
+export const REGISTEREMAIL = "iloveliteracy@email.com";
+export const REGISTERPW = "literacy1234";
+
 //OTHER
 export const TACOTITLE = "Taco Electric";
 export const ACCOUNTNUMBER = "1234567";
 export const CHEQUINGACCOUNT = "Chequing";
 export const SAVINGSACCOUNT = "Savings";
 export const BILLAMOUNT = "68.00";
+
+// TRANSFER FUNDS
+export const TRANSFERTYPE = "One-Time";
 
 // ETRANSFER SPECIFIC
 export const LANDLORDNAME = "Landlord John";
@@ -57,6 +67,7 @@ export const eTransferPagesEnums = {
   ETCONTACTS: "eTransferContacts",
   ETADDCONTACT: "eTAddContact",
   SENDETRANSFER: "sendETransfer",
+  VERIFYETRANSFER: "verifyETransfer",
 };
 
 // SIGNIN
@@ -227,7 +238,6 @@ export const eTransferEnums = {
   enterQuestionAnswer: "enterQuestionAnswer",
   reEnterAnswer: "reEnterAnswer",
   addMessage: "addMessage",
-  addPersonalInfo: "addPersonalInfo",
   goToSummary: "goToSummary",
   reviewSummary: "reviewSummary",
   clickSend: "clickSend",
@@ -247,7 +257,6 @@ export const eTransferSteps = [
   eTransferEnums.enterQuestionAnswer,
   eTransferEnums.reEnterAnswer,
   eTransferEnums.addMessage,
-  eTransferEnums.addPersonalInfo,
   eTransferEnums.goToSummary,
   eTransferEnums.reviewSummary,
   eTransferEnums.clickSend,

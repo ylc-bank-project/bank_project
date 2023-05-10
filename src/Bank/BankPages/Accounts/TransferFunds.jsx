@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   ContinueButton,
   ContinueButtonContainer,
+  FormContainer,
   InputContainer,
+  LabelInputContainer,
   StyledLabel,
   StyledNumberFormat,
   StyledSelect,
@@ -12,18 +14,13 @@ import {
 import {
   CHEQUINGACCOUNT,
   SAVINGSACCOUNT,
+  TRANSFERTYPE,
   accountPagesEnums,
   transferFundsEnums,
   transferFundsSteps,
 } from "../../enums";
 import { InfoTip } from "../../Shared/Tip";
 import { useNavigate, useParams } from "react-router-dom";
-
-const Container = styled.div`
-  /* min-height: calc(100vh - 150px); */
-  background: white;
-  padding-bottom: 150px;
-`;
 
 export const TransferFunds = () => {
   const { activity, stepIndex } = useParams();
@@ -44,11 +41,41 @@ export const TransferFunds = () => {
   const isTransferType = is(transferFundsEnums.transferType);
   const isConfirmTransfer = is(transferFundsEnums.confirmTransfer);
 
+  useEffect(() => {
+    if (
+      stepIndex > transferFundsSteps.indexOf(transferFundsEnums.selectChequing)
+    ) {
+      setFromAcc(CHEQUINGACCOUNT);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex > transferFundsSteps.indexOf(transferFundsEnums.selectSavings)
+    ) {
+      setToAcc(SAVINGSACCOUNT);
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex > transferFundsSteps.indexOf(transferFundsEnums.enterAmount)
+    ) {
+      setPayAmt("$300");
+    }
+  }, [stepIndex]);
+
+  useEffect(() => {
+    if (
+      stepIndex > transferFundsSteps.indexOf(transferFundsEnums.transferType)
+    ) {
+      setTransferType(TRANSFERTYPE);
+    }
+  }, [stepIndex]);
+
   return (
     <InputContainer>
-      <Container>
-        <TransactionSubtitle>Transfer Funds</TransactionSubtitle>
-
+      <FormContainer subtitle={"Transfer Funds"}>
         <InfoTip
           tipContent={<div>Select "Chequing"</div>}
           showTip={isSelectCheqing}
@@ -63,7 +90,7 @@ export const TransferFunds = () => {
             );
           }}
           tipTarget={
-            <div>
+            <LabelInputContainer>
               <StyledLabel htmlFor="from-select">From Account:</StyledLabel>
               <StyledSelect
                 value={fromAcc}
@@ -78,7 +105,7 @@ export const TransferFunds = () => {
                 <option value={CHEQUINGACCOUNT}>{CHEQUINGACCOUNT}</option>
                 <option value={SAVINGSACCOUNT}>{SAVINGSACCOUNT}</option>
               </StyledSelect>
-            </div>
+            </LabelInputContainer>
           }
         />
 
@@ -130,9 +157,7 @@ export const TransferFunds = () => {
             }}
             tipTarget={
               <div>
-                <StyledLabel htmlFor="transfer-amount">
-                  Transfer Amount:
-                </StyledLabel>
+                <StyledLabel htmlFor="transfer-amount">Amount:</StyledLabel>
                 <StyledNumberFormat
                   id="transfer-amount"
                   onChange={(e) => setPayAmt(e.target.value)}
@@ -146,10 +171,12 @@ export const TransferFunds = () => {
         </div>
         <div>
           <InfoTip
-            tipContent={<div>Select "One-Time", as your Transfer Type.</div>}
+            tipContent={
+              <div>Select {TRANSFERTYPE}, as your Transfer Type.</div>
+            }
             showTip={isTransferType}
             showButton={true}
-            buttonDisabled={transferType !== "One-Time"}
+            buttonDisabled={transferType !== TRANSFERTYPE}
             placement="bottom-center"
             onClick={() => {
               navigate(
@@ -169,7 +196,7 @@ export const TransferFunds = () => {
                   <option value={""} hidden>
                     Select Type
                   </option>
-                  <option value="One-Time">One-Time</option>
+                  <option value={TRANSFERTYPE}>One-Time</option>
                   <option value="Recurring">Recurring</option>
                   <option value="Custom">Custom</option>
                 </StyledSelect>
@@ -199,7 +226,7 @@ export const TransferFunds = () => {
             }
           />
         </ContinueButtonContainer>
-      </Container>
+      </FormContainer>
     </InputContainer>
   );
 };
