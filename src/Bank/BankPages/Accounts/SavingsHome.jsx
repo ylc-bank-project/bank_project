@@ -2,7 +2,7 @@ import React from "react";
 // import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
 import { BankingContainer, TransactionsDetails } from "../BankPageElements";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import {
   // accountPagesEnums,
   activitiesEnums,
