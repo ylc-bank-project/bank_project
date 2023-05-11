@@ -26,6 +26,8 @@ const Transactions = () => {
   const navigate = useNavigate();
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
 
+  console.log({ introModalState });
+
   const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
   const isOverview = activity === activitiesEnums.ACCOUNTOVERVIEW;
 

@@ -1,13 +1,13 @@
 import React from "react";
-import { InfoTip } from "../../Shared/Tip";
+// import { InfoTip } from "../../Shared/Tip";
 import styled from "styled-components";
 import { BankingContainer, TransactionsDetails } from "../BankPageElements";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import {
-  accountPagesEnums,
+  // accountPagesEnums,
   activitiesEnums,
-  overviewEnums,
-  overviewSteps,
+  // overviewEnums,
+  // overviewSteps,
 } from "../../enums";
 
 const AccountSectionWrapper = styled.div`
@@ -41,7 +41,7 @@ const NotedBalance = styled.div`
 const AccountHeaderInfo = () => {
   const { activity, stepIndex } = useParams();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const isTransferFunds = activitiesEnums.TRANSFERFUNDS === activity;
   const isIncreasedSavingsBalance = isTransferFunds && stepIndex >= 6;

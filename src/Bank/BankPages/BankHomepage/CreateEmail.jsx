@@ -42,6 +42,8 @@ const CreateEmail = () => {
   const [passwordTwo, setPasswordTwo] = useState(undefined);
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
 
+  console.log({ introModalState });
+
   useEffect(() => {
     !isEnterEmailStep && setEmail(REGISTEREMAIL);
   }, [isEnterEmailStep]);

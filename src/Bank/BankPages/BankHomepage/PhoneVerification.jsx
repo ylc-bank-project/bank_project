@@ -103,10 +103,3 @@ const PhoneVerification = () => {
 };
 
 export default PhoneVerification;
-
-{
-  /* Create verification code zone and mock phone popup, verification confirmed  */
-}
-{
-  /* Create email and password section (and password re-enter). With confirm button */
-}

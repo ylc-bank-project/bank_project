@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { InfoTip } from "../../Shared/Tip";
 import {
-  BoldDiv,
   ContinueButton,
   ContinueButtonContainer,
   FormContainer,
@@ -10,7 +9,6 @@ import {
   StyledNumberFormat,
   StyledSelect,
   StyledTextInput,
-  TransactionSubtitle,
 } from "../BankPageElements";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
@@ -26,11 +24,6 @@ import {
   eTransferSteps,
 } from "../../enums";
 import { IntroModalContext } from "../../context";
-const Container = styled.div`
-  /* min-height: calc(100vh - 150px); */
-  background: white;
-  padding-bottom: 50px;
-`;
 
 const FullEmptyDiv = styled.div`
   width: 100%;
@@ -41,7 +34,7 @@ const VerifyETransfer = () => {
   const { activity, stepIndex } = useParams();
   const navigate = useNavigate();
 
-  const { introModalState, setIntroContext } = useContext(IntroModalContext);
+  const { setIntroContext } = useContext(IntroModalContext);
 
   const is = (enumStep) => {
     return eTransferSteps[stepIndex] === enumStep;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+// import styled from "styled-components";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   CARDNUM,
   PHONENUM,
-  activitiesEnums,
+  // activitiesEnums,
   bankPageEnums,
   createEnums,
   createSteps,
@@ -19,7 +19,7 @@ import {
   LabelInputContainer,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
-import { BankingButton } from "../../Shared/Components";
+// import { BankingButton } from "../../Shared/Components";
 import { ButtonContainer, NeutralBankingButton } from "../../Shared/Layout";
 
 const AccountRegistration = () => {

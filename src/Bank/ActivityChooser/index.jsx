@@ -5,7 +5,7 @@ import { ActivityList } from "./ActivityListing";
 import logo from "../assets/dark_flake.png";
 
 // import { Space, BoldDiv } from "../Shared/BankPages";
-import { mq, mqMin } from "../Global";
+import { mq } from "../Global";
 
 const LargerSpace = styled.span`
   width: 30px;

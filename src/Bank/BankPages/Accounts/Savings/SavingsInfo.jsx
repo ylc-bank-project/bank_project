@@ -1,17 +1,17 @@
 import React from "react";
-import { InfoTip } from "../../../Shared/Tip";
-import styled from "styled-components";
+// import { InfoTip } from "../../../Shared/Tip";
+// import styled from "styled-components";
 import { ItemListing } from "../../BankPageElements";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  accountPagesEnums,
-  overviewEnums,
-  overviewSteps,
-} from "../../../enums";
+// import { useNavigate, useParams } from "react-router-dom";
+// import {
+//   accountPagesEnums,
+//   overviewEnums,
+//   overviewSteps,
+// } from "../../../enums";
 
 const SavingsInfo = () => {
-  const navigate = useNavigate();
-  const { activity, stepIndex } = useParams();
+  // const navigate = useNavigate();
+  // const { activity, stepIndex } = useParams();
   return (
     <>
       <ItemListing principal={"Funds on Hold"} details="$0.00" />

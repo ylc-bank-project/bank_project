@@ -46,6 +46,8 @@ const SignIn = () => {
   const [password, setPassword] = useState(undefined);
   const [saveToggled, setSaveToggled] = useState(false);
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
+
+  console.log({ introModalState });
   const isSignIn = activity === activitiesEnums.SIGNIN;
 
   return (

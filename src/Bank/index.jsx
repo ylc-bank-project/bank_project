@@ -4,11 +4,7 @@ import ActivityChooser from "./ActivityChooser";
 import { PageContainer, AllActivitiesButton } from "./Shared/Layout";
 import { theme } from "./Global";
 import { AllRoutes } from "./routes";
-import {
-  ActivityModalContext,
-  IntroModalContext,
-  PaymentMethodsContext,
-} from "./context";
+import { ActivityModalContext, IntroModalContext } from "./context";
 import { useLocation } from "react-router-dom";
 
 const App = () => {

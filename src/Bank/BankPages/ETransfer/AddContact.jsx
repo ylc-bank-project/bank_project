@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import {
   BoldDiv,
   ContinueButton,
@@ -9,7 +9,7 @@ import {
   LabelInputContainer,
   StyledLabel,
   StyledTextInput,
-  TransactionSubtitle,
+  // TransactionSubtitle,
 } from "../BankPageElements";
 import { InfoTip } from "../../Shared/Tip";
 import {

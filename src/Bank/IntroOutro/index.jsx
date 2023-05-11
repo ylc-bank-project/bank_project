@@ -5,12 +5,12 @@ import introOutroCopy from "../introOutroCopy";
 import logo from "../assets/dark_flake.png";
 import { ActButton } from "../Shared/Layout";
 import { useNavigate, useParams } from "react-router-dom";
-import { ActivityModalContext, IntroModalContext } from "../context";
+import { /* ActivityModalContext */ IntroModalContext } from "../context";
 
-const LargerSpace = styled.span`
-  width: 30px;
-  display: inline-block;
-`;
+// const LargerSpace = styled.span`
+//   width: 30px;
+//   display: inline-block;
+// `;
 
 const HeaderLogo = styled.img`
   height: 300px;
@@ -37,7 +37,7 @@ const ButtonSection = styled.div`
 `;
 
 const IntroOutro = ({ copy }) => {
-  let { isVisible, setActivityContext } = useContext(ActivityModalContext);
+  // let { isVisible, setActivityContext } = useContext(ActivityModalContext);
   let { introModalState, setIntroContext } = useContext(IntroModalContext);
   let { activity } = useParams();
   const navigate = useNavigate();

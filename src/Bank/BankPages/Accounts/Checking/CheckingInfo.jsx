@@ -1,6 +1,6 @@
 import React from "react";
 import { InfoTip } from "../../../Shared/Tip";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { ItemListing } from "../../BankPageElements";
 import { useNavigate, useParams } from "react-router-dom";
 import {

@@ -11,9 +11,9 @@ import {
   StyledNumberFormat,
   StyledSelect,
   StyledTextInput,
-  TransactionSubtitle,
+  // TransactionSubtitle,
 } from "../BankPageElements";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   CHEQUINGACCOUNT,
@@ -48,7 +48,7 @@ const SendETransfer = () => {
   const isEnterSecurityA = is(eTransferEnums.enterQuestionAnswer);
   const isReenterA = is(eTransferEnums.reEnterAnswer);
   const isAddMessage = is(eTransferEnums.addMessage);
-  const isAddPersonal = is(eTransferEnums.addPersonalInfo);
+  // const isAddPersonal = is(eTransferEnums.addPersonalInfo);
   const isGoToSummary = is(eTransferEnums.goToSummary);
 
   useEffect(() => {

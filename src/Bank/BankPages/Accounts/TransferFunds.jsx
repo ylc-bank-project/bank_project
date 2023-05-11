@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import {
   ContinueButton,
   ContinueButtonContainer,
@@ -9,7 +9,7 @@ import {
   StyledLabel,
   StyledNumberFormat,
   StyledSelect,
-  TransactionSubtitle,
+  // TransactionSubtitle,
 } from "../BankPageElements";
 import {
   CHEQUINGACCOUNT,

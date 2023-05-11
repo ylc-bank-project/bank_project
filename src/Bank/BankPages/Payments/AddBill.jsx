@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   TransactionSubtitle,
   ContinueButton,
   ContinueButtonContainer,
-  StyledSelect,
+  // StyledSelect,
   OldStyledSelect,
   BoldDiv,
 } from "../BankPageElements";

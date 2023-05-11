@@ -31,6 +31,8 @@ export const VerifyBill = () => {
   const { activity, stepIndex } = useParams();
   const { introModalState, setIntroContext } = useContext(IntroModalContext);
 
+  console.log({ introModalState });
+
   const isMakingPayments = activitiesEnums.MAKINGPAYMENTS === activity;
 
   const isConfirmBillPayment =

@@ -144,9 +144,9 @@ export const BasicTipButton = (props) => {
   );
 };
 
-const TipContainer = styled.div`
-  position: absolute;
-`;
+// const TipContainer = styled.div`
+//   position: absolute;
+// `;
 
 export const InfoTip = ({
   tipContent,

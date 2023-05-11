@@ -1,21 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { InfoTip } from "../../../Shared/Tip";
-import { BoldDiv, ItemListing } from "../../BankPageElements";
+import { ItemListing } from "../../BankPageElements";
 import {
   accountPagesEnums,
-  overviewEnums,
-  overviewSteps,
   transferFundsEnums,
   transferFundsSteps,
 } from "../../../enums";
 import { useNavigate, useParams } from "react-router-dom";
-import { IntroModalContext } from "../../../context";
+// import { IntroModalContext } from "../../../context";
 
-const FullEmptyDiv = styled.div`
-  width: 100%;
-  height: 10px;
-`;
+// const FullEmptyDiv = styled.div`
+//   width: 100%;
+//   height: 10px;
+// `;
 
 let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
 const todayDate = `${day} ${month}, ${year}`;
