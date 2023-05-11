@@ -1,3 +1,8 @@
+Deployment notes
+- It is gh-pages deployed
+- just run `yarn deploy`
+- ensure that `http://www.ylcbankingtool.com` is the custom domain
+
 https://github.com/justinrhodes1/react-**power**-tooltip
 
 Example

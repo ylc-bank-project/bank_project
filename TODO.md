@@ -1,8 +1,8 @@
 CURRENT
-- Finish up the Making Payments activity. Pretty close.
-- Fill out the rest of the new activities.
-- Fixes and refinements as needed.
-- Styling sweep? 
+- Spelling fixes?
+- Migrate to Netlify
+  - Added `netlify.toml`, but it's empty, should be pretty straightforward.
+  - Might need to integrate netlify with the github repo
 
 QUESTIONS/THOUGHTS
 - I may want to change my URL param ordering, since it makes more sense to have the activity/stepIndex at the end of the URL
